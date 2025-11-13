@@ -23,20 +23,32 @@ jest.mock("next/navigation", () => ({
 }))
 
 // Mock Next.js Image component
-jest.mock("next/image", () => ({
-  __esModule: true,
-  default: (props: any) => {
-    // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
-    const React = require("react")
+jest.mock("next/image", () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const React = require("react")
+  const Image = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
     return React.createElement("img", props)
-  },
-}))
+  }
+  Image.displayName = "Image"
+  return {
+    __esModule: true,
+    default: Image,
+  }
+})
 
 // Mock Next.js Link component
 jest.mock("next/link", () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require("react")
-  return ({ children, href, ...props }: any) => {
+  interface LinkProps {
+    children: React.ReactNode
+    href: string
+    [key: string]: unknown
+  }
+  const Link = ({ children, href, ...props }: LinkProps) => {
     return React.createElement("a", { href, ...props }, children)
   }
+  Link.displayName = "Link"
+  return Link
 })
 
