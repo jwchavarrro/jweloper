@@ -24,7 +24,6 @@ jest.mock("next/navigation", () => ({
 
 // Mock Next.js Image component
 jest.mock("next/image", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require("react")
   const Image = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
     return React.createElement("img", props)
@@ -38,7 +37,6 @@ jest.mock("next/image", () => {
 
 // Mock Next.js Link component
 jest.mock("next/link", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require("react")
   interface LinkProps {
     children: React.ReactNode
