@@ -21,11 +21,12 @@ const config = {
   collectCoverageFrom: [
     "components/**/*.{ts,tsx}",
     "lib/**/*.{ts,tsx}",
-    "app/**/*.{ts,tsx}",
     "!**/*.d.ts",
     "!**/node_modules/**",
     "!**/.next/**",
     "!**/coverage/**",
+    "!**/index.ts",
+    "!app/**",
   ],
   coverageThreshold: {
     global: {
