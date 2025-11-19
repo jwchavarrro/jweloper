@@ -1,0 +1,92 @@
+/**
+ * @file nav-projects.tsx
+ * @description Componente para la sección de proyectos en la barra lateral.
+ */
+
+"use client"
+
+import {
+  Eye,
+  MoreHorizontal,
+  Share,
+  Trash2,
+} from "lucide-react"
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  useSidebar,
+} from "@/components/ui/sidebar"
+
+// Import of utilities
+import { getSidebarIcon } from "../utils"
+
+// Import of types
+import type { ChatItem } from "../utils/types"
+
+interface NavChatsProps {
+  readonly chats: ChatItem[];
+}
+
+export function NavChats({ chats }: NavChatsProps) {
+  const { isMobile } = useSidebar()
+
+  return (
+    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+      <SidebarGroupLabel>Chats</SidebarGroupLabel>
+      <SidebarMenu>
+        {chats.map((item) => {
+          const Icon = getSidebarIcon(item.icon);
+          return (
+          <SidebarMenuItem key={item.name}>
+            <SidebarMenuButton asChild>
+              <a href={item.url}>
+                <Icon />
+                <span>{item.name}</span>
+              </a>
+            </SidebarMenuButton>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuAction showOnHover>
+                  <MoreHorizontal />
+                  <span className="sr-only">More</span>
+                </SidebarMenuAction>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                className="w-48"
+                side={isMobile ? "bottom" : "right"}
+                align={isMobile ? "end" : "start"}
+              >
+                <DropdownMenuItem>
+                  <Eye className="text-muted-foreground" />
+                  <span>Ver</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Share className="text-muted-foreground" />
+                  <span>Compartir</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Trash2 className="text-muted-foreground" />
+                  <span>Eliminar</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+          );
+        })}
+      </SidebarMenu>
+    </SidebarGroup>
+  )
+}
