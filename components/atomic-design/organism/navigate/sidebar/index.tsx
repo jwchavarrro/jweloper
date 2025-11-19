@@ -6,13 +6,17 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/s
 import { AppSidebar } from "./fragments";
 import { Breadcrumb } from "@/components/atomic-design/organism/navigate";
 
+// Import of types
+import type { SidebarData } from "./utils/types";
+
 interface SidebarProps {
     children: React.ReactNode;
+    data: SidebarData;
 }
-export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar data={data} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">

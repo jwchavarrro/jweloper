@@ -1,6 +1,7 @@
-import { BookOpen, Bot, Frame, LifeBuoy, PieChart, Send, Settings2, SquareTerminal } from "lucide-react";
+import { BookOpen, Bot, Frame, LifeBuoy, Map, PieChart, Send, Settings2, SquareTerminal } from "lucide-react";
+import type { SidebarData } from "./types";
 
-export const SIDEBAR_DATA = {
+export const SIDEBAR_DATA: SidebarData = {
   user: {
     name: "shadcn",
     email: "m@example.com",

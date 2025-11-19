@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import Link from "next/link";
 import {
   Command,
 } from "lucide-react"
@@ -16,29 +16,40 @@ import {
 } from "@/components/ui/sidebar"
 
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+
+// Import of fragments
+import { NavMain, NavProjects, NavSecondary, NavUser } from "../fragments";
+
+// Import of types
+import type { SidebarData } from "../utils/types";
+
+interface AppSidebarProps {
+  data: SidebarData;
+}
+
+export const AppSidebar: React.FC<AppSidebarProps> = ({ data, ...props }) => {
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <Link href="/">
                 <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                   <Command className="size-4" />
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        {/* <NavMain items={data.navMain} />
+        <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        {/* <NavUser user={data.user} /> */}
+        <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>
   )
