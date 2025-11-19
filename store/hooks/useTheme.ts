@@ -5,7 +5,7 @@
 
 import { useAppSelector, useAppDispatch } from "../hooks"
 import { setTheme, toggleTheme } from "../slices/themeSlice"
-import type { Theme } from "../slices/themeSlice"
+import type { EnumTheme } from "@/app/utils/types"
 
 export const useTheme = () => {
   const theme = useAppSelector((state) => state.theme.theme)
@@ -13,7 +13,7 @@ export const useTheme = () => {
 
   return {
     theme,
-    setTheme: (theme: Theme) => dispatch(setTheme(theme)),
+    setTheme: (theme: EnumTheme) => dispatch(setTheme(theme)),
     toggleTheme: () => dispatch(toggleTheme()),
   }
 }
