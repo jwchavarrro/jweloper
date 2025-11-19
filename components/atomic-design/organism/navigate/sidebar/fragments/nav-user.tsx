@@ -9,7 +9,6 @@ import {
   BadgeCheck,
   Bell,
   ChevronsUpDown,
-  CreditCard,
   Sparkles,
 } from "lucide-react"
 

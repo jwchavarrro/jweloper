@@ -23,7 +23,7 @@ import {
 
 
 // Import of fragments
-import { NavMain, NavProjects, NavSecondary, NavUser } from "../fragments";
+import { NavChats, NavMain, NavSecondary, NavUser } from "../fragments";
 
 // Import of types
 import type { SidebarData } from "../utils/types";
@@ -50,7 +50,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ data, ...props }) => {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavChats chats={data.chats} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>

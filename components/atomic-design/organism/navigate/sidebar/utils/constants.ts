@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import type { SidebarData } from "./types";
 
+// Import of utilities
+import { PAGE_ROUTER } from "@/config";
 
 /**
  * @name SIDEBAR_ICONS
@@ -43,21 +45,37 @@ export const SIDEBAR_DATA: SidebarData = {
   },
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: "Aplicativo web",
+      url: PAGE_ROUTER.PUBLIC.APP_WEB,
       icon: "SquareTerminal",
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Inicio",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Proyectos",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Contacto",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "IA chat",
+      url: PAGE_ROUTER.PUBLIC.IA_CHAT,
+      icon: "SquareTerminal",
+      isActive: true,
+      items: [
+        {
+          title: "Nuevo chat",
+          url: "#",
+        },
+        {
+          title: "Buscar chat",
           url: "#",
         },
       ],
@@ -75,21 +93,11 @@ export const SIDEBAR_DATA: SidebarData = {
       icon: "Send",
     },
   ],
-  projects: [
+  chats: [
     {
       name: "Design Engineering",
       url: "#",
       icon: "Frame",
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: "PieChart",
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: "Map",
     },
   ],
 };

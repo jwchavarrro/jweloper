@@ -38,7 +38,7 @@ interface NavMainProps {
 export function NavMain({ items }: NavMainProps) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>Portafolio</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
           const Icon = getSidebarIcon(item.icon);

@@ -24,7 +24,7 @@ export type BaseNavItem = {
 
 export type NavSecondaryItem = Omit<BaseNavItem, "isActive" | "items">;
 
-export type ProjectItem = {
+export type ChatItem = {
   name: string;
   url: string;
   icon: string;
@@ -34,5 +34,5 @@ export type SidebarData = {
   user: User;
   navMain: BaseNavItem[];
   navSecondary: NavSecondaryItem[];
-  projects: ProjectItem[];
+  chats: ChatItem[];
 };

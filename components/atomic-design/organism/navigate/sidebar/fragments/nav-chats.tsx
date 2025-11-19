@@ -6,7 +6,7 @@
 "use client"
 
 import {
-  Folder,
+  Eye,
   MoreHorizontal,
   Share,
   Trash2,
@@ -33,20 +33,20 @@ import {
 import { getSidebarIcon } from "../utils"
 
 // Import of types
-import type { ProjectItem } from "../utils/types"
+import type { ChatItem } from "../utils/types"
 
-interface NavProjectsProps {
-  readonly projects: ProjectItem[];
+interface NavChatsProps {
+  readonly chats: ChatItem[];
 }
 
-export function NavProjects({ projects }: NavProjectsProps) {
+export function NavChats({ chats }: NavChatsProps) {
   const { isMobile } = useSidebar()
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <SidebarGroupLabel>Chats</SidebarGroupLabel>
       <SidebarMenu>
-        {projects.map((item) => {
+        {chats.map((item) => {
           const Icon = getSidebarIcon(item.icon);
           return (
           <SidebarMenuItem key={item.name}>
@@ -69,17 +69,17 @@ export function NavProjects({ projects }: NavProjectsProps) {
                 align={isMobile ? "end" : "start"}
               >
                 <DropdownMenuItem>
-                  <Folder className="text-muted-foreground" />
-                  <span>View Project</span>
+                  <Eye className="text-muted-foreground" />
+                  <span>Ver</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Share className="text-muted-foreground" />
-                  <span>Share Project</span>
+                  <span>Compartir</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Trash2 className="text-muted-foreground" />
-                  <span>Delete Project</span>
+                  <span>Eliminar</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
