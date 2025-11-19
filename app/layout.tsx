@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar } from "@/components/atomic-design/organism/navigate/sidebar/fragments/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
