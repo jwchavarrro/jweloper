@@ -16,7 +16,7 @@ import {
 
 
 // Import of utilities
-import { geistSans, geistMono } from "@/app/utils/functions";
+  import { monofur } from "@/app/utils/functions";
 import "./globals.css";
 
 // Import of types
@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${monofur.variable} antialiased`}
       >
         <SidebarProvider>
           <AppSidebar />

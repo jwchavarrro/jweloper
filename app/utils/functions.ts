@@ -3,20 +3,23 @@
  * Descripción: Este archivo contiene utilidades y funciones globales para la aplicación.
  */
 
+import localFont from "next/font/local";
 
-import { Geist, Geist_Mono } from "next/font/google";
-
-/*
-* Importación de las tipografías de la familia Geist
-* Tipografías globales para la aplicación
-*/
-
-export const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+// Fuentes locales
+export const monofur = localFont({
+  src: "../../public/fonts/monofur.ttf",
+  variable: "--font-monofur",
+  display: "swap",
 });
 
-export const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+export const terminess = localFont({
+  src: "../../public/fonts/terminess.ttf",
+  variable: "--font-terminess",
+  display: "swap",
+});
+
+export const gohu = localFont({
+  src: "../../public/fonts/gohu.ttf",
+  variable: "--font-gohu",
+  display: "swap",
 });
