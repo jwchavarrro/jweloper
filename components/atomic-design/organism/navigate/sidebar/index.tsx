@@ -4,6 +4,7 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/s
 
 // Import of components custom
 import { AppSidebar } from "./fragments";
+import { Breadcrumb } from "@/components/atomic-design/organism/navigate";
 
 interface SidebarProps {
     children: React.ReactNode;
