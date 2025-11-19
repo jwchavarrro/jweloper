@@ -1,7 +1,12 @@
-import React from 'react'
+/**
+ * @file index.tsx
+ * @description Página principal de la aplicación.
+ */
 
 export default function AppWeb() {
   return (
-    <div>AppWeb</div>
-  )
+    <div>
+      <h1>AppWeb</h1>
+    </div>
+  );
 }
