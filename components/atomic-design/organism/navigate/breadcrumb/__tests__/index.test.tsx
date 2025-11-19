@@ -308,5 +308,133 @@ describe("Breadcrumb", () => {
     expect(homeItem).toHaveClass("text-muted-foreground")
     expect(aboutItem).toHaveClass("pointer-events-none")
   })
+
+  it("should handle separator as string", () => {
+    const items = [
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+    ]
+    render(<Breadcrumb items={items} separator=">" />)
+    
+    expect(screen.getByText(">")).toBeInTheDocument()
+  })
+
+  it("should handle separator as number", () => {
+    const items = [
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+    ]
+    render(<Breadcrumb items={items} separator={123} />)
+    
+    expect(screen.getByText("123")).toBeInTheDocument()
+  })
+
+  it("should not show separator for first item", () => {
+    const items = [
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+    ]
+    const { container } = render(<Breadcrumb items={items} separator=">" />)
+    
+    const separators = container.querySelectorAll('[data-slot="breadcrumb-separator"]')
+    // Should have one separator (between Home and About)
+    expect(separators.length).toBe(1)
+  })
+
+  it("should handle pathname with only root", () => {
+    mockUsePathname.mockReturnValue("/")
+    const { container } = render(<Breadcrumb />)
+    
+    // Should return null for root path
+    expect(container.firstChild).toBeNull()
+  })
+
+  it("should handle pathname with excluded all segments", () => {
+    mockUsePathname.mockReturnValue("/app-web/proyectos")
+    render(<Breadcrumb excludeRoutes={["/", "/app-web", "/app-web/proyectos"]} />)
+    
+    // All segments excluded, should return null
+    const { container } = render(<Breadcrumb excludeRoutes={["/", "/app-web", "/app-web/proyectos"]} />)
+    expect(container.firstChild).toBeNull()
+  })
+
+  it("should handle disabled last item via disabledRoutes", () => {
+    const items = [
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+    ]
+    render(<Breadcrumb items={items} disabledRoutes={["/about"]} />)
+    
+    const aboutItem = screen.getByText("About")
+    expect(aboutItem.tagName).toBe("SPAN")
+    expect(aboutItem).toHaveClass("pointer-events-none")
+  })
+
+  it("should handle disabled root path in generateBreadcrumbsFromPath", () => {
+    mockUsePathname.mockReturnValue("/app-web")
+    render(<Breadcrumb disabledRoutes={["/"]} />)
+    
+    const inicioItem = screen.getByText("Inicio")
+    // Should be disabled but still visible
+    expect(inicioItem).toBeInTheDocument()
+  })
+
+  it("should handle excluded segment in generateBreadcrumbsFromPath", () => {
+    mockUsePathname.mockReturnValue("/app-web/proyectos")
+    render(<Breadcrumb excludeRoutes={["/app-web"]} />)
+    
+    expect(screen.queryByText("App Web")).not.toBeInTheDocument()
+    expect(screen.getByText("Proyectos")).toBeInTheDocument()
+  })
+
+  it("should handle disabled segment in generateBreadcrumbsFromPath", () => {
+    mockUsePathname.mockReturnValue("/app-web/proyectos")
+    render(<Breadcrumb disabledRoutes={["/app-web"]} />)
+    
+    const appWebItem = screen.getByText("App Web")
+    expect(appWebItem).toHaveClass("text-muted-foreground")
+    expect(appWebItem).toHaveClass("pointer-events-none")
+  })
+
+  it("should handle excluded root when pathname is not root", () => {
+    mockUsePathname.mockReturnValue("/app-web")
+    render(<Breadcrumb excludeRoutes={["/"]} />)
+    
+    // Root is excluded, so "Inicio" should not appear
+    expect(screen.queryByText("Inicio")).not.toBeInTheDocument()
+    expect(screen.getByText("App Web")).toBeInTheDocument()
+  })
+
+  it("should handle disabled root when pathname is not root", () => {
+    mockUsePathname.mockReturnValue("/app-web")
+    render(<Breadcrumb disabledRoutes={["/"]} />)
+    
+    // Root is disabled but should still appear
+    const inicioItem = screen.getByText("Inicio")
+    expect(inicioItem).toBeInTheDocument()
+    expect(inicioItem).toHaveClass("text-muted-foreground")
+  })
+
+  it("should handle excluded segment path in loop", () => {
+    mockUsePathname.mockReturnValue("/level1/level2/level3")
+    render(<Breadcrumb excludeRoutes={["/level1/level2"]} />)
+    
+    expect(screen.getByText("Inicio")).toBeInTheDocument()
+    expect(screen.getByText("Level1")).toBeInTheDocument()
+    expect(screen.queryByText("Level2")).not.toBeInTheDocument()
+    expect(screen.getByText("Level3")).toBeInTheDocument()
+  })
+
+  it("should handle disabled segment path in loop", () => {
+    mockUsePathname.mockReturnValue("/level1/level2/level3")
+    render(<Breadcrumb disabledRoutes={["/level1/level2"]} />)
+    
+    const level2Item = screen.getByText("Level2")
+    expect(level2Item).toBeInTheDocument()
+    // When disabled and not last, it should be a span with disabled classes
+    const span = level2Item.closest("span.text-muted-foreground")
+    expect(span).toBeInTheDocument()
+    expect(span).toHaveClass("pointer-events-none")
+  })
 })
 
