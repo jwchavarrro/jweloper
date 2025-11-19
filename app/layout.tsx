@@ -15,6 +15,7 @@ import type { Metadata } from "next";
 
 // Import of utilities
 import { SIDEBAR_DATA } from "@/components/atomic-design/organism/navigate/sidebar/utils";
+import { ReduxProvider } from "@/store/provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -31,9 +32,11 @@ export default function RootLayout({
       <body
         className={`${monofur.variable} antialiased`}
       >
-        <Sidebar data={SIDEBAR_DATA}>
-          {children}
-        </Sidebar>
+        <ReduxProvider>
+          <Sidebar data={SIDEBAR_DATA}>
+            {children}
+          </Sidebar>
+        </ReduxProvider>
       </body>
     </html>
   );
