@@ -24,24 +24,6 @@ jest.mock("@/components/atomic-design/organism/navigate/sidebar/utils", () => ({
   },
 }))
 
-// Suprimir el warning de React sobre <html> en tests
-const originalError = console.error
-beforeAll(() => {
-  console.error = (...args: unknown[]) => {
-    if (
-      typeof args[0] === "string" &&
-      args[0].includes("In HTML, <html> cannot be a child of <div>")
-    ) {
-      return
-    }
-    originalError.call(console, ...args)
-  }
-})
-
-afterAll(() => {
-  console.error = originalError
-})
-
 describe("RootLayout", () => {
   it("should render the layout with children", () => {
     const { container } = render(

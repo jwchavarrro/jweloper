@@ -161,5 +161,111 @@ describe("Breadcrumb", () => {
     expect(screen.queryByText("Ia Chat")).not.toBeInTheDocument()
     expect(screen.getByText("Proyectos")).toBeInTheDocument()
   })
+
+  it("should handle empty pathname segments", () => {
+    mockUsePathname.mockReturnValue("//")
+    render(<Breadcrumb />)
+    // Should filter out empty segments and only show "Inicio"
+    expect(screen.getByText("Inicio")).toBeInTheDocument()
+  })
+
+  it("should handle pathname with trailing slash", () => {
+    mockUsePathname.mockReturnValue("/app-web/")
+    render(<Breadcrumb />)
+    
+    expect(screen.getByText("Inicio")).toBeInTheDocument()
+    expect(screen.getByText("App Web")).toBeInTheDocument()
+  })
+
+  it("should handle pathname starting with multiple slashes", () => {
+    mockUsePathname.mockReturnValue("///app-web")
+    render(<Breadcrumb />)
+    
+    expect(screen.getByText("Inicio")).toBeInTheDocument()
+    expect(screen.getByText("App Web")).toBeInTheDocument()
+  })
+
+  it("should handle single character segment", () => {
+    mockUsePathname.mockReturnValue("/a")
+    render(<Breadcrumb />)
+    
+    expect(screen.getByText("Inicio")).toBeInTheDocument()
+    expect(screen.getByText("A")).toBeInTheDocument()
+  })
+
+  it("should handle segment with numbers", () => {
+    mockUsePathname.mockReturnValue("/app-web/123")
+    render(<Breadcrumb />)
+    
+    expect(screen.getByText("Inicio")).toBeInTheDocument()
+    expect(screen.getByText("App Web")).toBeInTheDocument()
+    expect(screen.getByText("123")).toBeInTheDocument()
+  })
+
+  it("should handle last item with disabled prop in items", () => {
+    const items = [
+      { label: "Inicio", href: "/" },
+      { label: "Test", href: "/test", disabled: true },
+    ]
+    render(<Breadcrumb items={items} />)
+    
+    const lastItem = screen.getByText("Test")
+    expect(lastItem.tagName).toBe("SPAN")
+    expect(lastItem).toHaveClass("pointer-events-none")
+  })
+
+  it("should handle disabled root path via disabledRoutes", () => {
+    mockUsePathname.mockReturnValue("/app-web")
+    render(<Breadcrumb disabledRoutes={["/"]} />)
+    
+    const inicioItem = screen.getByText("Inicio")
+    expect(inicioItem).toHaveClass("text-muted-foreground")
+    expect(inicioItem).toHaveClass("pointer-events-none")
+  })
+
+  it("should handle excluded root path", () => {
+    mockUsePathname.mockReturnValue("/app-web")
+    render(<Breadcrumb excludeRoutes={["/"]} />)
+    
+    expect(screen.queryByText("Inicio")).not.toBeInTheDocument()
+    expect(screen.getByText("App Web")).toBeInTheDocument()
+  })
+
+  it("should handle disabled route via disabledRoutes prop", () => {
+    mockUsePathname.mockReturnValue("/app-web/proyectos")
+    render(<Breadcrumb disabledRoutes={["/app-web"]} />)
+    
+    const disabledItem = screen.getByText("App Web")
+    expect(disabledItem).toHaveClass("text-muted-foreground")
+    expect(disabledItem).toHaveClass("pointer-events-none")
+  })
+
+  it("should handle separator with custom React node", () => {
+    const items = [
+      { label: "Inicio", href: "/" },
+      { label: "Test", href: "/test" },
+    ]
+    render(<Breadcrumb items={items} separator={<span data-testid="custom-sep">→</span>} />)
+    
+    expect(screen.getByTestId("custom-sep")).toBeInTheDocument()
+  })
+
+  it("should handle segment with underscores", () => {
+    mockUsePathname.mockReturnValue("/app_web/test_page")
+    render(<Breadcrumb />)
+    
+    expect(screen.getByText("App_web")).toBeInTheDocument()
+    expect(screen.getByText("Test_page")).toBeInTheDocument()
+  })
+
+  it("should handle segment with mixed case", () => {
+    mockUsePathname.mockReturnValue("/AppWeb/TestPage")
+    render(<Breadcrumb />)
+    
+    // El código hace split("-") y capitaliza cada palabra
+    // Como "AppWeb" no tiene guiones, solo capitaliza la primera letra
+    expect(screen.getByText(/Appweb/i)).toBeInTheDocument()
+    expect(screen.getByText(/Testpage/i)).toBeInTheDocument()
+  })
 })
 

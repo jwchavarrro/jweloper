@@ -16,6 +16,20 @@ Object.defineProperty(globalThis, "matchMedia", {
   })),
 })
 
+// Suprimir el warning de React sobre <html> en tests
+const originalError = console.error
+const filteredError = (...args: unknown[]) => {
+  const firstArg = args[0]
+  if (
+    typeof firstArg === "string" &&
+    firstArg.includes("In HTML, <html> cannot be a child of <div>")
+  ) {
+    return
+  }
+  originalError.apply(console, args)
+}
+console.error = filteredError
+
 // Mocks reutilizables de Next.js (ubicados en __mocks__/)
 jest.mock("next/navigation")
 jest.mock("next/image")
