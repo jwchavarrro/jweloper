@@ -63,5 +63,45 @@ describe("NavMain", () => {
     
     expect(screen.getByText("Portafolio")).toBeInTheDocument()
   })
+
+  it("should handle item with isActive false", () => {
+    const itemsWithInactive = [
+      {
+        ...mockItems[0],
+        isActive: false,
+      },
+    ]
+    renderWithProvider(<NavMain items={itemsWithInactive} />)
+    
+    expect(screen.getByText("App Web")).toBeInTheDocument()
+  })
+
+  it("should handle item without isActive property", () => {
+    const itemsWithoutActive = [
+      {
+        title: "Test",
+        url: "/test",
+        icon: "SquareTerminal",
+      },
+    ]
+    renderWithProvider(<NavMain items={itemsWithoutActive} />)
+    
+    expect(screen.getByText("Test")).toBeInTheDocument()
+  })
+
+  it("should handle empty items array", () => {
+    renderWithProvider(<NavMain items={[]} />)
+    
+    expect(screen.getByText("Portafolio")).toBeInTheDocument()
+    expect(screen.queryByText("App Web")).not.toBeInTheDocument()
+  })
+
+  it("should render collapsible trigger when items have subitems", () => {
+    renderWithProvider(<NavMain items={mockItems} />)
+    
+    const toggleButtons = screen.getAllByRole("button")
+    // Should have toggle buttons for collapsible items
+    expect(toggleButtons.length).toBeGreaterThan(0)
+  })
 })
 

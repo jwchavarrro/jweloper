@@ -267,5 +267,46 @@ describe("Breadcrumb", () => {
     expect(screen.getByText(/Appweb/i)).toBeInTheDocument()
     expect(screen.getByText(/Testpage/i)).toBeInTheDocument()
   })
+
+  it("should handle very long pathname", () => {
+    mockUsePathname.mockReturnValue("/level1/level2/level3/level4/level5")
+    render(<Breadcrumb />)
+    
+    expect(screen.getByText("Inicio")).toBeInTheDocument()
+    expect(screen.getByText("Level1")).toBeInTheDocument()
+    expect(screen.getByText("Level5")).toBeInTheDocument()
+  })
+
+  it("should handle pathname with special characters in segment", () => {
+    mockUsePathname.mockReturnValue("/test-page_123")
+    render(<Breadcrumb />)
+    
+    expect(screen.getByText("Inicio")).toBeInTheDocument()
+    expect(screen.getByText("Test Page_123")).toBeInTheDocument()
+  })
+
+  it("should handle separator as React element", () => {
+    const items = [
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+    ]
+    const CustomSeparator = () => <span data-testid="custom-sep">→</span>
+    render(<Breadcrumb items={items} separator={<CustomSeparator />} />)
+    
+    expect(screen.getByTestId("custom-sep")).toBeInTheDocument()
+  })
+
+  it("should handle all items disabled", () => {
+    const items = [
+      { label: "Home", href: "/", disabled: true },
+      { label: "About", href: "/about", disabled: true },
+    ]
+    render(<Breadcrumb items={items} />)
+    
+    const homeItem = screen.getByText("Home")
+    const aboutItem = screen.getByText("About")
+    expect(homeItem).toHaveClass("text-muted-foreground")
+    expect(aboutItem).toHaveClass("pointer-events-none")
+  })
 })
 

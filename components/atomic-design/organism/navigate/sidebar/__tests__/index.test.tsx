@@ -67,5 +67,39 @@ describe("Sidebar", () => {
     const trigger = container.querySelector('[data-sidebar="trigger"]')
     expect(trigger).toBeInTheDocument()
   })
+
+  it("should render Separator", () => {
+    const { container } = render(
+      <Sidebar data={mockSidebarData}>
+        <div>Test</div>
+      </Sidebar>
+    )
+    
+    const separator = container.querySelector('[data-slot="separator"]')
+    expect(separator).toBeInTheDocument()
+  })
+
+  it("should render header with Breadcrumb", () => {
+    render(
+      <Sidebar data={mockSidebarData}>
+        <div>Test</div>
+      </Sidebar>
+    )
+    
+    const breadcrumb = screen.getByTestId("breadcrumb")
+    expect(breadcrumb).toBeInTheDocument()
+  })
+
+  it("should render children in content area", () => {
+    render(
+      <Sidebar data={mockSidebarData}>
+        <div data-testid="content">Content Area</div>
+      </Sidebar>
+    )
+    
+    const content = screen.getByTestId("content")
+    expect(content).toBeInTheDocument()
+    expect(content).toHaveTextContent("Content Area")
+  })
 })
 

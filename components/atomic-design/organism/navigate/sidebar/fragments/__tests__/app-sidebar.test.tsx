@@ -81,5 +81,66 @@ describe("AppSidebar", () => {
     const logoLink = screen.getByRole("link", { name: "" })
     expect(logoLink).toHaveAttribute("href", "/")
   })
+
+  it("should handle empty navMain array", () => {
+    const emptyData = {
+      ...mockSidebarData,
+      navMain: [],
+    }
+    renderWithProvider(<AppSidebar data={emptyData} />)
+    
+    expect(screen.getByTestId("nav-main")).toBeInTheDocument()
+    expect(screen.getByText("NavMain 0 items")).toBeInTheDocument()
+  })
+
+  it("should handle empty navSecondary array", () => {
+    const emptyData = {
+      ...mockSidebarData,
+      navSecondary: [],
+    }
+    renderWithProvider(<AppSidebar data={emptyData} />)
+    
+    expect(screen.getByTestId("nav-secondary")).toBeInTheDocument()
+    expect(screen.getByText("NavSecondary 0 items")).toBeInTheDocument()
+  })
+
+  it("should handle empty chats array", () => {
+    const emptyData = {
+      ...mockSidebarData,
+      chats: [],
+    }
+    renderWithProvider(<AppSidebar data={emptyData} />)
+    
+    expect(screen.getByTestId("nav-chats")).toBeInTheDocument()
+    expect(screen.getByText("NavChats 0 chats")).toBeInTheDocument()
+  })
+
+  it("should pass all data correctly to fragments", () => {
+    const complexData = {
+      user: {
+        name: "Complex User",
+        email: "complex@example.com",
+        avatar: "/complex.jpg",
+      },
+      navMain: [
+        { title: "Item 1", url: "/1", icon: "SquareTerminal" },
+        { title: "Item 2", url: "/2", icon: "Frame" },
+      ],
+      navSecondary: [
+        { title: "Sec 1", url: "#1", icon: "LifeBuoy" },
+        { title: "Sec 2", url: "#2", icon: "Send" },
+      ],
+      chats: [
+        { name: "Chat 1", url: "#1", icon: "Frame" },
+        { name: "Chat 2", url: "#2", icon: "PieChart" },
+      ],
+    }
+    renderWithProvider(<AppSidebar data={complexData} />)
+    
+    expect(screen.getByText("NavMain 2 items")).toBeInTheDocument()
+    expect(screen.getByText("NavSecondary 2 items")).toBeInTheDocument()
+    expect(screen.getByText("NavChats 2 chats")).toBeInTheDocument()
+    expect(screen.getByText("NavUser Complex User")).toBeInTheDocument()
+  })
 })
 

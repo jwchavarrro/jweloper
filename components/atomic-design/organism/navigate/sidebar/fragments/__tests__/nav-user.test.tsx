@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import { NavUser } from "../nav-user"
 import { renderWithProvider } from "../../__mocks__/test-utils"
 
@@ -44,6 +45,37 @@ describe("NavUser", () => {
     
     expect(nameElement).toBeInTheDocument()
     expect(emailElement).toBeInTheDocument()
+  })
+
+  it("should render dropdown menu when opened", async () => {
+    const user = userEvent.setup()
+    renderWithProvider(<NavUser user={mockUser} />)
+    
+    const trigger = screen.getByRole("button", { expanded: false })
+    await user.click(trigger)
+    
+    // Wait for dropdown items to appear
+    await screen.findByText("Upgrade to Pro")
+    expect(screen.getByText("Upgrade to Pro")).toBeInTheDocument()
+    expect(screen.getByText("Account")).toBeInTheDocument()
+    expect(screen.getByText("Notifications")).toBeInTheDocument()
+  })
+
+  it("should render user info in dropdown header", async () => {
+    const user = userEvent.setup()
+    renderWithProvider(<NavUser user={mockUser} />)
+    
+    const trigger = screen.getByRole("button", { expanded: false })
+    await user.click(trigger)
+    
+    // Wait for dropdown to open
+    await screen.findByText("Upgrade to Pro")
+    
+    // User info should appear twice (in button and in dropdown header)
+    const nameElements = screen.getAllByText("John Doe")
+    const emailElements = screen.getAllByText("john@example.com")
+    expect(nameElements.length).toBeGreaterThan(1)
+    expect(emailElements.length).toBeGreaterThan(1)
   })
 })
 
