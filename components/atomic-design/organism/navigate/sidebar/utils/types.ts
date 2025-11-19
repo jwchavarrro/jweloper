@@ -1,4 +1,7 @@
-import { LucideIcon } from "lucide-react";
+/**
+ * @file types.ts
+ * @description Tipos para el sidebar.
+ */
 
 export type User = {
   name: string;
@@ -14,7 +17,7 @@ export type NavItem = {
 export type BaseNavItem = {
   title: string;
   url: string;
-  icon: LucideIcon;
+  icon: string;
   isActive?: boolean;
   items?: NavItem[];
 };
@@ -24,7 +27,7 @@ export type NavSecondaryItem = Omit<BaseNavItem, "isActive" | "items">;
 export type ProjectItem = {
   name: string;
   url: string;
-  icon: LucideIcon;
+  icon: string;
 };
 
 export type SidebarData = {

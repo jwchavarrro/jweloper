@@ -1,3 +1,8 @@
+/**
+ * @file layout.ts
+ * @description Layout principal de la aplicación.
+ */
+
 // Import of components custom
 import { Sidebar } from "@/components/atomic-design/organism/navigate";
 

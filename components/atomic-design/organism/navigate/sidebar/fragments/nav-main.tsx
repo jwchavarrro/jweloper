@@ -1,6 +1,11 @@
+/**
+ * @file nav-main.tsx
+ * @description Componente para la barra lateral de navegación principal.
+ */
+
 "use client"
 
-import { ChevronRight, type LucideIcon } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 
 import {
   Collapsible,
@@ -19,30 +24,30 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 
-export function NavMain({
-  items,
-}: {
-  items: {
-    title: string
-    url: string
-    icon: LucideIcon
-    isActive?: boolean
-    items?: {
-      title: string
-      url: string
-    }[]
-  }[]
-}) {
+
+// Import of utilities
+import { getSidebarIcon } from "../utils"
+
+// Import of types
+import type { BaseNavItem } from "../utils/types"
+
+interface NavMainProps {
+  readonly items: BaseNavItem[];
+}
+
+export function NavMain({ items }: NavMainProps) {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item) => (
+        {items.map((item) => {
+          const Icon = getSidebarIcon(item.icon);
+          return (
           <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
             <SidebarMenuItem>
               <SidebarMenuButton asChild tooltip={item.title}>
                 <a href={item.url}>
-                  <item.icon />
+                  <Icon />
                   <span>{item.title}</span>
                 </a>
               </SidebarMenuButton>
@@ -71,7 +76,8 @@ export function NavMain({
               ) : null}
             </SidebarMenuItem>
           </Collapsible>
-        ))}
+          );
+        })}
       </SidebarMenu>
     </SidebarGroup>
   )

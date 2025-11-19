@@ -1,3 +1,8 @@
+/**
+ * @file nav-user.tsx
+ * @description Componente para la sección de usuario en la barra lateral.
+ */
+
 "use client"
 
 import {
@@ -5,7 +10,6 @@ import {
   Bell,
   ChevronsUpDown,
   CreditCard,
-  LogOut,
   Sparkles,
 } from "lucide-react"
 
@@ -30,15 +34,14 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string
-    email: string
-    avatar: string
-  }
-}) {
+// Import of types
+import type { User } from "../utils/types"
+
+interface NavUserProps {
+  readonly user: User;
+}
+
+export function NavUser({ user }: NavUserProps) {
   const { isMobile } = useSidebar()
 
   return (
@@ -93,19 +96,10 @@ export function NavUser({
                 Account
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <CreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
                 <Bell />
                 Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOut />
-              Log out
-            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

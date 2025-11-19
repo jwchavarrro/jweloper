@@ -1,6 +1,40 @@
-import { BookOpen, Bot, Frame, LifeBuoy, Map, PieChart, Send, Settings2, SquareTerminal } from "lucide-react";
+/**
+ * @file constants.ts
+ * @description Constantes para el sidebar.
+ */
+
+import {
+  Frame,
+  LifeBuoy,
+  Map,
+  PieChart,
+  Send,
+  SquareTerminal,
+  type LucideIcon,
+} from "lucide-react";
 import type { SidebarData } from "./types";
 
+
+/**
+ * @name SIDEBAR_ICONS
+ * @type {Record<string, LucideIcon>}
+ * @description Map de iconos para el sidebar.
+ */
+export const SIDEBAR_ICONS: Record<string, LucideIcon> = {
+  SquareTerminal,
+  LifeBuoy,
+  Send,
+  Frame,
+  PieChart,
+  Map,
+};
+
+
+/**
+ * @name SIDEBAR_DATA
+ * @type {SidebarData}
+ * @description Datos de ejemplo para el sidebar.
+ */
 export const SIDEBAR_DATA: SidebarData = {
   user: {
     name: "shadcn",
@@ -11,7 +45,7 @@ export const SIDEBAR_DATA: SidebarData = {
     {
       title: "Playground",
       url: "#",
-      icon: SquareTerminal,
+      icon: "SquareTerminal",
       isActive: true,
       items: [
         {
@@ -28,99 +62,34 @@ export const SIDEBAR_DATA: SidebarData = {
         },
       ],
     },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
   ],
   navSecondary: [
     {
       title: "Support",
       url: "#",
-      icon: LifeBuoy,
+      icon: "LifeBuoy",
     },
     {
       title: "Feedback",
       url: "#",
-      icon: Send,
+      icon: "Send",
     },
   ],
   projects: [
     {
       name: "Design Engineering",
       url: "#",
-      icon: Frame,
+      icon: "Frame",
     },
     {
       name: "Sales & Marketing",
       url: "#",
-      icon: PieChart,
+      icon: "PieChart",
     },
     {
       name: "Travel",
       url: "#",
-      icon: Map,
+      icon: "Map",
     },
   ],
-}
+};

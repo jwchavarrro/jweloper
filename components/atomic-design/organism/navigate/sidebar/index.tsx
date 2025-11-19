@@ -1,3 +1,10 @@
+/**
+ * @file index.ts
+ * @description Componente principal para la barra lateral de navegación.
+ */
+
+"use client"
+
 import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 

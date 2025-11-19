@@ -1,3 +1,8 @@
+/**
+ * @file nav-projects.tsx
+ * @description Componente para la sección de proyectos en la barra lateral.
+ */
+
 "use client"
 
 import {
@@ -5,7 +10,6 @@ import {
   MoreHorizontal,
   Share,
   Trash2,
-  type LucideIcon,
 } from "lucide-react"
 
 import {
@@ -25,26 +29,30 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-export function NavProjects({
-  projects,
-}: {
-  projects: {
-    name: string
-    url: string
-    icon: LucideIcon
-  }[]
-}) {
+// Import of utilities
+import { getSidebarIcon } from "../utils"
+
+// Import of types
+import type { ProjectItem } from "../utils/types"
+
+interface NavProjectsProps {
+  readonly projects: ProjectItem[];
+}
+
+export function NavProjects({ projects }: NavProjectsProps) {
   const { isMobile } = useSidebar()
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>Projects</SidebarGroupLabel>
       <SidebarMenu>
-        {projects.map((item) => (
+        {projects.map((item) => {
+          const Icon = getSidebarIcon(item.icon);
+          return (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <a href={item.url}>
-                <item.icon />
+                <Icon />
                 <span>{item.name}</span>
               </a>
             </SidebarMenuButton>
@@ -76,13 +84,8 @@ export function NavProjects({
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
-        ))}
-        <SidebarMenuItem>
-          <SidebarMenuButton>
-            <MoreHorizontal />
-            <span>More</span>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
+          );
+        })}
       </SidebarMenu>
     </SidebarGroup>
   )

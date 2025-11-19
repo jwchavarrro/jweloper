@@ -1,3 +1,8 @@
+/**
+ * @file app-sidebar.tsx
+ * @description Componente para la barra lateral de navegación.
+ */
+
 "use client"
 
 import Link from "next/link";
