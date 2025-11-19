@@ -1,16 +1,20 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+/**
+ * @file layout.ts
+ * @description Layout principal de la aplicación.
+ */
+
+// Import of components custom
+import { Sidebar } from "@/components/atomic-design/organism/navigate";
+
+// Import of utilities
+import { monofur } from "@/app/utils/functions";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// Import of types
+import type { Metadata } from "next";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// Import of utilities
+import { SIDEBAR_DATA } from "@/components/atomic-design/organism/navigate/sidebar/utils";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,11 +27,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${monofur.variable} antialiased`}
       >
-        {children}
+        <Sidebar data={SIDEBAR_DATA}>
+          {children}
+        </Sidebar>
       </body>
     </html>
   );
