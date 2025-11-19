@@ -8,7 +8,7 @@ jest.mock("@/components/atomic-design/organism/navigate", () => ({
 
 // Mocks específicos para este test
 jest.mock("../fragments", () => ({
-  AppSidebar: ({ data }: { data: unknown }) => (
+  AppSidebar: () => (
     <div data-testid="app-sidebar">Sidebar Content</div>
   ),
 }))

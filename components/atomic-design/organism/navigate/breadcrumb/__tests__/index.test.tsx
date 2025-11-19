@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react"
 import { Breadcrumb } from "../index"
-import { usePathname } from "next/navigation"
 
 // Mock específico de usePathname para este test
 const mockUsePathname = jest.fn()
