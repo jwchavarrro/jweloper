@@ -10,6 +10,7 @@ import {
   PieChart,
   Send,
   SquareTerminal,
+  LayoutTemplate,
   type LucideIcon,
 } from "lucide-react";
 import type { SidebarData } from "./types";
@@ -23,6 +24,7 @@ import { PAGE_ROUTER } from "@/config";
  * @description Map de iconos para el sidebar.
  */
 export const SIDEBAR_ICONS: Record<string, LucideIcon> = {
+  LayoutTemplate,
   SquareTerminal,
   LifeBuoy,
   Send,
@@ -47,7 +49,7 @@ export const SIDEBAR_DATA: SidebarData = {
     {
       title: "Aplicativo web",
       url: PAGE_ROUTER.PUBLIC.APP_WEB,
-      icon: "SquareTerminal",
+      icon: "LayoutTemplate",
       isActive: true,
       items: [
         {
@@ -82,11 +84,6 @@ export const SIDEBAR_DATA: SidebarData = {
     },
   ],
   navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: "LifeBuoy",
-    },
     {
       title: "Feedback",
       url: "#",
