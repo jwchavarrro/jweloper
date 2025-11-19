@@ -9,7 +9,9 @@ import {
   BadgeCheck,
   Bell,
   ChevronsUpDown,
+  Moon,
   Sparkles,
+  Sun,
 } from "lucide-react"
 
 import {
@@ -33,6 +35,9 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
+// Import of hooks
+import { useTheme } from "@/store/hooks/useTheme"
+
 // Import of types
 import type { User } from "../utils/types"
 
@@ -42,6 +47,7 @@ interface NavUserProps {
 
 export function NavUser({ user }: NavUserProps) {
   const { isMobile } = useSidebar()
+  const { theme, toggleTheme } = useTheme()
 
   return (
     <SidebarMenu>
@@ -86,6 +92,13 @@ export function NavUser({ user }: NavUserProps) {
               <DropdownMenuItem>
                 <Sparkles />
                 Upgrade to Pro
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem onClick={toggleTheme}>
+                {theme === "dark" ? <Sun /> : <Moon />}
+                {theme === "dark" ? "Modo claro" : "Modo oscuro"}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

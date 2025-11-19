@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import IaChat from "../../ia-chat/index"
+import IaChat from "../../ia-chat/page"
 
 describe("IaChat Page", () => {
   it("should render the IaChat page", () => {
