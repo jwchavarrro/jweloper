@@ -1,21 +1,20 @@
 import { render, screen } from "@testing-library/react"
 import RootLayout, { metadata } from "../layout"
 
-// Mock del componente Sidebar
+// Mock reutilizable del componente Sidebar
 jest.mock("@/components/atomic-design/organism/navigate", () => ({
   Sidebar: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="sidebar">{children}</div>
   ),
 }))
 
-// Mock de las fuentes
+// Mocks específicos para este test
 jest.mock("../utils/functions", () => ({
   monofur: {
     variable: "font-monofur",
   },
 }))
 
-// Mock de SIDEBAR_DATA
 jest.mock("@/components/atomic-design/organism/navigate/sidebar/utils", () => ({
   SIDEBAR_DATA: {
     user: { name: "test", email: "test@test.com", avatar: "/avatar.jpg" },
