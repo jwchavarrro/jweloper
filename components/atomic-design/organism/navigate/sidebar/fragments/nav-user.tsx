@@ -39,10 +39,10 @@ import {
 import { useTheme } from "@/store/hooks/useTheme"
 
 // Import of types
-import type { User } from "../utils/types"
+import type { UserType } from "../utils/types"
 
 interface NavUserProps {
-  readonly user: User;
+  readonly user: UserType;
 }
 
 export function NavUser({ user }: NavUserProps) {

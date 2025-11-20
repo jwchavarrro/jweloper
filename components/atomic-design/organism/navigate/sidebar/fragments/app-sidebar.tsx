@@ -7,7 +7,7 @@
 
 import Link from "next/link";
 import {
-  Command,
+  EqualNot,
 } from "lucide-react"
 
 import {
@@ -26,10 +26,10 @@ import {
 import { NavChats, NavMain, NavSecondary, NavUser } from "../fragments";
 
 // Import of types
-import type { SidebarData } from "../utils/types";
+import type { SidebarDataType } from "../utils/types";
 
 interface AppSidebarProps {
-  data: SidebarData;
+  data: SidebarDataType;
 }
 
 export const AppSidebar: React.FC<AppSidebarProps> = ({ data, ...props }) => {
@@ -40,8 +40,11 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ data, ...props }) => {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
-                <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <Command className="size-4" />
+                <div className="text-foreground flex items-center justify-center">
+                  <EqualNot className="size-8" />
+                  <span className="text-xl font-bold font-text uppercase tracking-wide">
+                    Jweloper
+                  </span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -57,5 +60,5 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ data, ...props }) => {
         <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

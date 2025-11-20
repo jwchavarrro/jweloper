@@ -17,10 +17,10 @@ import {
 import { getSidebarIcon } from "../utils"
 
 // Import of types
-import type { NavSecondaryItem } from "../utils/types"
+import type { NavSecondaryItemType } from "../utils/types"
 
 interface NavSecondaryProps {
-  readonly items: NavSecondaryItem[];
+  readonly items: NavSecondaryItemType[];
 }
 
 export function NavSecondary({

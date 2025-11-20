@@ -4,3 +4,4 @@
  */
 
 export * from "./ia-chat";
+export * from "./utils";
