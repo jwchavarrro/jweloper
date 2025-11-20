@@ -59,9 +59,9 @@
 :root {
   /* Config generals */
   /* Fuentes */
-  --font-monofur: var(--font-monofur);
-  --font-terminess: var(--font-terminess);
-  --font-gohu: var(--font-gohu);
+  --font-monofur: var(monofur);
+  --font-terminess: var(terminess);
+  --font-gohu: var(gohu);
   
   /* Radius */
   --radius: 0.625rem;
