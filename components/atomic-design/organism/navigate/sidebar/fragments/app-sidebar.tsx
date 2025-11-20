@@ -26,10 +26,10 @@ import {
 import { NavChats, NavMain, NavSecondary, NavUser } from "../fragments";
 
 // Import of types
-import type { SidebarData } from "../utils/types";
+import type { SidebarDataType } from "../utils/types";
 
 interface AppSidebarProps {
-  data: SidebarData;
+  data: SidebarDataType;
 }
 
 export const AppSidebar: React.FC<AppSidebarProps> = ({ data, ...props }) => {

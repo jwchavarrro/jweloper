@@ -33,10 +33,10 @@ import {
 import { getSidebarIcon } from "../utils"
 
 // Import of types
-import type { ChatItem } from "../utils/types"
+import type { ChatItemType } from "../utils/types"
 
 interface NavChatsProps {
-  readonly chats: ChatItem[];
+  readonly chats: ChatItemType[];
 }
 
 export function NavChats({ chats }: NavChatsProps) {

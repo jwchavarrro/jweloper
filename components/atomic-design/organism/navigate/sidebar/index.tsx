@@ -14,11 +14,11 @@ import { AppSidebar } from "./fragments";
 import { Breadcrumb } from "@/components/atomic-design/organism/navigate";
 
 // Import of types
-import type { SidebarData } from "./utils/types";
+import type { SidebarDataType } from "./utils/types";
 
 interface SidebarProps {
     children: React.ReactNode;
-    data: SidebarData;
+    data: SidebarDataType;
 }
 export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
   return (

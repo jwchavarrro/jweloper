@@ -29,10 +29,10 @@ import {
 import { getSidebarIcon } from "../utils"
 
 // Import of types
-import type { BaseNavItem } from "../utils/types"
+import type { BaseNavItemType } from "../utils/types"
 
 interface NavMainProps {
-  readonly items: BaseNavItem[];
+  readonly items: BaseNavItemType[];
 }
 
 export function NavMain({ items }: NavMainProps) {

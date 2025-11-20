@@ -9,7 +9,7 @@
  * @type {Object}
  * @description Datos de la página principal.
  */
-export type HomeData = {
+export type HomeDataType = {
   buttons: {
     label: string;
     icon: string;
