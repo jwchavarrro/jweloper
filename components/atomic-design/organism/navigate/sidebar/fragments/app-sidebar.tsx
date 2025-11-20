@@ -40,9 +40,9 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ data, ...props }) => {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
-                <div className="text-foreground flex aspect-square items-center justify-center">
+                <div className="text-foreground flex items-center justify-center">
                   <EqualNot className="size-8" />
-                  <span className="text-xl font-bold font-accent">
+                  <span className="text-xl font-bold font-text uppercase tracking-wide">
                     Jweloper
                   </span>
                 </div>

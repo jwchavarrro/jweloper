@@ -29,8 +29,8 @@
 @theme inline {
   /* Fuentes */
   --font-title: var(--font-terminess);
-  --font-text: var(--font-monofur);
-  --font-accent: var(--font-gohu);
+  --font-text: var(--font-gohu);
+  --font-accent: var(--font-monofur);
 
   /* Radius */
   --radius-sm: calc(var(--radius) - 4px);
@@ -171,6 +171,6 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-text;
   }
 }
