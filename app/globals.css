@@ -1,13 +1,36 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+
 @custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "Monofur";
+  src: url("/fonts/monofur.ttf") format("truetype");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Terminess";
+  src: url("/fonts/terminess.ttf") format("truetype");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gohu";
+  src: url("/fonts/gohu.ttf") format("truetype");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
 
 @theme inline {
   /* Fuentes */
-  --font-monofur: var(--font-monofur);
-  --font-terminess: var(--font-terminess);
-  --font-gohu: var(--font-gohu);
+  --font-title: var(--font-terminess);
+  --font-text: var(--font-monofur);
+  --font-accent: var(--font-gohu);
 
   /* Radius */
   --radius-sm: calc(var(--radius) - 4px);
@@ -59,9 +82,9 @@
 :root {
   /* Config generals */
   /* Fuentes */
-  --font-monofur: var(monofur);
-  --font-terminess: var(terminess);
-  --font-gohu: var(gohu);
+  --font-monofur: "Monofur", "Fira Mono", "Courier New", Courier, monospace;
+  --font-terminess: "Terminess", "Source Code Pro", "Roboto Mono", "Courier New", Courier, monospace;
+  --font-gohu: "Gohu", "Inconsolata", "Fira Code", "Courier New", Courier, monospace;
   
   /* Radius */
   --radius: 0.625rem;

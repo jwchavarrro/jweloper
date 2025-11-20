@@ -7,7 +7,6 @@
 import { Sidebar } from "@/components/atomic-design/organism/navigate";
 
 // Import of utilities
-import { monofur, terminess, gohu } from "@/app/utils/functions";
 import "./globals.css";
 
 // Import of utilities
@@ -30,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${monofur.variable} ${terminess.variable} ${gohu.variable} antialiased`}
+        className="antialiased"
       >
         <ReduxProvider>
           <Sidebar data={SIDEBAR_DATA}>

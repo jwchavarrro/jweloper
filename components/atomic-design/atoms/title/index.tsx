@@ -44,7 +44,7 @@ export function Title({
   };
 
   // Fuente para títulos
-  const titleFont = "font-[family-name:var(--font-terminess)]";
+  const titleFont = "font-title";
 
   const baseClassName = cn(
     titleFont,

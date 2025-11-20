@@ -42,7 +42,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ data, ...props }) => {
               <Link href="/">
                 <div className="text-foreground flex aspect-square items-center justify-center">
                   <EqualNot className="size-8" />
-                  <span className="text-xl font-bold">
+                  <span className="text-xl font-bold font-accent">
                     Jweloper
                   </span>
                 </div>

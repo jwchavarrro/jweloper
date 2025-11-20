@@ -34,7 +34,7 @@ export function Text({
   };
 
   // Fuente para texto
-  const textFont = "font-[family-name:var(--font-monofur)]";
+  const textFont = "font-text";
 
   const baseClassName = cn(textFont, colorStyles[color], className);
 
