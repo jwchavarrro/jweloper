@@ -3,4 +3,4 @@
  * @description Configuración de la aplicación.
  */
 
-export * from "./page-router"
+export * from "./app-routes";

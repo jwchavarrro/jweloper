@@ -16,7 +16,7 @@ import {
 import type { SidebarData } from "./types";
 
 // Import of utilities
-import { PAGE_ROUTER } from "@/config";
+import { APP_ROUTES } from "@/config";
 
 /**
  * @name SIDEBAR_ICONS
@@ -48,37 +48,33 @@ export const SIDEBAR_DATA: SidebarData = {
   navMain: [
     {
       title: "Aplicativo web",
-      url: PAGE_ROUTER.PUBLIC.APP_WEB,
+      url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.APP_WEB.path,
       icon: "LayoutTemplate",
       isActive: true,
       items: [
         {
-          title: "Inicio",
-          url: "#",
-        },
-        {
           title: "Proyectos",
-          url: "#",
+          url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.path,
         },
         {
           title: "Contacto",
-          url: "#",
+          url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.CONTACT.path,
         },
       ],
     },
     {
       title: "IA chat",
-      url: PAGE_ROUTER.PUBLIC.IA_CHAT,
+      url: APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT.path,
       icon: "SquareTerminal",
       isActive: true,
       items: [
         {
           title: "Nuevo chat",
-          url: "#",
+          url: APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.path,
         },
         {
           title: "Buscar chat",
-          url: "#",
+          url: APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.path,
         },
       ],
     },
@@ -90,6 +86,8 @@ export const SIDEBAR_DATA: SidebarData = {
       icon: "Send",
     },
   ],
+
+  // Todo: Esto se debe de eliminar pues se genera dinamicamente en el componente NavChats
   chats: [
     {
       name: "Design Engineering",
