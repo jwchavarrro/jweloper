@@ -14,9 +14,9 @@ import { cn } from "@/lib/utils"
 
 interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
   /** Variante del texto */
-  variant?: "p" | "lead" | "large" | "small" | "muted"
+  readonly variant?: "p" | "lead" | "large" | "small" | "muted";
   /** Color personalizado */
-  color?: "default" | "primary" | "secondary" | "accent"
+  readonly color?: "default" | "primary" | "secondary" | "accent";
 }
 
 export function Text({
@@ -31,9 +31,12 @@ export function Text({
     secondary: "text-secondary-foreground",
     accent: "text-accent-foreground",
     default: "",
-  }
+  };
 
-  const baseClassName = cn(colorStyles[color], className)
+  // Fuente para texto
+  const textFont = "font-[family-name:var(--font-monofur)]";
+
+  const baseClassName = cn(textFont, colorStyles[color], className);
 
   switch (variant) {
     case "lead":
