@@ -9,7 +9,7 @@ import Link from "next/link";
 import { Title, Text, Button } from "@/components/atomic-design/atoms";
 
 // Import of utilities
-import { HOME_DATA } from "@/components/pages";
+import { HOME_DATA, HOME_ICONS } from "@/components/pages";
 
 export default function Home() {
   return (
@@ -33,14 +33,17 @@ export default function Home() {
             </Text>
           </div>
           <div className="flex gap-2">
-            {HOME_DATA?.buttons?.map((button) => (
-              <Button key={button.label} size="lg" className="hover:cursor-pointer hover:bg-transparent" asChild>
-                <Link href={button.url}>
-                <button.icon />
-                {button.label}
-                </Link>
-              </Button>
-            ))}
+            {HOME_DATA?.buttons?.map((button) => {
+              const IconComponent = HOME_ICONS[button.icon];
+              return (
+                <Button key={button.label} size="lg" className="hover:cursor-pointer" asChild>
+                  <Link href={button.url}>
+                    {IconComponent && <IconComponent className="size-4" />}
+                    {button.label}
+                  </Link>
+                </Button>
+              );
+            })}
           </div>
         </div>
       </section>

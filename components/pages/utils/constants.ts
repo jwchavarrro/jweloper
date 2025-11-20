@@ -13,6 +13,9 @@ import {
 // Import of utilities
 import { APP_ROUTES } from "@/config";
 
+// Import of types
+import type { HomeData } from "./types";
+
 /**
  * @name SIDEBAR_ICONS
  * @type {Record<string, LucideIcon>}
@@ -29,7 +32,7 @@ export const HOME_ICONS: Record<string, LucideIcon> = {
  * @type {Object}
  * @description Datos de la página principal.
  */
-export const HOME_DATA = {
+export const HOME_DATA: HomeData = {
   buttons: [
     {
       label: "CV en aplicativo",
