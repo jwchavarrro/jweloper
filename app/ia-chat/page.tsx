@@ -1,5 +1,5 @@
 /**
- * @file index.tsx
+ * @file page.tsx
  * @description Página principal de la aplicación.
  */
 
@@ -10,3 +10,4 @@ export default function IaChat() {
     </div>
   )
 }
+

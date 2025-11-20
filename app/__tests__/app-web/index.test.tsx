@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import AppWeb from "../../app-web/index"
+import AppWeb from "../../app-web/page"
 
 describe("AppWeb Page", () => {
   it("should render the AppWeb page", () => {
