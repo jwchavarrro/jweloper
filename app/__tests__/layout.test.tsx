@@ -9,11 +9,6 @@ jest.mock("@/components/atomic-design/organism/navigate", () => ({
 }))
 
 // Mocks específicos para este test
-jest.mock("../utils/functions", () => ({
-  monofur: {
-    variable: "font-monofur",
-  },
-}))
 
 jest.mock("@/components/atomic-design/organism/navigate/sidebar/utils", () => ({
   SIDEBAR_DATA: {

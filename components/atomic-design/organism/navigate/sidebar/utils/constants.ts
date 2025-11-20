@@ -13,7 +13,7 @@ import {
   LayoutTemplate,
   type LucideIcon,
 } from "lucide-react";
-import type { SidebarData } from "./types";
+import type { SidebarDataType } from "./types";
 
 // Import of utilities
 import { APP_ROUTES } from "@/config";
@@ -36,10 +36,10 @@ export const SIDEBAR_ICONS: Record<string, LucideIcon> = {
 
 /**
  * @name SIDEBAR_DATA
- * @type {SidebarData}
+ * @type {SidebarDataType}
  * @description Datos de ejemplo para el sidebar.
  */
-export const SIDEBAR_DATA: SidebarData = {
+export const SIDEBAR_DATA: SidebarDataType = {
   user: {
     name: "shadcn",
     email: "m@example.com",

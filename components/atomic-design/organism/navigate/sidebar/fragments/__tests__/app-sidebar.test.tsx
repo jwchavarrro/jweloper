@@ -78,7 +78,8 @@ describe("AppSidebar", () => {
   it("should render header with logo link", () => {
     renderWithProvider(<AppSidebar data={mockSidebarData} />)
     
-    const logoLink = screen.getByRole("link", { name: "" })
+    const logoLink = screen.getByRole("link", { name: /jweloper/i })
+    expect(logoLink).toBeInTheDocument()
     expect(logoLink).toHaveAttribute("href", "/")
   })
 

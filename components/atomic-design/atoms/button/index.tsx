@@ -18,7 +18,7 @@ export function Button({
   className,
   customVariant,
   ...props
-}: CustomButtonProps) {
+}: Readonly<CustomButtonProps>) {
   return (
     <BaseButton
       className={cn(
