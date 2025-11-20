@@ -24,7 +24,7 @@ export function Button({
       className={cn(
         // Estilos personalizados adicionales
         customVariant === "gradient" &&
-          "bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70",
+          "bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70",
         customVariant === "glow" &&
           "shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/60",
         className
