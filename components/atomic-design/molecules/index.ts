@@ -5,3 +5,4 @@
 
 export { Card } from "./card";
 export { HeroSection } from "./hero-section";
+export * from "./custom";
