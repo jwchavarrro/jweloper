@@ -14,7 +14,10 @@ export const CounterSection: React.FC<CounterSectionProps> = ({
 }) => {
   return (
     <div>
-      <Title level={1} className="text-[15rem] font-bold">
+      <Title
+        variant="gradient"
+        className="text-7xl! md:text-8xl! xl:text-9xl! underline"
+      >
         {value}
       </Title>
       {text && <Text>{text}</Text>}
