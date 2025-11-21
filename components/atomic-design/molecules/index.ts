@@ -3,6 +3,5 @@
  * Componentes compuestos que usan atoms
  */
 
-export { Card } from "./card"
-export { HeroSection } from "./hero-section"
-
+export { Card } from "./card";
+export { HeroSection } from "./hero-section";

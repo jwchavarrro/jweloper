@@ -1,12 +1,12 @@
-import * as React from "react"
+import * as React from "react";
 import {
   TypographyP as BaseP,
   TypographyLead as BaseLead,
   TypographyLarge as BaseLarge,
   TypographySmall as BaseSmall,
   TypographyMuted as BaseMuted,
-} from "@/components/ui/typography"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/typography";
+import { cn } from "@/lib/utils";
 
 /**
  * Componentes de texto personalizados que extienden Typography de shadcn/ui
@@ -44,31 +44,30 @@ export function Text({
         <BaseLead className={baseClassName} {...props}>
           {children}
         </BaseLead>
-      )
+      );
     case "large":
       return (
         <BaseLarge className={baseClassName} {...props}>
           {children}
         </BaseLarge>
-      )
+      );
     case "small":
       return (
         <BaseSmall className={baseClassName} {...props}>
           {children}
         </BaseSmall>
-      )
+      );
     case "muted":
       return (
         <BaseMuted className={baseClassName} {...props}>
           {children}
         </BaseMuted>
-      )
+      );
     default:
       return (
         <BaseP className={baseClassName} {...props}>
           {children}
         </BaseP>
-      )
+      );
   }
 }
-

@@ -19,16 +19,20 @@ describe("InputSearch", () => {
     const user = userEvent.setup();
     render(<InputSearch />);
     const input = screen.getByPlaceholderText("Buscar...");
-    
+
     await user.type(input, "test");
-    
-    const clearButton = screen.getByRole("button", { name: /limpiar búsqueda/i });
+
+    const clearButton = screen.getByRole("button", {
+      name: /limpiar búsqueda/i,
+    });
     expect(clearButton).toBeInTheDocument();
   });
 
   it("should hide clear button when input is empty", () => {
     render(<InputSearch />);
-    const clearButton = screen.queryByRole("button", { name: /limpiar búsqueda/i });
+    const clearButton = screen.queryByRole("button", {
+      name: /limpiar búsqueda/i,
+    });
     expect(clearButton).not.toBeInTheDocument();
   });
 
@@ -36,13 +40,15 @@ describe("InputSearch", () => {
     const user = userEvent.setup();
     render(<InputSearch />);
     const input = screen.getByPlaceholderText("Buscar...");
-    
+
     await user.type(input, "test");
     expect(input).toHaveValue("test");
-    
-    const clearButton = screen.getByRole("button", { name: /limpiar búsqueda/i });
+
+    const clearButton = screen.getByRole("button", {
+      name: /limpiar búsqueda/i,
+    });
     await user.click(clearButton);
-    
+
     expect(input).toHaveValue("");
     expect(clearButton).not.toBeInTheDocument();
   });
@@ -51,10 +57,10 @@ describe("InputSearch", () => {
     const user = userEvent.setup();
     const handleChange = jest.fn();
     render(<InputSearch value="initial" onChange={handleChange} />);
-    
+
     const input = screen.getByPlaceholderText("Buscar...");
     expect(input).toHaveValue("initial");
-    
+
     await user.type(input, " new");
     expect(handleChange).toHaveBeenCalled();
   });
@@ -62,10 +68,10 @@ describe("InputSearch", () => {
   it("should work as uncontrolled component", async () => {
     const user = userEvent.setup();
     render(<InputSearch />);
-    
+
     const input = screen.getByPlaceholderText("Buscar...");
     await user.type(input, "test");
-    
+
     expect(input).toHaveValue("test");
   });
 
@@ -73,10 +79,12 @@ describe("InputSearch", () => {
     const user = userEvent.setup();
     const handleChange = jest.fn();
     render(<InputSearch value="test" onChange={handleChange} />);
-    
-    const clearButton = screen.getByRole("button", { name: /limpiar búsqueda/i });
+
+    const clearButton = screen.getByRole("button", {
+      name: /limpiar búsqueda/i,
+    });
     await user.click(clearButton);
-    
+
     expect(handleChange).toHaveBeenCalledWith("");
   });
 
@@ -102,8 +110,9 @@ describe("InputSearch", () => {
 
   it("should handle empty string as no value", () => {
     render(<InputSearch value="" />);
-    const clearButton = screen.queryByRole("button", { name: /limpiar búsqueda/i });
+    const clearButton = screen.queryByRole("button", {
+      name: /limpiar búsqueda/i,
+    });
     expect(clearButton).not.toBeInTheDocument();
   });
 });
-

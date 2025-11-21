@@ -121,4 +121,3 @@ describe("InputText", () => {
     expect(input).toHaveAttribute("placeholder", "Enter email");
   });
 });
-

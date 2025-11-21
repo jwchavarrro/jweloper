@@ -3,14 +3,9 @@
  * @description Componente para la sección de proyectos en la barra lateral.
  */
 
-"use client"
+"use client";
 
-import {
-  Eye,
-  MoreHorizontal,
-  Share,
-  Trash2,
-} from "lucide-react"
+import { Eye, MoreHorizontal, Share, Trash2 } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -18,7 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -27,20 +22,20 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 // Import of utilities
-import { getSidebarIcon } from "../utils"
+import { getSidebarIcon } from "../utils";
 
 // Import of types
-import type { ChatItemType } from "../utils/types"
+import type { ChatItemType } from "../utils/types";
 
 interface NavChatsProps {
   readonly chats: ChatItemType[];
 }
 
 export function NavChats({ chats }: NavChatsProps) {
-  const { isMobile } = useSidebar()
+  const { isMobile } = useSidebar();
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
@@ -49,44 +44,44 @@ export function NavChats({ chats }: NavChatsProps) {
         {chats.map((item) => {
           const Icon = getSidebarIcon(item.icon);
           return (
-          <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
-              <a href={item.url}>
-                <Icon />
-                <span>{item.name}</span>
-              </a>
-            </SidebarMenuButton>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuAction showOnHover>
-                  <MoreHorizontal />
-                  <span className="sr-only">More</span>
-                </SidebarMenuAction>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-48"
-                side={isMobile ? "bottom" : "right"}
-                align={isMobile ? "end" : "start"}
-              >
-                <DropdownMenuItem>
-                  <Eye className="text-muted-foreground" />
-                  <span>Ver</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Share className="text-muted-foreground" />
-                  <span>Compartir</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Trash2 className="text-muted-foreground" />
-                  <span>Eliminar</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
+            <SidebarMenuItem key={item.name}>
+              <SidebarMenuButton asChild>
+                <a href={item.url}>
+                  <Icon />
+                  <span>{item.name}</span>
+                </a>
+              </SidebarMenuButton>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <SidebarMenuAction showOnHover>
+                    <MoreHorizontal />
+                    <span className="sr-only">More</span>
+                  </SidebarMenuAction>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className="w-48"
+                  side={isMobile ? "bottom" : "right"}
+                  align={isMobile ? "end" : "start"}
+                >
+                  <DropdownMenuItem>
+                    <Eye className="text-muted-foreground" />
+                    <span>Ver</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Share className="text-muted-foreground" />
+                    <span>Compartir</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <Trash2 className="text-muted-foreground" />
+                    <span>Eliminar</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </SidebarMenuItem>
           );
         })}
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }

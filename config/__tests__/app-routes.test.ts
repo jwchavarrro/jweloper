@@ -15,7 +15,9 @@ describe("APP_ROUTES", () => {
     describe("PORTFOLIO.APP_WEB", () => {
       it("should have APP_WEB route", () => {
         expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.APP_WEB).toBeDefined();
-        expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.APP_WEB.path).toBe("/app-web");
+        expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.APP_WEB.path).toBe(
+          "/app-web"
+        );
       });
 
       it("should have PROJECTS route", () => {
@@ -23,10 +25,12 @@ describe("APP_ROUTES", () => {
         expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.path).toBe(
           "/app-web/proyectos"
         );
-        expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.queries).toBeDefined();
-        expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.queries.proyectos).toBe(
-          "string"
-        );
+        expect(
+          APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.queries
+        ).toBeDefined();
+        expect(
+          APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.queries.proyectos
+        ).toBe("string");
       });
 
       it("should have CONTACT route", () => {
@@ -40,7 +44,9 @@ describe("APP_ROUTES", () => {
     describe("PORTFOLIO.IA_CHAT", () => {
       it("should have IA_CHAT route", () => {
         expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT).toBeDefined();
-        expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT.path).toBe("/ia-chat");
+        expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT.path).toBe(
+          "/ia-chat"
+        );
       });
 
       it("should have IA_CHAT_NEW route", () => {
@@ -48,14 +54,18 @@ describe("APP_ROUTES", () => {
         expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.path).toBe(
           "/ia-chat/nuevo-chat"
         );
-        expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.queries).toBeDefined();
+        expect(
+          APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.queries
+        ).toBeDefined();
         expect(
           APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.queries["nuevo-chat"]
         ).toBe("string");
       });
 
       it("should have IA_CHAT_SEARCH route", () => {
-        expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH).toBeDefined();
+        expect(
+          APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH
+        ).toBeDefined();
         expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.path).toBe(
           "/ia-chat/buscar-chat"
         );
@@ -63,17 +73,19 @@ describe("APP_ROUTES", () => {
           APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.queries
         ).toBeDefined();
         expect(
-          APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.queries["buscar-chat"]
+          APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.queries[
+            "buscar-chat"
+          ]
         ).toBe("string");
-        expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.queries.sort).toBe(
-          "string"
-        );
-        expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.queries.order).toBe(
-          "string"
-        );
-        expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.queries.limit).toBe(
-          "number"
-        );
+        expect(
+          APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.queries.sort
+        ).toBe("string");
+        expect(
+          APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.queries.order
+        ).toBe("string");
+        expect(
+          APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.queries.limit
+        ).toBe("number");
       });
     });
   });
@@ -100,21 +112,35 @@ describe("APP_ROUTES", () => {
     it("should have queries only for routes that need them", () => {
       // Routes without queries should not have queries property
       expect(APP_ROUTES.PUBLIC.HOME.queries).toBeUndefined();
-      expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.APP_WEB.queries).toBeUndefined();
-      expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.CONTACT.queries).toBeUndefined();
-      expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT.queries).toBeUndefined();
+      expect(
+        APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.APP_WEB.queries
+      ).toBeUndefined();
+      expect(
+        APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.CONTACT.queries
+      ).toBeUndefined();
+      expect(
+        APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT.queries
+      ).toBeUndefined();
 
       // Routes with queries should have them
-      expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.queries).toBeDefined();
-      expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.queries).toBeDefined();
-      expect(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.queries).toBeDefined();
+      expect(
+        APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.queries
+      ).toBeDefined();
+      expect(
+        APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.queries
+      ).toBeDefined();
+      expect(
+        APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.queries
+      ).toBeDefined();
     });
 
     it("should have correct query types", () => {
-      const projectsQueries = APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.queries;
+      const projectsQueries =
+        APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.queries;
       expect(projectsQueries.proyectos).toBe("string");
 
-      const newChatQueries = APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.queries;
+      const newChatQueries =
+        APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.queries;
       expect(newChatQueries["nuevo-chat"]).toBe("string");
 
       const searchQueries =
@@ -134,4 +160,3 @@ describe("PortfolioRouteQueryKeys type", () => {
     expect(typeof PortfolioRouteQueryKeys).toBeDefined();
   });
 });
-

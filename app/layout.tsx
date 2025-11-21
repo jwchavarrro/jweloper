@@ -28,13 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body
-        className="antialiased"
-      >
+      <body className="antialiased">
         <ReduxProvider>
-          <Sidebar data={SIDEBAR_DATA}>
-            {children}
-          </Sidebar>
+          <Sidebar data={SIDEBAR_DATA}>{children}</Sidebar>
         </ReduxProvider>
       </body>
     </html>

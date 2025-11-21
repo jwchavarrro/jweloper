@@ -3,12 +3,7 @@
  * @description Constantes para la página principal.
  */
 
-import {
-  SquareTerminal,
-  LayoutTemplate,
-  type LucideIcon,
-} from "lucide-react";
-
+import { SquareTerminal, LayoutTemplate, type LucideIcon } from "lucide-react";
 
 // Import of utilities
 import { APP_ROUTES } from "@/config";
@@ -25,7 +20,6 @@ export const HOME_ICONS: Record<string, LucideIcon> = {
   LayoutTemplate,
   SquareTerminal,
 };
-
 
 /**
  * @name HOME_DATA

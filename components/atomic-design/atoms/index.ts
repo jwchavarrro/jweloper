@@ -8,4 +8,3 @@ export { Heading } from "./heading";
 export { Title } from "./title";
 export { Text } from "./text";
 export { InputText } from "./inputs/input-text";
-

@@ -3,5 +3,4 @@
  * @description Exportaciones de hooks personalizados
  */
 
-export * from "./useTheme"
-
+export * from "./useTheme";

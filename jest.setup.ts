@@ -1,5 +1,5 @@
 // Learn more: https://github.com/testing-library/jest-dom
-import "@testing-library/jest-dom"
+import "@testing-library/jest-dom";
 
 // Mock window.matchMedia (configuración global del entorno de pruebas)
 Object.defineProperty(globalThis, "matchMedia", {
@@ -14,24 +14,23 @@ Object.defineProperty(globalThis, "matchMedia", {
     removeEventListener: jest.fn(),
     dispatchEvent: jest.fn(),
   })),
-})
+});
 
 // Suprimir el warning de React sobre <html> en tests
-const originalError = console.error
+const originalError = console.error;
 const filteredError = (...args: unknown[]) => {
-  const firstArg = args[0]
+  const firstArg = args[0];
   if (
     typeof firstArg === "string" &&
     firstArg.includes("In HTML, <html> cannot be a child of <div>")
   ) {
-    return
+    return;
   }
-  originalError.apply(console, args)
-}
-console.error = filteredError
+  originalError.apply(console, args);
+};
+console.error = filteredError;
 
 // Mocks reutilizables de Next.js (ubicados en __mocks__/)
-jest.mock("next/navigation")
-jest.mock("next/image")
-jest.mock("next/link")
-
+jest.mock("next/navigation");
+jest.mock("next/image");
+jest.mock("next/link");

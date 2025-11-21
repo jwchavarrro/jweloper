@@ -3,7 +3,6 @@
  * @description Tipos para la página principal.
  */
 
-
 /**
  * @name HomeData
  * @type {Object}

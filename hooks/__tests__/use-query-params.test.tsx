@@ -73,9 +73,12 @@ describe("useQueryParams", () => {
         result.current.set("tab", "new-value");
       });
 
-      expect(mockPush).toHaveBeenCalledWith("/test?tab=new-value&filter=active", {
-        scroll: false,
-      });
+      expect(mockPush).toHaveBeenCalledWith(
+        "/test?tab=new-value&filter=active",
+        {
+          scroll: false,
+        }
+      );
     });
 
     it("should remove query parameter when value is null", () => {
@@ -121,9 +124,12 @@ describe("useQueryParams", () => {
         result.current.set("limit", 10);
       });
 
-      expect(mockPush).toHaveBeenCalledWith("/test?tab=settings&filter=active&limit=10", {
-        scroll: false,
-      });
+      expect(mockPush).toHaveBeenCalledWith(
+        "/test?tab=settings&filter=active&limit=10",
+        {
+          scroll: false,
+        }
+      );
     });
   });
 
@@ -147,9 +153,12 @@ describe("useQueryParams", () => {
         result.current.remove("nonexistent");
       });
 
-      expect(mockPush).toHaveBeenCalledWith("/test?tab=settings&filter=active", {
-        scroll: false,
-      });
+      expect(mockPush).toHaveBeenCalledWith(
+        "/test?tab=settings&filter=active",
+        {
+          scroll: false,
+        }
+      );
     });
   });
 
@@ -215,4 +224,3 @@ describe("useQueryParams", () => {
     });
   });
 });
-
