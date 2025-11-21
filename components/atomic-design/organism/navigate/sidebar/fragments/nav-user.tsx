@@ -3,7 +3,7 @@
  * @description Componente para la sección de usuario en la barra lateral.
  */
 
-"use client"
+"use client";
 
 import {
   BadgeCheck,
@@ -12,13 +12,9 @@ import {
   Moon,
   Sparkles,
   Sun,
-} from "lucide-react"
+} from "lucide-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,27 +23,27 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 // Import of hooks
-import { useTheme } from "@/store/hooks/useTheme"
+import { useTheme } from "@/store/hooks/useTheme";
 
 // Import of types
-import type { UserType } from "../utils/types"
+import type { UserType } from "../utils/types";
 
 interface NavUserProps {
   readonly user: UserType;
 }
 
 export function NavUser({ user }: NavUserProps) {
-  const { isMobile } = useSidebar()
-  const { theme, toggleTheme } = useTheme()
+  const { isMobile } = useSidebar();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <SidebarMenu>
@@ -116,5 +112,5 @@ export function NavUser({ user }: NavUserProps) {
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }

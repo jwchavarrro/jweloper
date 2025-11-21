@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import {
   Card as BaseCard,
   CardHeader,
@@ -7,10 +7,10 @@ import {
   CardContent,
   CardFooter,
   CardAction,
-} from "@/components/ui/card"
-import { Button } from "@/components/atomic-design/atoms/button"
-import { Heading } from "@/components/atomic-design/atoms/heading"
-import { Text } from "@/components/atomic-design/atoms/text"
+} from "@/components/ui/card";
+import { Button } from "@/components/atomic-design/atoms/button";
+import { Heading } from "@/components/atomic-design/atoms/heading";
+import { Text } from "@/components/atomic-design/atoms/text";
 
 /**
  * Molecule: Card
@@ -20,21 +20,21 @@ import { Text } from "@/components/atomic-design/atoms/text"
 
 interface CardProps extends React.ComponentProps<typeof BaseCard> {
   /** Título de la tarjeta */
-  title?: string
+  title?: string;
   /** Descripción de la tarjeta */
-  description?: string
+  description?: string;
   /** Contenido de la tarjeta */
-  children?: React.ReactNode
+  children?: React.ReactNode;
   /** Texto del botón en el footer */
-  buttonText?: string
+  buttonText?: string;
   /** Acción del botón */
-  onButtonClick?: () => void
+  onButtonClick?: () => void;
   /** Variante del botón */
-  buttonVariant?: React.ComponentProps<typeof Button>["variant"]
+  buttonVariant?: React.ComponentProps<typeof Button>["variant"];
   /** Mostrar acción en el header */
-  showHeaderAction?: boolean
+  showHeaderAction?: boolean;
   /** Contenido de la acción del header */
-  headerAction?: React.ReactNode
+  headerAction?: React.ReactNode;
 }
 
 export function Card({
@@ -79,6 +79,5 @@ export function Card({
         </CardFooter>
       )}
     </BaseCard>
-  )
+  );
 }
-

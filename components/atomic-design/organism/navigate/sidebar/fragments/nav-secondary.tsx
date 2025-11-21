@@ -3,7 +3,7 @@
  * @description Componente para la navegación secundaria en la barra lateral.
  */
 
-import * as React from "react"
+import * as React from "react";
 
 import {
   SidebarGroup,
@@ -11,13 +11,13 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 // Import of utilities
-import { getSidebarIcon } from "../utils"
+import { getSidebarIcon } from "../utils";
 
 // Import of types
-import type { NavSecondaryItemType } from "../utils/types"
+import type { NavSecondaryItemType } from "../utils/types";
 
 interface NavSecondaryProps {
   readonly items: NavSecondaryItemType[];
@@ -34,18 +34,18 @@ export function NavSecondary({
           {items.map((item) => {
             const Icon = getSidebarIcon(item.icon);
             return (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild size="sm">
-                <a href={item.url}>
-                  <Icon />
-                  <span>{item.title}</span>
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild size="sm">
+                  <a href={item.url}>
+                    <Icon />
+                    <span>{item.title}</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             );
           })}
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
-  )
+  );
 }

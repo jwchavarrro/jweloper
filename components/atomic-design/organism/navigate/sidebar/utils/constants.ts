@@ -33,7 +33,6 @@ export const SIDEBAR_ICONS: Record<string, LucideIcon> = {
   Map,
 };
 
-
 /**
  * @name SIDEBAR_DATA
  * @type {SidebarDataType}

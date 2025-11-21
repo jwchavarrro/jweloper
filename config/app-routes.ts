@@ -55,9 +55,9 @@ export const APP_ROUTES = {
  * Solo funciona con rutas que tienen la propiedad queries definida
  */
 export type PortfolioRouteQueryKeys<
-  T extends keyof typeof APP_ROUTES.PUBLIC.PORTFOLIO
+  T extends keyof typeof APP_ROUTES.PUBLIC.PORTFOLIO,
 > = T extends "IA_CHAT_NEW"
   ? keyof (typeof APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW)["queries"]
   : T extends "IA_CHAT_SEARCH"
-  ? keyof (typeof APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH)["queries"]
-  : never;
+    ? keyof (typeof APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH)["queries"]
+    : never;

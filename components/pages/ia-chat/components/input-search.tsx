@@ -30,15 +30,13 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   className,
   ...props
 }) => {
-
-    // General states
+  // General states
   const [internalValue, setInternalValue] = React.useState<string>(value);
 
   // Validations
   const isControlled = value !== undefined && onChange !== undefined;
   const currentValue = isControlled ? value : internalValue;
   const hasValue = currentValue.length > 0;
-
 
   /**
    * Manejador de cambio del input
@@ -52,7 +50,6 @@ export const InputSearch: React.FC<InputSearchProps> = ({
       setInternalValue(newValue);
     }
   };
-
 
   return (
     <div className={cn("w-full", className)}>
@@ -77,9 +74,9 @@ export const InputSearch: React.FC<InputSearchProps> = ({
               }
             }}
             aria-label="Limpiar búsqueda"
-        >
+          >
             <MoveUp />
-        </Button>
+          </Button>
         )}
       </div>
     </div>

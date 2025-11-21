@@ -3,12 +3,10 @@
  * @description Componente para la barra lateral de navegación.
  */
 
-"use client"
+"use client";
 
 import Link from "next/link";
-import {
-  EqualNot,
-} from "lucide-react"
+import { EqualNot } from "lucide-react";
 
 import {
   Sidebar,
@@ -18,9 +16,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
-
-
+} from "@/components/ui/sidebar";
 
 // Import of fragments
 import { NavChats, NavMain, NavSecondary, NavUser } from "../fragments";
@@ -61,4 +57,4 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ data, ...props }) => {
       </SidebarFooter>
     </Sidebar>
   );
-}
+};

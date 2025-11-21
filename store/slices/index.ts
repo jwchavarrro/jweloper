@@ -3,4 +3,4 @@
  * @description Index de slices de Redux
  */
 
-export * from "./themeSlice"
+export * from "./themeSlice";
