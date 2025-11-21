@@ -3,10 +3,9 @@
  * @description Página principal de la aplicación.
  */
 
+// Import of components custom
+import { Title, Text } from "@/components/atomic-design/atoms";
+
 export default function AppWeb() {
-  return (
-    <div>
-      <h1>AppWeb</h1>
-    </div>
-  );
+  return <div className="h-[calc(100vh-96px)]"></div>;
 }

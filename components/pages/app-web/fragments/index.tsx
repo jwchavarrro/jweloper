@@ -1,0 +1,4 @@
+/**
+ * @file index.ts
+ * @description Exportaciones de fragments para la página principal.
+ */
