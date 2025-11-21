@@ -6,6 +6,6 @@
  * - molecules/: Componentes compuestos que usan atoms
  */
 
-// Re-exportar desde las subcarpetas
 export * from "./atoms";
 export * from "./molecules";
+export * from "./templates";
