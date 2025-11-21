@@ -3,4 +3,4 @@
  * Componentes compuestos que usan molecules
  */
 
-export * from "./navigate"
+export * from "./navigate";

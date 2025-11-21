@@ -3,5 +3,5 @@
  * Componentes compuestos que usan molecules
  */
 
-export * from "./breadcrumb"
-export * from "./sidebar"
+export * from "./breadcrumb";
+export * from "./sidebar";

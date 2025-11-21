@@ -3,13 +3,12 @@
  * @description Mock reutilizable para next/image
  */
 
-import * as React from "react"
+import * as React from "react";
 
 const Image = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
-  return React.createElement("img", props)
-}
+  return React.createElement("img", props);
+};
 
-Image.displayName = "Image"
+Image.displayName = "Image";
 
-export default Image
-
+export default Image;

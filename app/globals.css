@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
 @custom-variant dark (&:is(.dark *));
 
 @font-face {
@@ -83,9 +82,12 @@
   /* Config generals */
   /* Fuentes */
   --font-monofur: "Monofur", "Fira Mono", "Courier New", Courier, monospace;
-  --font-terminess: "Terminess", "Source Code Pro", "Roboto Mono", "Courier New", Courier, monospace;
-  --font-gohu: "Gohu", "Inconsolata", "Fira Code", "Courier New", Courier, monospace;
-  
+  --font-terminess:
+    "Terminess", "Source Code Pro", "Roboto Mono", "Courier New", Courier,
+    monospace;
+  --font-gohu:
+    "Gohu", "Inconsolata", "Fira Code", "Courier New", Courier, monospace;
+
   /* Radius */
   --radius: 0.625rem;
 

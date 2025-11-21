@@ -29,21 +29,27 @@ atomic-design/
 ### Importar desde el índice centralizado
 
 ```tsx
-import { Button, Heading, Text, Card, HeroSection } from "@/components/atomic-design"
+import {
+  Button,
+  Heading,
+  Text,
+  Card,
+  HeroSection,
+} from "@/components/atomic-design";
 ```
 
 ### O importar desde las subcarpetas
 
 ```tsx
 // Desde atoms
-import { Button, Heading, Text } from "@/components/atomic-design/atoms"
+import { Button, Heading, Text } from "@/components/atomic-design/atoms";
 
 // Desde molecules
-import { Card, HeroSection } from "@/components/atomic-design/molecules"
+import { Card, HeroSection } from "@/components/atomic-design/molecules";
 
 // O directamente
-import { Button } from "@/components/atomic-design/atoms/button"
-import { Card } from "@/components/atomic-design/molecules/card"
+import { Button } from "@/components/atomic-design/atoms/button";
+import { Card } from "@/components/atomic-design/molecules/card";
 ```
 
 ## Ejemplos
@@ -130,7 +136,7 @@ import { Card } from "@/components/atomic-design/molecules/card"
 #### HeroSection
 
 ```tsx
-import { HeroSection } from "@/components/atomic-design/molecules/hero-section"
+import { HeroSection } from "@/components/atomic-design/molecules/hero-section";
 
 <HeroSection
   title="Bienvenido a nuestra plataforma"
@@ -139,7 +145,7 @@ import { HeroSection } from "@/components/atomic-design/molecules/hero-section"
   secondaryButtonText="Saber más"
   onPrimaryButtonClick={() => console.log("Primary")}
   onSecondaryButtonClick={() => console.log("Secondary")}
-/>
+/>;
 ```
 
 ## Ventajas
@@ -148,4 +154,3 @@ import { HeroSection } from "@/components/atomic-design/molecules/hero-section"
 2. **Fácil actualización**: Puedes actualizar shadcn/ui sin perder tus personalizaciones
 3. **Reutilizable**: Los atoms pueden combinarse en diferentes molecules
 4. **Mantenible**: Separación clara entre componentes base y personalizados
-

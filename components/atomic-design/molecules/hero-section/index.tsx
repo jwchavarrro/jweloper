@@ -1,8 +1,8 @@
-import * as React from "react"
-import { Heading } from "@/components/atomic-design/atoms/heading"
-import { Text } from "@/components/atomic-design/atoms/text"
-import { Button } from "@/components/atomic-design/atoms/button"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { Heading } from "@/components/atomic-design/atoms/heading";
+import { Text } from "@/components/atomic-design/atoms/text";
+import { Button } from "@/components/atomic-design/atoms/button";
+import { cn } from "@/lib/utils";
 
 /**
  * Molecule: HeroSection
@@ -11,19 +11,19 @@ import { cn } from "@/lib/utils"
 
 interface HeroSectionProps {
   /** Título principal */
-  title: string
+  title: string;
   /** Subtítulo o descripción */
-  subtitle?: string
+  subtitle?: string;
   /** Texto del botón principal */
-  primaryButtonText?: string
+  primaryButtonText?: string;
   /** Acción del botón principal */
-  onPrimaryButtonClick?: () => void
+  onPrimaryButtonClick?: () => void;
   /** Texto del botón secundario */
-  secondaryButtonText?: string
+  secondaryButtonText?: string;
   /** Acción del botón secundario */
-  onSecondaryButtonClick?: () => void
+  onSecondaryButtonClick?: () => void;
   /** Clase personalizada */
-  className?: string
+  className?: string;
 }
 
 export function HeroSection({
@@ -73,6 +73,5 @@ export function HeroSection({
         </div>
       )}
     </section>
-  )
+  );
 }
-

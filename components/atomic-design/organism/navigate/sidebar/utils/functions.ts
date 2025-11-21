@@ -3,7 +3,6 @@
  * @description Contiene funciones auxiliares genéricas y utilidades para el sidebar.
  */
 
-
 import { SquareTerminal } from "lucide-react";
 
 // Import of utilities
@@ -11,7 +10,6 @@ import { SIDEBAR_ICONS } from "./constants";
 
 // Import of types
 import type { LucideIcon } from "lucide-react";
-
 
 /**
  * Función para obtener el icono correspondiente a un nombre de icono

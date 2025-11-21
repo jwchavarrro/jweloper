@@ -5,5 +5,4 @@
 
 export const Sidebar = ({ children }: { children: React.ReactNode }) => (
   <div data-testid="sidebar">{children}</div>
-)
-
+);
