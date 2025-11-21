@@ -4,7 +4,10 @@
  */
 
 // Import of components custom
-import { CounterIndicator, ScrollIndicator } from "../molecules";
+import {
+  CounterIndicator,
+  ScrollIndicator,
+} from "@/components/atomic-design/molecules";
 
 interface SnapPageProps {
   id: string;

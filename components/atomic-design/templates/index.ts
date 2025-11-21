@@ -3,4 +3,4 @@
  * @description Archivo de índice para el template.
  */
 
-export { SnapPage } from "./snap-page";
+export * from "./snap-page/index";
