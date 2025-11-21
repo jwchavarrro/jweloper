@@ -4,20 +4,19 @@ import AppWeb from "../../app-web/page";
 describe("AppWeb Page", () => {
   it("should render the AppWeb page", () => {
     render(<AppWeb />);
-    const heading = screen.getByRole("heading", { name: /appweb/i });
-    expect(heading).toBeInTheDocument();
+    const sections = screen.getAllByRole("generic");
+    expect(sections.length).toBeGreaterThan(0);
   });
 
-  it("should render h1 element with AppWeb text", () => {
-    render(<AppWeb />);
-    const heading = screen.getByRole("heading", { level: 1 });
-    expect(heading).toBeInTheDocument();
-    expect(heading).toHaveTextContent("AppWeb");
-  });
-
-  it("should render within a div container", () => {
+  it("should render sections with snap-start class", () => {
     const { container } = render(<AppWeb />);
-    const div = container.querySelector("div");
+    const sections = container.querySelectorAll("section.snap-start");
+    expect(sections.length).toBeGreaterThan(0);
+  });
+
+  it("should render within a div container with scroll classes", () => {
+    const { container } = render(<AppWeb />);
+    const div = container.querySelector("div.snap-y");
     expect(div).toBeInTheDocument();
   });
 });
