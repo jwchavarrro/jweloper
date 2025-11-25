@@ -17,6 +17,7 @@
     "quality-check": "bun run lint && bun run format:check && bun run build && bun run test:ci"
   },
   "dependencies": {
+    "@iconify/react": "^6.0.2",
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-dialog": "^1.1.15",
