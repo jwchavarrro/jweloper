@@ -53,7 +53,9 @@ describe("CounterIndicator", () => {
   it("should have correct classes on Title", () => {
     const { container } = render(<CounterIndicator value="01" />);
     const heading = container.querySelector("h1");
-    expect(heading).toHaveClass("text-7xl!");
+    expect(heading).toHaveClass("text-5xl!");
+    expect(heading).toHaveClass("md:text-8xl!");
+    expect(heading).toHaveClass("xl:text-9xl!");
     expect(heading).toHaveClass("underline");
   });
 });
