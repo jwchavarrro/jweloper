@@ -13,7 +13,7 @@ import {
 
 export default function AppWeb() {
   return (
-    <div className="h-[calc(100vh-96px)] snap-y snap-mandatory overflow-y-scroll">
+    <div className="h-[calc(100dvh-96px)] snap-y snap-mandatory overflow-y-scroll">
       <Section01 />
       <Section02 />
       <Section03 />

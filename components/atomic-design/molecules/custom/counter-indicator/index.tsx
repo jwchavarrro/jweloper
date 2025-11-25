@@ -26,7 +26,7 @@ export const CounterIndicator: React.FC<CounterIndicatorProps> = ({
           {children}
           <Title
             variant="gradient"
-            className="text-7xl! md:text-8xl! xl:text-9xl! underline"
+            className="text-5xl! md:text-8xl! xl:text-9xl! underline"
           >
             {value}
           </Title>
@@ -35,7 +35,7 @@ export const CounterIndicator: React.FC<CounterIndicatorProps> = ({
         <>
           <Title
             variant="gradient"
-            className="text-7xl! md:text-8xl! xl:text-9xl! underline"
+            className="text-5xl! md:text-8xl! xl:text-9xl! underline"
           >
             {value}
           </Title>
