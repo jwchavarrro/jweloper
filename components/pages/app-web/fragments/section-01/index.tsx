@@ -5,6 +5,7 @@
  * @description Fragmento de la sección 01 de la página principal.
  */
 
+import { useState } from "react";
 import { Icon } from "@iconify/react";
 
 // Import of components custom
@@ -19,6 +20,27 @@ import { SKILLS } from "@/components/pages/app-web/utils/constants";
 import { SkillType } from "@/components/pages/app-web";
 
 export const Section01 = () => {
+  // States generals
+  const [showExperience, setShowExperience] = useState<string | null>(null);
+
+  // Handlers
+  /**
+   * @name handleMouseEnter
+   * @description Manejador para el evento de mouse enter.
+   * @param {string} experience - La experiencia a mostrar.
+   */
+  const handleMouseEnter = (experience: string) => {
+    setShowExperience(experience);
+  };
+
+  /**
+   * @name handleMouseLeave
+   * @description Manejador para el evento de mouse leave.
+   */
+  const handleMouseLeave = () => {
+    setShowExperience(null);
+  };
+
   return (
     <SnapPage id="01">
       {/* Children content */}
@@ -26,8 +48,8 @@ export const Section01 = () => {
         {/* Column 1 - Image */}
         <div className="size-full flex items-center justify-center">
           <div className="relative size-64 xl:size-96 bg-foreground">
-            <div className="absolute bottom-0 left-0 z-10">
-              <CounterIndicator value="+3">
+            <div className="absolute bottom-0 right-0 z-10">
+              <CounterIndicator value={showExperience || ""}>
                 <Text variant="small" className="text-center">
                   años
                 </Text>
@@ -58,6 +80,8 @@ export const Section01 = () => {
                 key={`${skill.name}-${idx}`}
                 icon={skill.icon}
                 className="size-6 md:size-8 xl:size-10 2xl:size-12 text-foreground hover:scale-110 hover:translate-y-3 transition-all duration-300 cursor-pointer"
+                onMouseEnter={() => handleMouseEnter(skill.experience)}
+                onMouseLeave={handleMouseLeave}
               />
             ))}
           </div>
