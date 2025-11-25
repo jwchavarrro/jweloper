@@ -25,10 +25,3 @@ export enum EnumProgrammingLanguage {
 export type ThemeStateType = {
   readonly theme: EnumTheme;
 };
-
-/* export type SkillType = {
-  name: string;
-  icon: string;
-  experience: string;
-};
- */

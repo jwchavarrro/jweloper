@@ -3,6 +3,7 @@
  * @description Configuración de los iconos de la aplicación.
  */
 
+// Import of types
 import { EnumProgrammingLanguage } from "@/app/utils/types";
 
 /**
@@ -17,6 +18,7 @@ export const ICONS: Record<string, string> = {
   [EnumProgrammingLanguage.TypeScript]: "devicon-plain:typescript",
   [EnumProgrammingLanguage.React]: "bxl:react",
   [EnumProgrammingLanguage.Nextjs]: "devicon-plain:nextjs",
+  [EnumProgrammingLanguage.Tailwind]: "file-icons:tailwind",
   [EnumProgrammingLanguage.Git]: "devicon-plain:git",
   [EnumProgrammingLanguage.ApiRest]: "dashicons:rest-api",
 };
