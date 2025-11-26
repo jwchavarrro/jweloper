@@ -36,4 +36,5 @@ export type ThemeStateType = {
 export type SocialMediaType = {
   name: EnumProgrammingLanguage;
   icon: string;
+  url: string;
 };

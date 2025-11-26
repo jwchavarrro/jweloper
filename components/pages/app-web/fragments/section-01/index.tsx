@@ -90,15 +90,15 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
           <div>
             <Title
               variant="gradient"
-              className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-left"
+              className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-left max-w-xl"
             >
-              Desarrollador Frontend
+              Hola, soy John Chavarro Urrea
             </Title>
             <Title
               variant="gradient"
               className="text-xl! tracking-widest font-accent text-center xl:text-left"
             >
-              Sensible al frontend |{" "}
+              Desarrollador Frontend |{" "}
               <button
                 type="button"
                 onClick={handleDownloadCV}
@@ -121,7 +121,7 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
               <Icon
                 key={`${skill.name}-${idx}`}
                 icon={skill.icon}
-                className="size-6 md:size-8 xl:size-10 2xl:size-12 text-foreground hover:scale-110 hover:translate-y-3 transition-all duration-300 cursor-pointer"
+                className="size-6 md:size-8 xl:size-10 text-foreground hover:scale-110 hover:translate-y-3 transition-all duration-300 cursor-pointer"
                 onMouseEnter={() => handleMouseEnter(skill.experience)}
                 onMouseLeave={handleMouseLeave}
               />

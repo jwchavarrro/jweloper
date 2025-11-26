@@ -22,11 +22,16 @@ export default function Home() {
           <div className="w-48 lg:w-80 xl:w-96 h-48 lg:h-80 xl:h-96 xl:mx-auto bg-foreground rounded-full" />
           <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-5 pr-2">
             {SOCIAL_MEDIA.map((socialMedia) => (
-              <Icon
+              <Link
                 key={socialMedia.name}
-                icon={socialMedia.icon}
-                className="size-6 md:size-8 xl:size-10 2xl:size-12 text-foreground hover:scale-110 hover:-translate-x-3 transition-all duration-300 cursor-pointer"
-              />
+                href={socialMedia.url}
+                target="_blank"
+              >
+                <Icon
+                  icon={socialMedia.icon}
+                  className="size-6 md:size-8 xl:size-10 2xl:size-12 text-foreground hover:scale-110 hover:-translate-x-3 transition-all duration-300 cursor-pointer"
+                />
+              </Link>
             ))}
           </div>
         </div>
@@ -72,5 +77,3 @@ export default function Home() {
     </div>
   );
 }
-
-<p>Ten en cuenta que por confidencialidad, el código y parte de las</p>;
