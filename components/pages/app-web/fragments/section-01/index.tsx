@@ -18,10 +18,15 @@ import { SKILLS } from "@/components/pages/app-web/utils/constants";
 
 // Import of types
 import { SkillType } from "@/components/pages/app-web";
+import Link from "next/link";
 
-export const Section01 = () => {
+interface Section01Props {
+  readonly anchorId?: string;
+}
+
+export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
   // States generals
-  const [showExperience, setShowExperience] = useState<string | null>(null);
+  const [showExperience, setShowExperience] = useState<string>("+3");
 
   // Handlers
   /**
@@ -38,19 +43,22 @@ export const Section01 = () => {
    * @description Manejador para el evento de mouse leave.
    */
   const handleMouseLeave = () => {
-    setShowExperience(null);
+    setShowExperience("+3");
   };
 
   return (
-    <SnapPage id="01">
+    <SnapPage id="01" anchorId={anchorId}>
       {/* Children content */}
       <div className="absolute inset-0 grid grid-cols-1 xl:grid-cols-2 content-center gap-2 animate-in slide-in-from-top-10 duration-300 ease-in-out">
         {/* Column 1 - Image */}
         <div className="size-full flex items-center justify-center">
           <div className="relative size-64 xl:size-96 bg-foreground">
             <div className="absolute bottom-0 right-0 z-10">
-              <CounterIndicator value={showExperience || ""}>
-                <Text variant="small" className="text-center">
+              <CounterIndicator
+                value={showExperience}
+                className="text-[15rem]! md:text-[18rem]! lg:text-[20rem]! 2xl:text-[22rem]!"
+              >
+                <Text color="secondary" className="text-center">
                   años
                 </Text>
               </CounterIndicator>
@@ -71,7 +79,10 @@ export const Section01 = () => {
               variant="gradient"
               className="text-xl! tracking-widest font-accent text-center xl:text-left"
             >
-              Sensible al frontend
+              Sensible al frontend |{" "}
+              <Link href="/cv.pdf" target="_blank">
+                <span className="font-title">Descargar CV</span>
+              </Link>
             </Title>
           </div>
           <div className="py-5 flex flex-wrap gap-3 xl:gap-5 items-center justify-center xl:justify-start">

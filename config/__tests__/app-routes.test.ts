@@ -23,20 +23,14 @@ describe("APP_ROUTES", () => {
       it("should have PROJECTS route", () => {
         expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS).toBeDefined();
         expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.path).toBe(
-          "/app-web/proyectos"
+          "/app-web#proyectos"
         );
-        expect(
-          APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.queries
-        ).toBeDefined();
-        expect(
-          APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.queries.proyectos
-        ).toBe("string");
       });
 
       it("should have CONTACT route", () => {
         expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.CONTACT).toBeDefined();
         expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.CONTACT.path).toBe(
-          "/app-web/contacto"
+          "/app-web#contacto"
         );
       });
     });
@@ -124,9 +118,6 @@ describe("APP_ROUTES", () => {
 
       // Routes with queries should have them
       expect(
-        APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.queries
-      ).toBeDefined();
-      expect(
         APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.queries
       ).toBeDefined();
       expect(
@@ -135,10 +126,6 @@ describe("APP_ROUTES", () => {
     });
 
     it("should have correct query types", () => {
-      const projectsQueries =
-        APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.queries;
-      expect(projectsQueries.proyectos).toBe("string");
-
       const newChatQueries =
         APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.queries;
       expect(newChatQueries["nuevo-chat"]).toBe("string");

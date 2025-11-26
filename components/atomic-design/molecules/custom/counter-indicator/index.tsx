@@ -8,15 +8,20 @@ import React from "react";
 // Import of components custom
 import { Title } from "@/components/atomic-design/atoms";
 
+// Import of utilities
+import { cn } from "@/lib/utils";
+
 interface CounterIndicatorProps {
   value: string;
   children?: React.ReactNode;
+  className?: string;
   reverse?: boolean;
 }
 
 export const CounterIndicator: React.FC<CounterIndicatorProps> = ({
   value,
   children,
+  className,
   reverse = false,
 }) => {
   return (
@@ -26,7 +31,7 @@ export const CounterIndicator: React.FC<CounterIndicatorProps> = ({
           {children}
           <Title
             variant="gradient"
-            className="text-5xl! md:text-8xl! xl:text-9xl! underline"
+            className={cn("text-5xl! md:text-8xl! xl:text-9xl!", className)}
           >
             {value}
           </Title>
@@ -35,7 +40,7 @@ export const CounterIndicator: React.FC<CounterIndicatorProps> = ({
         <>
           <Title
             variant="gradient"
-            className="text-5xl! md:text-8xl! xl:text-9xl! underline"
+            className={cn("text-5xl! md:text-8xl! xl:text-9xl!", className)}
           >
             {value}
           </Title>
