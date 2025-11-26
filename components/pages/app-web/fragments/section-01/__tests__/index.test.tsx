@@ -62,7 +62,7 @@ describe("Section01", () => {
 
     // Verificar que el CounterIndicator muestra algún valor
     // (puede ser vacío inicialmente, pero debería cambiar al hacer hover)
-    const counterIndicator = screen.getByText("años");
+    const counterIndicator = screen.getByText(/años de experiencia/i);
     expect(counterIndicator).toBeInTheDocument();
   });
 

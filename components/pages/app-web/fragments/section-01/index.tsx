@@ -13,12 +13,14 @@ import { SnapPage } from "@/components/atomic-design/templates";
 import { Title, Text } from "@/components/atomic-design/atoms";
 import { CounterIndicator } from "@/components/atomic-design/molecules";
 
+// Import of hooks
+import { useDownloadFile, EnumDownloadStatus } from "@/hooks";
+
 // Import of utilities
 import { SKILLS } from "@/components/pages/app-web/utils/constants";
 
 // Import of types
 import { SkillType } from "@/components/pages/app-web";
-import Link from "next/link";
 
 interface Section01Props {
   readonly anchorId?: string;
@@ -27,6 +29,9 @@ interface Section01Props {
 export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
   // States generals
   const [showExperience, setShowExperience] = useState<string>("+3");
+
+  // Implementation of custom hooks
+  const { downloadFile, state } = useDownloadFile();
 
   // Handlers
   /**
@@ -44,6 +49,17 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
    */
   const handleMouseLeave = () => {
     setShowExperience("+3");
+  };
+
+  /**
+   * @name handleDownloadCV
+   * @description Manejador para descargar el CV.
+   */
+  const handleDownloadCV = () => {
+    downloadFile(
+      "/docs/CV JOHN CHAVARRO 2025.pdf",
+      "CV_JOHN_CHAVARRO_2025.pdf"
+    );
   };
 
   return (
@@ -83,9 +99,21 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
               className="text-xl! tracking-widest font-accent text-center xl:text-left"
             >
               Sensible al frontend |{" "}
-              <Link href="/cv.pdf" target="_blank">
-                <span className="font-title">Descargar CV</span>
-              </Link>
+              <button
+                type="button"
+                onClick={handleDownloadCV}
+                disabled={state.status === EnumDownloadStatus.LOADING}
+                className="font-title cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {state.status === EnumDownloadStatus.LOADING
+                  ? "Descargando..."
+                  : "Descargar CV"}
+              </button>
+              {state.status === EnumDownloadStatus.ERROR && (
+                <span className="block text-sm text-destructive mt-1">
+                  {state.error}
+                </span>
+              )}
             </Title>
           </div>
           <div className="py-5 flex flex-wrap gap-3 xl:gap-5 items-center justify-center xl:justify-start">
