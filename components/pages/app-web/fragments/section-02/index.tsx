@@ -4,8 +4,8 @@
  */
 
 // Import of components custom
-import { Title } from "@/components/atomic-design/atoms";
 import { SnapPage } from "@/components/atomic-design/templates";
+import { Title } from "@/components/atomic-design/atoms";
 
 interface Section02Props {
   readonly anchorId?: string;
@@ -20,7 +20,7 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
         <div className="h-full flex items-center justify-end">
           <Title
             variant="gradient"
-            className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl!  text-right max-w-xl"
+            className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-right max-w-xl"
           >
             Experiencia Pro
           </Title>
