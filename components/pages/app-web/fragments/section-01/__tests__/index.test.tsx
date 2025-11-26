@@ -26,20 +26,20 @@ jest.mock("@iconify/react", () => ({
 describe("Section01", () => {
   it("should render the Section01 component", () => {
     render(<Section01 />);
-    const title = screen.getByText("Desarrollador Frontend");
+    const title = screen.getByText(/Desarrollador Frontend/i);
     expect(title).toBeInTheDocument();
   });
 
   it("should render the main title", () => {
     render(<Section01 />);
-    const title = screen.getByText("Desarrollador Frontend");
+    const title = screen.getByText(/Desarrollador Frontend/i);
     expect(title).toBeInTheDocument();
   });
 
-  it("should render the subtitle", () => {
+  it("should render the main greeting", () => {
     render(<Section01 />);
-    const subtitle = screen.getByText(/Sensible al frontend/);
-    expect(subtitle).toBeInTheDocument();
+    const greeting = screen.getByText(/Hola, soy John Chavarro Urrea/i);
+    expect(greeting).toBeInTheDocument();
   });
 
   it("should render skills icons", () => {
@@ -79,7 +79,7 @@ describe("Section01", () => {
 
     // El componente debería manejar el estado correctamente
     // Verificamos que el componente sigue renderizado
-    expect(screen.getByText("Desarrollador Frontend")).toBeInTheDocument();
+    expect(screen.getByText(/Desarrollador Frontend/i)).toBeInTheDocument();
   });
 
   it("should render within a SnapPage component", () => {
