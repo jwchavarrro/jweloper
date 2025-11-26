@@ -13,7 +13,14 @@ import {
 
 export default function AppWeb() {
   return (
-    <div className="h-[calc(100dvh-96px)] snap-y snap-mandatory overflow-y-scroll">
+    <div
+      className="h-[calc(100dvh-96px)] snap-y snap-mandatory overflow-y-scroll"
+      style={{
+        scrollbarWidth: "none",
+        msOverflowStyle: "none",
+        overflowY: "scroll",
+      }}
+    >
       <Section01 />
       <Section02 anchorId="proyectos" />
       <Section03 />
