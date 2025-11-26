@@ -65,24 +65,26 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
   return (
     <SnapPage id="01" anchorId={anchorId}>
       {/* Children content */}
+      {/* Background counter indicator */}
+      <div className="absolute -top-5 right-0">
+        <CounterIndicator
+          value={showExperience}
+          className="text-[7rem]! md:text-[10rem]! 2xl:text-[18rem]!"
+        >
+          <Text
+            variant="lead"
+            className="-mt-5! md:-mt-10! text-sm! md:text-base!"
+          >
+            años de experiencia
+          </Text>
+        </CounterIndicator>
+      </div>
+
+      {/* Content */}
       <div className="absolute inset-0 grid grid-cols-1 xl:grid-cols-2 content-center gap-[5%]">
         {/* Column 1 - Image */}
         <div className="flex items-center justify-center xl:justify-end">
-          <div className="size-64 xl:size-96 bg-foreground rounded-full">
-            <div className="absolute -top-5 right-0">
-              <CounterIndicator
-                value={showExperience}
-                className="text-[7rem]! md:text-[10rem]! 2xl:text-[18rem]!"
-              >
-                <Text
-                  variant="lead"
-                  className="-mt-5! md:-mt-10! text-sm! md:text-base!"
-                >
-                  años de experiencia
-                </Text>
-              </CounterIndicator>
-            </div>
-          </div>
+          <div className="size-64 xl:size-96 bg-foreground rounded-full" />
         </div>
 
         {/* Column 2 - Content */}

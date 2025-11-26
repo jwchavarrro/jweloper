@@ -15,14 +15,19 @@ export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
   return (
     <SnapPage id="04" anchorId={anchorId}>
       {/* Children content */}
-      <div className="absolute inset-0 flex flex-col items-center">
-        <div>
+      <div className="h-full absolute inset-0 grid grid-cols-1 xl:grid-cols-3 gap-[5%]">
+        {/* Column 1 - Title */}
+        <div className="h-full flex items-center justify-end">
           <Title
             variant="gradient"
-            className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-right max-w-xl"
+            className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-right max-w-xl"
           >
             Contacto
           </Title>
+        </div>
+        {/* Column 2 - Content */}
+        <div className="col-span-2 h-full overflow-y-auto">
+          <div className="h-full"></div>
         </div>
       </div>
     </SnapPage>
