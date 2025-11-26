@@ -38,7 +38,7 @@ describe("Section01", () => {
 
   it("should render the subtitle", () => {
     render(<Section01 />);
-    const subtitle = screen.getByText("Sensible al frontend");
+    const subtitle = screen.getByText(/Sensible al frontend/);
     expect(subtitle).toBeInTheDocument();
   });
 
