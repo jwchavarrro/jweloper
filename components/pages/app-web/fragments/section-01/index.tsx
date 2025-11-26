@@ -58,7 +58,10 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
                 value={showExperience}
                 className="text-[15rem]! md:text-[18rem]! lg:text-[20rem]! 2xl:text-[22rem]!"
               >
-                <Text variant="lead" className="-mt-10!">
+                <Text
+                  variant="lead"
+                  className="2xl:-mt-10! xl:-mt-8! lg:-mt-6! md:-mt-4! -mt-2! text-center!"
+                >
                   años de experiencia
                 </Text>
               </CounterIndicator>
