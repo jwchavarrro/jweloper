@@ -58,7 +58,7 @@ describe("Home Constants", () => {
       );
       expect(cvIAButton).toBeDefined();
       expect(cvIAButton?.icon).toBe("SquareTerminal");
-      expect(cvIAButton?.url).toBe("/ia-chat/nuevo-chat");
+      expect(cvIAButton?.url).toBe("/ia-chat");
     });
 
     it("should have valid icon names that exist in HOME_ICONS", () => {

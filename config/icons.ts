@@ -20,5 +20,7 @@ export const ICONS: Record<string, string> = {
   [EnumProgrammingLanguage.Nextjs]: "devicon-plain:nextjs",
   [EnumProgrammingLanguage.Tailwind]: "file-icons:tailwind",
   [EnumProgrammingLanguage.Git]: "devicon-plain:git",
+  [EnumProgrammingLanguage.Github]: "cib:github",
   [EnumProgrammingLanguage.ApiRest]: "dashicons:rest-api",
+  [EnumProgrammingLanguage.Linkedin]: "devicon-plain:linkedin",
 };
