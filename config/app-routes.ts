@@ -10,6 +10,16 @@ export const APP_ROUTES = {
   PUBLIC: {
     HOME: {
       path: "/",
+      SOCIAL_MEDIA: {
+        GITHUB: {
+          path: "/github",
+          url: "https://github.com/jwchavarrro",
+        },
+        LINKEDIN: {
+          path: "/linkedin",
+          url: "https://www.linkedin.com/in/john-chavarro-urrea-9b9200129/",
+        },
+      },
     },
     PORTFOLIO: {
       APP_WEB: {
@@ -18,6 +28,9 @@ export const APP_ROUTES = {
         },
         PROJECTS: {
           path: "/app-web#proyectos",
+        },
+        EXPERIENCE: {
+          path: "/app-web#experiencia",
         },
         CONTACT: {
           path: "/app-web#contacto",

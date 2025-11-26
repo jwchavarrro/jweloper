@@ -3,6 +3,8 @@
  * @description Componente genérico que hace scroll snap en la página.
  */
 
+"use client";
+
 // Import of components custom
 import {
   CounterIndicator,

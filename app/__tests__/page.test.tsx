@@ -44,7 +44,7 @@ describe("Home Page", () => {
     expect(cvAppLink).toBeInTheDocument();
     expect(cvIALink).toBeInTheDocument();
     expect(cvAppLink).toHaveAttribute("href", "/app-web");
-    expect(cvIALink).toHaveAttribute("href", "/ia-chat/nuevo-chat");
+    expect(cvIALink).toHaveAttribute("href", "/ia-chat");
   });
 
   it("should render within a div container", () => {

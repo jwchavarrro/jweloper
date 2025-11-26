@@ -56,6 +56,10 @@ export const SIDEBAR_DATA: SidebarDataType = {
           url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.path,
         },
         {
+          title: "Experiencia",
+          url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.EXPERIENCE.path,
+        },
+        {
           title: "Contacto",
           url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.CONTACT.path,
         },
