@@ -13,15 +13,25 @@ import { SnapPage } from "@/components/atomic-design/templates";
 import { Title, Text } from "@/components/atomic-design/atoms";
 import { CounterIndicator } from "@/components/atomic-design/molecules";
 
+// Import of hooks
+import { useDownloadFile, EnumDownloadStatus } from "@/hooks";
+
 // Import of utilities
 import { SKILLS } from "@/components/pages/app-web/utils/constants";
 
 // Import of types
 import { SkillType } from "@/components/pages/app-web";
 
-export const Section01 = () => {
+interface Section01Props {
+  readonly anchorId?: string;
+}
+
+export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
   // States generals
-  const [showExperience, setShowExperience] = useState<string | null>(null);
+  const [showExperience, setShowExperience] = useState<string>("+3");
+
+  // Implementation of custom hooks
+  const { downloadFile, state } = useDownloadFile();
 
   // Handlers
   /**
@@ -38,20 +48,37 @@ export const Section01 = () => {
    * @description Manejador para el evento de mouse leave.
    */
   const handleMouseLeave = () => {
-    setShowExperience(null);
+    setShowExperience("+3");
+  };
+
+  /**
+   * @name handleDownloadCV
+   * @description Manejador para descargar el CV.
+   */
+  const handleDownloadCV = () => {
+    downloadFile(
+      "/docs/CV JOHN CHAVARRO 2025.pdf",
+      "CV_JOHN_CHAVARRO_2025.pdf"
+    );
   };
 
   return (
-    <SnapPage id="01">
+    <SnapPage id="01" anchorId={anchorId}>
       {/* Children content */}
-      <div className="absolute inset-0 grid grid-cols-1 xl:grid-cols-2 content-center gap-2 animate-in slide-in-from-top-10 duration-300 ease-in-out">
+      <div className="absolute inset-0 grid grid-cols-1 xl:grid-cols-2 content-center gap-[5%]">
         {/* Column 1 - Image */}
-        <div className="size-full flex items-center justify-center">
-          <div className="relative size-64 xl:size-96 bg-foreground">
-            <div className="absolute bottom-0 right-0 z-10">
-              <CounterIndicator value={showExperience || ""}>
-                <Text variant="small" className="text-center">
-                  años
+        <div className="flex items-center justify-center xl:justify-end">
+          <div className="size-64 xl:size-96 bg-foreground rounded-full">
+            <div className="absolute -top-5 right-0">
+              <CounterIndicator
+                value={showExperience}
+                className="text-[7rem]! md:text-[10rem]! 2xl:text-[18rem]!"
+              >
+                <Text
+                  variant="lead"
+                  className="-mt-5! md:-mt-10! text-sm! md:text-base!"
+                >
+                  años de experiencia
                 </Text>
               </CounterIndicator>
             </div>
@@ -71,7 +98,22 @@ export const Section01 = () => {
               variant="gradient"
               className="text-xl! tracking-widest font-accent text-center xl:text-left"
             >
-              Sensible al frontend
+              Sensible al frontend |{" "}
+              <button
+                type="button"
+                onClick={handleDownloadCV}
+                disabled={state.status === EnumDownloadStatus.LOADING}
+                className="font-title cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {state.status === EnumDownloadStatus.LOADING
+                  ? "Descargando..."
+                  : "Descargar CV"}
+              </button>
+              {state.status === EnumDownloadStatus.ERROR && (
+                <span className="block text-sm text-destructive mt-1">
+                  {state.error}
+                </span>
+              )}
             </Title>
           </div>
           <div className="py-5 flex flex-wrap gap-3 xl:gap-5 items-center justify-center xl:justify-start">

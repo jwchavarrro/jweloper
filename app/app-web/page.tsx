@@ -15,9 +15,9 @@ export default function AppWeb() {
   return (
     <div className="h-[calc(100dvh-96px)] snap-y snap-mandatory overflow-y-scroll">
       <Section01 />
-      <Section02 />
+      <Section02 anchorId="proyectos" />
       <Section03 />
-      <Section04 />
+      <Section04 anchorId="contacto" />
     </div>
   );
 }

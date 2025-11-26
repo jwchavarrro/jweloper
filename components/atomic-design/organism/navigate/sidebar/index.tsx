@@ -25,7 +25,7 @@ interface SidebarProps {
 }
 export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar data={data} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
@@ -38,9 +38,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
             <Breadcrumb />
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0 overflow-auto">
-          {children}
-        </div>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );
