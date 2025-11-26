@@ -101,7 +101,7 @@ describe("useIsMobile", () => {
       value: 1024,
     });
 
-    const { result, rerender } = renderHook(() => useIsMobile());
+    const { result } = renderHook(() => useIsMobile());
 
     expect(result.current).toBe(false);
 
@@ -199,4 +199,3 @@ describe("useIsMobile", () => {
     });
   });
 });
-

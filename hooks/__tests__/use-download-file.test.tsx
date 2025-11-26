@@ -218,7 +218,9 @@ describe("useDownloadFile", () => {
 
       expect(result.current.state.status).toBe(EnumDownloadStatus.ERROR);
       if (result.current.state.status === EnumDownloadStatus.ERROR) {
-        expect(result.current.state.error).toContain("No se pudo acceder al archivo");
+        expect(result.current.state.error).toContain(
+          "No se pudo acceder al archivo"
+        );
       }
       expect(global.window.open).toHaveBeenCalledWith(
         "/docs/test.pdf",
@@ -306,4 +308,3 @@ describe("useDownloadFile", () => {
     });
   });
 });
-
