@@ -22,8 +22,8 @@ export default function AppWeb() {
       }}
     >
       <Section01 />
-      <Section02 anchorId="proyectos" />
-      <Section03 />
+      <Section02 anchorId="experiencia" />
+      <Section03 anchorId="proyectos" />
       <Section04 anchorId="contacto" />
     </div>
   );

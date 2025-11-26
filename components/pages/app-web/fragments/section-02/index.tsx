@@ -21,10 +21,10 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
             variant="gradient"
             className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-right"
           >
-            Proyectos destacados
+            Experiencia
           </Title>
         </div>
-        <div className="col-span-2 border">Proyectos</div>
+        <div className="col-span-2 border">Experiencia</div>
       </div>
     </SnapPage>
   );

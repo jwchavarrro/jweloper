@@ -15,25 +15,33 @@ import { HOME_DATA, HOME_ICONS } from "@/components/pages";
 
 export default function Home() {
   return (
-    <div className="h-[calc(100vh-96px)]">
-      <section className="h-full w-full max-w-11/12 md:max-w-4/5 mx-auto grid grid-cols-1 xl:grid-cols-2 content-center gap-5 animate-in slide-in-from-top-10 duration-300 ease-in-out">
+    <div className="relative h-[calc(100vh-96px)]">
+      {/* Background image */}
+      {/* <section className="absolute inset-0 border">
+        <Image
+          src="/images/logos/isotipo-jweloper.png"
+          alt="Isotipo Jweloper"
+          width={400}
+          height={400}
+          className="opacity-5 -rotate-12 border"
+        />
+      </section> */}
+      <div className="absolute inset-y-0 right-0 flex flex-col gap-5 justify-center">
+        {SOCIAL_MEDIA.map((socialMedia) => (
+          <Link key={socialMedia.name} href={socialMedia.url} target="_blank">
+            <Icon
+              icon={socialMedia.icon}
+              className="size-6 md:size-8 xl:size-10 2xl:size-12 text-foreground hover:scale-110 hover:-translate-x-3 transition-all duration-300 cursor-pointer"
+            />
+          </Link>
+        ))}
+      </div>
+
+      {/* Content */}
+      <section className="h-full w-full max-w-11/12 md:max-w-4/5 mx-auto grid grid-cols-1 xl:grid-cols-2 content-center gap-5">
         {/* Column 1 - Image */}
         <div className="size-full flex items-center justify-center">
           <div className="w-48 lg:w-80 xl:w-96 h-48 lg:h-80 xl:h-96 xl:mx-auto bg-foreground rounded-full" />
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-5 pr-2">
-            {SOCIAL_MEDIA.map((socialMedia) => (
-              <Link
-                key={socialMedia.name}
-                href={socialMedia.url}
-                target="_blank"
-              >
-                <Icon
-                  icon={socialMedia.icon}
-                  className="size-6 md:size-8 xl:size-10 2xl:size-12 text-foreground hover:scale-110 hover:-translate-x-3 transition-all duration-300 cursor-pointer"
-                />
-              </Link>
-            ))}
-          </div>
         </div>
 
         {/* Column 2 - Content */}
