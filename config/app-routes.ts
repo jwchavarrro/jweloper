@@ -17,13 +17,10 @@ export const APP_ROUTES = {
           path: "/app-web",
         },
         PROJECTS: {
-          path: "/app-web/proyectos",
-          queries: {
-            proyectos: "string",
-          } as const,
+          path: "/app-web#proyectos",
         },
         CONTACT: {
-          path: "/app-web/contacto",
+          path: "/app-web#contacto",
         },
       },
       IA_CHAT: {

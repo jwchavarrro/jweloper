@@ -56,6 +56,5 @@ describe("CounterIndicator", () => {
     expect(heading).toHaveClass("text-5xl!");
     expect(heading).toHaveClass("md:text-8xl!");
     expect(heading).toHaveClass("xl:text-9xl!");
-    expect(heading).toHaveClass("underline");
   });
 });

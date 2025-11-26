@@ -6,9 +6,13 @@
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
 
-export const Section04 = () => {
+interface Section04Props {
+  readonly anchorId?: string;
+}
+
+export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
   return (
-    <SnapPage id="04">
+    <SnapPage id="04" anchorId={anchorId}>
       {/* Children content */}
       section 04
     </SnapPage>

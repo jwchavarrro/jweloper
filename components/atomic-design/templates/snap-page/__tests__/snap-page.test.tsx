@@ -54,4 +54,25 @@ describe("SnapPage", () => {
     const scrollText = screen.getByText("Scroll abajo");
     expect(scrollText).toBeInTheDocument();
   });
+
+  it("should apply anchorId to section element when provided", () => {
+    const { container } = render(
+      <SnapPage id="01" anchorId="proyectos">
+        <div>Content</div>
+      </SnapPage>
+    );
+    const section = container.querySelector("section#proyectos");
+    expect(section).toBeInTheDocument();
+  });
+
+  it("should not have id attribute on section when anchorId is not provided", () => {
+    const { container } = render(
+      <SnapPage id="01">
+        <div>Content</div>
+      </SnapPage>
+    );
+    const section = container.querySelector("section");
+    expect(section).toBeInTheDocument();
+    expect(section?.id).toBe("");
+  });
 });
