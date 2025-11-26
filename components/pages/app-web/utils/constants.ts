@@ -8,7 +8,7 @@ import { ICONS } from "@/config";
 
 // Import of types
 import { EnumProgrammingLanguage } from "@/app/utils/types";
-import { SkillType } from "@/components/pages/app-web";
+import { SkillType, ProjectType } from "@/components/pages/app-web";
 
 /**
  * @name APP_WEB_ICONS
@@ -27,6 +27,8 @@ export const APP_WEB_ICONS: Record<string, string> = {
   [EnumProgrammingLanguage.Nextjs]: ICONS[EnumProgrammingLanguage.Nextjs],
   [EnumProgrammingLanguage.Git]: ICONS[EnumProgrammingLanguage.Git],
   [EnumProgrammingLanguage.ApiRest]: ICONS[EnumProgrammingLanguage.ApiRest],
+  [EnumProgrammingLanguage.Github]: ICONS[EnumProgrammingLanguage.Github],
+  [EnumProgrammingLanguage.Linkedin]: ICONS[EnumProgrammingLanguage.Linkedin],
 };
 
 /**
@@ -79,5 +81,23 @@ export const SKILLS: SkillType[] = [
     name: EnumProgrammingLanguage.ApiRest,
     icon: APP_WEB_ICONS[EnumProgrammingLanguage.ApiRest],
     experience: "+2",
+  },
+];
+
+export const PROJECTS: ProjectType[] = [
+  {
+    name: "Sistema de gestión de inventario",
+    description: "Descripción del proyecto 1",
+    image: "https://via.placeholder.com/150",
+    url: "https://www.google.com",
+    technologies: [
+      EnumProgrammingLanguage.HTML,
+      EnumProgrammingLanguage.CSS,
+      EnumProgrammingLanguage.JavaScript,
+    ],
+    images: [
+      "https://via.placeholder.com/150",
+      "https://via.placeholder.com/150",
+    ],
   },
 ];

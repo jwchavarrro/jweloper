@@ -4,11 +4,13 @@
  */
 
 import Link from "next/link";
+import { Icon } from "@iconify/react";
 
 // Import of components custom
 import { Title, Text, Button } from "@/components/atomic-design/atoms";
 
 // Import of utilities
+import { SOCIAL_MEDIA } from "./utils";
 import { HOME_DATA, HOME_ICONS } from "@/components/pages";
 
 export default function Home() {
@@ -18,6 +20,15 @@ export default function Home() {
         {/* Column 1 - Image */}
         <div className="size-full flex items-center justify-center">
           <div className="w-48 lg:w-80 xl:w-96 h-48 lg:h-80 xl:h-96 xl:mx-auto bg-foreground rounded-full" />
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-5 pr-2">
+            {SOCIAL_MEDIA.map((socialMedia) => (
+              <Icon
+                key={socialMedia.name}
+                icon={socialMedia.icon}
+                className="size-6 md:size-8 xl:size-10 2xl:size-12 text-foreground hover:scale-110 hover:-translate-x-3 transition-all duration-300 cursor-pointer"
+              />
+            ))}
+          </div>
         </div>
 
         {/* Column 2 - Content */}
@@ -61,3 +72,5 @@ export default function Home() {
     </div>
   );
 }
+
+<p>Ten en cuenta que por confidencialidad, el código y parte de las</p>;
