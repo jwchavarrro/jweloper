@@ -36,7 +36,7 @@ export const HOME_DATA: HomeDataType = {
     {
       label: "CV con IA",
       icon: "SquareTerminal",
-      url: APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.path,
+      url: APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT.path,
     },
   ],
 };

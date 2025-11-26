@@ -27,6 +27,4 @@ export type ProjectType = {
   description: string;
   image: string;
   url: string;
-  technologies: EnumProgrammingLanguage[];
-  images: string[];
 };

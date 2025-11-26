@@ -3,6 +3,8 @@
  * @description Página principal de la aplicación.
  */
 
+"use client";
+
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 

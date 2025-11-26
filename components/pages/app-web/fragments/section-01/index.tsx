@@ -1,9 +1,9 @@
-"use client";
-
 /**
  * @file section-01.tsx
  * @description Fragmento de la sección 01 de la página principal.
  */
+
+"use client";
 
 import { useState } from "react";
 import { Icon } from "@iconify/react";
@@ -88,7 +88,7 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
         </div>
 
         {/* Column 2 - Content */}
-        <div className="space-y-5">
+        <div className="space-y-2">
           <div>
             <Title
               variant="gradient"

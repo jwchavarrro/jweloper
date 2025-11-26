@@ -53,11 +53,6 @@ export const SKILLS: SkillType[] = [
     experience: "+3",
   },
   {
-    name: EnumProgrammingLanguage.TypeScript,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.TypeScript],
-    experience: "+1",
-  },
-  {
     name: EnumProgrammingLanguage.React,
     icon: APP_WEB_ICONS[EnumProgrammingLanguage.React],
     experience: "+2",
@@ -68,13 +63,18 @@ export const SKILLS: SkillType[] = [
     experience: "+3",
   },
   {
+    name: EnumProgrammingLanguage.TypeScript,
+    icon: APP_WEB_ICONS[EnumProgrammingLanguage.TypeScript],
+    experience: "+1",
+  },
+  {
     name: EnumProgrammingLanguage.Tailwind,
     icon: APP_WEB_ICONS[EnumProgrammingLanguage.Tailwind],
     experience: "+2",
   },
   {
-    name: EnumProgrammingLanguage.Git,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.Git],
+    name: EnumProgrammingLanguage.Github,
+    icon: APP_WEB_ICONS[EnumProgrammingLanguage.Github],
     experience: "+2",
   },
   {
@@ -90,14 +90,5 @@ export const PROJECTS: ProjectType[] = [
     description: "Descripción del proyecto 1",
     image: "https://via.placeholder.com/150",
     url: "https://www.google.com",
-    technologies: [
-      EnumProgrammingLanguage.HTML,
-      EnumProgrammingLanguage.CSS,
-      EnumProgrammingLanguage.JavaScript,
-    ],
-    images: [
-      "https://via.placeholder.com/150",
-      "https://via.placeholder.com/150",
-    ],
   },
 ];

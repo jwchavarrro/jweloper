@@ -3,6 +3,8 @@
  * @description Página principal de la aplicación.
  */
 
+"use client";
+
 // Import of components custom
 import {
   Section01,

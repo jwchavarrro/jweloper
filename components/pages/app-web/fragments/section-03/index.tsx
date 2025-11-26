@@ -3,6 +3,8 @@
  * @description Fragmento de la sección 03 de la página principal.
  */
 
+"use client";
+
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
 import { Title } from "@/components/atomic-design/atoms";
