@@ -5,3 +5,4 @@
 
 export * from "./counter-indicator";
 export * from "./scroll-indicator";
+export * from "./badge";

@@ -28,3 +28,22 @@ export type ProjectType = {
   image: string;
   url: string;
 };
+
+/**
+ * @name ExperienceType
+ * @type {Object}
+ * @description Tipo para la experiencia profesional.
+ */
+export type ExperienceType = {
+  dates: string;
+  title: string;
+  company: {
+    name: string;
+    url?: string;
+  };
+  location: string;
+  isRemote?: boolean;
+  description: string[];
+  technologies?: string[];
+  previousTitles?: string[];
+};
