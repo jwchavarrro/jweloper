@@ -8,7 +8,11 @@ import { ICONS } from "@/config";
 
 // Import of types
 import { EnumProgrammingLanguage } from "@/app/utils/types";
-import { SkillType, ProjectType } from "@/components/pages/app-web";
+import {
+  SkillType,
+  ProjectType,
+  ExperienceType,
+} from "@/components/pages/app-web";
 
 /**
  * @name APP_WEB_ICONS
@@ -84,6 +88,72 @@ export const SKILLS: SkillType[] = [
   },
 ];
 
+/**
+ * @name EXPERIENCES
+ * @type {ExperienceType[]}
+ * @description Lista de experiencias profesionales.
+ */
+export const EXPERIENCES: ExperienceType[] = [
+  {
+    dates: "Sept. 2022 – Oct. 2025",
+    title: "Desarrollador de Aplicaciones a la Medida",
+    company: {
+      name: "Prevalentware s.a.s",
+      url: "https://www.prevalentware.com/es/",
+    },
+    location: "Neiva, Colombia",
+    isRemote: true,
+    description: [
+      "Desarrollé interfaces administrativas completas para productos empresariales, incluyendo login, registro, recuperación de contraseñas, gestión de usuarios, carga/descarga de archivos y administración de catálogos maestros.",
+      "Implementé integraciones con APIs REST y servicios externos, asegurando una comunicación estable, eficiente y segura entre el frontend y los sistemas internos.",
+      "Optimicé componentes reutilizables y responsivos basados en React y Tailwind CSS, mejorando la mantenibilidad y consistencia visual.",
+      "Apliqué buenas prácticas de arquitectura, documentación y versionado, contribuyendo a procesos de desarrollo ágiles.",
+    ],
+    technologies: [
+      "React",
+      "Tailwind CSS",
+      "JavaScript",
+      "TypeScript",
+      "REST APIs",
+    ],
+  },
+  {
+    dates: "Ene. 2019 – Sept. 2022",
+    title: "Desarrollador Web Junior",
+    company: {
+      name: "Freelance",
+    },
+    location: "Neiva, Colombia",
+    description: [
+      "Creación de landing pages y sitios web corporativos con HTML, CSS, JavaScript y diseño responsivo.",
+      "Personalización de sitios WordPress usando Elementor y plugins especializados.",
+      "Optimización de rendimiento para mejorar tiempos de carga y experiencia móvil.",
+      "Mantenimiento, actualización y mejora continua de sitios web, asegurando coherencia visual y funcional.",
+    ],
+    technologies: ["HTML", "CSS", "JavaScript", "WordPress", "Elementor"],
+  },
+  {
+    dates: "Ene. 2018 – Nov. 2019",
+    title: "Docente",
+    company: {
+      name: "Colegio Adventista Baluarte Interamericano",
+      url: "http://www.colegioadventistaneiva.edu.co/",
+    },
+    location: "Neiva, Colombia",
+    description: [
+      "Enseñé fundamentos de programación y herramientas de TI a estudiantes de técnicas de desarrollo de software.",
+      "Implementé estrategias pedagógicas enfocadas en el aprendizaje práctico.",
+      "Lideré proyectos de formación en articulación con SENA.",
+      "Promoví investigación sobre 'Estrategias didácticas para fortalecer fundamentos de programación'.",
+    ],
+  },
+];
+
+/**
+ * @name PROJECTS
+ * @type {ProjectType[]}
+ * @description Lista de proyectos.
+ */
 export const PROJECTS: ProjectType[] = [
   {
     name: "Sistema de gestión de inventario",
