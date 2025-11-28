@@ -33,7 +33,7 @@ export default function Home() {
           <Link key={socialMedia.name} href={socialMedia.url} target="_blank">
             <Icon
               icon={socialMedia.icon}
-              className="size-5 md:size-8 xl:size-10 2xl:size-12 text-foreground lg:hover:scale-110 lg:hover:-translate-x-3 transition-all duration-300 cursor-pointer"
+              className="size-8 xl:size-10 2xl:size-12 text-foreground lg:hover:scale-110 lg:hover:-translate-x-3 transition-all duration-300 cursor-pointer"
             />
           </Link>
         ))}

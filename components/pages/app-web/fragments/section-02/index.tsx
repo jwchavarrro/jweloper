@@ -20,21 +20,24 @@ import { Badge } from "@/components/atomic-design/molecules";
 
 // Import of utilities
 import { EXPERIENCES, getTechnologyIcon } from "@/components/pages/app-web";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Section02Props {
   readonly anchorId?: string;
 }
 
 export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
+  const isMobile = useIsMobile();
+
   return (
-    <SnapPage id="02" anchorId={anchorId}>
+    <SnapPage id="02" anchorId={anchorId} hideCounter={isMobile}>
       {/* Children content */}
       <div className="h-full absolute inset-0 grid grid-cols-1 xl:grid-cols-3 gap-[5%]">
         {/* Column 1 - Title */}
-        <div className="h-full flex items-center justify-end">
+        <div className="h-full flex items-center justify-center lg:justify-end">
           <Title
             variant="gradient"
-            className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-right max-w-xl"
+            className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap lg:text-right max-w-xl"
           >
             Experiencia Pro
           </Title>
@@ -53,9 +56,16 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
                 <div className="space-y-4">
                   {/* Title and Company */}
                   <div>
-                    <Title level={3}>{experience?.title}</Title>
+                    <Title
+                      level={3}
+                      className="text-xl! md:text-3xl! lg:text-4xl!"
+                    >
+                      {experience?.title}
+                    </Title>
                     <div className="flex items-center gap-2">
-                      <Text>{experience?.company?.name}</Text>
+                      <Text className="truncate max-w-xs">
+                        {experience?.company?.name}
+                      </Text>
                       {experience?.company?.url && (
                         <Link
                           href={experience?.company?.url}
@@ -94,11 +104,11 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
                   </div>
 
                   {/* Description - Bullet Points */}
-                  <ul className="space-y-3 list-none">
+                  <ul className="space-y-3 list-none pr-5">
                     {experience?.description?.map((item) => (
                       <li
                         key={item.substring(0, 30)}
-                        className="text-sm text-foreground leading-relaxed flex items-start gap-2"
+                        className="text-sm text-foreground  flex items-start gap-2"
                       >
                         <span className="text-primary">•</span>
                         <Text variant="small">{item}</Text>

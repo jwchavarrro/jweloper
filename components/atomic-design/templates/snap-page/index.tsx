@@ -14,12 +14,14 @@ import {
 interface SnapPageProps {
   id: string;
   anchorId?: string;
+  hideCounter?: boolean;
   children: React.ReactNode;
 }
 
 export const SnapPage: React.FC<SnapPageProps> = ({
   id,
   anchorId,
+  hideCounter,
   children,
 }) => {
   return (
@@ -30,7 +32,7 @@ export const SnapPage: React.FC<SnapPageProps> = ({
       {/* Elements of background */}
       <div className="absolute inset-0 grid grid-cols-2">
         <div className="flex items-end">
-          <CounterIndicator value={id} />
+          {hideCounter ? null : <CounterIndicator value={id} />}
         </div>
         <div className="flex items-end justify-end">
           <ScrollIndicator />
