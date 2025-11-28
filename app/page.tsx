@@ -33,7 +33,7 @@ export default function Home() {
           <Link key={socialMedia.name} href={socialMedia.url} target="_blank">
             <Icon
               icon={socialMedia.icon}
-              className="size-6 md:size-8 xl:size-10 2xl:size-12 text-foreground hover:scale-110 hover:-translate-x-3 transition-all duration-300 cursor-pointer"
+              className="size-5 md:size-8 xl:size-10 2xl:size-12 text-foreground lg:hover:scale-110 lg:hover:-translate-x-3 transition-all duration-300 cursor-pointer"
             />
           </Link>
         ))}
@@ -47,14 +47,17 @@ export default function Home() {
         </div>
 
         {/* Column 2 - Content */}
-        <div className="max-w-2xl space-y-5">
+        <div className="space-y-5">
           <div>
-            <Text variant="lead" className="uppercase tracking-widest">
+            <Text
+              variant="lead"
+              className="text-sm! md:text-base! uppercase tracking-widest"
+            >
               Semi-Senior
             </Text>
             <Title
               variant="gradient"
-              className="text-5xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap"
+              className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl!"
             >
               Desarrollador Frontend | Especialista en React & Next.js
             </Title>
