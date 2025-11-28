@@ -28,7 +28,7 @@ export default function Home() {
           className="opacity-5 -rotate-12 border"
         />
       </section> */}
-      <div className="absolute inset-y-0 right-0 flex flex-col gap-5 justify-center">
+      <div className="absolute right-0 flex flex-col gap-5 justify-center">
         {SOCIAL_MEDIA.map((socialMedia) => (
           <Link key={socialMedia.name} href={socialMedia.url} target="_blank">
             <Icon
