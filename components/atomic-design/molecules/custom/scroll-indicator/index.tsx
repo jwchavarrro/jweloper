@@ -27,13 +27,13 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
   reverse = false,
 }) => {
   return (
-    <div className={`flex flex-col gap-5 ${className || ""}`}>
+    <div className={`flex flex-col gap-5 bg-background ${className || ""}`}>
       {reverse ? (
         <>
           <Icon className={`size-5 animate-bounce ${iconClassName || ""}`} />
           <Text
             variant="large"
-            className={`text-xs! md:text-sm! [writing-mode:vertical-rl] [text-orientation:mixed] ${textClassName || ""}`}
+            className={`text-xs! md:text-sm! tracking-widest [writing-mode:vertical-rl] [text-orientation:mixed] ${textClassName || ""}`}
           >
             {text}
           </Text>
@@ -42,7 +42,7 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
         <>
           <Text
             variant="large"
-            className={`text-xs! md:text-sm! [writing-mode:vertical-rl] [text-orientation:mixed] ${textClassName || ""}`}
+            className={`text-xs! md:text-sm! tracking-widest [writing-mode:vertical-rl] [text-orientation:mixed]  ${textClassName || ""}`}
           >
             {text}
           </Text>

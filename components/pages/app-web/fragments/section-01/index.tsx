@@ -66,14 +66,14 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
     <SnapPage id="01" anchorId={anchorId}>
       {/* Children content */}
       {/* Background counter indicator */}
-      <div className="absolute -top-5 right-0">
+      <div className="absolute -top-2 right-0">
         <CounterIndicator
           value={showExperience}
-          className="text-[7rem]! md:text-[10rem]! 2xl:text-[18rem]!"
+          className="text-[5rem]! md:text-[10rem]! 2xl:text-[18rem]!"
         >
           <Text
             variant="lead"
-            className="-mt-5! md:-mt-10! text-sm! md:text-base!"
+            className="-mt-4! md:-mt-10! text-sm! md:text-base!"
           >
             años de experiencia
           </Text>
@@ -92,13 +92,13 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
           <div>
             <Title
               variant="gradient"
-              className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-left max-w-xl"
+              className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-left max-w-xl"
             >
               Hola, soy John Chavarro Urrea
             </Title>
             <Title
               variant="gradient"
-              className="text-xl! tracking-widest font-accent text-center xl:text-left"
+              className="text-lg! md:text-xl! tracking-widest font-accent text-center xl:text-left"
             >
               Desarrollador Frontend |{" "}
               <button
