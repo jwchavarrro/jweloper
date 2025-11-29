@@ -79,12 +79,12 @@ export default function IaChatIdPage() {
   };
 
   return (
-    <div className="h-[calc(100vh-96px)] flex flex-col">
-      {/* Área de mensajes */}
-      <div className="flex-1 overflow-y-auto container mx-auto px-4 py-6 max-w-4xl">
+    <div className="h-[calc(100vh-96px)] flex flex-col overflow-y-auto">
+      {/* Chat Messages */}
+      <div className="flex-1 container mx-auto px-4 py-6 max-w-4xl">
         {messages.length === 0 ? (
           <div className="h-full flex items-center justify-center">
-            <Text variant="p" color="secondary" className="text-center">
+            <Text variant="p" className="text-center">
               Iniciando conversación...
             </Text>
           </div>
@@ -98,10 +98,10 @@ export default function IaChatIdPage() {
                 }`}
               >
                 <div
-                  className={`max-w-[80%] rounded-lg px-4 py-3 ${
+                  className={`max-w-[80%] rounded-md px-4 py-2 duration-300 ease-in-out ${
                     message.role === "user"
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted"
+                      ? "bg-muted-foreground text-muted animate-in slide-in-from-bottom-10"
+                      : "bg-muted animate-in slide-in-from-top-10"
                   }`}
                 >
                   <Text variant="p" className="whitespace-pre-wrap">
@@ -114,17 +114,23 @@ export default function IaChatIdPage() {
         )}
       </div>
 
-      {/* Área de input */}
-      <div className="border-t bg-background">
+      {/* Input Search */}
+      <div className="flex flex-col items-center sticky bottom-0 left-0 bg-background z-10">
         <div className="container mx-auto px-4 py-4 max-w-4xl">
           <InputSearch
-            placeholder="Escribe tu mensaje..."
+            placeholder="Escribe tu pregunta..."
             size="lg"
             value={currentInput}
             onChange={setCurrentInput}
             onSubmit={handleSubmit}
           />
         </div>
+        <Text
+          variant="small"
+          className="text-xs! text-muted-foreground text-center"
+        >
+          El Chat puede cometer errores. Considera replantear la pregunta.
+        </Text>
       </div>
     </div>
   );
