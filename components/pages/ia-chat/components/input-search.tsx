@@ -42,7 +42,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   // Validations
   const isControlled = value !== undefined && onChange !== undefined;
   const currentValue = isControlled ? value : internalValue;
-  const hasValue = currentValue.length > 0;
+  const hasValue = Boolean(currentValue?.trim());
 
   /**
    * Manejador de cambio del input
@@ -72,8 +72,9 @@ export const InputSearch: React.FC<InputSearchProps> = ({
    * Manejador de envío del formulario
    */
   const handleSubmit = () => {
-    if (hasValue && onSubmit) {
-      onSubmit(currentValue.trim());
+    const trimmedValue = currentValue.trim();
+    if (trimmedValue && onSubmit) {
+      onSubmit(trimmedValue);
     }
   };
 
