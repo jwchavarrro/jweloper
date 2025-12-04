@@ -34,7 +34,7 @@ export const SnapPage: React.FC<SnapPageProps> = ({
   return (
     <section
       id={anchorId}
-      className={cn("relative min-h-[calc(100dvh-96px)]", className)}
+      className={cn("relative h-[calc(100dvh-96px)]", className)}
     >
       {/* Elements of background */}
       <div className="absolute inset-0 grid grid-cols-2">
