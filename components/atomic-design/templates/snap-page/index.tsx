@@ -35,7 +35,7 @@ export const SnapPage: React.FC<SnapPageProps> = ({
           {hideCounter ? null : <CounterIndicator value={id} />}
         </div>
         <div className="flex items-end justify-end">
-          <ScrollIndicator />
+          <ScrollIndicator text="Scroll hacia abajo" />
         </div>
       </div>
 

@@ -45,25 +45,17 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
 
         {/* Column 2 - Content */}
         <div className="col-span-2 h-full overflow-y-auto">
-          <div className="space-y-8 max-w-4xl">
-            {EXPERIENCES?.map((experience, index) => (
+          <div className="space-y-8">
+            {EXPERIENCES?.map((experience) => (
               <div key={`${experience?.title}`} className="space-y-4">
-                {/* Separator line (except for first item) */}
-                {index > 0 && (
-                  <div className="border-t border-dashed border-border" />
-                )}
-
                 <div className="space-y-4">
                   {/* Title and Company */}
-                  <div>
-                    <Title
-                      level={3}
-                      className="text-xl! md:text-3xl! lg:text-4xl!"
-                    >
+                  <div className="border-l-2 pl-4">
+                    <Title level={4} className="text-xl! font-accent">
                       {experience?.title}
                     </Title>
                     <div className="flex items-center gap-2">
-                      <Text className="truncate max-w-xs">
+                      <Text className="truncate max-w-xs md:max-w-fit">
                         {experience?.company?.name}
                       </Text>
                       {experience?.company?.url && (
@@ -77,58 +69,62 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
                         </Link>
                       )}
                     </div>
-                  </div>
-
-                  {/* Dates, Location and Remote */}
-                  <div className="flex flex-wrap items-center gap-4">
-                    <div className="flex items-center gap-1.5">
-                      <CalendarDaysIcon className="size-4 text-muted-foreground" />
-                      <Text variant="small" className="text-muted-foreground">
-                        {experience?.dates}
-                      </Text>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <MapPinIcon className="size-4 text-muted-foreground" />
-                      <Text variant="small" className="text-muted-foreground">
-                        {experience?.location}
-                      </Text>
-                    </div>
-                    {experience?.isRemote && (
+                    {/* Dates, Location and Remote */}
+                    <div className="flex flex-wrap items-center gap-4">
                       <div className="flex items-center gap-1.5">
-                        <LaptopIcon className="size-4 text-muted-foreground" />
+                        <CalendarDaysIcon className="size-4 text-muted-foreground" />
                         <Text variant="small" className="text-muted-foreground">
-                          Remoto
+                          {experience?.dates}
                         </Text>
                       </div>
-                    )}
+                      <div className="flex items-center gap-1.5">
+                        <MapPinIcon className="size-4 text-muted-foreground" />
+                        <Text variant="small" className="text-muted-foreground">
+                          {experience?.location}
+                        </Text>
+                      </div>
+                      {experience?.isRemote && (
+                        <div className="flex items-center gap-1.5">
+                          <LaptopIcon className="size-4 text-muted-foreground" />
+                          <Text
+                            variant="small"
+                            className="text-muted-foreground"
+                          >
+                            Remoto
+                          </Text>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Description - Bullet Points */}
-                  <ul className="space-y-3 list-none pr-5">
-                    {experience?.description?.map((item) => (
-                      <li
-                        key={item.substring(0, 30)}
-                        className="text-sm text-foreground  flex items-start gap-2"
-                      >
-                        <span className="text-primary">•</span>
-                        <Text variant="small">{item}</Text>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="space-y-4 pl-4">
+                    {/* Description - Bullet Points */}
+                    <ul className="space-y-3 list-none pr-5">
+                      {experience?.description?.map((item) => (
+                        <li
+                          key={item.substring(0, 30)}
+                          className="text-sm text-foreground  flex items-start gap-2"
+                        >
+                          <span className="text-primary">•</span>
+                          <Text variant="small">{item}</Text>
+                        </li>
+                      ))}
+                    </ul>
 
-                  {/* Technologies Tags */}
-                  {experience?.technologies &&
-                    experience?.technologies?.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {experience.technologies.map((tech) => (
-                          <Badge
-                            key={tech}
-                            text={tech}
-                            icon={getTechnologyIcon(tech)}
-                          />
-                        ))}
-                      </div>
-                    )}
+                    {/* Technologies Tags */}
+                    {experience?.technologies &&
+                      experience?.technologies?.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {experience.technologies.map((tech) => (
+                            <Badge
+                              key={tech}
+                              text={tech}
+                              icon={getTechnologyIcon(tech)}
+                            />
+                          ))}
+                        </div>
+                      )}
+                  </div>
                 </div>
               </div>
             ))}

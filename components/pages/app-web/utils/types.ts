@@ -30,17 +30,6 @@ export type ProjectItemData = {
 };
 
 /**
- * @name ProjectType
- * @type {Object}
- * @description Tipo para el proyecto compatible con CarouselItemProps.
- */
-export type ProjectType = {
-  id: string;
-  content: React.ReactNode;
-  className?: string;
-};
-
-/**
  * @name ExperienceType
  * @type {Object}
  * @description Tipo para la experiencia profesional.

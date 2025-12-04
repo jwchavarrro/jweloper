@@ -10,8 +10,11 @@ import { SnapPage } from "@/components/atomic-design/templates";
 import { Carousel } from "@/components/atomic-design/organism";
 import { Title } from "@/components/atomic-design/atoms";
 
-// Import of utilities
+// Import of custom hooks
 import { useIsMobile } from "@/hooks/use-mobile";
+
+// Import of utilities
+import { PROJECTS_DATA } from "@/components/pages/app-web/utils";
 
 interface Section03Props {
   readonly anchorId?: string;
@@ -25,9 +28,12 @@ export const Section03: React.FC<Section03Props> = ({ anchorId }) => {
       {/* Children content */}
       <div className="h-full absolute inset-0 grid grid-cols-1 xl:grid-cols-3 gap-[5%]">
         {/* Column 1 - Content */}
-        <div className="order-2 md:order-1 col-span-2 h-full overflow-hidden">
+        <div className="order-2 md:order-1 col-span-2 h-full overflow-hidden border">
           <Carousel
-            items={[]}
+            items={PROJECTS_DATA?.map((project) => ({
+              id: project.name,
+              content: <div>{project.name}</div>,
+            }))}
             orientation="horizontal"
             contentClassName="h-full"
             itemClassName="h-full"
