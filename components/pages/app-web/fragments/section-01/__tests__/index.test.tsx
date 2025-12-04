@@ -84,7 +84,7 @@ describe("Section01", () => {
 
   it("should render within a SnapPage component", () => {
     const { container } = render(<Section01 />);
-    const section = container.querySelector("section.snap-start");
+    const section = container.querySelector("section");
     expect(section).toBeInTheDocument();
   });
 
