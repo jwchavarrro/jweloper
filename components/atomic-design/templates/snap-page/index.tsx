@@ -13,7 +13,6 @@ import {
 
 // Import of utilities
 import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 interface SnapPageProps {
   id: string;
@@ -32,16 +31,10 @@ export const SnapPage: React.FC<SnapPageProps> = ({
   className,
   children,
 }) => {
-  const isMobile = useIsMobile();
-
   return (
     <section
       id={anchorId}
-      className={cn(
-        "relative",
-        !isMobile && "min-h-[calc(100dvh-96px)]",
-        className
-      )}
+      className={cn("relative min-h-[calc(100dvh-96px)]", className)}
     >
       {/* Elements of background */}
       <div className="absolute inset-0 grid grid-cols-2">

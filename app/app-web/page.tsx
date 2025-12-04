@@ -16,7 +16,7 @@ import {
 export default function AppWeb() {
   return (
     <div
-      className="h-[calc(100dvh-96px)] snap-y snap-mandatory overflow-y-scroll space-y-10"
+      className="h-[calc(100dvh-96px)] space-y-10 "
       style={{
         scrollbarWidth: "none",
         msOverflowStyle: "none",
