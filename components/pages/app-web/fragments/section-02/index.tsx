@@ -30,9 +30,14 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
   const isMobile = useIsMobile();
 
   return (
-    <SnapPage id="02" anchorId={anchorId} hideCounter={isMobile}>
+    <SnapPage
+      id="02"
+      anchorId={anchorId}
+      hideCounter={isMobile}
+      hideScrollIndicator={isMobile}
+    >
       {/* Children content */}
-      <div className="h-full absolute inset-0 grid grid-cols-1 xl:grid-cols-3 gap-[5%]">
+      <div className="h-full absolute inset-0 grid grid-cols-1 xl:grid-cols-3 gap-2 lg:gap-[5%]">
         {/* Column 1 - Title */}
         <div className="h-full flex items-center justify-center lg:justify-end">
           <Title
@@ -70,7 +75,7 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
                       )}
                     </div>
                     {/* Dates, Location and Remote */}
-                    <div className="flex flex-wrap items-center gap-4">
+                    <div className="flex flex-wrap items-center gap-2 md:gap-4">
                       <div className="flex items-center gap-1.5">
                         <CalendarDaysIcon className="size-4 text-muted-foreground" />
                         <Text variant="small" className="text-muted-foreground">

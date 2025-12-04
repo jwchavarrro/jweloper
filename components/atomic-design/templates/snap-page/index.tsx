@@ -15,6 +15,7 @@ interface SnapPageProps {
   id: string;
   anchorId?: string;
   hideCounter?: boolean;
+  hideScrollIndicator?: boolean;
   children: React.ReactNode;
 }
 
@@ -22,6 +23,7 @@ export const SnapPage: React.FC<SnapPageProps> = ({
   id,
   anchorId,
   hideCounter,
+  hideScrollIndicator,
   children,
 }) => {
   return (
@@ -35,7 +37,9 @@ export const SnapPage: React.FC<SnapPageProps> = ({
           {hideCounter ? null : <CounterIndicator value={id} />}
         </div>
         <div className="flex items-end justify-end">
-          <ScrollIndicator text="Scroll hacia abajo" />
+          {hideScrollIndicator ? null : (
+            <ScrollIndicator text="Scroll hacia abajo" />
+          )}
         </div>
       </div>
 

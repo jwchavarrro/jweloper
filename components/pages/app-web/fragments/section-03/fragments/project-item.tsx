@@ -9,6 +9,7 @@ import Link from "next/link";
 import { ExternalLinkIcon } from "lucide-react";
 
 // Import of components
+import { Card } from "@/components/atomic-design/molecules";
 import { Title, Text } from "@/components/atomic-design/atoms";
 
 // Import of types
@@ -19,32 +20,33 @@ interface ProjectItemProps {
 }
 
 export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
+  const headerAction =
+    project.url && project.url !== "#" ? (
+      <Link
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
+      >
+        <Text variant="small">Ver demo</Text>
+        <ExternalLinkIcon className="size-4" />
+      </Link>
+    ) : undefined;
+
   return (
-    <div className="space-y-4 h-full">
-      {/* Title and Link */}
-      <div>
+    <Card
+      showHeaderAction={!!headerAction}
+      headerAction={headerAction}
+      className="h-full"
+    >
+      <div className="space-y-4">
         <Title level={3} className="text-xl! md:text-3xl! lg:text-4xl!">
           {project.name}
         </Title>
-        {project.url && project.url !== "#" && (
-          <div className="flex items-center gap-2">
-            <Link
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
-            >
-              <Text variant="small">Ver demo</Text>
-              <ExternalLinkIcon className="size-4" />
-            </Link>
-          </div>
-        )}
+        <Text variant="small" className="text-muted-foreground">
+          {project.description}
+        </Text>
       </div>
-
-      {/* Description */}
-      <Text variant="small" className="text-muted-foreground">
-        {project.description}
-      </Text>
-    </div>
+    </Card>
   );
 };
