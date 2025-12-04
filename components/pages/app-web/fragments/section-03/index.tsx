@@ -7,11 +7,10 @@
 
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
-import { Title } from "@/components/atomic-design/atoms";
 import { Carousel } from "@/components/atomic-design/organism";
+import { Title } from "@/components/atomic-design/atoms";
 
 // Import of utilities
-import { PROJECTS } from "@/components/pages/app-web";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Section03Props {
@@ -28,7 +27,7 @@ export const Section03: React.FC<Section03Props> = ({ anchorId }) => {
         {/* Column 1 - Content */}
         <div className="order-2 md:order-1 col-span-2 h-full overflow-hidden">
           <Carousel
-            items={PROJECTS}
+            items={[]}
             orientation="horizontal"
             contentClassName="h-full"
             itemClassName="h-full"
