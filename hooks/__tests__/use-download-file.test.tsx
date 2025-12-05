@@ -40,6 +40,7 @@ describe("useDownloadFile", () => {
             },
             target: "",
             rel: "",
+            remove: jest.fn(),
           } as unknown as HTMLAnchorElement;
           return linkElement;
         }
@@ -80,17 +81,24 @@ describe("useDownloadFile", () => {
 
       const { result } = renderHook(() => useDownloadFile());
 
-      await act(async () => {
-        await result.current.downloadFile("/docs/test.pdf");
+      act(() => {
+        result.current.downloadFile("/docs/test.pdf");
       });
 
-      expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      // Avanzar el timer para el delay de 2 segundos
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
+
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      });
+
       expect(global.fetch).toHaveBeenCalledWith("/docs/test.pdf", {
         method: "HEAD",
       });
       expect(mockAppendChild).toHaveBeenCalled();
       expect(mockClick).toHaveBeenCalled();
-      expect(mockRemoveChild).toHaveBeenCalled();
     });
 
     it("should use custom filename when provided", async () => {
@@ -101,11 +109,18 @@ describe("useDownloadFile", () => {
 
       const { result } = renderHook(() => useDownloadFile());
 
-      await act(async () => {
-        await result.current.downloadFile("/docs/test.pdf", "custom-name.pdf");
+      act(() => {
+        result.current.downloadFile("/docs/test.pdf", "custom-name.pdf");
       });
 
-      expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
+
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      });
+
       expect(createElementSpy).toHaveBeenCalledWith("a");
       expect(mockClick).toHaveBeenCalled();
     });
@@ -118,11 +133,18 @@ describe("useDownloadFile", () => {
 
       const { result } = renderHook(() => useDownloadFile());
 
-      await act(async () => {
-        await result.current.downloadFile("/docs/documento.pdf");
+      act(() => {
+        result.current.downloadFile("/docs/documento.pdf");
       });
 
-      expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
+
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      });
+
       expect(createElementSpy).toHaveBeenCalledWith("a");
       expect(mockClick).toHaveBeenCalled();
     });
@@ -135,11 +157,18 @@ describe("useDownloadFile", () => {
 
       const { result } = renderHook(() => useDownloadFile());
 
-      await act(async () => {
-        await result.current.downloadFile("/docs/");
+      act(() => {
+        result.current.downloadFile("/docs/");
       });
 
-      expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
+
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      });
+
       expect(createElementSpy).toHaveBeenCalledWith("a");
       expect(mockClick).toHaveBeenCalled();
     });
@@ -155,13 +184,25 @@ describe("useDownloadFile", () => {
       // Verificar estado inicial
       expect(result.current.state.status).toBe(EnumDownloadStatus.IDLE);
 
-      // Iniciar la descarga y esperar
-      await act(async () => {
-        await result.current.downloadFile("/docs/test.pdf");
+      // Iniciar la descarga
+      act(() => {
+        result.current.downloadFile("/docs/test.pdf");
       });
 
-      // Después de la descarga, debería estar en SUCCESS
-      expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      // Verificar que está en LOADING inmediatamente después de iniciar
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.LOADING);
+      });
+
+      // Avanzar el timer para el delay de 2 segundos
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
+
+      // Esperar a que complete la descarga
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      });
     });
 
     it("should reset to IDLE after successful download", async () => {
@@ -172,13 +213,19 @@ describe("useDownloadFile", () => {
 
       const { result } = renderHook(() => useDownloadFile());
 
-      await act(async () => {
-        await result.current.downloadFile("/docs/test.pdf");
+      act(() => {
+        result.current.downloadFile("/docs/test.pdf");
       });
 
-      expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
 
-      act(() => {
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      });
+
+      await act(async () => {
         jest.advanceTimersByTime(1000);
       });
 
@@ -194,11 +241,18 @@ describe("useDownloadFile", () => {
 
       const { result } = renderHook(() => useDownloadFile());
 
-      await act(async () => {
-        await result.current.downloadFile("/docs/test.pdf");
+      act(() => {
+        result.current.downloadFile("/docs/test.pdf");
       });
 
-      expect(result.current.state.status).toBe(EnumDownloadStatus.ERROR);
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
+
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.ERROR);
+      });
+
       if (result.current.state.status === EnumDownloadStatus.ERROR) {
         expect(result.current.state.error).toBe("Network error");
       }
@@ -212,11 +266,18 @@ describe("useDownloadFile", () => {
 
       const { result } = renderHook(() => useDownloadFile());
 
-      await act(async () => {
-        await result.current.downloadFile("/docs/test.pdf");
+      act(() => {
+        result.current.downloadFile("/docs/test.pdf");
       });
 
-      expect(result.current.state.status).toBe(EnumDownloadStatus.ERROR);
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
+
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.ERROR);
+      });
+
       if (result.current.state.status === EnumDownloadStatus.ERROR) {
         expect(result.current.state.error).toContain(
           "No se pudo acceder al archivo"
@@ -236,8 +297,16 @@ describe("useDownloadFile", () => {
 
       const { result } = renderHook(() => useDownloadFile());
 
+      act(() => {
+        result.current.downloadFile("/docs/test.pdf");
+      });
+
       await act(async () => {
-        await result.current.downloadFile("/docs/test.pdf");
+        jest.advanceTimersByTime(2000);
+      });
+
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.ERROR);
       });
 
       expect(global.window.open).toHaveBeenCalledWith(
@@ -252,11 +321,18 @@ describe("useDownloadFile", () => {
 
       const { result } = renderHook(() => useDownloadFile());
 
-      await act(async () => {
-        await result.current.downloadFile("/docs/test.pdf");
+      act(() => {
+        result.current.downloadFile("/docs/test.pdf");
       });
 
-      expect(result.current.state.status).toBe(EnumDownloadStatus.ERROR);
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
+
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.ERROR);
+      });
+
       if (result.current.state.status === EnumDownloadStatus.ERROR) {
         expect(result.current.state.error).toBe(
           "Error desconocido al descargar el archivo"
@@ -274,11 +350,17 @@ describe("useDownloadFile", () => {
 
       const { result } = renderHook(() => useDownloadFile());
 
-      await act(async () => {
-        await result.current.downloadFile("/docs/test.pdf");
+      act(() => {
+        result.current.downloadFile("/docs/test.pdf");
       });
 
-      expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
+
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.SUCCESS);
+      });
 
       act(() => {
         result.current.reset();
@@ -294,11 +376,17 @@ describe("useDownloadFile", () => {
 
       const { result } = renderHook(() => useDownloadFile());
 
-      await act(async () => {
-        await result.current.downloadFile("/docs/test.pdf");
+      act(() => {
+        result.current.downloadFile("/docs/test.pdf");
       });
 
-      expect(result.current.state.status).toBe(EnumDownloadStatus.ERROR);
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
+
+      await waitFor(() => {
+        expect(result.current.state.status).toBe(EnumDownloadStatus.ERROR);
+      });
 
       act(() => {
         result.current.reset();

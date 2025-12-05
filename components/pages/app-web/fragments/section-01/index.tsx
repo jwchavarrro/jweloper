@@ -8,6 +8,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import Image from "next/image";
 
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
@@ -98,11 +99,23 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
         </div>
 
         {/* Content */}
-        <div className="absolute inset-0 grid grid-cols-1 xl:grid-cols-2 content-center gap-[5%]">
+        <div className="absolute inset-0 grid grid-cols-1 xl:grid-cols-2 content-center gap-5">
           {/* Column 1 - Image */}
-          <div className="flex items-center justify-center xl:justify-end">
-            <div className="size-64 xl:size-96 bg-foreground rounded-full" />
-          </div>
+          <motion.div
+            className="relative min-h-60 lg:min-h-96"
+            initial={{ translateX: 100, opacity: 0 }}
+            animate={{ translateX: 0, opacity: 1 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            <Image
+              src="/images/background/app-web-bg-002.png"
+              alt="Background Path 001"
+              fill
+              quality={100}
+              className="object-contain drop-shadow-lg -rotate-1"
+            />
+          </motion.div>
 
           {/* Column 2 - Content */}
           <div className="space-y-2">
@@ -118,16 +131,18 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
                 className="text-lg! md:text-xl! tracking-widest font-accent text-center xl:text-left"
               >
                 Desarrollador Frontend |{" "}
-                <button
+                <motion.button
                   type="button"
+                  whileHover={{ scale: 1.05, translateX: 10 }}
+                  whileTap={{ scale: 0.95, translateX: 0 }}
                   onClick={handleDownloadCV}
                   disabled={state.status === EnumDownloadStatus.LOADING}
-                  className="font-title cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="font-title md:text-2xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed bg-foreground text-background px-4 py-2 rounded-md"
                 >
                   {state.status === EnumDownloadStatus.LOADING
                     ? "Descargando..."
                     : "Descargar CV"}
-                </button>
+                </motion.button>
                 {state.status === EnumDownloadStatus.ERROR && (
                   <span className="block text-sm text-destructive mt-1">
                     {state.error}
