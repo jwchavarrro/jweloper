@@ -8,6 +8,7 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import Image from "next/image";
 
 // Import of components custom
 import { Title, Text, Button } from "@/components/atomic-design/atoms";
@@ -45,9 +46,22 @@ export default function Home() {
       {/* Content */}
       <section className="h-full w-full max-w-11/12 md:max-w-4/5 mx-auto grid grid-cols-1 xl:grid-cols-2 content-center gap-5">
         {/* Column 1 - Image */}
-        <div className="size-full flex items-center justify-center">
-          <div className="w-48 lg:w-80 xl:w-96 h-48 lg:h-80 xl:h-96 xl:mx-auto bg-foreground rounded-full" />
-        </div>
+        <motion.div
+          initial={{ translateX: 100, opacity: 0, rotate: -10 }}
+          animate={{ translateX: 0, opacity: 1 }}
+          viewport={{ once: false, margin: "-100px" }}
+          whileHover={{ scale: 1.05, rotate: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="relative min-h-80 flex items-center justify-center"
+        >
+          <Image
+            src="/images/background/bg-path-001.png"
+            alt="Background Path 001"
+            quality={100}
+            fill
+            className="object-contain drop-shadow-lg"
+          />
+        </motion.div>
 
         {/* Column 2 - Content */}
         <div className="space-y-5">
@@ -70,7 +84,7 @@ export default function Home() {
               rápidos hasta aplicaciones complejas.
             </Text>
           </div>
-          <div className="flex flex-col xl:flex-row gap-2">
+          <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
             {HOME_DATA?.buttons?.map((button) => {
               const IconComponent = HOME_ICONS[button.icon];
               return (
@@ -82,7 +96,7 @@ export default function Home() {
                   <Button
                     key={button.label}
                     size="lg"
-                    className="hover:cursor-pointer"
+                    className="w-full lg:w-auto"
                     asChild
                   >
                     <Link href={button.url}>

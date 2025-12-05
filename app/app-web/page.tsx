@@ -16,7 +16,7 @@ import {
 export default function AppWeb() {
   return (
     <div
-      className="h-[calc(100dvh-96px)]"
+      className="h-[calc(100dvh-96px)] space-y-20"
       style={{
         scrollbarWidth: "none",
         msOverflowStyle: "none",
