@@ -5,6 +5,7 @@
 
 "use client";
 
+import { motion } from "motion/react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 
@@ -17,25 +18,27 @@ import { HOME_DATA, HOME_ICONS } from "@/components/pages";
 
 export default function Home() {
   return (
-    <div className="relative h-[calc(100vh-96px)]">
-      {/* Background image */}
-      {/* <section className="absolute inset-0 border">
-        <Image
-          src="/images/logos/isotipo-jweloper.png"
-          alt="Isotipo Jweloper"
-          width={400}
-          height={400}
-          className="opacity-5 -rotate-12 border"
-        />
-      </section> */}
+    <motion.div
+      className="relative h-[calc(100vh-96px)]"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: "-100px" }}
+      transition={{ duration: 1, ease: "easeOut" }}
+    >
       <div className="absolute right-0 flex flex-col gap-5 justify-center">
         {SOCIAL_MEDIA.map((socialMedia) => (
-          <Link key={socialMedia.name} href={socialMedia.url} target="_blank">
-            <Icon
-              icon={socialMedia.icon}
-              className="size-8 xl:size-10 2xl:size-12 text-foreground lg:hover:scale-110 lg:hover:-translate-x-3 transition-all duration-300 cursor-pointer"
-            />
-          </Link>
+          <motion.div
+            key={socialMedia.name}
+            whileHover={{ translateX: -10 }}
+            whileTap={{ translateX: 0 }}
+          >
+            <Link href={socialMedia.url} target="_blank">
+              <Icon
+                icon={socialMedia.icon}
+                className="size-8 xl:size-10 2xl:size-12 text-foreground cursor-pointer"
+              />
+            </Link>{" "}
+          </motion.div>
         ))}
       </div>
 
@@ -71,22 +74,28 @@ export default function Home() {
             {HOME_DATA?.buttons?.map((button) => {
               const IconComponent = HOME_ICONS[button.icon];
               return (
-                <Button
+                <motion.div
                   key={button.label}
-                  size="lg"
-                  className="hover:cursor-pointer"
-                  asChild
+                  whileHover={{ scale: 1.05, rotate: 10 }}
+                  whileTap={{ scale: 0.95, rotate: 0 }}
                 >
-                  <Link href={button.url}>
-                    {IconComponent && <IconComponent className="size-4" />}
-                    {button.label}
-                  </Link>
-                </Button>
+                  <Button
+                    key={button.label}
+                    size="lg"
+                    className="hover:cursor-pointer"
+                    asChild
+                  >
+                    <Link href={button.url}>
+                      {IconComponent && <IconComponent className="size-4" />}
+                      {button.label}
+                    </Link>
+                  </Button>
+                </motion.div>
               );
             })}
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

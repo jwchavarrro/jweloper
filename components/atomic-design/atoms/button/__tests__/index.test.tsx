@@ -58,7 +58,7 @@ describe("Button", () => {
   it("should render button with gradient custom variant", () => {
     render(<Button customVariant="gradient">Gradient Button</Button>);
     const button = screen.getByRole("button");
-    expect(button).toHaveClass("bg-gradient-to-r");
+    expect(button).toHaveClass("bg-linear-to-r");
     expect(button).toHaveClass("from-primary");
   });
 

@@ -30,6 +30,21 @@ const filteredError = (...args: unknown[]) => {
 };
 console.error = filteredError;
 
+// Mock IntersectionObserver para Motion
+global.IntersectionObserver = class IntersectionObserver {
+  constructor() {}
+  disconnect() {}
+  observe() {
+    return null;
+  }
+  takeRecords() {
+    return [];
+  }
+  unobserve() {
+    return null;
+  }
+} as unknown as typeof IntersectionObserver;
+
 // Mocks reutilizables de Next.js (ubicados en __mocks__/)
 jest.mock("next/navigation");
 jest.mock("next/image");
