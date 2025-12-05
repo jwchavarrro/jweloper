@@ -72,6 +72,9 @@ export function useDownloadFile(): UseDownloadFileReturn {
       try {
         setState({ status: EnumDownloadStatus.LOADING });
 
+        // Esperar 3 segundos para visualizar el estado de descarga
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
         // Verificar que el archivo existe haciendo una petición HEAD
         const response = await fetch(filePath, { method: "HEAD" });
         if (!response.ok) {
@@ -90,7 +93,7 @@ export function useDownloadFile(): UseDownloadFileReturn {
         // Agregar al DOM, hacer click y remover
         document.body.appendChild(link);
         link.click();
-        document.body.removeChild(link);
+        link.remove();
 
         setState({ status: EnumDownloadStatus.SUCCESS });
 
