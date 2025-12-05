@@ -93,7 +93,12 @@ export function useDownloadFile(): UseDownloadFileReturn {
         // Agregar al DOM, hacer click y remover
         document.body.appendChild(link);
         link.click();
-        link.remove();
+        // Usar remove() si está disponible, sino usar removeChild como fallback
+        if (typeof link.remove === "function") {
+          link.remove();
+        } else {
+          document.body.removeChild(link);
+        }
 
         setState({ status: EnumDownloadStatus.SUCCESS });
 
