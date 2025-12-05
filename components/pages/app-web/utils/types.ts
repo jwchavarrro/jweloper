@@ -18,11 +18,11 @@ export type SkillType = {
 };
 
 /**
- * @name ProjectType
+ * @name ProjectItemData
  * @type {Object}
- * @description Tipo para el proyecto.
+ * @description Tipo para los datos de un proyecto.
  */
-export type ProjectType = {
+export type ProjectItemData = {
   name: string;
   description: string;
   image: string;

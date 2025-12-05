@@ -10,7 +10,7 @@ import { ICONS } from "@/config";
 import { EnumProgrammingLanguage } from "@/app/utils/types";
 import {
   SkillType,
-  ProjectType,
+  ProjectItemData,
   ExperienceType,
 } from "@/components/pages/app-web";
 
@@ -150,15 +150,30 @@ export const EXPERIENCES: ExperienceType[] = [
 ];
 
 /**
- * @name PROJECTS
- * @type {ProjectType[]}
- * @description Lista de proyectos.
+ * @name PROJECTS_DATA
+ * @type {ProjectItemData[]}
+ * @description Datos de los proyectos.
  */
-export const PROJECTS: ProjectType[] = [
+export const PROJECTS_DATA: ProjectItemData[] = [
   {
-    name: "Sistema de gestión de inventario",
-    description: "Descripción del proyecto 1",
+    name: "RiskHub",
+    description:
+      "Filtros avanzados basados en query params para consultas dinámicas. Internacionalización i18n con soporte multilenguaje en Next.js. Optimización de UX para visualización de mapas, capas y modelos.",
     image: "https://via.placeholder.com/150",
-    url: "https://www.google.com",
+    url: "#",
+  },
+  {
+    name: "Portal web LACEA (Panel administrativo)",
+    description:
+      "Desarrollo de panel administrativo para gestión de membresías de usuarios. Sistema de publicación de ofertas y oportunidades profesionales para miembros. Buscador interno para localizar miembros activos — facilitando networking y colaboración.",
+    image: "https://via.placeholder.com/150",
+    url: "#",
+  },
+  {
+    name: "PortalAliados",
+    description:
+      "Formularios multi-step con campos condicionales según respuestas. Integración con HubSpot para registro automático de leads. Validaciones dinámicas y UX optimizada para flujo de captura de datos.",
+    image: "https://via.placeholder.com/150",
+    url: "#",
   },
 ];

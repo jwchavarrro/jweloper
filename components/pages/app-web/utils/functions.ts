@@ -7,7 +7,7 @@
 import { EnumProgrammingLanguage } from "@/app/utils/types";
 
 // Import of utilities
-import { APP_WEB_ICONS } from "@/components/pages/app-web";
+import { APP_WEB_ICONS } from "./constants";
 
 /**
  * @name getTechnologyIcon

@@ -33,7 +33,7 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
           <Icon className={`size-5 animate-bounce ${iconClassName || ""}`} />
           <Text
             variant="large"
-            className={`text-xs! md:text-sm! tracking-widest [writing-mode:vertical-rl] [text-orientation:mixed] ${textClassName || ""}`}
+            className={`text-xs! tracking-widest [writing-mode:vertical-rl] [text-orientation:mixed] ${textClassName || ""}`}
           >
             {text}
           </Text>
@@ -42,7 +42,7 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
         <>
           <Text
             variant="large"
-            className={`text-xs! md:text-sm! tracking-widest [writing-mode:vertical-rl] [text-orientation:mixed]  ${textClassName || ""}`}
+            className={`text-xs! tracking-widest [writing-mode:vertical-rl] [text-orientation:mixed]  ${textClassName || ""}`}
           >
             {text}
           </Text>

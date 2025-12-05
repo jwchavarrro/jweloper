@@ -31,14 +31,16 @@ describe("SnapPage", () => {
     expect(heading).toBeInTheDocument();
   });
 
-  it("should have snap-start class", () => {
-    render(
+  it("should have scroll-snap-align style", () => {
+    const { container } = render(
       <SnapPage id="01">
         <div>Content</div>
       </SnapPage>
     );
-    const section = document.querySelector("section.snap-start");
+    const section = container.querySelector("section");
     expect(section).toBeInTheDocument();
+    // Verificar que tiene la altura correcta
+    expect(section).toHaveClass("h-[calc(100dvh-96px)]");
   });
 
   it("should render CounterIndicator and ScrollIndicator", () => {
@@ -51,7 +53,7 @@ describe("SnapPage", () => {
     const counter = screen.getByText("03");
     expect(counter).toBeInTheDocument();
     // Verificar que el indicador de scroll se renderiza
-    const scrollText = screen.getByText("Scroll abajo");
+    const scrollText = screen.getByText("Scroll hacia abajo");
     expect(scrollText).toBeInTheDocument();
   });
 

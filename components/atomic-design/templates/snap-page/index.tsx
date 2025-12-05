@@ -11,10 +11,15 @@ import {
   ScrollIndicator,
 } from "@/components/atomic-design/molecules";
 
+// Import of utilities
+import { cn } from "@/lib/utils";
+
 interface SnapPageProps {
   id: string;
   anchorId?: string;
   hideCounter?: boolean;
+  hideScrollIndicator?: boolean;
+  className?: string;
   children: React.ReactNode;
 }
 
@@ -22,12 +27,14 @@ export const SnapPage: React.FC<SnapPageProps> = ({
   id,
   anchorId,
   hideCounter,
+  hideScrollIndicator,
+  className,
   children,
 }) => {
   return (
     <section
       id={anchorId}
-      className="relative h-[calc(100dvh-96px)] w-full snap-start flex items-center justify-center"
+      className={cn("relative h-[calc(100dvh-96px)]", className)}
     >
       {/* Elements of background */}
       <div className="absolute inset-0 grid grid-cols-2">
@@ -35,7 +42,9 @@ export const SnapPage: React.FC<SnapPageProps> = ({
           {hideCounter ? null : <CounterIndicator value={id} />}
         </div>
         <div className="flex items-end justify-end">
-          <ScrollIndicator />
+          {hideScrollIndicator ? null : (
+            <ScrollIndicator text="Scroll hacia abajo" />
+          )}
         </div>
       </div>
 
