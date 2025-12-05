@@ -4,6 +4,7 @@
  */
 
 "use client";
+import { Mouse } from "lucide-react";
 
 // Import of components custom
 import {
@@ -43,7 +44,7 @@ export const SnapPage: React.FC<SnapPageProps> = ({
         </div>
         <div className="flex items-end justify-end">
           {hideScrollIndicator ? null : (
-            <ScrollIndicator text="Scroll hacia abajo" />
+            <ScrollIndicator text="Scroll hacia abajo" icon={Mouse} />
           )}
         </div>
       </div>

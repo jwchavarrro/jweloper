@@ -113,7 +113,7 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
               alt="Background Path 001"
               fill
               quality={100}
-              className="object-contain drop-shadow-lg -rotate-2 z-10"
+              className="object-contain drop-shadow-lg -rotate-1"
             />
           </motion.div>
 
@@ -133,11 +133,11 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
                 Desarrollador Frontend |{" "}
                 <motion.button
                   type="button"
-                  whileHover={{ scale: 1.05, translateX: 10, color: "#000000" }}
-                  whileTap={{ scale: 0.95, translateX: 0, color: "#000000" }}
+                  whileHover={{ scale: 1.05, translateX: 10 }}
+                  whileTap={{ scale: 0.95, translateX: 0 }}
                   onClick={handleDownloadCV}
                   disabled={state.status === EnumDownloadStatus.LOADING}
-                  className="font-title md:text-2xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="font-title md:text-2xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed bg-foreground text-background px-4 py-2 rounded-md"
                 >
                   {state.status === EnumDownloadStatus.LOADING
                     ? "Descargando..."
