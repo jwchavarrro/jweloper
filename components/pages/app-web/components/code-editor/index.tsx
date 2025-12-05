@@ -128,15 +128,13 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
             activeFile={displayFileName}
             onFileSelect={() => {}}
           />
-          {/* 
-
           <CodeArea
             code={displayCode}
             showLineNumbers={showLineNumbers}
             codeScrollAreaRef={codeScrollAreaRef}
             lineNumbersRef={lineNumbersRef}
             lineNumbers={lineNumbers}
-          /> */}
+          />
         </div>
       </div>
 
