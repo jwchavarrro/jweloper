@@ -76,14 +76,13 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
           className="col-span-2 h-full overflow-hidden"
           initial={{ translateX: -250, opacity: 0 }}
           whileInView={{ translateX: 0, opacity: 1 }}
-          viewport={{ once: false, margin: "-250px" }}
+          viewport={{ once: true, margin: "-250px" }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           <CodeEditor
             files={editorFiles}
             language="json"
             showSidebar={!isMobile}
-            minHeight="100%"
             className="h-full"
           />
         </motion.div>

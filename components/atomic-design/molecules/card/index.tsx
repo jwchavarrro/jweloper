@@ -9,8 +9,7 @@ import {
   CardAction,
 } from "@/components/ui/card";
 import { Button } from "@/components/atomic-design/atoms/button";
-import { Heading } from "@/components/atomic-design/atoms/heading";
-import { Text } from "@/components/atomic-design/atoms/text";
+import { Title, Text } from "@/components/atomic-design/atoms";
 
 /**
  * Molecule: Card
@@ -19,22 +18,14 @@ import { Text } from "@/components/atomic-design/atoms/text";
  */
 
 interface CardProps extends React.ComponentProps<typeof BaseCard> {
-  /** Título de la tarjeta */
-  title?: string;
-  /** Descripción de la tarjeta */
-  description?: string;
-  /** Contenido de la tarjeta */
-  children?: React.ReactNode;
-  /** Texto del botón en el footer */
-  buttonText?: string;
-  /** Acción del botón */
-  onButtonClick?: () => void;
-  /** Variante del botón */
-  buttonVariant?: React.ComponentProps<typeof Button>["variant"];
-  /** Mostrar acción en el header */
-  showHeaderAction?: boolean;
-  /** Contenido de la acción del header */
-  headerAction?: React.ReactNode;
+  readonly title?: string;
+  readonly description?: string;
+  readonly children?: React.ReactNode;
+  readonly buttonText?: string;
+  readonly onButtonClick?: () => void;
+  readonly buttonVariant?: React.ComponentProps<typeof Button>["variant"];
+  readonly showHeaderAction?: boolean;
+  readonly headerAction?: React.ReactNode;
 }
 
 export function Card({
@@ -55,9 +46,9 @@ export function Card({
         <CardHeader>
           {title && (
             <CardTitle>
-              <Heading level={4} variant="accent">
+              <Title level={4} variant="accent">
                 {title}
-              </Heading>
+              </Title>
             </CardTitle>
           )}
           {description && (
