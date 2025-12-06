@@ -20,6 +20,8 @@ import {
 // Import of utilities
 import { getDisplayData } from "./utils";
 import type { CodeEditorProps } from "./utils";
+
+// Import of custom hooks
 import { useIsMobile } from "@/hooks";
 
 export const CodeEditor: React.FC<CodeEditorProps> = ({
