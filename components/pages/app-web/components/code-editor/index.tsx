@@ -40,6 +40,9 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   const lineNumbersRef = React.useRef<HTMLDivElement | null>(null);
   const lineNumbersContentRef = React.useRef<HTMLDivElement | null>(null);
 
+  // Implement of state
+  const [copyMessage, setCopyMessage] = React.useState<string | null>(null);
+
   // Obtener datos del primer archivo o usar props directas
   const { code: displayCode, language: displayLanguage } = getDisplayData(
     files,
@@ -70,8 +73,16 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   const handleCopy = React.useCallback(async () => {
     try {
       await navigator.clipboard.writeText(displayCode);
-    } catch (err) {
-      console.error("Error al copiar:", err);
+      setCopyMessage("Copiado al portapapeles");
+      // Limpiar el mensaje después de 3 segundos
+      setTimeout(() => {
+        setCopyMessage(null);
+      }, 3000);
+    } catch {
+      setCopyMessage("Error al copiar");
+      setTimeout(() => {
+        setCopyMessage(null);
+      }, 3000);
     }
   }, [displayCode]);
 
@@ -120,6 +131,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
         lineCount={lineCount}
         characterCount={displayCode.length}
         onCopy={handleCopy}
+        copyMessage={copyMessage}
       />
     </div>
   );

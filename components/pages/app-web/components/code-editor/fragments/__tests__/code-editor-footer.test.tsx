@@ -13,6 +13,7 @@ describe("CodeEditorFooter", () => {
     lineCount: 10,
     characterCount: 100,
     onCopy: jest.fn(),
+    copyMessage: null,
   };
 
   it("should render the footer", () => {
@@ -47,5 +48,22 @@ describe("CodeEditorFooter", () => {
   it("should display language in uppercase", () => {
     render(<CodeEditorFooter {...defaultProps} language="javascript" />);
     expect(screen.getByText("JAVASCRIPT")).toBeInTheDocument();
+  });
+
+  it("should display copy message when provided", () => {
+    render(
+      <CodeEditorFooter
+        {...defaultProps}
+        copyMessage="Copiado al portapapeles"
+      />
+    );
+    expect(screen.getByText("Copiado al portapapeles")).toBeInTheDocument();
+  });
+
+  it("should not display copy message when null", () => {
+    render(<CodeEditorFooter {...defaultProps} copyMessage={null} />);
+    expect(
+      screen.queryByText("Copiado al portapapeles")
+    ).not.toBeInTheDocument();
   });
 });
