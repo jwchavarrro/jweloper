@@ -12,3 +12,9 @@ export const MENU_MAIN_ITEMS: Record<string, string> = {
   TERMINAL: "Terminal",
   HELP: "Help",
 };
+
+export const MENU_MAIN_ITEMS_MOBILE: Record<string, string> = {
+  FILE: "File",
+  EDIT: "Edit",
+  VIEW: "View",
+};

@@ -19,22 +19,31 @@ import {
 
 // Import of types
 import type { CodeEditorProps } from "./utils";
+import { useIsMobile } from "@/hooks";
 
 export const CodeEditor: React.FC<CodeEditorProps> = ({
   code = "",
   fileName = "code.json",
   language = "json",
-  showLineNumbers = true,
   showSidebar = false,
   files = [],
   minHeight = "500px",
   className,
 }) => {
-  const codeScrollAreaRef = React.useRef<HTMLDivElement | null>(null);
-  const lineNumbersRef = React.useRef<HTMLDivElement | null>(null);
+  // Implement of state
   const [isFolderOpen, setIsFolderOpen] = React.useState(true);
 
-  // Obtener código y lenguaje del primer archivo o usar props directas
+  // Implement of custom hooks
+  const isMobile = useIsMobile();
+
+  // Implement of  refs
+  const codeScrollAreaRef = React.useRef<HTMLDivElement | null>(null);
+  const lineNumbersRef = React.useRef<HTMLDivElement | null>(null);
+
+  /**
+   * @name displayCode
+   * @description Obtener código y lenguaje del primer archivo o usar props directas
+   */
   const displayCode = React.useMemo(() => {
     if (files.length > 0) {
       return files[0].content;
@@ -42,6 +51,10 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
     return code;
   }, [files, code]);
 
+  /**
+   * @name displayLanguage
+   * @description Obtener lenguaje del primer archivo o usar props directas
+   */
   const displayLanguage = React.useMemo(() => {
     if (files.length > 0) {
       return files[0].language;
@@ -49,6 +62,10 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
     return language;
   }, [files, language]);
 
+  /**
+   * @name displayFileName
+   * @description Obtener nombre del archivo del primer archivo o usar props directas
+   */
   const displayFileName = React.useMemo(() => {
     if (files.length > 0) {
       return files[0].name;
@@ -113,13 +130,15 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
       {/* Main content */}
       <div className="flex flex-1 overflow-hidden">
         {/* Barra lateral - Explorador de archivos */}
-        <FileExplorer
-          files={files}
-          activeFile={displayFileName}
-          onFileSelect={() => {}}
-          isFolderOpen={isFolderOpen}
-          onFolderToggle={setIsFolderOpen}
-        />
+        {!isMobile && showSidebar && (
+          <FileExplorer
+            files={files}
+            activeFile={displayFileName}
+            onFileSelect={() => {}}
+            isFolderOpen={isFolderOpen}
+            onFolderToggle={setIsFolderOpen}
+          />
+        )}
 
         {/* Área principal del editor */}
         <div className="flex-1 flex flex-col overflow-hidden">
@@ -130,7 +149,6 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
           />
           <CodeArea
             code={displayCode}
-            showLineNumbers={showLineNumbers}
             codeScrollAreaRef={codeScrollAreaRef}
             lineNumbersRef={lineNumbersRef}
             lineNumbers={lineNumbers}
