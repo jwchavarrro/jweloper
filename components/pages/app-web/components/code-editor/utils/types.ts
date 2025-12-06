@@ -3,6 +3,11 @@
  * @description Tipos para el componente CodeEditor.
  */
 
+/**
+ * @name Language
+ * @type {string}
+ * @description Tipo para el lenguaje de programación.
+ */
 export type Language =
   | "javascript"
   | "typescript"
@@ -11,6 +16,11 @@ export type Language =
   | "json"
   | "plaintext";
 
+/**
+ * @name FileItem
+ * @type {Object}
+ * @description Tipo para un archivo en el explorador.
+ */
 export interface FileItem {
   readonly name: string;
   readonly content: string;
@@ -18,18 +28,16 @@ export interface FileItem {
   readonly icon?: React.ReactNode;
 }
 
-export interface CodeEditorProps {
+/**
+ * @name CodeEditorProps
+ * @type {Object}
+ * @description Tipo para las propiedades del componente CodeEditor.
+ */
+export type CodeEditorProps = {
   readonly code?: string;
   readonly language?: Language;
-  /**
-   * Mostrar barra lateral (explorador de archivos)
-   * @default false
-   */
   readonly showSidebar?: boolean;
-  /**
-   * Archivos en el explorador (solo visual) - si se proporciona, se usa el primero
-   */
   readonly files?: FileItem[];
   readonly minHeight?: string;
   readonly className?: string;
-}
+};
