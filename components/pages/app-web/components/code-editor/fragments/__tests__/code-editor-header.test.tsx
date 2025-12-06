@@ -16,7 +16,9 @@ describe("CodeEditorHeader", () => {
   it("should render menu items", () => {
     render(<CodeEditorHeader />);
     // Verificar que al menos un item del menú está presente
-    const menuItems = screen.getAllByText(/File|Edit|View|Go|Run|Terminal|Help/i);
+    const menuItems = screen.getAllByText(
+      /File|Edit|View|Go|Run|Terminal|Help/i
+    );
     expect(menuItems.length).toBeGreaterThan(0);
   });
 
@@ -33,4 +35,3 @@ describe("CodeEditorHeader", () => {
     expect(header).toHaveClass("flex", "items-center", "justify-between");
   });
 });
-

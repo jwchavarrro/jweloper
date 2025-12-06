@@ -49,4 +49,3 @@ describe("CodeEditorFooter", () => {
     expect(screen.getByText("JAVASCRIPT")).toBeInTheDocument();
   });
 });
-

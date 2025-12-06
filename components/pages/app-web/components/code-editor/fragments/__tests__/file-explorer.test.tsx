@@ -50,4 +50,3 @@ describe("FileExplorer", () => {
     expect(icons.length).toBeGreaterThan(0);
   });
 });
-

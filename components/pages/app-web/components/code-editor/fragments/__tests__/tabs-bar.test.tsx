@@ -60,4 +60,3 @@ describe("TabsBar", () => {
     expect(tabsContainer).toHaveClass("flex", "items-center");
   });
 });
-
