@@ -29,7 +29,7 @@ export const CodeArea: React.FC<CodeAreaProps> = ({
           msOverflowStyle: "none",
         }}
       >
-        <div className="py-4 px-2 text-right text-xs text-[#858585] font-mono select-none pointer-events-none">
+        <div className="py-4 px-2 text-right text-[10px] text-[#858585] font-mono select-none pointer-events-none">
           {lineNumbers.map((num) => (
             <div key={num} className="leading-6">
               {num}
@@ -41,7 +41,7 @@ export const CodeArea: React.FC<CodeAreaProps> = ({
       {/* Área de código */}
       <ScrollArea ref={codeScrollAreaRef} className="flex-1">
         <div className="py-4 px-4">
-          <pre className="text-[#d4d4d4] text-sm leading-6 whitespace-pre-wrap wrap-break-word m-0">
+          <pre className="text-[#d4d4d4] text-[12px] leading-6 whitespace-pre-wrap wrap-break-word m-0">
             <code>{code}</code>
           </pre>
         </div>
