@@ -39,6 +39,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   // Implement of  refs
   const codeScrollAreaRef = React.useRef<HTMLDivElement | null>(null);
   const lineNumbersRef = React.useRef<HTMLDivElement | null>(null);
+  const lineNumbersContentRef = React.useRef<HTMLDivElement | null>(null);
 
   /**
    * @name displayCode
@@ -76,9 +77,9 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   // Sincronizar scroll entre código y números de línea
   React.useEffect(() => {
     const codeScrollArea = codeScrollAreaRef.current;
-    const lineNumbersContainer = lineNumbersRef.current;
+    const lineNumbersContent = lineNumbersContentRef.current;
 
-    if (!codeScrollArea || !lineNumbersContainer) return;
+    if (!codeScrollArea || !lineNumbersContent) return;
 
     // Buscar el viewport dentro del ScrollArea del código
     const codeViewport = codeScrollArea.querySelector(
@@ -88,8 +89,8 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
     if (!codeViewport) return;
 
     const handleScroll = () => {
-      // Sincronizar el scroll de los números de línea con el código
-      lineNumbersContainer.scrollTop = codeViewport.scrollTop;
+      // Sincronizar el scroll moviendo el contenido de los números de línea
+      lineNumbersContent.style.transform = `translateY(-${codeViewport.scrollTop}px)`;
     };
 
     codeViewport.addEventListener("scroll", handleScroll);
@@ -151,6 +152,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
             code={displayCode}
             codeScrollAreaRef={codeScrollAreaRef}
             lineNumbersRef={lineNumbersRef}
+            lineNumbersContentRef={lineNumbersContentRef}
             lineNumbers={lineNumbers}
           />
         </div>

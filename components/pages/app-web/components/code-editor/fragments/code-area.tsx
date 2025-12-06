@@ -9,6 +9,7 @@ interface CodeAreaProps {
   readonly code: string;
   readonly codeScrollAreaRef: React.RefObject<HTMLDivElement | null>;
   readonly lineNumbersRef: React.RefObject<HTMLDivElement | null>;
+  readonly lineNumbersContentRef: React.RefObject<HTMLDivElement | null>;
   readonly lineNumbers: number[];
 }
 
@@ -16,6 +17,7 @@ export const CodeArea: React.FC<CodeAreaProps> = ({
   code,
   codeScrollAreaRef,
   lineNumbersRef,
+  lineNumbersContentRef,
   lineNumbers,
 }) => {
   return (
@@ -23,13 +25,12 @@ export const CodeArea: React.FC<CodeAreaProps> = ({
       {/* Números de línea */}
       <div
         ref={lineNumbersRef}
-        className="shrink-0 w-12 bg-[#252526] border-r border-[#3e3e42] overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden"
-        style={{
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-        }}
+        className="shrink-0 w-12 bg-[#252526] border-r border-[#3e3e42] overflow-hidden relative"
       >
-        <div className="py-4 px-2 text-right text-[10px] text-[#858585] font-mono select-none pointer-events-none">
+        <div
+          ref={lineNumbersContentRef}
+          className="py-4 px-2 text-right text-[10px] text-[#858585] font-mono select-none pointer-events-none"
+        >
           {lineNumbers.map((num) => (
             <div key={num} className="leading-6">
               {num}
