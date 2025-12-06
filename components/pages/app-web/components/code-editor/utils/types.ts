@@ -41,20 +41,10 @@ export interface CodeEditorProps {
    */
   readonly code?: string;
   /**
-   * Nombre del archivo a mostrar en la barra de título
-   * @default "code.json"
-   */
-  readonly fileName?: string;
-  /**
    * Lenguaje de programación para el resaltado de sintaxis
    * @default "json"
    */
   readonly language?: Language;
-  /**
-   * Mostrar números de línea
-   * @default true
-   */
-  readonly showLineNumbers?: boolean;
   /**
    * Mostrar barra lateral (explorador de archivos)
    * @default false

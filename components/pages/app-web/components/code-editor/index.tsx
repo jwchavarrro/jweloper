@@ -17,79 +17,46 @@ import {
   CodeEditorFooter,
 } from "./fragments";
 
-// Import of types
+// Import of utilities
+import { getDisplayData } from "./utils";
 import type { CodeEditorProps } from "./utils";
 import { useIsMobile } from "@/hooks";
 
 export const CodeEditor: React.FC<CodeEditorProps> = ({
   code = "",
-  fileName = "code.json",
   language = "json",
   showSidebar = false,
   files = [],
   minHeight = "500px",
   className,
 }) => {
-  // Implement of state
-  const [isFolderOpen, setIsFolderOpen] = React.useState(true);
-
   // Implement of custom hooks
   const isMobile = useIsMobile();
 
-  // Implement of  refs
+  // Implement of refs
   const codeScrollAreaRef = React.useRef<HTMLDivElement | null>(null);
   const lineNumbersRef = React.useRef<HTMLDivElement | null>(null);
   const lineNumbersContentRef = React.useRef<HTMLDivElement | null>(null);
 
-  /**
-   * @name displayCode
-   * @description Obtener código y lenguaje del primer archivo o usar props directas
-   */
-  const displayCode = React.useMemo(() => {
-    if (files.length > 0) {
-      return files[0].content;
-    }
-    return code;
-  }, [files, code]);
-
-  /**
-   * @name displayLanguage
-   * @description Obtener lenguaje del primer archivo o usar props directas
-   */
-  const displayLanguage = React.useMemo(() => {
-    if (files.length > 0) {
-      return files[0].language;
-    }
-    return language;
-  }, [files, language]);
-
-  /**
-   * @name displayFileName
-   * @description Obtener nombre del archivo del primer archivo o usar props directas
-   */
-  const displayFileName = React.useMemo(() => {
-    if (files.length > 0) {
-      return files[0].name;
-    }
-    return fileName;
-  }, [files, fileName]);
+  // Obtener datos del primer archivo o usar props directas
+  const { code: displayCode, language: displayLanguage } = getDisplayData(
+    files,
+    code,
+    language
+  );
 
   // Sincronizar scroll entre código y números de línea
   React.useEffect(() => {
     const codeScrollArea = codeScrollAreaRef.current;
     const lineNumbersContent = lineNumbersContentRef.current;
-
     if (!codeScrollArea || !lineNumbersContent) return;
 
-    // Buscar el viewport dentro del ScrollArea del código
     const codeViewport = codeScrollArea.querySelector(
       '[data-slot="scroll-area-viewport"]'
     ) as HTMLElement;
-
     if (!codeViewport) return;
 
     const handleScroll = () => {
-      // Sincronizar el scroll moviendo el contenido de los números de línea
       lineNumbersContent.style.transform = `translateY(-${codeViewport.scrollTop}px)`;
     };
 
@@ -106,16 +73,14 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
     }
   }, [displayCode]);
 
-  // Calcular número de líneas
-  const lineCount = React.useMemo(() => {
-    if (!displayCode) return 1;
-    return displayCode.split("\n").length;
+  // Calcular número de líneas y generar números
+  const { lineCount, lineNumbers } = React.useMemo(() => {
+    const count = displayCode ? displayCode.split("\n").length : 1;
+    return {
+      lineCount: count,
+      lineNumbers: Array.from({ length: count }, (_, i) => i + 1),
+    };
   }, [displayCode]);
-
-  // Generar números de línea
-  const lineNumbers = React.useMemo(() => {
-    return Array.from({ length: lineCount }, (_, i) => i + 1);
-  }, [lineCount]);
 
   return (
     <div
@@ -131,23 +96,13 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
       {/* Main content */}
       <div className="flex flex-1 overflow-hidden">
         {/* Barra lateral - Explorador de archivos */}
-        {!isMobile && showSidebar && (
-          <FileExplorer
-            files={files}
-            activeFile={displayFileName}
-            onFileSelect={() => {}}
-            isFolderOpen={isFolderOpen}
-            onFolderToggle={setIsFolderOpen}
-          />
+        {!isMobile && showSidebar && files.length > 0 && (
+          <FileExplorer files={files} />
         )}
 
         {/* Área principal del editor */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          <TabsBar
-            files={files}
-            activeFile={displayFileName}
-            onFileSelect={() => {}}
-          />
+          {files.length > 0 && <TabsBar files={files} />}
           <CodeArea
             code={displayCode}
             codeScrollAreaRef={codeScrollAreaRef}

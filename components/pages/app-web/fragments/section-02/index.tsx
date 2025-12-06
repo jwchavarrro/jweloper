@@ -81,7 +81,6 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
         >
           <CodeEditor
             files={editorFiles}
-            fileName="experiences.json"
             language="json"
             showSidebar={!isMobile}
             minHeight="100%"
