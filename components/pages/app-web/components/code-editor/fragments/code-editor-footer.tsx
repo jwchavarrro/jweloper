@@ -12,6 +12,7 @@ interface CodeEditorFooterProps {
   readonly lineCount: number;
   readonly characterCount: number;
   readonly onCopy: () => void;
+  readonly copyMessage: string | null;
 }
 
 export const CodeEditorFooter: React.FC<CodeEditorFooterProps> = ({
@@ -19,6 +20,7 @@ export const CodeEditorFooter: React.FC<CodeEditorFooterProps> = ({
   lineCount,
   characterCount,
   onCopy,
+  copyMessage,
 }) => {
   return (
     <footer className="flex items-center justify-between px-4 bg-[#007acc]">
@@ -33,14 +35,21 @@ export const CodeEditorFooter: React.FC<CodeEditorFooterProps> = ({
           {characterCount} caracteres
         </Text>
       </div>
-      <button
-        type="button"
-        className="p-1.5 rounded text-white hover:bg-white/10 transition-colors"
-        title="Copiar código"
-        onClick={onCopy}
-      >
-        <CopyIcon className="size-2.5" />
-      </button>
+      <div className="flex items-center gap-2">
+        {copyMessage && (
+          <Text variant="small" className="text-[11px] text-white">
+            {copyMessage}
+          </Text>
+        )}
+        <button
+          type="button"
+          className="p-1.5 rounded text-white hover:bg-white/10 transition-colors"
+          title="Copiar código"
+          onClick={onCopy}
+        >
+          <CopyIcon className="size-2.5" />
+        </button>
+      </div>
     </footer>
   );
 };

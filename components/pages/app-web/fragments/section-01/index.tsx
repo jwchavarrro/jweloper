@@ -103,8 +103,9 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
           {/* Column 1 - Image */}
           <motion.div
             className="relative min-h-60 lg:min-h-96"
-            initial={{ translateX: 100, opacity: 0 }}
-            animate={{ translateX: 0, opacity: 1 }}
+            initial={{ translateY: -100, opacity: 0 }}
+            whileInView={{ translateY: 0, opacity: 1 }}
+            whileHover={{ scale: 1.05, rotate: 2 }}
             viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
@@ -113,7 +114,7 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
               alt="Background Path 001"
               fill
               quality={100}
-              className="object-contain drop-shadow-lg -rotate-1"
+              className="object-contain drop-shadow-lg"
             />
           </motion.div>
 

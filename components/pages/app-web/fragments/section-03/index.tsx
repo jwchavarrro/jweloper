@@ -5,6 +5,8 @@
 
 "use client";
 
+import { motion } from "motion/react";
+
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
 import { Carousel } from "@/components/atomic-design/organism";
@@ -29,25 +31,23 @@ export const Section03: React.FC<Section03Props> = ({ anchorId }) => {
       {/* Children content */}
       <div className="h-full absolute inset-0 grid grid-cols-1 lg:grid-cols-3  gap-2 lg:gap-[5%]">
         {/* Column 1 - Content */}
-        <div className="order-2 md:order-1 col-span-2 h-full">
-          <div className="mx-auto w-4/5 h-full flex flex-col gap-4 items-center justify-center">
+        <motion.div
+          className="order-2 md:order-1 col-span-2 h-full"
+          initial={{ translateX: -250, opacity: 0 }}
+          whileInView={{ translateX: 0, opacity: 1 }}
+          viewport={{ once: false, margin: "-250px" }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          <div className="mx-auto w-4/5 h-full flex items-center justify-center">
             <Carousel
               items={PROJECTS_DATA?.map((project) => ({
                 content: <ProjectItem project={project} />,
               }))}
-            />
-            <Carousel
-              items={PROJECTS_DATA?.map((project) => ({
-                content: <ProjectItem project={project} />,
-              }))}
-            />
-            <Carousel
-              items={PROJECTS_DATA?.map((project) => ({
-                content: <ProjectItem project={project} />,
-              }))}
+              contentClassName="overflow-visible py-[8%] px-[1%]"
+              itemClassName="md:basis-1/2 "
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Column 2 - Title */}
         <div className="order-1 md:order-2 lg:h-full flex items-center justify-center">
