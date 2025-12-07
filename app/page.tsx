@@ -131,6 +131,13 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Copyright */}
+      <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center">
+        <Text className="text-[9px]! tracking-widest">
+          Copyright © 2025 Jweloper. All rights reserved. v1.0.0
+        </Text>
+      </div>
     </motion.div>
   );
 }
