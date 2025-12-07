@@ -14,6 +14,9 @@ import {
 } from "@/components/pages/app-web/fragments";
 
 export default function AppWeb() {
+  // States generals
+  //const [selectedVersion, setSelectedVersion] = useState<string>("v1");
+
   return (
     <div
       className="h-[calc(100dvh-96px)] space-y-20"

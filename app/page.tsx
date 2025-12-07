@@ -6,9 +6,9 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import Image from "next/image";
 
 // Import of components custom
 import { Title, Text, Button } from "@/components/atomic-design/atoms";
@@ -26,25 +26,46 @@ export default function Home() {
       viewport={{ once: false, margin: "-100px" }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
-      <div className="absolute right-0 flex flex-col gap-5 justify-center">
-        {SOCIAL_MEDIA.map((socialMedia) => (
-          <motion.div
-            key={socialMedia.name}
-            whileHover={{ translateX: -10 }}
-            whileTap={{ translateX: 0 }}
-          >
-            <Link href={socialMedia.url} target="_blank">
-              <Icon
-                icon={socialMedia.icon}
-                className="size-8 xl:size-10 2xl:size-12 text-foreground cursor-pointer"
-              />
-            </Link>{" "}
-          </motion.div>
-        ))}
+      {/* Background */}
+      <div className="absolute inset-0 z-0 grid grid-cols-2 gap-5 justify-center">
+        {/* Social Media */}
+        <div>
+          <div className="relative z-20 w-fit flex flex-col items-center gap-5">
+            <div className="w-px h-24 bg-foreground" />
+            {SOCIAL_MEDIA.map((socialMedia) => (
+              <Link
+                key={socialMedia.name}
+                href={socialMedia.url}
+                className="hover:scale-110 transition-all duration-300"
+                target="_blank"
+              >
+                <Icon
+                  icon={socialMedia.icon}
+                  className="size-6 text-foreground cursor-pointer"
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Email */}
+        <div className="relative z-20 flex items-end justify-end">
+          <div className="flex flex-col items-center h-full justify-end">
+            <Text className="font-bold text-xs! tracking-widest [writing-mode:vertical-rl] [text-orientation:mixed] mb-4">
+              <Link
+                href="mailto:jwchavarrro023@gmail.com"
+                className="hover:underline"
+              >
+                jwchavarrro023@gmail.com
+              </Link>
+            </Text>
+            <div className="w-px h-24 bg-foreground" />
+          </div>
+        </div>
       </div>
 
       {/* Content */}
-      <section className="h-full w-full max-w-11/12 md:max-w-4/5 mx-auto grid grid-cols-1 xl:grid-cols-2 content-center gap-5">
+      <section className="relative z-10 h-full w-full max-w-11/12 md:max-w-4/5 mx-auto grid grid-cols-1 xl:grid-cols-2 content-center gap-5">
         {/* Column 1 - Image */}
         <motion.div
           initial={{ translateX: 100, opacity: 0, rotate: -10 }}
