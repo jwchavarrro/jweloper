@@ -14,16 +14,21 @@ import {
 
 // Import of components custom
 import { AppSidebar } from "./fragments";
+import { Text } from "@/components/atomic-design/atoms";
 import { Breadcrumb } from "@/components/atomic-design/organism/navigate";
 
 // Import of types
 import type { SidebarDataType } from "./utils/types";
+import { Switch } from "@/components/ui/switch";
+import { useState } from "react";
 
 interface SidebarProps {
   children: React.ReactNode;
   data: SidebarDataType;
 }
 export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
+  // States generals
+  const [selectedVersion, setSelectedVersion] = useState<string>("v1");
   return (
     <SidebarProvider defaultOpen={false}>
       <AppSidebar data={data} />
@@ -31,6 +36,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
         <header className="flex h-16 shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
+            <Separator
+              orientation="vertical"
+              className="mr-2 data-[orientation=vertical]:h-4"
+            />
+            <div className="flex items-center gap-2">
+              <Text variant="small">Cambiar {selectedVersion}</Text>
+              <Switch
+                id="version-switch"
+                checked={selectedVersion === "v2"}
+                onCheckedChange={(checked) => {
+                  setSelectedVersion(checked ? "v2" : "v1");
+                }}
+              />
+            </div>
             <Separator
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"

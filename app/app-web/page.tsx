@@ -4,7 +4,6 @@
  */
 
 "use client";
-
 // Import of components custom
 import {
   Section01,
@@ -14,17 +13,13 @@ import {
 } from "@/components/pages/app-web/fragments";
 
 export default function AppWeb() {
-  // States generals
-  //const [selectedVersion, setSelectedVersion] = useState<string>("v1");
-
   return (
     <div
-      className="h-[calc(100dvh-96px)] space-y-20"
+      className="h-[calc(100dvh-96px)] space-y-20 relative overflow-y-scroll"
       style={{
         scrollbarWidth: "none",
         msOverflowStyle: "none",
         overflowY: "scroll",
-        scrollSnapType: "y mandatory",
         scrollBehavior: "smooth",
       }}
     >

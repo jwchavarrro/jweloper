@@ -29,7 +29,7 @@ export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
           </Title>
         </div>
         {/* Column 2 - Content */}
-        <div className="col-span-2 h-full border">
+        <div className="col-span-2 h-full">
           <div className="flex flex-col justify-center items-center">
             {/* Heading */}
             <Title

@@ -111,7 +111,7 @@ export default function Home() {
               return (
                 <motion.div
                   key={button.label}
-                  whileHover={{ scale: 1.05, rotate: 10 }}
+                  whileHover={{ scale: 1.05, rotate: 5 }}
                   whileTap={{ scale: 0.95, rotate: 0 }}
                 >
                   <Button
