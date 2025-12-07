@@ -61,4 +61,3 @@ const versionSlice = createSlice({
 export const { setVersion, toggleVersion } = versionSlice.actions;
 
 export default versionSlice.reducer;
-
