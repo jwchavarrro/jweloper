@@ -7,7 +7,7 @@
 import { ICONS } from "@/config";
 
 // Import of types
-import { EnumProgrammingLanguage } from "@/app/utils/types";
+import { EnumSocialMedia, EnumSkills } from "@/app/utils/types";
 import {
   SkillType,
   ProjectItemData,
@@ -20,19 +20,19 @@ import {
  * @description Map de iconos para los botones de la página principal.
  */
 export const APP_WEB_ICONS: Record<string, string> = {
-  [EnumProgrammingLanguage.HTML]: ICONS[EnumProgrammingLanguage.HTML],
-  [EnumProgrammingLanguage.CSS]: ICONS[EnumProgrammingLanguage.CSS],
-  [EnumProgrammingLanguage.JavaScript]:
-    ICONS[EnumProgrammingLanguage.JavaScript],
-  [EnumProgrammingLanguage.TypeScript]:
-    ICONS[EnumProgrammingLanguage.TypeScript],
-  [EnumProgrammingLanguage.Tailwind]: ICONS[EnumProgrammingLanguage.Tailwind],
-  [EnumProgrammingLanguage.React]: ICONS[EnumProgrammingLanguage.React],
-  [EnumProgrammingLanguage.Nextjs]: ICONS[EnumProgrammingLanguage.Nextjs],
-  [EnumProgrammingLanguage.Git]: ICONS[EnumProgrammingLanguage.Git],
-  [EnumProgrammingLanguage.ApiRest]: ICONS[EnumProgrammingLanguage.ApiRest],
-  [EnumProgrammingLanguage.Github]: ICONS[EnumProgrammingLanguage.Github],
-  [EnumProgrammingLanguage.Linkedin]: ICONS[EnumProgrammingLanguage.Linkedin],
+  [EnumSkills.HTML]: ICONS[EnumSkills.HTML],
+  [EnumSkills.CSS]: ICONS[EnumSkills.CSS],
+  [EnumSkills.JavaScript]: ICONS[EnumSkills.JavaScript],
+  [EnumSkills.TypeScript]: ICONS[EnumSkills.TypeScript],
+  [EnumSkills.Tailwind]: ICONS[EnumSkills.Tailwind],
+  [EnumSkills.React]: ICONS[EnumSkills.React],
+  [EnumSkills.Nextjs]: ICONS[EnumSkills.Nextjs],
+  [EnumSkills.ApiRest]: ICONS[EnumSkills.ApiRest],
+  [EnumSkills.Git]: ICONS[EnumSkills.Git],
+  [EnumSkills.Github]: ICONS[EnumSkills.Github],
+  [EnumSocialMedia.Linkedin]: ICONS[EnumSocialMedia.Linkedin],
+  [EnumSocialMedia.Whatsapp]: ICONS[EnumSocialMedia.Whatsapp],
+  [EnumSocialMedia.Email]: ICONS[EnumSocialMedia.Email],
 };
 
 /**
@@ -42,48 +42,48 @@ export const APP_WEB_ICONS: Record<string, string> = {
  */
 export const SKILLS: SkillType[] = [
   {
-    name: EnumProgrammingLanguage.HTML,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.HTML],
+    name: EnumSkills.HTML,
+    icon: APP_WEB_ICONS[EnumSkills.HTML],
     experience: "+5",
   },
   {
-    name: EnumProgrammingLanguage.CSS,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.CSS],
+    name: EnumSkills.CSS,
+    icon: APP_WEB_ICONS[EnumSkills.CSS],
     experience: "+4",
   },
   {
-    name: EnumProgrammingLanguage.JavaScript,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.JavaScript],
+    name: EnumSkills.JavaScript,
+    icon: APP_WEB_ICONS[EnumSkills.JavaScript],
     experience: "+3",
   },
   {
-    name: EnumProgrammingLanguage.React,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.React],
+    name: EnumSkills.React,
+    icon: APP_WEB_ICONS[EnumSkills.React],
     experience: "+2",
   },
   {
-    name: EnumProgrammingLanguage.Nextjs,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.Nextjs],
+    name: EnumSkills.Nextjs,
+    icon: APP_WEB_ICONS[EnumSkills.Nextjs],
     experience: "+3",
   },
   {
-    name: EnumProgrammingLanguage.TypeScript,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.TypeScript],
+    name: EnumSkills.TypeScript,
+    icon: APP_WEB_ICONS[EnumSkills.TypeScript],
     experience: "+1",
   },
   {
-    name: EnumProgrammingLanguage.Tailwind,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.Tailwind],
+    name: EnumSkills.Tailwind,
+    icon: APP_WEB_ICONS[EnumSkills.Tailwind],
     experience: "+2",
   },
   {
-    name: EnumProgrammingLanguage.Github,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.Github],
+    name: EnumSkills.Github,
+    icon: APP_WEB_ICONS[EnumSkills.Github],
     experience: "+2",
   },
   {
-    name: EnumProgrammingLanguage.ApiRest,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.ApiRest],
+    name: EnumSkills.ApiRest,
+    icon: APP_WEB_ICONS[EnumSkills.ApiRest],
     experience: "+2",
   },
 ];

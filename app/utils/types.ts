@@ -9,7 +9,7 @@ export enum EnumTheme {
   Dark = "dark",
 }
 
-export enum EnumProgrammingLanguage {
+export enum EnumSkills {
   HTML = "HTML",
   CSS = "CSS",
   JavaScript = "JavaScript",
@@ -20,7 +20,13 @@ export enum EnumProgrammingLanguage {
   Git = "Git",
   Github = "Github",
   ApiRest = "API REST",
+}
+
+export enum EnumSocialMedia {
+  Github = "Github",
   Linkedin = "Linkedin",
+  Whatsapp = "Whatsapp",
+  Email = "Email",
 }
 
 /** Types*/
@@ -34,7 +40,7 @@ export type ThemeStateType = {
  * @description Tipo para el medio social.
  */
 export type SocialMediaType = {
-  name: EnumProgrammingLanguage;
+  name: EnumSkills | EnumSocialMedia;
   icon: string;
   url: string;
 };

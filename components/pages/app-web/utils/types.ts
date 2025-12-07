@@ -4,7 +4,7 @@
  */
 
 // Import of types
-import { EnumProgrammingLanguage } from "@/app/utils/types";
+import { EnumSkills } from "@/app/utils/types";
 
 /**
  * @name SkillType
@@ -12,7 +12,7 @@ import { EnumProgrammingLanguage } from "@/app/utils/types";
  * @description Tipo para la habilidad.
  */
 export type SkillType = {
-  name: EnumProgrammingLanguage;
+  name: EnumSkills;
   icon: string;
   experience: string;
 };

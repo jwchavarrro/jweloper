@@ -5,17 +5,20 @@
 
 "use client";
 
-import React from "react";
+import Link from "next/link";
+import { Icon } from "@iconify/react";
 
 // Import of components custom
 import { Title, Text } from "@/components/atomic-design/atoms";
-import Link from "next/link";
+
+// Import of utilities
+import { SOCIAL_MEDIA } from "@/app/utils";
 
 export const AppWebV1: React.FC = () => {
   return (
-    <div className="h-full grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="relative border h-full grid grid-cols-1 md:grid-cols-2 gap-4">
       {/* Column 1 - Content */}
-      <div className="h-full overflow-hidden">
+      <div className="h-[calc(100dvh-96px)] overflow-hidden sticky top-0">
         <div className="flex flex-col justify-between max-w-xl mx-auto h-full py-10">
           <div className="space-y-8">
             <div className="max-w-md">
@@ -76,12 +79,86 @@ export const AppWebV1: React.FC = () => {
               ))}
             </nav>
           </div>
-          <div> Social Media </div>
+          <div className="flex items-center space-x-4">
+            {SOCIAL_MEDIA.map((socialMedia) => (
+              <Link
+                key={socialMedia.name}
+                href={socialMedia.url}
+                className="hover:scale-110 transition-all duration-300"
+                target="_blank"
+              >
+                <Icon
+                  icon={socialMedia.icon}
+                  className="size-6 text-foreground cursor-pointer"
+                />
+              </Link>
+            ))}{" "}
+          </div>
         </div>
       </div>
 
       {/* Column 2 - Image */}
-      <div className="h-full max-w-xl overflow-y-auto">
+      <div className="h-full max-w-xl">
+        <Text>
+          Soy desarrollador Frontend con más de 3 años de experiencia creando
+          aplicaciones web administrativas y soluciones digitales a la medida,
+          utilizando React, Next.js, TypeScript y Tailwind CSS. Me especializo
+          en el desarrollo de interfaces modernas, funcionales y escalables,
+          garantizando experiencias consistentes y de alta calidad. He
+          participado en la construcción de módulos completos como
+          autenticación, gestión de usuarios, catálogos maestros, tablas
+          dinámicas con filtros avanzados y carga de documentos. Mi enfoque
+          combina buenas prácticas de arquitectura frontend, optimización de
+          componentes y trabajo colaborativo en entornos ágiles. Mi objetivo es
+          aportar al desarrollo de productos digitales robustos y eficientes,
+          alineando las necesidades técnicas con la experiencia del usuario y
+          los objetivos del negocio.
+        </Text>
+        <Text>
+          Soy desarrollador Frontend con más de 3 años de experiencia creando
+          aplicaciones web administrativas y soluciones digitales a la medida,
+          utilizando React, Next.js, TypeScript y Tailwind CSS. Me especializo
+          en el desarrollo de interfaces modernas, funcionales y escalables,
+          garantizando experiencias consistentes y de alta calidad. He
+          participado en la construcción de módulos completos como
+          autenticación, gestión de usuarios, catálogos maestros, tablas
+          dinámicas con filtros avanzados y carga de documentos. Mi enfoque
+          combina buenas prácticas de arquitectura frontend, optimización de
+          componentes y trabajo colaborativo en entornos ágiles. Mi objetivo es
+          aportar al desarrollo de productos digitales robustos y eficientes,
+          alineando las necesidades técnicas con la experiencia del usuario y
+          los objetivos del negocio.
+        </Text>
+        <Text>
+          Soy desarrollador Frontend con más de 3 años de experiencia creando
+          aplicaciones web administrativas y soluciones digitales a la medida,
+          utilizando React, Next.js, TypeScript y Tailwind CSS. Me especializo
+          en el desarrollo de interfaces modernas, funcionales y escalables,
+          garantizando experiencias consistentes y de alta calidad. He
+          participado en la construcción de módulos completos como
+          autenticación, gestión de usuarios, catálogos maestros, tablas
+          dinámicas con filtros avanzados y carga de documentos. Mi enfoque
+          combina buenas prácticas de arquitectura frontend, optimización de
+          componentes y trabajo colaborativo en entornos ágiles. Mi objetivo es
+          aportar al desarrollo de productos digitales robustos y eficientes,
+          alineando las necesidades técnicas con la experiencia del usuario y
+          los objetivos del negocio.
+        </Text>
+        <Text>
+          Soy desarrollador Frontend con más de 3 años de experiencia creando
+          aplicaciones web administrativas y soluciones digitales a la medida,
+          utilizando React, Next.js, TypeScript y Tailwind CSS. Me especializo
+          en el desarrollo de interfaces modernas, funcionales y escalables,
+          garantizando experiencias consistentes y de alta calidad. He
+          participado en la construcción de módulos completos como
+          autenticación, gestión de usuarios, catálogos maestros, tablas
+          dinámicas con filtros avanzados y carga de documentos. Mi enfoque
+          combina buenas prácticas de arquitectura frontend, optimización de
+          componentes y trabajo colaborativo en entornos ágiles. Mi objetivo es
+          aportar al desarrollo de productos digitales robustos y eficientes,
+          alineando las necesidades técnicas con la experiencia del usuario y
+          los objetivos del negocio.
+        </Text>
         <Text>
           Soy desarrollador Frontend con más de 3 años de experiencia creando
           aplicaciones web administrativas y soluciones digitales a la medida,

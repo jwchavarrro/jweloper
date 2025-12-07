@@ -4,7 +4,7 @@
  */
 
 // Import of types
-import { EnumProgrammingLanguage } from "@/app/utils/types";
+import { EnumSkills, EnumSocialMedia } from "@/app/utils/types";
 
 /**
  * @name ICONS
@@ -12,15 +12,17 @@ import { EnumProgrammingLanguage } from "@/app/utils/types";
  * @description Map de iconos para la aplicación.
  */
 export const ICONS: Record<string, string> = {
-  [EnumProgrammingLanguage.HTML]: "devicon-plain:html5",
-  [EnumProgrammingLanguage.CSS]: "devicon-plain:css3",
-  [EnumProgrammingLanguage.JavaScript]: "devicon-plain:javascript",
-  [EnumProgrammingLanguage.TypeScript]: "devicon-plain:typescript",
-  [EnumProgrammingLanguage.React]: "bxl:react",
-  [EnumProgrammingLanguage.Nextjs]: "devicon-plain:nextjs",
-  [EnumProgrammingLanguage.Tailwind]: "file-icons:tailwind",
-  [EnumProgrammingLanguage.Git]: "devicon-plain:git",
-  [EnumProgrammingLanguage.Github]: "cib:github",
-  [EnumProgrammingLanguage.ApiRest]: "dashicons:rest-api",
-  [EnumProgrammingLanguage.Linkedin]: "devicon-plain:linkedin",
+  [EnumSkills.HTML]: "devicon-plain:html5",
+  [EnumSkills.CSS]: "devicon-plain:css3",
+  [EnumSkills.JavaScript]: "devicon-plain:javascript",
+  [EnumSkills.TypeScript]: "devicon-plain:typescript",
+  [EnumSkills.React]: "bxl:react",
+  [EnumSkills.Nextjs]: "devicon-plain:nextjs",
+  [EnumSkills.Tailwind]: "file-icons:tailwind",
+  [EnumSkills.Git]: "devicon-plain:git",
+  [EnumSkills.Github]: "cib:github",
+  [EnumSkills.ApiRest]: "dashicons:rest-api",
+  [EnumSocialMedia.Linkedin]: "devicon-plain:linkedin",
+  [EnumSocialMedia.Whatsapp]: "devicon-plain:whatsapp",
+  [EnumSocialMedia.Email]: "devicon-plain:email",
 };
