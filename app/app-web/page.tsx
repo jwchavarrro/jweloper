@@ -18,15 +18,7 @@ export default function AppWeb() {
   );
 
   return (
-    <div
-      className="h-[calc(100dvh-96px)] overflow-y-scroll"
-      style={{
-        scrollbarWidth: "none",
-        msOverflowStyle: "none",
-        overflowY: "scroll",
-        scrollBehavior: "smooth",
-      }}
-    >
+    <div className="h-[calc(100dvh-96px)]">
       {selectedVersion === "v1" ? <AppWebV1 /> : <AppWebV2 />}
     </div>
   );
