@@ -9,6 +9,11 @@ export enum EnumTheme {
   Dark = "dark",
 }
 
+/**
+ * @name EnumSkills
+ * @type {EnumSkills}
+ * @description Enum de habilidades.
+ */
 export enum EnumSkills {
   HTML = "HTML",
   CSS = "CSS",
@@ -22,6 +27,11 @@ export enum EnumSkills {
   ApiRest = "API REST",
 }
 
+/**
+ * @name EnumSocialMedia
+ * @type {EnumSocialMedia}
+ * @description Enum de medios sociales.
+ */
 export enum EnumSocialMedia {
   Github = "Github",
   Linkedin = "Linkedin",
@@ -30,6 +40,12 @@ export enum EnumSocialMedia {
 }
 
 /** Types*/
+
+/**
+ * @name ThemeStateType
+ * @type {ThemeStateType}
+ * @description Tipo para el estado del tema.
+ */
 export type ThemeStateType = {
   readonly theme: EnumTheme;
 };

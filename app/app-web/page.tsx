@@ -19,7 +19,7 @@ export default function AppWeb() {
 
   return (
     <div
-      className="h-[calc(100dvh-96px)] space-y-20 relative overflow-y-scroll"
+      className="h-[calc(100dvh-96px)] overflow-y-scroll"
       style={{
         scrollbarWidth: "none",
         msOverflowStyle: "none",
