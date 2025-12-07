@@ -4,3 +4,4 @@
  */
 
 export * from "./themeSlice";
+export * from "./versionSlice";

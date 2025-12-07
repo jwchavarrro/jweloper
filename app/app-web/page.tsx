@@ -6,29 +6,20 @@
 "use client";
 
 // Import of components custom
-import {
-  Section01,
-  Section02,
-  Section03,
-  Section04,
-} from "@/components/pages/app-web/fragments";
+import { AppWebV1, AppWebV2 } from "@/components/pages/app-web";
+
+// Import of hooks
+import { useAppSelector } from "@/store/hooks";
 
 export default function AppWeb() {
+  // Obtener la versión seleccionada del estado de Redux
+  const selectedVersion = useAppSelector(
+    (state) => state.version.selectedVersion
+  );
+
   return (
-    <div
-      className="h-[calc(100dvh-96px)] space-y-20"
-      style={{
-        scrollbarWidth: "none",
-        msOverflowStyle: "none",
-        overflowY: "scroll",
-        scrollSnapType: "y mandatory",
-        scrollBehavior: "smooth",
-      }}
-    >
-      <Section01 />
-      <Section02 anchorId="experiencia" />
-      <Section03 anchorId="proyectos" />
-      <Section04 anchorId="contacto" />
+    <div className="h-[calc(100dvh-96px)]">
+      {selectedVersion === "v1" ? <AppWebV1 /> : <AppWebV2 />}
     </div>
   );
 }

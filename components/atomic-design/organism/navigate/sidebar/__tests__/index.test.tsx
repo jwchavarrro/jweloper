@@ -1,4 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { makeStore } from "@/store/makeStore";
 import { Sidebar } from "../index";
 
 // Mock reutilizable del componente Sidebar
@@ -10,6 +12,12 @@ jest.mock("@/components/atomic-design/organism/navigate", () => ({
 jest.mock("../fragments", () => ({
   AppSidebar: () => <div data-testid="app-sidebar">Sidebar Content</div>,
 }));
+
+// Helper para renderizar con Redux Provider
+const renderWithRedux = (component: React.ReactElement) => {
+  const store = makeStore();
+  return render(<Provider store={store}>{component}</Provider>);
+};
 
 const mockSidebarData = {
   user: {
@@ -24,7 +32,7 @@ const mockSidebarData = {
 
 describe("Sidebar", () => {
   it("should render Sidebar component", () => {
-    render(
+    renderWithRedux(
       <Sidebar data={mockSidebarData}>
         <div>Test Content</div>
       </Sidebar>
@@ -35,7 +43,7 @@ describe("Sidebar", () => {
   });
 
   it("should render children", () => {
-    render(
+    renderWithRedux(
       <Sidebar data={mockSidebarData}>
         <div data-testid="child">Test Content</div>
       </Sidebar>
@@ -46,7 +54,7 @@ describe("Sidebar", () => {
   });
 
   it("should pass data to AppSidebar", () => {
-    render(
+    renderWithRedux(
       <Sidebar data={mockSidebarData}>
         <div>Test</div>
       </Sidebar>
@@ -56,7 +64,7 @@ describe("Sidebar", () => {
   });
 
   it("should render SidebarTrigger", () => {
-    const { container } = render(
+    const { container } = renderWithRedux(
       <Sidebar data={mockSidebarData}>
         <div>Test</div>
       </Sidebar>
@@ -67,7 +75,7 @@ describe("Sidebar", () => {
   });
 
   it("should render Separator", () => {
-    const { container } = render(
+    const { container } = renderWithRedux(
       <Sidebar data={mockSidebarData}>
         <div>Test</div>
       </Sidebar>
@@ -78,7 +86,7 @@ describe("Sidebar", () => {
   });
 
   it("should render header with Breadcrumb", () => {
-    render(
+    renderWithRedux(
       <Sidebar data={mockSidebarData}>
         <div>Test</div>
       </Sidebar>
@@ -89,7 +97,7 @@ describe("Sidebar", () => {
   });
 
   it("should render children in content area", () => {
-    render(
+    renderWithRedux(
       <Sidebar data={mockSidebarData}>
         <div data-testid="content">Content Area</div>
       </Sidebar>
