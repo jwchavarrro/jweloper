@@ -5,12 +5,13 @@
 
 "use client";
 
-import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { Switch } from "@/components/ui/switch";
+import { Separator } from "@/components/ui/separator";
 
 // Import of components custom
 import { AppSidebar } from "./fragments";
@@ -19,16 +20,29 @@ import { Breadcrumb } from "@/components/atomic-design/organism/navigate";
 
 // Import of types
 import type { SidebarDataType } from "./utils/types";
-import { Switch } from "@/components/ui/switch";
-import { useState } from "react";
+
+// Import of hooks
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
+
+// Import of contexts
+import { setVersion, type VersionType } from "@/store/slices/versionSlice";
 
 interface SidebarProps {
   children: React.ReactNode;
   data: SidebarDataType;
 }
 export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
-  // States generals
-  const [selectedVersion, setSelectedVersion] = useState<string>("v1");
+  // Implemetation of contexts
+  const selectedVersion = useAppSelector(
+    (state) => state.version.selectedVersion
+  );
+  const dispatch = useAppDispatch();
+
+  const handleVersionChange = (checked: boolean) => {
+    const newVersion: VersionType = checked ? "v2" : "v1";
+    dispatch(setVersion(newVersion));
+  };
+
   return (
     <SidebarProvider defaultOpen={false}>
       <AppSidebar data={data} />
@@ -45,9 +59,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
               <Switch
                 id="version-switch"
                 checked={selectedVersion === "v2"}
-                onCheckedChange={(checked) => {
-                  setSelectedVersion(checked ? "v2" : "v1");
-                }}
+                onCheckedChange={handleVersionChange}
               />
             </div>
             <Separator
