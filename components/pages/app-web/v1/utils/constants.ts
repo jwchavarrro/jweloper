@@ -35,10 +35,7 @@ export const EXPERIENCES_APP_WEB_V1: ExperienceType[] = [
     location: "Neiva, Colombia",
     isRemote: true,
     description: [
-      "Desarrollé interfaces administrativas completas para productos empresariales, incluyendo login, registro, recuperación de contraseñas, gestión de usuarios, carga/descarga de archivos y administración de catálogos maestros.",
-      "Implementé integraciones con APIs REST y servicios externos, asegurando una comunicación estable, eficiente y segura entre el frontend y los sistemas internos.",
-      "Optimicé componentes reutilizables y responsivos basados en React y Tailwind CSS, mejorando la mantenibilidad y consistencia visual.",
-      "Apliqué buenas prácticas de arquitectura, documentación y versionado, contribuyendo a procesos de desarrollo ágiles.",
+      "Desarrollé interfaces administrativas completas para productos empresariales, abarcando funcionalidades clave como login, registro, recuperación de contraseñas, gestión de usuarios, manejo de archivos y administración de catálogos maestros. Me especialicé en integrar el frontend con APIs REST y servicios externos, garantizando una comunicación fluida, eficiente y segura con los sistemas internos. Además, optimicé la arquitectura mediante la creación de componentes reutilizables y responsivos en React y Tailwind CSS, lo que permitió una mayor mantenibilidad y coherencia visual en los proyectos. Todo este proceso estuvo sustentado en la aplicación de buenas prácticas de arquitectura, documentación y control de versiones, facilitando el trabajo en equipo y contribuyendo al éxito de los ciclos de desarrollo ágiles.",
     ],
     technologies: [
       "React",
@@ -56,10 +53,7 @@ export const EXPERIENCES_APP_WEB_V1: ExperienceType[] = [
     },
     location: "Neiva, Colombia",
     description: [
-      "Creación de landing pages y sitios web corporativos con HTML, CSS, JavaScript y diseño responsivo.",
-      "Personalización de sitios WordPress usando Elementor y plugins especializados.",
-      "Optimización de rendimiento para mejorar tiempos de carga y experiencia móvil.",
-      "Mantenimiento, actualización y mejora continua de sitios web, asegurando coherencia visual y funcional.",
+      "Desempeñé el rol de desarrollador web junior, centrándome en la creación de landing pages y sitios web corporativos con HTML, CSS, JavaScript y diseño responsivo. Me especialicé en la personalización de sitios WordPress utilizando Elementor y plugins especializados, lo que me permitió ofrecer soluciones adaptadas a las necesidades específicas de cada cliente. Además, optimicé el rendimiento de los sitios web para mejorar tiempos de carga y la experiencia móvil, lo que contribuyó a una mayor satisfacción del usuario. Todo este proceso estuvo sustentado en la aplicación de buenas prácticas de mantenimiento, actualización y mejora continua, asegurando la coherencia visual y funcional de los sitios web.",
     ],
     technologies: ["HTML", "CSS", "JavaScript", "WordPress", "Elementor"],
   },
@@ -67,15 +61,12 @@ export const EXPERIENCES_APP_WEB_V1: ExperienceType[] = [
     dates: "2018 – 2019",
     title: "Docente",
     company: {
-      name: "Colegio Adventista Baluarte Interamericano",
+      name: "   CABI",
       url: "http://www.colegioadventistaneiva.edu.co/",
     },
     location: "Neiva, Colombia",
     description: [
-      "Enseñé fundamentos de programación y herramientas de TI a estudiantes de técnicas de desarrollo de software.",
-      "Implementé estrategias pedagógicas enfocadas en el aprendizaje práctico.",
-      "Lideré proyectos de formación en articulación con SENA.",
-      "Promoví investigación sobre 'Estrategias didácticas para fortalecer fundamentos de programación'.",
+      "Desempeñé el rol de docente, centrándome en la enseñanza de fundamentos de programación y herramientas de TI a estudiantes de técnicas de desarrollo de software. Me especialicé en la implementación de estrategias pedagógicas enfocadas en el aprendizaje práctico, lo que me permitió contribuir al desarrollo de habilidades técnicas y profesionales en los estudiantes. Además, lideré proyectos de formación en articulación con SENA, lo que me permitió aplicar mis conocimientos en un contexto real y contribuir al desarrollo de la comunidad. Todo este proceso estuvo sustentado en la aplicación de buenas prácticas de docencia, investigación y colaboración, asegurando la calidad y relevancia de los programas educativos.",
     ],
   },
 ];
