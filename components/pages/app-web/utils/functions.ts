@@ -4,7 +4,7 @@
  */
 
 // Import of types
-import { EnumProgrammingLanguage } from "@/app/utils/types";
+import { EnumSkills } from "@/app/utils/types";
 
 // Import of utilities
 import { APP_WEB_ICONS } from "./constants";
@@ -17,16 +17,16 @@ import { APP_WEB_ICONS } from "./constants";
  * @returns {string | undefined} - Icono de iconify o undefined si no existe
  */
 export const getTechnologyIcon = (techName: string): string | undefined => {
-  const techMap: Record<string, EnumProgrammingLanguage> = {
-    [EnumProgrammingLanguage.React]: EnumProgrammingLanguage.React,
-    [EnumProgrammingLanguage.Tailwind]: EnumProgrammingLanguage.Tailwind,
-    "Tailwind CSS": EnumProgrammingLanguage.Tailwind,
-    [EnumProgrammingLanguage.JavaScript]: EnumProgrammingLanguage.JavaScript,
-    [EnumProgrammingLanguage.TypeScript]: EnumProgrammingLanguage.TypeScript,
-    [EnumProgrammingLanguage.ApiRest]: EnumProgrammingLanguage.ApiRest,
-    "REST APIs": EnumProgrammingLanguage.ApiRest,
-    [EnumProgrammingLanguage.HTML]: EnumProgrammingLanguage.HTML,
-    [EnumProgrammingLanguage.CSS]: EnumProgrammingLanguage.CSS,
+  const techMap: Record<string, EnumSkills> = {
+    [EnumSkills.React]: EnumSkills.React,
+    [EnumSkills.Tailwind]: EnumSkills.Tailwind,
+    "Tailwind CSS": EnumSkills.Tailwind,
+    [EnumSkills.JavaScript]: EnumSkills.JavaScript,
+    [EnumSkills.TypeScript]: EnumSkills.TypeScript,
+    [EnumSkills.ApiRest]: EnumSkills.ApiRest,
+    "REST APIs": EnumSkills.ApiRest,
+    [EnumSkills.HTML]: EnumSkills.HTML,
+    [EnumSkills.CSS]: EnumSkills.CSS,
   };
 
   const techEnum = techMap[techName];

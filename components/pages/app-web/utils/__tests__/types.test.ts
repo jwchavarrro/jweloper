@@ -1,6 +1,6 @@
 import { SkillType } from "../types";
 import { SKILLS } from "../constants";
-import { EnumProgrammingLanguage } from "@/app/utils/types";
+import { EnumSkills } from "@/app/utils/types";
 
 describe("SkillType", () => {
   describe("Type validation", () => {
@@ -15,8 +15,8 @@ describe("SkillType", () => {
       });
     });
 
-    it("should have valid name values from EnumProgrammingLanguage", () => {
-      const validNames = Object.values(EnumProgrammingLanguage);
+    it("should have valid name values from EnumSkills", () => {
+      const validNames = Object.values(EnumSkills);
       SKILLS.forEach((skill: SkillType) => {
         expect(validNames).toContain(skill.name);
       });

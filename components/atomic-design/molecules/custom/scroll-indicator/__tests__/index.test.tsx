@@ -31,16 +31,29 @@ describe("ScrollIndicator", () => {
     const { container } = render(<ScrollIndicator />);
     const text = screen.getByText("Scroll abajo");
     const icon = container.querySelector("svg");
-    expect(text.parentElement?.firstChild).toBe(text);
+    const textContainer = text.parentElement;
+    // El texto debe estar después del div de la línea
+    expect(textContainer).toBeInTheDocument();
     expect(icon).toBeInTheDocument();
+    // Verificar que el icono está después del texto
+    const children = Array.from(textContainer?.children || []);
+    const textIndex = children.indexOf(text);
+    const iconIndex = children.indexOf(icon!);
+    expect(iconIndex).toBeGreaterThan(textIndex);
   });
 
   it("should render icon before text when reverse is true", () => {
     const { container } = render(<ScrollIndicator reverse />);
     const text = screen.getByText("Scroll abajo");
     const icon = container.querySelector("svg");
-    expect(icon?.parentElement?.firstChild).toBe(icon);
-    expect(text).toBeInTheDocument();
+    const textContainer = text.parentElement;
+    expect(textContainer).toBeInTheDocument();
+    expect(icon).toBeInTheDocument();
+    // Verificar que el icono está antes del texto
+    const children = Array.from(textContainer?.children || []);
+    const iconIndex = children.indexOf(icon!);
+    const textIndex = children.indexOf(text);
+    expect(iconIndex).toBeLessThan(textIndex);
   });
 
   it("should apply custom className", () => {

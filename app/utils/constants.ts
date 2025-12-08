@@ -8,7 +8,7 @@ import { APP_WEB_ICONS } from "@/components/pages/app-web";
 import { APP_ROUTES } from "@/config";
 
 // Import of types
-import { SocialMediaType, EnumProgrammingLanguage } from "./types";
+import { SocialMediaType, EnumSocialMedia, EnumSkills } from "./types";
 
 /**
  * @name SOCIAL_MEDIA
@@ -17,13 +17,13 @@ import { SocialMediaType, EnumProgrammingLanguage } from "./types";
  */
 export const SOCIAL_MEDIA: SocialMediaType[] = [
   {
-    name: EnumProgrammingLanguage.Github,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.Github],
+    name: EnumSkills.Github,
+    icon: APP_WEB_ICONS[EnumSkills.Github],
     url: APP_ROUTES.PUBLIC.HOME.SOCIAL_MEDIA.GITHUB.url,
   },
   {
-    name: EnumProgrammingLanguage.Linkedin,
-    icon: APP_WEB_ICONS[EnumProgrammingLanguage.Linkedin],
+    name: EnumSocialMedia.Linkedin,
+    icon: APP_WEB_ICONS[EnumSocialMedia.Linkedin],
     url: APP_ROUTES.PUBLIC.HOME.SOCIAL_MEDIA.LINKEDIN.url,
   },
 ];
