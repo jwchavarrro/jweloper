@@ -10,10 +10,10 @@ import { cn } from "@/lib/utils";
 
 // Import of components custom
 import { Title, Text } from "@/components/atomic-design/atoms";
+import { Badge } from "@/components/atomic-design";
 
 // Import of types
 import { CardAData } from "@/components/pages/app-web/v1/utils";
-import { Badge } from "@/components/atomic-design";
 
 interface CardAProps {
   readonly data: CardAData;
@@ -26,7 +26,15 @@ export function CardA({ data, className }: CardAProps) {
    * @type {CardAData}
    * @description Datos de la card A.
    */
-  const { dates, title, company, description, technologies } = data;
+  const {
+    dates,
+    title,
+    company,
+    location,
+    isRemote,
+    description,
+    technologies,
+  } = data;
 
   return (
     <BaseCard
@@ -35,16 +43,24 @@ export function CardA({ data, className }: CardAProps) {
         className
       )}
     >
+      {/* Content */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-3 min-h-40">
+        {/* Columna 1 - Fecha */}
         <div className="col-span-2">
           <Text variant="small" className="text-xs">
             {dates}
           </Text>
         </div>
+
+        {/* Columna 2 - Contenido */}
         <div className="col-span-10 space-y-5">
+          {/* Header */}
           <header>
             <Title level={4} className="text-base flex items-center gap-2">
-              {title} • {company.name}
+              {title}
+            </Title>
+            <Title level={4} className="text-base flex items-center gap-2">
+              {company.name}
               {company.url && (
                 <Link
                   href={company.url}
@@ -56,15 +72,20 @@ export function CardA({ data, className }: CardAProps) {
               )}
             </Title>
             <Title level={4} className="text-base flex items-center gap-2">
-              {company.name}
-            </Title>
-            <Title level={4} className="text-base flex items-center gap-2">
-              {company.name}
+              {location}
+              {isRemote && (
+                <>
+                  {" • "}
+                  <span className="text-foreground">Remoto</span>
+                </>
+              )}
             </Title>
           </header>
+
           <main>
             <Text variant="small">{description}</Text>
           </main>
+
           <footer>
             {technologies && technologies.length > 0 && (
               <div className="flex flex-wrap gap-2 pt-2">

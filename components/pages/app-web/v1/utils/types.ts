@@ -30,5 +30,4 @@ export type CardAData = {
   isRemote?: boolean;
   description: string[];
   technologies?: string[];
-  previousTitles?: string[];
 };

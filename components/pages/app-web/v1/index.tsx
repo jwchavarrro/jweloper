@@ -11,14 +11,21 @@ import { Icon } from "@iconify/react";
 
 // Import of components custom
 import { Title, Text } from "@/components/atomic-design/atoms";
+import { CardA } from "@/components/pages/app-web/v1/components/cards";
 
 // Import of utilities
 import { SOCIAL_MEDIA } from "@/app/utils";
-import { NAVIGATION_APP_WEB_V1_SECTIONS, getInitialSection } from "./utils";
+import {
+  EXPERIENCES_APP_WEB_V1,
+  NAVIGATION_APP_WEB_V1_SECTIONS,
+  getInitialSection,
+} from "@/components/pages/app-web/v1/utils";
 
 // Import of custom hooks
 import { useIsMobile } from "@/hooks";
-import { CardA } from "./components/cards";
+
+// Import of types
+import { ExperienceType } from "@/components/pages/app-web";
 
 export const AppWebV1: React.FC = () => {
   // States generals
@@ -186,31 +193,9 @@ export const AppWebV1: React.FC = () => {
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             EXPERIENCIA
           </Text>
-          <CardA
-            data={{
-              dates: "2022 — 2025",
-              title: "Desarrollador de Aplicaciones a la Medida",
-              company: {
-                name: "Prevalentware s.a.s",
-                url: "https://www.prevalentware.com/es/",
-              },
-              location: "Neiva, Colombia",
-              isRemote: true,
-              description: [
-                "Desarrollé interfaces administrativas completas para productos empresariales, incluyendo login, registro, recuperación de contraseñas, gestión de usuarios, carga/descarga de archivos y administración de catálogos maestros.",
-                "Implementé integraciones con APIs REST y servicios externos, asegurando una comunicación estable, eficiente y segura entre el frontend y los sistemas internos.",
-                "Optimicé componentes reutilizables y responsivos basados en React y Tailwind CSS, mejorando la mantenibilidad y consistencia visual.",
-                "Apliqué buenas prácticas de arquitectura, documentación y versionado, contribuyendo a procesos de desarrollo ágiles.",
-              ],
-              technologies: [
-                "React",
-                "Tailwind CSS",
-                "JavaScript",
-                "TypeScript",
-                "REST APIs",
-              ],
-            }}
-          />
+          {EXPERIENCES_APP_WEB_V1.map((experience: ExperienceType) => (
+            <CardA key={experience.dates} data={experience} />
+          ))}
         </div>
         <div id="projects" className="space-y-4 py-10">
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
