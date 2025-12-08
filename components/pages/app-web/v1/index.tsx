@@ -5,7 +5,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 
@@ -14,19 +14,15 @@ import { Title, Text } from "@/components/atomic-design/atoms";
 
 // Import of utilities
 import { SOCIAL_MEDIA } from "@/app/utils";
+import { NAVIGATION_APP_WEB_V1_SECTIONS, getInitialSection } from "./utils";
 
 // Import of custom hooks
 import { useIsMobile } from "@/hooks";
 
-const SECTIONS = [
-  { id: "about", href: "#about", title: "ABOUT" },
-  { id: "experience", href: "#experience", title: "EXPERIENCE" },
-  { id: "projects", href: "#projects", title: "PROJECTS" },
-] as const;
-
 export const AppWebV1: React.FC = () => {
   // States generals
-  const [activeSection, setActiveSection] = useState<string>("#about");
+  const [activeSection, setActiveSection] = useState<string>(getInitialSection);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Implementation of custom hooks
   const isMobile = useIsMobile();
@@ -36,13 +32,48 @@ export const AppWebV1: React.FC = () => {
    * @description Manejador para scroll a una sección específica.
    * @param {string} section - La sección a la que se va a scroll.
    */
-  const handleScrollToSection = (section: string) => {
-    setActiveSection(section);
-    const element = document.getElementById(section.replace("#", ""));
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+  const handleScrollToSection = useCallback(
+    (section: string) => {
+      setActiveSection(section);
+      // Actualizar la URL sin recargar la página
+      if (globalThis.window !== undefined) {
+        globalThis.window.history.pushState(null, "", section);
+      }
+      const sectionId = section.replace("#", "");
+      const element = document.getElementById(sectionId);
+      if (!element) return;
+
+      if (isMobile) {
+        // En mobile, el scroll es del documento completo
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        // En desktop, el scroll es del contenedor específico
+        const container = scrollContainerRef.current;
+        if (container) {
+          const containerRect = container.getBoundingClientRect();
+          const elementRect = element.getBoundingClientRect();
+          const scrollTop =
+            container.scrollTop + elementRect.top - containerRect.top - 20;
+          container.scrollTo({ top: scrollTop, behavior: "smooth" });
+        }
+      }
+    },
+    [isMobile]
+  );
+
+  /**
+   * @name sectionsWithActive
+   * @description Memoizar las secciones con su estado activo.
+   * @returns {NavigationAppWebV1SectionsType[]} - Lista de secciones con su estado activo.
+   */
+  const sectionsWithActive = useMemo(
+    () =>
+      NAVIGATION_APP_WEB_V1_SECTIONS.map((section) => ({
+        ...section,
+        active: activeSection === section.href,
+      })),
+    [activeSection]
+  );
 
   return (
     <div className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-4 overflow-y-auto lg:overscroll-none">
@@ -72,34 +103,31 @@ export const AppWebV1: React.FC = () => {
 
             {!isMobile && (
               <nav className="hidden lg:block space-y-2">
-                {SECTIONS.map(({ title, href }) => {
-                  const active = activeSection === href;
-                  return (
-                    <div
-                      key={title}
-                      className={`group flex items-center space-x-4 ${active ? "" : "opacity-40"}`}
+                {sectionsWithActive.map(({ title, href, active }) => (
+                  <div
+                    key={title}
+                    className={`group flex items-center space-x-4 ${active ? "" : "opacity-40"}`}
+                  >
+                    <span
+                      className={`h-px ${active ? "w-20" : "w-10"} bg-foreground group-hover:w-20 transition-all duration-300`}
+                    />
+                    <Link
+                      href={href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleScrollToSection(href);
+                      }}
                     >
-                      <span
-                        className={`h-px ${active ? "w-20" : "w-10"} bg-foreground group-hover:w-20 transition-all duration-300`}
-                      />
-                      <Link
-                        href={href}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleScrollToSection(href);
-                        }}
+                      <Text
+                        className={`uppercase tracking-widest ${
+                          active ? "font-bold" : "font-semibold"
+                        } text-base`}
                       >
-                        <Text
-                          className={`uppercase tracking-widest ${
-                            active ? "font-bold" : "font-semibold"
-                          } text-base`}
-                        >
-                          {title}
-                        </Text>
-                      </Link>
-                    </div>
-                  );
-                })}
+                        {title}
+                      </Text>
+                    </Link>
+                  </div>
+                ))}
               </nav>
             )}
           </div>
@@ -125,6 +153,7 @@ export const AppWebV1: React.FC = () => {
 
       {/* Column 2 - Scrollable Content */}
       <div
+        ref={scrollContainerRef}
         className="lg:h-[calc(100dvh-96px)] lg:overflow-y-auto lg:max-w-xl lg:[&::-webkit-scrollbar]:hidden"
         style={{
           scrollbarWidth: "none",
