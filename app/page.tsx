@@ -73,7 +73,7 @@ export default function Home() {
           viewport={{ once: false, margin: "-100px" }}
           whileHover={{ scale: 1.05, rotate: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="relative min-h-80 flex items-center justify-center"
+          className="relative min-h-40 lg:min-h-80 flex items-center justify-center"
         >
           <Image
             src="/images/background/bg-path-001.png"
@@ -114,12 +114,7 @@ export default function Home() {
                   whileHover={{ scale: 1.05, rotate: 5 }}
                   whileTap={{ scale: 0.95, rotate: 0 }}
                 >
-                  <Button
-                    key={button.label}
-                    size="lg"
-                    className="w-full lg:w-auto"
-                    asChild
-                  >
+                  <Button key={button.label} size="lg" asChild>
                     <Link href={button.url}>
                       {IconComponent && <IconComponent className="size-4" />}
                       {button.label}
@@ -134,7 +129,7 @@ export default function Home() {
 
       {/* Copyright */}
       <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center">
-        <Text className="text-[9px]! tracking-widest">
+        <Text className="text-[9px]! text-center max-w-56 md:max-w-full text-sm/3">
           Copyright © 2025 Jweloper. All rights reserved. v1.0.0
         </Text>
       </div>

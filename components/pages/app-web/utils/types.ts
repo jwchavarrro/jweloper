@@ -18,21 +18,9 @@ export type SkillType = {
 };
 
 /**
- * @name ProjectItemData
- * @type {Object}
- * @description Tipo para los datos de un proyecto.
- */
-export type ProjectItemData = {
-  name: string;
-  description: string;
-  image: string;
-  url: string;
-};
-
-/**
  * @name ExperienceType
  * @type {Object}
- * @description Tipo para la experiencia profesional.
+ * @description Tipo para las experiencias profesionales.
  */
 export type ExperienceType = {
   dates: string;
@@ -45,5 +33,16 @@ export type ExperienceType = {
   isRemote?: boolean;
   description: string[];
   technologies?: string[];
-  previousTitles?: string[];
+};
+
+/**
+ * @name ProjectItemData
+ * @type {Object}
+ * @description Tipo para los datos de un proyecto.
+ */
+export type ProjectItemData = {
+  name: string;
+  description: string;
+  image: string;
+  url: string;
 };

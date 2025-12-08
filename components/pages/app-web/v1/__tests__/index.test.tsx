@@ -41,7 +41,7 @@ describe("AppWebV1", () => {
     const { container } = render(<AppWebV1 />);
     const grid = container.querySelector(".grid");
     expect(grid).toBeInTheDocument();
-    expect(grid).toHaveClass("grid-cols-1", "md:grid-cols-2");
+    expect(grid).toHaveClass("grid-cols-1", "lg:grid-cols-2");
   });
 
   it("should render the title", () => {
@@ -56,9 +56,10 @@ describe("AppWebV1", () => {
 
   it("should render navigation links", () => {
     render(<AppWebV1 />);
-    expect(screen.getByText("ABOUT")).toBeInTheDocument();
-    expect(screen.getByText("EXPERIENCE")).toBeInTheDocument();
-    expect(screen.getByText("PROJECTS")).toBeInTheDocument();
+    // Hay múltiples elementos con el mismo texto, usar getAllByText
+    expect(screen.getAllByText("SOBRE MÍ").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("EXPERIENCIA").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("PROYECTOS").length).toBeGreaterThan(0);
   });
 
   it("should render social media icons", () => {
@@ -69,9 +70,12 @@ describe("AppWebV1", () => {
 
   it("should have sticky column for content", () => {
     const { container } = render(<AppWebV1 />);
-    const stickyColumn = container.querySelector(".sticky");
+    // Buscar por clase que contenga sticky usando querySelector con atributo class
+    const stickyColumn = Array.from(container.querySelectorAll("div")).find(
+      (el) => el.className.includes("sticky")
+    );
     expect(stickyColumn).toBeInTheDocument();
-    expect(stickyColumn).toHaveClass("top-0");
+    expect(stickyColumn).toHaveClass("lg:top-0");
   });
 
   it("should have scrollable column for text content", () => {

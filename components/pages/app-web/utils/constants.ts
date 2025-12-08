@@ -12,7 +12,7 @@ import {
   SkillType,
   ProjectItemData,
   ExperienceType,
-} from "@/components/pages/app-web";
+} from "@/components/pages/app-web/utils/types";
 
 /**
  * @name APP_WEB_ICONS
