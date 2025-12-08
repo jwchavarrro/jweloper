@@ -5,10 +5,10 @@
 
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import { Card as BaseCard } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 // Import of components custom
+import { Card as BaseCard } from "@/components/atomic-design/molecules/card";
 import { Title, Text } from "@/components/atomic-design/atoms";
 import { Badge } from "@/components/atomic-design";
 
@@ -36,10 +36,12 @@ export function CardA({ data, className }: CardAProps) {
     technologies,
   } = data;
 
+  const hasCompanyLink = Boolean(company.url);
+
   return (
     <BaseCard
       className={cn(
-        "shadow-transparent border-transparent hover:shadow-md hover:border-foreground/5 transition-all duration-300 cursor-pointer hover:bg-foreground/5 hover:backdrop-blur-md hover:opacity-100 opacity-50 p-3",
+        "shadow-transparent border-transparent hover:shadow-md hover:border-foreground/5 transition-all duration-300 hover:bg-foreground/5 hover:backdrop-blur-md hover:opacity-100 opacity-50 p-3 group",
         className
       )}
     >
@@ -59,15 +61,24 @@ export function CardA({ data, className }: CardAProps) {
             <Title level={4} className="text-base flex items-center gap-2">
               {title}
             </Title>
-            <Title level={4} className="text-base flex items-center gap-2">
+            <Title
+              level={4}
+              className={cn(
+                "text-base flex items-center gap-2",
+                hasCompanyLink && "group-hover:underline"
+              )}
+            >
               {company.name}
-              {company.url && (
+              {hasCompanyLink && (
                 <Link
-                  href={company.url}
+                  href={company.url || ""}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Icon icon="mdi:open-in-new" />
+                  <Icon
+                    icon="mdi:open-in-new"
+                    className="group-hover:translate-x-1 transition-all duration-300"
+                  />
                 </Link>
               )}
             </Title>
@@ -90,7 +101,7 @@ export function CardA({ data, className }: CardAProps) {
             {technologies && technologies.length > 0 && (
               <div className="flex flex-wrap gap-2 pt-2">
                 {technologies.map((tech) => (
-                  <Badge key={tech} text={tech} variant="outline" />
+                  <Badge key={tech} text={tech} />
                 ))}
               </div>
             )}

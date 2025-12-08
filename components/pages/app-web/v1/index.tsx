@@ -196,6 +196,23 @@ export const AppWebV1: React.FC = () => {
           {EXPERIENCES_APP_WEB_V1.map((experience: ExperienceType) => (
             <CardA key={experience.dates} data={experience} />
           ))}
+          <Link
+            href="/docs/CV JOHN CHAVARRO 2025.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group"
+          >
+            <Title
+              level={4}
+              className="text-base flex items-center gap-2 group-hover:underline"
+            >
+              Ver CV completo
+              <Icon
+                icon="mdi:open-in-new"
+                className="group-hover:translate-x-1 transition-all duration-300"
+              />
+            </Title>
+          </Link>
         </div>
         <div id="projects" className="space-y-4 py-10">
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
