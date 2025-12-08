@@ -18,7 +18,6 @@ jest.mock("@/components/atomic-design/atoms", () => ({
   }) => <h4 className={className}>{children}</h4>,
   Text: ({
     children,
-    variant,
     className,
   }: {
     children: React.ReactNode;
@@ -34,11 +33,17 @@ jest.mock("@/components/atomic-design/molecules/card", () => ({
   }: {
     children: React.ReactNode;
     className?: string;
-  }) => <div data-slot="card" className={className}>{children}</div>,
+  }) => (
+    <div data-slot="card" className={className}>
+      {children}
+    </div>
+  ),
 }));
 
 jest.mock("@/components/atomic-design", () => ({
-  Badge: ({ text }: { text: string }) => <span data-testid="badge">{text}</span>,
+  Badge: ({ text }: { text: string }) => (
+    <span data-testid="badge">{text}</span>
+  ),
 }));
 
 jest.mock("@iconify/react", () => ({
@@ -92,7 +97,9 @@ describe("CardA", () => {
 
   it("should render title", () => {
     render(<CardA data={mockData} />);
-    expect(screen.getByText("Desarrollador de Aplicaciones")).toBeInTheDocument();
+    expect(
+      screen.getByText("Desarrollador de Aplicaciones")
+    ).toBeInTheDocument();
   });
 
   it("should render company name", () => {
@@ -137,7 +144,9 @@ describe("CardA", () => {
       company: { name: "Company Name" },
     };
     render(<CardA data={dataWithoutUrl} />);
-    expect(screen.queryByTestId("icon-mdi:open-in-new")).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId("icon-mdi:open-in-new")
+    ).not.toBeInTheDocument();
   });
 
   it("should render description", () => {
@@ -195,7 +204,9 @@ describe("CardA", () => {
   });
 
   it("should accept custom className", () => {
-    const { container } = render(<CardA data={mockData} className="custom-class" />);
+    const { container } = render(
+      <CardA data={mockData} className="custom-class" />
+    );
     const card = container.querySelector('[data-slot="card"]');
     expect(card).toHaveClass("custom-class");
   });
@@ -203,7 +214,9 @@ describe("CardA", () => {
   it("should render all data correctly", () => {
     render(<CardA data={mockData} />);
     expect(screen.getByText("2022 – 2025")).toBeInTheDocument();
-    expect(screen.getByText("Desarrollador de Aplicaciones")).toBeInTheDocument();
+    expect(
+      screen.getByText("Desarrollador de Aplicaciones")
+    ).toBeInTheDocument();
     expect(screen.getByText("Prevalentware s.a.s")).toBeInTheDocument();
     expect(screen.getByText(/Neiva, Colombia/i)).toBeInTheDocument();
     expect(screen.getByText("Remoto")).toBeInTheDocument();
@@ -213,4 +226,3 @@ describe("CardA", () => {
     expect(screen.getByText("React")).toBeInTheDocument();
   });
 });
-

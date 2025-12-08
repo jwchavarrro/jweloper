@@ -14,7 +14,11 @@ jest.mock("@/components/atomic-design/molecules/card", () => ({
   }: {
     children: React.ReactNode;
     className?: string;
-  }) => <div data-slot="card" className={className}>{children}</div>,
+  }) => (
+    <div data-slot="card" className={className}>
+      {children}
+    </div>
+  ),
 }));
 
 describe("CardB", () => {
@@ -47,4 +51,3 @@ describe("CardB", () => {
     expect(card).toHaveClass("custom-class");
   });
 });
-
