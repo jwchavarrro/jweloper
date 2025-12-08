@@ -18,6 +18,7 @@ import { NAVIGATION_APP_WEB_V1_SECTIONS, getInitialSection } from "./utils";
 
 // Import of custom hooks
 import { useIsMobile } from "@/hooks";
+import { CardA } from "./components/cards";
 
 export const AppWebV1: React.FC = () => {
   // States generals
@@ -76,7 +77,7 @@ export const AppWebV1: React.FC = () => {
   );
 
   return (
-    <div className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-4 overflow-y-auto lg:overscroll-none">
+    <div className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto lg:overscroll-none">
       {/* Column 1 - Content */}
       <div className="h-fit lg:h-[calc(100dvh-96px)] lg:overflow-hidden lg:sticky lg:top-0">
         <div className="flex flex-col justify-between lg:max-w-xl mx-auto h-full py-10 gap-5 lg:gap-0">
@@ -154,7 +155,7 @@ export const AppWebV1: React.FC = () => {
       {/* Column 2 - Scrollable Content */}
       <div
         ref={scrollContainerRef}
-        className="lg:h-[calc(100dvh-96px)] lg:overflow-y-auto lg:max-w-xl lg:[&::-webkit-scrollbar]:hidden"
+        className="lg:h-[calc(100dvh-96px)] lg:overflow-y-auto lg:max-w-3xl lg:[&::-webkit-scrollbar]:hidden"
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",
@@ -163,22 +164,7 @@ export const AppWebV1: React.FC = () => {
       >
         <div id="about" className="space-y-4 py-10">
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
-            ABOUT
-          </Text>
-          <Text>
-            Soy desarrollador Frontend con más de 3 años de experiencia creando
-            aplicaciones web administrativas y soluciones digitales a la medida,
-            utilizando React, Next.js, TypeScript y Tailwind CSS. Me especializo
-            en el desarrollo de interfaces modernas, funcionales y escalables,
-            garantizando experiencias consistentes y de alta calidad. He
-            participado en la construcción de módulos completos como
-            autenticación, gestión de usuarios, catálogos maestros, tablas
-            dinámicas con filtros avanzados y carga de documentos. Mi enfoque
-            combina buenas prácticas de arquitectura frontend, optimización de
-            componentes y trabajo colaborativo en entornos ágiles. Mi objetivo
-            es aportar al desarrollo de productos digitales robustos y
-            eficientes, alineando las necesidades técnicas con la experiencia
-            del usuario y los objetivos del negocio.
+            SOBRE MÍ
           </Text>
           <Text>
             Soy desarrollador Frontend con más de 3 años de experiencia creando
@@ -198,57 +184,37 @@ export const AppWebV1: React.FC = () => {
         </div>
         <div id="experience" className="space-y-4 py-10">
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
-            EXPERIENCE
+            EXPERIENCIA
           </Text>
-          <Text>
-            Soy desarrollador Frontend con más de 3 años de experiencia creando
-            aplicaciones web administrativas y soluciones digitales a la medida,
-            utilizando React, Next.js, TypeScript y Tailwind CSS. Me especializo
-            en el desarrollo de interfaces modernas, funcionales y escalables,
-            garantizando experiencias consistentes y de alta calidad. He
-            participado en la construcción de módulos completos como
-            autenticación, gestión de usuarios, catálogos maestros, tablas
-            dinámicas con filtros avanzados y carga de documentos. Mi enfoque
-            combina buenas prácticas de arquitectura frontend, optimización de
-            componentes y trabajo colaborativo en entornos ágiles. Mi objetivo
-            es aportar al desarrollo de productos digitales robustos y
-            eficientes, alineando las necesidades técnicas con la experiencia
-            del usuario y los objetivos del negocio.
-          </Text>
-          <Text>
-            Soy desarrollador Frontend con más de 3 años de experiencia creando
-            aplicaciones web administrativas y soluciones digitales a la medida,
-            utilizando React, Next.js, TypeScript y Tailwind CSS. Me especializo
-            en el desarrollo de interfaces modernas, funcionales y escalables,
-            garantizando experiencias consistentes y de alta calidad. He
-            participado en la construcción de módulos completos como
-            autenticación, gestión de usuarios, catálogos maestros, tablas
-            dinámicas con filtros avanzados y carga de documentos. Mi enfoque
-            combina buenas prácticas de arquitectura frontend, optimización de
-            componentes y trabajo colaborativo en entornos ágiles. Mi objetivo
-            es aportar al desarrollo de productos digitales robustos y
-            eficientes, alineando las necesidades técnicas con la experiencia
-            del usuario y los objetivos del negocio.
-          </Text>
+          <CardA
+            data={{
+              dates: "2022 — 2025",
+              title: "Desarrollador de Aplicaciones a la Medida",
+              company: {
+                name: "Prevalentware s.a.s",
+                url: "https://www.prevalentware.com/es/",
+              },
+              location: "Neiva, Colombia",
+              isRemote: true,
+              description: [
+                "Desarrollé interfaces administrativas completas para productos empresariales, incluyendo login, registro, recuperación de contraseñas, gestión de usuarios, carga/descarga de archivos y administración de catálogos maestros.",
+                "Implementé integraciones con APIs REST y servicios externos, asegurando una comunicación estable, eficiente y segura entre el frontend y los sistemas internos.",
+                "Optimicé componentes reutilizables y responsivos basados en React y Tailwind CSS, mejorando la mantenibilidad y consistencia visual.",
+                "Apliqué buenas prácticas de arquitectura, documentación y versionado, contribuyendo a procesos de desarrollo ágiles.",
+              ],
+              technologies: [
+                "React",
+                "Tailwind CSS",
+                "JavaScript",
+                "TypeScript",
+                "REST APIs",
+              ],
+            }}
+          />
         </div>
         <div id="projects" className="space-y-4 py-10">
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
-            PROJECTS
-          </Text>
-          <Text>
-            Soy desarrollador Frontend con más de 3 años de experiencia creando
-            aplicaciones web administrativas y soluciones digitales a la medida,
-            utilizando React, Next.js, TypeScript y Tailwind CSS. Me especializo
-            en el desarrollo de interfaces modernas, funcionales y escalables,
-            garantizando experiencias consistentes y de alta calidad. He
-            participado en la construcción de módulos completos como
-            autenticación, gestión de usuarios, catálogos maestros, tablas
-            dinámicas con filtros avanzados y carga de documentos. Mi enfoque
-            combina buenas prácticas de arquitectura frontend, optimización de
-            componentes y trabajo colaborativo en entornos ágiles. Mi objetivo
-            es aportar al desarrollo de productos digitales robustos y
-            eficientes, alineando las necesidades técnicas con la experiencia
-            del usuario y los objetivos del negocio.
+            PROYECTOS
           </Text>
         </div>
       </div>

@@ -1,0 +1,81 @@
+/**
+ * @file ExperienceCard.tsx
+ * @description Componente de card para mostrar experiencias laborales.
+ */
+
+import Link from "next/link";
+import { Icon } from "@iconify/react";
+import { Card as BaseCard } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+
+// Import of components custom
+import { Title, Text } from "@/components/atomic-design/atoms";
+
+// Import of types
+import { CardAData } from "@/components/pages/app-web/v1/utils";
+import { Badge } from "@/components/atomic-design";
+
+interface CardAProps {
+  readonly data: CardAData;
+  readonly className?: string;
+}
+
+export function CardA({ data, className }: CardAProps) {
+  /**
+   * @name data
+   * @type {CardAData}
+   * @description Datos de la card A.
+   */
+  const { dates, title, company, description, technologies } = data;
+
+  return (
+    <BaseCard
+      className={cn(
+        "shadow-transparent border-transparent hover:shadow-md hover:border-foreground/5 transition-all duration-300 cursor-pointer hover:bg-foreground/5 hover:backdrop-blur-md hover:opacity-100 opacity-70 p-3",
+        className
+      )}
+    >
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-3 min-h-40">
+        <div className="col-span-2">
+          <Text variant="small" className="text-xs">
+            {dates}
+          </Text>
+        </div>
+        <div className="col-span-10 space-y-5">
+          <header>
+            <Title level={4} className="text-base flex items-center gap-2">
+              {title} • {company.name}
+              {company.url && (
+                <Link
+                  href={company.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon icon="mdi:open-in-new" />
+                </Link>
+              )}
+            </Title>
+            <Title level={4} className="text-base flex items-center gap-2">
+              {company.name}
+            </Title>
+            <Title level={4} className="text-base flex items-center gap-2">
+              {company.name}
+            </Title>
+          </header>
+          <main>
+            <Text variant="small">{description}</Text>
+          </main>
+          <footer>
+            {technologies && technologies.length > 0 && (
+              <div className="flex flex-wrap gap-2 pt-2">
+                {technologies.map((tech) => (
+                  <Badge key={tech} text={tech} variant="outline" />
+                ))}
+              </div>
+            )}
+          </footer>
+        </div>
+      </div>
+    </BaseCard>
+  );
+}

@@ -13,3 +13,22 @@ export type NavigationAppWebV1SectionsType = {
   href: string;
   title: string;
 };
+
+/**
+ * @name CardAData
+ * @type {Object}
+ * @description Tipo para los datos de la card A.
+ */
+export type CardAData = {
+  dates: string;
+  title: string;
+  company: {
+    name: string;
+    url?: string;
+  };
+  location: string;
+  isRemote?: boolean;
+  description: string[];
+  technologies?: string[];
+  previousTitles?: string[];
+};
