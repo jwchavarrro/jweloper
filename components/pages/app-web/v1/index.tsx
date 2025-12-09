@@ -31,65 +31,15 @@ import { setVersion } from "@/store/slices/versionSlice";
 import { ExperienceType, ProjectType } from "@/components/pages/app-web";
 
 export const AppWebV1: React.FC = () => {
+  // Implementation of custom hooks
+  const isMobile = useIsMobile();
+  const dispatch = useAppDispatch();
+
   // States generals
   const [activeSection, setActiveSection] = useState<string>(
     NAVIGATION_APP_WEB_V1_SECTIONS[0].href
   );
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const hasInitializedRef = useRef<boolean>(false);
-
-  // Implementation of custom hooks
-  const isMobile = useIsMobile();
-  const dispatch = useAppDispatch();
-
-  /**
-   * @name handleScrollToSection
-   * @description Manejador para scroll a una sección específica.
-   * @param {string} section - La sección a la que se va a scroll.
-   */
-  const handleScrollToSection = useCallback(
-    (section: string) => {
-      setActiveSection(section);
-      // Actualizar la URL sin recargar la página
-      // pushState automáticamente agrega el hash al pathname actual
-      globalThis.window.history.pushState(null, "", section);
-      const sectionId = section.replace("#", "");
-      const element = document.getElementById(sectionId);
-      if (!element) return;
-
-      if (isMobile) {
-        // En mobile, el scroll es del documento completo
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        // En desktop, el scroll es del contenedor específico
-        const container = scrollContainerRef.current;
-        if (container) {
-          const containerRect = container.getBoundingClientRect();
-          const elementRect = element.getBoundingClientRect();
-          const scrollTop =
-            container.scrollTop + elementRect.top - containerRect.top - 20;
-          container.scrollTo({ top: scrollTop, behavior: "smooth" });
-        }
-      }
-    },
-    [isMobile]
-  );
-
-  /**
-   * @name handleContainerRef
-   * @description Callback ref para detectar el hash inicial de la URL después del mount.
-   * Esto evita errores de hidratación al no ejecutarse durante el render inicial.
-   */
-  const handleContainerRef = useCallback((node: HTMLDivElement | null) => {
-    if (node && !hasInitializedRef.current) {
-      hasInitializedRef.current = true;
-      const hash = globalThis.window.location.hash;
-      if (hash && NAVIGATION_APP_WEB_V1_SECTIONS.some((s) => s.href === hash)) {
-        setActiveSection(hash);
-      }
-    }
-    scrollContainerRef.current = node;
-  }, []);
 
   /**
    * @name sectionsWithActive
@@ -103,6 +53,40 @@ export const AppWebV1: React.FC = () => {
         active: activeSection === section.href,
       })),
     [activeSection]
+  );
+
+  /**
+   * @name handleScrollToSection
+   * @description Manejador para scroll a una sección específica.
+   * @param {string} section - La sección a la que se va a scroll.
+   */
+  const handleScrollToSection = useCallback(
+    (section: string) => {
+      setActiveSection(section);
+      const sectionId = section.replace("#", "");
+      const element = document.getElementById(sectionId);
+      if (!element) return;
+
+      if (isMobile) {
+        // En mobile, el scroll es del documento completo
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        // En desktop, el scroll es del contenedor específico
+        const container = scrollContainerRef.current;
+        if (container) {
+          // Calcular la posición del elemento relativa al contenedor
+          const containerRect = container.getBoundingClientRect();
+          const elementRect = element.getBoundingClientRect();
+          const relativeTop = elementRect.top - containerRect.top;
+          const scrollTop = container.scrollTop + relativeTop - 20;
+          container.scrollTo({
+            top: Math.max(0, scrollTop),
+            behavior: "smooth",
+          });
+        }
+      }
+    },
+    [isMobile]
   );
 
   return (
@@ -203,7 +187,7 @@ export const AppWebV1: React.FC = () => {
 
       {/* Column 2 - Scrollable Content */}
       <div
-        ref={handleContainerRef}
+        ref={scrollContainerRef}
         className="lg:h-[calc(100dvh-96px)] lg:overflow-y-auto lg:max-w-3xl lg:[&::-webkit-scrollbar]:hidden"
         style={{
           scrollbarWidth: "none",
