@@ -11,9 +11,6 @@ import { AppWebV1, AppWebV2 } from "@/components/pages/app-web";
 // Import of hooks
 import { useAppSelector } from "@/store/hooks";
 
-// Import of contexts
-// import { setVersion, type VersionType } from "@/store/slices/versionSlice";
-
 export default function AppWeb() {
   /**
    * @name selectedVersion
