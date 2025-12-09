@@ -29,5 +29,22 @@ export type CardAData = {
   location: string;
   isRemote?: boolean;
   description: string[];
-  technologies?: string[];
+  tecnologies?: string[];
+};
+
+/**
+ * @name CardBData
+ * @type {Object}
+ * @description Tipo para los datos de la card B.
+ */
+export type CardBData = {
+  images?: {
+    src: string;
+    alt: string;
+  }[];
+  mainImage: string;
+  title: string;
+  url: string;
+  description: string[];
+  tecnologies: string[];
 };

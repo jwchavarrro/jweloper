@@ -11,13 +11,14 @@ import { Icon } from "@iconify/react";
 
 // Import of components custom
 import { Title, Text } from "@/components/atomic-design/atoms";
-import { CardA } from "@/components/pages/app-web/v1/components/cards";
+import { CardA, CardB } from "@/components/pages/app-web/v1/components/cards";
 
 // Import of utilities
 import { SOCIAL_MEDIA } from "@/app/utils";
 import {
   EXPERIENCES_APP_WEB_V1,
   NAVIGATION_APP_WEB_V1_SECTIONS,
+  PROJECTS_APP_WEB_V1,
   getInitialSection,
 } from "@/components/pages/app-web/v1/utils";
 
@@ -25,7 +26,7 @@ import {
 import { useIsMobile } from "@/hooks";
 
 // Import of types
-import { ExperienceType } from "@/components/pages/app-web";
+import { ExperienceType, ProjectType } from "@/components/pages/app-web";
 
 export const AppWebV1: React.FC = () => {
   // States generals
@@ -169,6 +170,7 @@ export const AppWebV1: React.FC = () => {
           scrollBehavior: "smooth",
         }}
       >
+        {/* About */}
         <div id="about" className="space-y-4 py-10">
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             SOBRE MÍ
@@ -189,6 +191,8 @@ export const AppWebV1: React.FC = () => {
             del usuario y los objetivos del negocio.
           </Text>
         </div>
+
+        {/* Experience */}
         <div id="experience" className="space-y-4 py-10">
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             EXPERIENCIA
@@ -214,9 +218,43 @@ export const AppWebV1: React.FC = () => {
             </Title>
           </Link>
         </div>
+
+        {/* Projects */}
         <div id="projects" className="space-y-4 py-10">
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             PROYECTOS
+          </Text>
+          {PROJECTS_APP_WEB_V1.map((project: ProjectType) => (
+            <CardB
+              key={project.name}
+              data={{
+                mainImage: project.image || "",
+                title: project.name,
+                url: project.url,
+                description:
+                  project.description
+                    .split("\n")
+                    .map((item: string) => item.trim()) || [],
+                tecnologies: project.tecnologies,
+              }}
+            />
+          ))}
+          <Link href="/" className="group">
+            <Title
+              level={4}
+              className="text-base flex items-center gap-2 group-hover:underline"
+            >
+              Ver todos los proyectos
+              <Icon
+                icon="mdi:open-in-new"
+                className="group-hover:translate-x-1 transition-all duration-300"
+              />
+            </Title>
+          </Link>
+          <Text className="text-[10px]">
+            * Los proyectos listados representan mi participación en iniciativas
+            realizadas durante mi trayectoria profesional, descritas de forma
+            general para respetar la confidencialidad de cada empresa.
           </Text>
         </div>
       </div>

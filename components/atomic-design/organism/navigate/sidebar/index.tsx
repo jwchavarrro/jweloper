@@ -38,10 +38,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
   );
   const dispatch = useAppDispatch();
 
+  /**
+   * @name handleVersionChange
+   * @description Manejador para cambiar la versión.
+   * @param {boolean} checked - Indica si la versión es v2.
+   */
   const handleVersionChange = (checked: boolean) => {
     const newVersion: VersionType = checked ? "v2" : "v1";
     dispatch(setVersion(newVersion));
   };
+
+  /**
+   * @name oppositeVersion
+   * @description Versión opuesta para mostrar en el texto.
+   * @type {VersionType}
+   */
+  const oppositeVersion: VersionType = selectedVersion === "v1" ? "v2" : "v1";
 
   return (
     <SidebarProvider defaultOpen={false}>
@@ -55,7 +67,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
               className="mr-2 data-[orientation=vertical]:h-4"
             />
             <div className="flex items-center gap-2">
-              <Text variant="small">Cambiar {selectedVersion}</Text>
+              <Text variant="small">{oppositeVersion}</Text>
               <Switch
                 id="version-switch"
                 checked={selectedVersion === "v2"}
