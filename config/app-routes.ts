@@ -26,11 +26,11 @@ export const APP_ROUTES = {
         APP_WEB: {
           path: "/app-web",
         },
-        PROJECTS: {
-          path: "/app-web#proyectos",
-        },
         EXPERIENCE: {
           path: "/app-web#experiencia",
+        },
+        PROJECTS: {
+          path: "/app-web#proyectos",
         },
         CONTACT: {
           path: "/app-web#contacto",

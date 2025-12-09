@@ -24,6 +24,8 @@ import {
 
 // Import of custom hooks
 import { useIsMobile } from "@/hooks";
+import { useAppDispatch } from "@/store/hooks";
+import { setVersion } from "@/store/slices/versionSlice";
 
 // Import of types
 import { ExperienceType, ProjectType } from "@/components/pages/app-web";
@@ -38,6 +40,7 @@ export const AppWebV1: React.FC = () => {
 
   // Implementation of custom hooks
   const isMobile = useIsMobile();
+  const dispatch = useAppDispatch();
 
   /**
    * @name handleScrollToSection
@@ -179,7 +182,21 @@ export const AppWebV1: React.FC = () => {
                   className="size-6 text-foreground cursor-pointer"
                 />
               </Link>
-            ))}{" "}
+            ))}
+            <button
+              type="button"
+              onClick={() => dispatch(setVersion("v2"))}
+              className="group flex items-center gap-1 text-[9px]! text-sm/3"
+            >
+              v1.2.0 |{" "}
+              <span className="group-hover:underline cursor-pointer">
+                Ver la nueva versión
+              </span>
+              <Icon
+                icon="mdi:arrow-right"
+                className="group-hover:translate-x-1 transition-all duration-300"
+              />
+            </button>
           </div>
         </div>
       </div>
