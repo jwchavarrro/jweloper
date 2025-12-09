@@ -141,7 +141,7 @@ export const AppWebV1: React.FC = () => {
               <nav className="hidden lg:block space-y-2">
                 {sectionsWithActive.map(({ title, href, active }) => (
                   <div
-                    key={title}
+                    key={href}
                     className={`group flex items-center space-x-4 ${active ? "" : "opacity-40"}`}
                   >
                     <span
