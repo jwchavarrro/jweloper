@@ -60,31 +60,47 @@ export const AppWebV1: React.FC = () => {
    * @description Manejador para scroll a una sección específica.
    * @param {string} section - La sección a la que se va a scroll.
    */
+  /**
+   * @name handleScrollToSection
+   * @description Manejador para scroll a una sección específica.
+   * @param {string} section - La sección a la que se va a scroll.
+   */
   const handleScrollToSection = useCallback(
     (section: string) => {
       setActiveSection(section);
+
+      // Actualizar la URL con el hash
+      if (globalThis.window) {
+        globalThis.window.history.pushState(null, "", section);
+      }
+
       const sectionId = section.replace("#", "");
       const element = document.getElementById(sectionId);
       if (!element) return;
 
-      if (isMobile) {
-        // En mobile, el scroll es del documento completo
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        // En desktop, el scroll es del contenedor específico
-        const container = scrollContainerRef.current;
-        if (container) {
-          // Calcular la posición del elemento relativa al contenedor
-          const containerRect = container.getBoundingClientRect();
-          const elementRect = element.getBoundingClientRect();
-          const relativeTop = elementRect.top - containerRect.top;
-          const scrollTop = container.scrollTop + relativeTop - 20;
-          container.scrollTo({
-            top: Math.max(0, scrollTop),
-            behavior: "smooth",
-          });
+      // Usar requestAnimationFrame para asegurar que el DOM esté actualizado
+      requestAnimationFrame(() => {
+        if (isMobile) {
+          // En mobile, el scroll es del documento completo
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          // En desktop, el scroll es del contenedor específico
+          const container = scrollContainerRef.current;
+          if (container) {
+            // Calcular la posición del elemento relativa al contenedor
+            // usando getBoundingClientRect para obtener posiciones absolutas
+            const containerRect = container.getBoundingClientRect();
+            const elementRect = element.getBoundingClientRect();
+            // La diferencia entre las posiciones del viewport más el scroll actual
+            const relativeTop = elementRect.top - containerRect.top;
+            const scrollTop = container.scrollTop + relativeTop - 20;
+            container.scrollTo({
+              top: Math.max(0, scrollTop),
+              behavior: "smooth",
+            });
+          }
         }
-      }
+      });
     },
     [isMobile]
   );
@@ -196,7 +212,7 @@ export const AppWebV1: React.FC = () => {
         }}
       >
         {/* About */}
-        <div id="about" className="space-y-4 py-10">
+        <div id="sobre-mi" className="space-y-4 py-10">
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             SOBRE MÍ
           </Text>
@@ -223,7 +239,7 @@ export const AppWebV1: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 1, ease: "easeOut" }}
-          id="experience"
+          id="experiencia"
           className="space-y-4 py-10"
         >
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
@@ -257,7 +273,7 @@ export const AppWebV1: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 1, ease: "easeOut" }}
-          id="projects"
+          id="proyectos"
           className="space-y-4 py-10"
         >
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
