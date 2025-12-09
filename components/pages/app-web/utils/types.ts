@@ -47,3 +47,15 @@ export type ProjectType = {
   url: string;
   tecnologies: string[];
 };
+
+/**
+ * @name ProjectItemData
+ * @type {Object}
+ * @description Tipo para los datos de un item de proyecto.
+ */
+export type ProjectItemData = {
+  name: string;
+  description: string;
+  image: string;
+  url: string;
+};

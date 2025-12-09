@@ -81,7 +81,7 @@ describe("CardA", () => {
     location: "Neiva, Colombia",
     isRemote: true,
     description: ["Desarrollo de aplicaciones web modernas"],
-    technologies: ["React", "TypeScript", "Tailwind CSS"],
+    tecnologies: ["React", "TypeScript", "Tailwind CSS"],
   };
 
   it("should render card component", () => {
@@ -188,7 +188,7 @@ describe("CardA", () => {
   });
 
   it("should not render technologies section when technologies array is empty", () => {
-    const dataWithoutTech = { ...mockData, technologies: [] };
+    const dataWithoutTech = { ...mockData, tecnologies: [] };
     render(<CardA data={dataWithoutTech} />);
     // Los badges no deberían estar presentes
     const badges = screen.queryAllByTestId("badge");
@@ -197,7 +197,7 @@ describe("CardA", () => {
 
   it("should not render technologies section when technologies is undefined", () => {
     const dataWithoutTech = { ...mockData };
-    delete dataWithoutTech.technologies;
+    delete dataWithoutTech.tecnologies;
     render(<CardA data={dataWithoutTech} />);
     const badges = screen.queryAllByTestId("badge");
     expect(badges).toHaveLength(0);

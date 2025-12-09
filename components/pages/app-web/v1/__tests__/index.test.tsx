@@ -4,7 +4,9 @@
  */
 
 import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
 import { AppWebV1 } from "../index";
+import { makeStore } from "@/store/makeStore";
 
 // Mock de los componentes
 jest.mock("@/components/atomic-design/atoms", () => ({
@@ -31,31 +33,37 @@ jest.mock("@/app/utils", () => ({
   ],
 }));
 
+// Helper para renderizar con Redux Provider
+const renderWithRedux = (component: React.ReactElement) => {
+  const store = makeStore();
+  return render(<Provider store={store}>{component}</Provider>);
+};
+
 describe("AppWebV1", () => {
   it("should render AppWebV1 component", () => {
-    const { container } = render(<AppWebV1 />);
+    const { container } = renderWithRedux(<AppWebV1 />);
     expect(container).toBeInTheDocument();
   });
 
   it("should render the main grid container", () => {
-    const { container } = render(<AppWebV1 />);
+    const { container } = renderWithRedux(<AppWebV1 />);
     const grid = container.querySelector(".grid");
     expect(grid).toBeInTheDocument();
     expect(grid).toHaveClass("grid-cols-1", "lg:grid-cols-2");
   });
 
   it("should render the title", () => {
-    render(<AppWebV1 />);
+    renderWithRedux(<AppWebV1 />);
     expect(screen.getByText("John Chavarro Urrea")).toBeInTheDocument();
   });
 
   it("should render the subtitle", () => {
-    render(<AppWebV1 />);
+    renderWithRedux(<AppWebV1 />);
     expect(screen.getByText("Desarrollador Frontend")).toBeInTheDocument();
   });
 
   it("should render navigation links", () => {
-    render(<AppWebV1 />);
+    renderWithRedux(<AppWebV1 />);
     // Hay múltiples elementos con el mismo texto, usar getAllByText
     expect(screen.getAllByText("SOBRE MÍ").length).toBeGreaterThan(0);
     expect(screen.getAllByText("EXPERIENCIA").length).toBeGreaterThan(0);
@@ -63,13 +71,13 @@ describe("AppWebV1", () => {
   });
 
   it("should render social media icons", () => {
-    render(<AppWebV1 />);
+    renderWithRedux(<AppWebV1 />);
     expect(screen.getByTestId("icon-mdi:github")).toBeInTheDocument();
     expect(screen.getByTestId("icon-mdi:linkedin")).toBeInTheDocument();
   });
 
   it("should have sticky column for content", () => {
-    const { container } = render(<AppWebV1 />);
+    const { container } = renderWithRedux(<AppWebV1 />);
     // Buscar por clase que contenga sticky usando querySelector con atributo class
     const stickyColumn = Array.from(container.querySelectorAll("div")).find(
       (el) => el.className.includes("sticky")
@@ -79,7 +87,7 @@ describe("AppWebV1", () => {
   });
 
   it("should have scrollable column for text content", () => {
-    const { container } = render(<AppWebV1 />);
+    const { container } = renderWithRedux(<AppWebV1 />);
     const scrollableColumn = container.querySelector(".overflow-y-auto");
     expect(scrollableColumn).toBeInTheDocument();
   });
