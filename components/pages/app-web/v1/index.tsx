@@ -5,6 +5,7 @@
 
 "use client";
 
+import { motion } from "motion/react";
 import { useState, useRef, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
@@ -19,7 +20,6 @@ import {
   EXPERIENCES_APP_WEB_V1,
   NAVIGATION_APP_WEB_V1_SECTIONS,
   PROJECTS_APP_WEB_V1,
-  getInitialSection,
 } from "@/components/pages/app-web/v1/utils";
 
 // Import of custom hooks
@@ -30,8 +30,11 @@ import { ExperienceType, ProjectType } from "@/components/pages/app-web";
 
 export const AppWebV1: React.FC = () => {
   // States generals
-  const [activeSection, setActiveSection] = useState<string>(getInitialSection);
+  const [activeSection, setActiveSection] = useState<string>(
+    NAVIGATION_APP_WEB_V1_SECTIONS[0].href
+  );
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const hasInitializedRef = useRef<boolean>(false);
 
   // Implementation of custom hooks
   const isMobile = useIsMobile();
@@ -45,9 +48,8 @@ export const AppWebV1: React.FC = () => {
     (section: string) => {
       setActiveSection(section);
       // Actualizar la URL sin recargar la página
-      if (globalThis.window !== undefined) {
-        globalThis.window.history.pushState(null, "", section);
-      }
+      // pushState automáticamente agrega el hash al pathname actual
+      globalThis.window.history.pushState(null, "", section);
       const sectionId = section.replace("#", "");
       const element = document.getElementById(sectionId);
       if (!element) return;
@@ -71,6 +73,22 @@ export const AppWebV1: React.FC = () => {
   );
 
   /**
+   * @name handleContainerRef
+   * @description Callback ref para detectar el hash inicial de la URL después del mount.
+   * Esto evita errores de hidratación al no ejecutarse durante el render inicial.
+   */
+  const handleContainerRef = useCallback((node: HTMLDivElement | null) => {
+    if (node && !hasInitializedRef.current) {
+      hasInitializedRef.current = true;
+      const hash = globalThis.window.location.hash;
+      if (hash && NAVIGATION_APP_WEB_V1_SECTIONS.some((s) => s.href === hash)) {
+        setActiveSection(hash);
+      }
+    }
+    scrollContainerRef.current = node;
+  }, []);
+
+  /**
    * @name sectionsWithActive
    * @description Memoizar las secciones con su estado activo.
    * @returns {NavigationAppWebV1SectionsType[]} - Lista de secciones con su estado activo.
@@ -85,7 +103,13 @@ export const AppWebV1: React.FC = () => {
   );
 
   return (
-    <div className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto lg:overscroll-none">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: "-100px" }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto lg:overscroll-none"
+    >
       {/* Column 1 - Content */}
       <div className="h-fit lg:h-[calc(100dvh-96px)] lg:overflow-hidden lg:sticky lg:top-0">
         <div className="flex flex-col justify-between lg:max-w-xl mx-auto h-full py-10 gap-5 lg:gap-0">
@@ -162,7 +186,7 @@ export const AppWebV1: React.FC = () => {
 
       {/* Column 2 - Scrollable Content */}
       <div
-        ref={scrollContainerRef}
+        ref={handleContainerRef}
         className="lg:h-[calc(100dvh-96px)] lg:overflow-y-auto lg:max-w-3xl lg:[&::-webkit-scrollbar]:hidden"
         style={{
           scrollbarWidth: "none",
@@ -193,7 +217,14 @@ export const AppWebV1: React.FC = () => {
         </div>
 
         {/* Experience */}
-        <div id="experience" className="space-y-4 py-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          id="experience"
+          className="space-y-4 py-10"
+        >
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             EXPERIENCIA
           </Text>
@@ -217,10 +248,17 @@ export const AppWebV1: React.FC = () => {
               />
             </Title>
           </Link>
-        </div>
+        </motion.div>
 
         {/* Projects */}
-        <div id="projects" className="space-y-4 py-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          id="projects"
+          className="space-y-4 py-10"
+        >
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             PROYECTOS
           </Text>
@@ -256,8 +294,8 @@ export const AppWebV1: React.FC = () => {
             realizadas durante mi trayectoria profesional, descritas de forma
             general para respetar la confidencialidad de cada empresa.
           </Text>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
