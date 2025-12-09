@@ -12,21 +12,8 @@ interface VersionStateType {
   selectedVersion: VersionType;
 }
 
-// Obtener la versión del localStorage o usar "v1" por defecto
-const getInitialVersion = (): VersionType => {
-  if (globalThis.window !== undefined) {
-    const savedVersion = globalThis.localStorage.getItem(
-      "selectedVersion"
-    ) as VersionType;
-    if (savedVersion === "v1" || savedVersion === "v2") {
-      return savedVersion;
-    }
-  }
-  return "v1";
-};
-
 const initialState: VersionStateType = {
-  selectedVersion: getInitialVersion(),
+  selectedVersion: "v1",
 };
 
 const versionSlice = createSlice({
@@ -36,11 +23,6 @@ const versionSlice = createSlice({
     // Acción para cambiar la versión
     setVersion: (state, action: PayloadAction<VersionType>) => {
       state.selectedVersion = action.payload;
-
-      // Guardar en localStorage
-      if (globalThis.window !== undefined) {
-        globalThis.localStorage.setItem("selectedVersion", action.payload);
-      }
     },
 
     // Acción para alternar entre v1 y v2
@@ -48,11 +30,6 @@ const versionSlice = createSlice({
       const newVersion: VersionType =
         state.selectedVersion === "v1" ? "v2" : "v1";
       state.selectedVersion = newVersion;
-
-      // Guardar en localStorage
-      if (globalThis.window !== undefined) {
-        globalThis.localStorage.setItem("selectedVersion", newVersion);
-      }
     },
   },
 });

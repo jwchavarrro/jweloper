@@ -14,9 +14,9 @@ import { NavigationAppWebV1SectionsType } from "@/components/pages/app-web/v1/ut
  */
 export const NAVIGATION_APP_WEB_V1_SECTIONS: NavigationAppWebV1SectionsType[] =
   [
-    { id: "about", href: "#about", title: "SOBRE MÍ" },
-    { id: "experience", href: "#experience", title: "EXPERIENCIA" },
-    { id: "projects", href: "#projects", title: "PROYECTOS" },
+    { id: "about", href: "#sobre-mi", title: "SOBRE MÍ" },
+    { id: "experience", href: "#experiencia", title: "EXPERIENCIA" },
+    { id: "projects", href: "#proyectos", title: "PROYECTOS" },
   ];
 
 /**
