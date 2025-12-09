@@ -52,12 +52,12 @@ export const SIDEBAR_DATA: SidebarDataType = {
       isActive: true,
       items: [
         {
-          title: "Proyectos",
-          url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.path,
-        },
-        {
           title: "Experiencia",
           url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.EXPERIENCE.path,
+        },
+        {
+          title: "Proyectos",
+          url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.path,
         },
         {
           title: "Contacto",

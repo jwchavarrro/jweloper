@@ -9,7 +9,6 @@
  * @description Tipo para las secciones de la navegación de la versión 1 de la página principal.
  */
 export type NavigationAppWebV1SectionsType = {
-  id: string;
   href: string;
   title: string;
 };
@@ -29,5 +28,22 @@ export type CardAData = {
   location: string;
   isRemote?: boolean;
   description: string[];
-  technologies?: string[];
+  tecnologies?: string[];
+};
+
+/**
+ * @name CardBData
+ * @type {Object}
+ * @description Tipo para los datos de la card B.
+ */
+export type CardBData = {
+  images?: {
+    src: string;
+    alt: string;
+  }[];
+  mainImage: string;
+  title: string;
+  url: string;
+  description: string[];
+  tecnologies: string[];
 };
