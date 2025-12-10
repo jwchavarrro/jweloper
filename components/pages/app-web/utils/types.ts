@@ -36,9 +36,22 @@ export type ExperienceType = {
 };
 
 /**
- * @name ProjectItemData
+ * @name ProjectType
  * @type {Object}
  * @description Tipo para los datos de un proyecto.
+ */
+export type ProjectType = {
+  image: string;
+  name: string;
+  description: string;
+  url: string;
+  tecnologies: string[];
+};
+
+/**
+ * @name ProjectItemData
+ * @type {Object}
+ * @description Tipo para los datos de un item de proyecto.
  */
 export type ProjectItemData = {
   name: string;

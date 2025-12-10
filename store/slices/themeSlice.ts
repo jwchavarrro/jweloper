@@ -8,19 +8,8 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 // Import of types
 import { EnumTheme, type ThemeStateType } from "@/app/utils/types";
 
-// Obtener el tema del localStorage o usar "light" por defecto
-const getInitialTheme = (): EnumTheme => {
-  if (globalThis.window !== undefined) {
-    const savedTheme = globalThis.localStorage.getItem("theme") as EnumTheme;
-    if (savedTheme === EnumTheme.Light || savedTheme === EnumTheme.Dark) {
-      return savedTheme;
-    }
-  }
-  return EnumTheme.Light;
-};
-
 const initialState: ThemeStateType = {
-  theme: getInitialTheme(),
+  theme: EnumTheme.Light,
 };
 
 const themeSlice = createSlice({
@@ -31,9 +20,8 @@ const themeSlice = createSlice({
     setTheme: (state, action: PayloadAction<EnumTheme>) => {
       state.theme = action.payload;
 
-      // Guardar en localStorage
+      // Aplicar clase dark al documento
       if (globalThis.window !== undefined) {
-        globalThis.localStorage.setItem("theme", action.payload);
         globalThis.document.documentElement.classList.toggle(
           "dark",
           action.payload === EnumTheme.Dark
@@ -47,12 +35,11 @@ const themeSlice = createSlice({
         state.theme === EnumTheme.Light ? EnumTheme.Dark : EnumTheme.Light;
       state.theme = newTheme;
 
-      // Guardar en localStorage
+      // Aplicar clase dark al documento
       if (globalThis.window !== undefined) {
-        globalThis.localStorage.setItem("theme", newTheme);
         globalThis.document.documentElement.classList.toggle(
           "dark",
-          newTheme === "dark"
+          newTheme === EnumTheme.Dark
         );
       }
     },

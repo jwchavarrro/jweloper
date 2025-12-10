@@ -9,6 +9,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import { usePathname } from "next/navigation";
 
 // Import of components custom
 import { Title, Text, Button } from "@/components/atomic-design/atoms";
@@ -18,12 +19,14 @@ import { SOCIAL_MEDIA } from "./utils";
 import { HOME_DATA, HOME_ICONS } from "@/components/pages";
 
 export default function Home() {
+  const pathname = usePathname();
+
   return (
     <motion.div
+      key={pathname}
       className="relative h-[calc(100vh-96px)]"
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, margin: "-100px" }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
       {/* Background */}
@@ -69,8 +72,7 @@ export default function Home() {
         {/* Column 1 - Image */}
         <motion.div
           initial={{ translateX: 100, opacity: 0, rotate: -10 }}
-          animate={{ translateX: 0, opacity: 1 }}
-          viewport={{ once: false, margin: "-100px" }}
+          animate={{ translateX: 0, opacity: 1, rotate: -10 }}
           whileHover={{ scale: 1.05, rotate: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="relative min-h-40 lg:min-h-80 flex items-center justify-center"

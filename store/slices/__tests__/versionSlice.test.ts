@@ -48,12 +48,10 @@ describe("versionSlice", () => {
       expect(state.selectedVersion).toBe("v1");
     });
 
-    it("should save version to localStorage", () => {
-      if (globalThis.window !== undefined) {
-        const action = setVersion("v2");
-        versionReducer(initialState, action);
-        expect(globalThis.localStorage.getItem("selectedVersion")).toBe("v2");
-      }
+    it("should update state when setting version", () => {
+      const action = setVersion("v2");
+      const state = versionReducer(initialState, action);
+      expect(state.selectedVersion).toBe("v2");
     });
   });
 
@@ -70,12 +68,10 @@ describe("versionSlice", () => {
       expect(state.selectedVersion).toBe("v1");
     });
 
-    it("should save toggled version to localStorage", () => {
-      if (globalThis.window !== undefined) {
-        const action = toggleVersion();
-        versionReducer(initialState, action);
-        expect(globalThis.localStorage.getItem("selectedVersion")).toBe("v2");
-      }
+    it("should update state when toggling version", () => {
+      const action = toggleVersion();
+      const state = versionReducer(initialState, action);
+      expect(state.selectedVersion).toBe("v2");
     });
   });
 });

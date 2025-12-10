@@ -5,69 +5,41 @@
 
 "use client";
 
+import { motion } from "motion/react";
 import { useState, useRef, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 
 // Import of components custom
 import { Title, Text } from "@/components/atomic-design/atoms";
-import { CardA } from "@/components/pages/app-web/v1/components/cards";
+import { CardA, CardB } from "@/components/pages/app-web/v1/components/cards";
 
 // Import of utilities
 import { SOCIAL_MEDIA } from "@/app/utils";
 import {
   EXPERIENCES_APP_WEB_V1,
   NAVIGATION_APP_WEB_V1_SECTIONS,
-  getInitialSection,
+  PROJECTS_APP_WEB_V1,
 } from "@/components/pages/app-web/v1/utils";
 
 // Import of custom hooks
 import { useIsMobile } from "@/hooks";
+import { useAppDispatch } from "@/store/hooks";
+import { setVersion } from "@/store/slices/versionSlice";
 
 // Import of types
-import { ExperienceType } from "@/components/pages/app-web";
+import { ExperienceType, ProjectType } from "@/components/pages/app-web";
 
 export const AppWebV1: React.FC = () => {
-  // States generals
-  const [activeSection, setActiveSection] = useState<string>(getInitialSection);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
   // Implementation of custom hooks
   const isMobile = useIsMobile();
+  const dispatch = useAppDispatch();
 
-  /**
-   * @name handleScrollToSection
-   * @description Manejador para scroll a una sección específica.
-   * @param {string} section - La sección a la que se va a scroll.
-   */
-  const handleScrollToSection = useCallback(
-    (section: string) => {
-      setActiveSection(section);
-      // Actualizar la URL sin recargar la página
-      if (globalThis.window !== undefined) {
-        globalThis.window.history.pushState(null, "", section);
-      }
-      const sectionId = section.replace("#", "");
-      const element = document.getElementById(sectionId);
-      if (!element) return;
-
-      if (isMobile) {
-        // En mobile, el scroll es del documento completo
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        // En desktop, el scroll es del contenedor específico
-        const container = scrollContainerRef.current;
-        if (container) {
-          const containerRect = container.getBoundingClientRect();
-          const elementRect = element.getBoundingClientRect();
-          const scrollTop =
-            container.scrollTop + elementRect.top - containerRect.top - 20;
-          container.scrollTo({ top: scrollTop, behavior: "smooth" });
-        }
-      }
-    },
-    [isMobile]
+  // States generals
+  const [activeSection, setActiveSection] = useState<string>(
+    NAVIGATION_APP_WEB_V1_SECTIONS[0].href
   );
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   /**
    * @name sectionsWithActive
@@ -83,8 +55,64 @@ export const AppWebV1: React.FC = () => {
     [activeSection]
   );
 
+  /**
+   * @name handleScrollToSection
+   * @description Manejador para scroll a una sección específica.
+   * @param {string} section - La sección a la que se va a scroll.
+   */
+  /**
+   * @name handleScrollToSection
+   * @description Manejador para scroll a una sección específica.
+   * @param {string} section - La sección a la que se va a scroll.
+   */
+  const handleScrollToSection = useCallback(
+    (section: string) => {
+      setActiveSection(section);
+
+      // Actualizar la URL con el hash
+      if (globalThis.window) {
+        globalThis.window.history.pushState(null, "", section);
+      }
+
+      const sectionId = section.replace("#", "");
+      const element = document.getElementById(sectionId);
+      if (!element) return;
+
+      // Usar requestAnimationFrame para asegurar que el DOM esté actualizado
+      requestAnimationFrame(() => {
+        if (isMobile) {
+          // En mobile, el scroll es del documento completo
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          // En desktop, el scroll es del contenedor específico
+          const container = scrollContainerRef.current;
+          if (container) {
+            // Calcular la posición del elemento relativa al contenedor
+            // usando getBoundingClientRect para obtener posiciones absolutas
+            const containerRect = container.getBoundingClientRect();
+            const elementRect = element.getBoundingClientRect();
+            // La diferencia entre las posiciones del viewport más el scroll actual
+            const relativeTop = elementRect.top - containerRect.top;
+            const scrollTop = container.scrollTop + relativeTop - 20;
+            container.scrollTo({
+              top: Math.max(0, scrollTop),
+              behavior: "smooth",
+            });
+          }
+        }
+      });
+    },
+    [isMobile]
+  );
+
   return (
-    <div className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto lg:overscroll-none">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: "-100px" }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto lg:overscroll-none"
+    >
       {/* Column 1 - Content */}
       <div className="h-fit lg:h-[calc(100dvh-96px)] lg:overflow-hidden lg:sticky lg:top-0">
         <div className="flex flex-col justify-between lg:max-w-xl mx-auto h-full py-10 gap-5 lg:gap-0">
@@ -113,7 +141,7 @@ export const AppWebV1: React.FC = () => {
               <nav className="hidden lg:block space-y-2">
                 {sectionsWithActive.map(({ title, href, active }) => (
                   <div
-                    key={title}
+                    key={href}
                     className={`group flex items-center space-x-4 ${active ? "" : "opacity-40"}`}
                   >
                     <span
@@ -154,7 +182,21 @@ export const AppWebV1: React.FC = () => {
                   className="size-6 text-foreground cursor-pointer"
                 />
               </Link>
-            ))}{" "}
+            ))}
+            <button
+              type="button"
+              onClick={() => dispatch(setVersion("v2"))}
+              className="group flex items-center gap-1 text-[9px]! text-sm/3"
+            >
+              v1.2.0 |{" "}
+              <span className="group-hover:underline cursor-pointer">
+                Ver la nueva versión
+              </span>
+              <Icon
+                icon="mdi:arrow-right"
+                className="group-hover:translate-x-1 transition-all duration-300"
+              />
+            </button>
           </div>
         </div>
       </div>
@@ -169,7 +211,8 @@ export const AppWebV1: React.FC = () => {
           scrollBehavior: "smooth",
         }}
       >
-        <div id="about" className="space-y-4 py-10">
+        {/* About */}
+        <div id="sobre-mi" className="space-y-4 py-10">
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             SOBRE MÍ
           </Text>
@@ -189,7 +232,16 @@ export const AppWebV1: React.FC = () => {
             del usuario y los objetivos del negocio.
           </Text>
         </div>
-        <div id="experience" className="space-y-4 py-10">
+
+        {/* Experience */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          id="experiencia"
+          className="space-y-4 py-10"
+        >
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             EXPERIENCIA
           </Text>
@@ -213,13 +265,54 @@ export const AppWebV1: React.FC = () => {
               />
             </Title>
           </Link>
-        </div>
-        <div id="projects" className="space-y-4 py-10">
+        </motion.div>
+
+        {/* Projects */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          id="proyectos"
+          className="space-y-4 py-10"
+        >
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             PROYECTOS
           </Text>
-        </div>
+          {PROJECTS_APP_WEB_V1.map((project: ProjectType) => (
+            <CardB
+              key={project.name}
+              data={{
+                mainImage: project.image || "",
+                title: project.name,
+                url: project.url,
+                description:
+                  project.description
+                    .split("\n")
+                    .map((item: string) => item.trim()) || [],
+                tecnologies: project.tecnologies,
+              }}
+            />
+          ))}
+          <Link href="/" className="group">
+            <Title
+              level={4}
+              className="text-base flex items-center gap-2 group-hover:underline"
+            >
+              Ver todos los proyectos
+              <Icon
+                icon="mdi:open-in-new"
+                className="group-hover:translate-x-1 transition-all duration-300"
+              />
+            </Title>
+          </Link>
+          <Text className="text-[10px]">
+            * Los proyectos listados representan mi participación en iniciativas
+            realizadas durante mi trayectoria profesional, descritas de forma
+            general para respetar la confidencialidad de cada empresa.
+          </Text>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };

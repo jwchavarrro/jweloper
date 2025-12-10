@@ -12,7 +12,11 @@ import { AppWebV1, AppWebV2 } from "@/components/pages/app-web";
 import { useAppSelector } from "@/store/hooks";
 
 export default function AppWeb() {
-  // Obtener la versión seleccionada del estado de Redux
+  /**
+   * @name selectedVersion
+   * @description Versión seleccionada del estado de Redux.
+   * @type {VersionType}
+   */
   const selectedVersion = useAppSelector(
     (state) => state.version.selectedVersion
   );

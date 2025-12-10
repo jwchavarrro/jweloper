@@ -33,7 +33,7 @@ export function CardA({ data, className }: CardAProps) {
     location,
     isRemote,
     description,
-    technologies,
+    tecnologies,
   } = data;
 
   const hasCompanyLink = Boolean(company.url);
@@ -98,10 +98,10 @@ export function CardA({ data, className }: CardAProps) {
           </main>
 
           <footer>
-            {technologies && technologies.length > 0 && (
+            {tecnologies && tecnologies.length > 0 && (
               <div className="flex flex-wrap gap-2 pt-2">
-                {technologies.map((tech) => (
-                  <Badge key={tech} text={tech} />
+                {tecnologies.map((item: string) => (
+                  <Badge key={item} text={item} />
                 ))}
               </div>
             )}
