@@ -131,8 +131,9 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
                 Desarrollador Frontend |{" "}
                 <motion.button
                   type="button"
-                  whileHover={{ scale: 1.05, translateX: 10 }}
-                  whileTap={{ scale: 0.95, translateX: 0 }}
+                  initial={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={handleDownloadCV}
                   disabled={state.status === EnumDownloadStatus.LOADING}
                   className="font-title md:text-2xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed bg-foreground text-background px-4 py-2 rounded-md"
