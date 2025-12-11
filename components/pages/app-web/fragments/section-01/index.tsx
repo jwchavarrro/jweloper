@@ -85,12 +85,9 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
             >
               <CounterIndicator
                 value={showExperience}
-                className="text-[5rem]! md:text-[10rem]! 2xl:text-[18rem]!"
+                className="text-[5rem]! md:text-[10rem]! 2xl:text-[18rem]! rotate-3"
               >
-                <Text
-                  variant="lead"
-                  className="-mt-4! md:-mt-10! text-sm! md:text-base!"
-                >
+                <Text variant="lead" className="-mt-4! md:-mt-10! text-sm!">
                   años de experiencia
                 </Text>
               </CounterIndicator>
@@ -129,7 +126,7 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
               </Title>
               <Title
                 variant="gradient"
-                className="text-lg! md:text-xl! tracking-widest font-accent text-center xl:text-left"
+                className="text-lg! tracking-widest font-accent text-center xl:text-left"
               >
                 Desarrollador Frontend |{" "}
                 <motion.button
