@@ -159,6 +159,9 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
                   <Icon
                     icon={skill.icon}
                     className="size-6 md:size-8 xl:size-10 text-foreground cursor-pointer"
+                    style={{
+                      filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.1))",
+                    }}
                     onMouseEnter={() => handleMouseEnter(skill.experience)}
                     onMouseLeave={handleMouseLeave}
                   />
