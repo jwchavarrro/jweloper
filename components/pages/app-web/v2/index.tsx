@@ -13,11 +13,18 @@ import {
   Section02,
   Section03,
   Section04,
-} from "@/components/pages/app-web/fragments";
+} from "@/components/pages/app-web/v2/fragments";
 
 export const AppWebV2: React.FC = () => {
   return (
-    <div>
+    <div
+      className="h-full overflow-y-scroll snap-y snap-mandatory scroll-smooth"
+      style={{
+        scrollbarWidth: "none",
+        msOverflowStyle: "none",
+        scrollBehavior: "smooth",
+      }}
+    >
       <Section01 />
       <Section02 anchorId="experiencia" />
       <Section03 anchorId="proyectos" />

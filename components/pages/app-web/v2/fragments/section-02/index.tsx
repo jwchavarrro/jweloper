@@ -15,8 +15,8 @@ import { Title } from "@/components/atomic-design/atoms";
 // Import of utilities
 import { EXPERIENCES } from "@/components/pages/app-web";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { CodeEditor } from "../../components";
-import type { FileItem } from "../../components/code-editor/utils";
+import { CodeEditor } from "../../../components";
+import type { FileItem } from "../../../components/code-editor/utils";
 import { motion } from "motion/react";
 
 interface Section02Props {
@@ -67,7 +67,7 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
             variant="gradient"
             className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap lg:text-right max-w-xl"
           >
-            Experiencia Pro
+            {"<Experiencia Pro/>"}
           </Title>
         </div>
 
