@@ -15,8 +15,8 @@ import { Title } from "@/components/atomic-design/atoms";
 // Import of utilities
 import { EXPERIENCES } from "@/components/pages/app-web";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { CodeEditor } from "../../components";
-import type { FileItem } from "../../components/code-editor/utils";
+import { CodeEditor } from "../../../components";
+import type { FileItem } from "../../../components/code-editor/utils";
 import { motion } from "motion/react";
 
 interface Section02Props {

@@ -13,7 +13,7 @@ import {
   Section02,
   Section03,
   Section04,
-} from "@/components/pages/app-web/fragments";
+} from "@/components/pages/app-web/v2/fragments";
 
 export const AppWebV2: React.FC = () => {
   return (

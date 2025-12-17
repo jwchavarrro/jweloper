@@ -9,7 +9,7 @@ import { Icon } from "@iconify/react";
 
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
-import { Title } from "@/components/atomic-design/atoms";
+import { Title, Text } from "@/components/atomic-design/atoms";
 import { WordsAnimation } from "@/components/pages/app-web/components";
 
 // Import of utilities
@@ -39,23 +39,15 @@ export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
             {"<Contacto/>"}
           </Title>
         </div>
+
         {/* Column 2 - Content */}
         <div className="col-span-2 h-full">
-          <div className="h-full flex flex-col justify-center items-end">
-            {/* <Title
-              level={1}
-              variant="gradient"
-              className="text-4xl! md:text-6xl! lg:text-7xl! text-center max-w-4xl"
-            >
-              Abierto a nuevas oportunidades y colaboraciones creativas
-            </Title>
-             */}
-
-            {/*  <Text>
+          <div className="h-full flex flex-col justify-center">
+            <Text className="font-accent">
               ¿Listo para llevar tus ideas al siguiente nivel? <br />
               Conversemos sobre cómo puedo aportar valor a tu próximo proyecto o
               colaboración creativa.
-            </Text> */}
+            </Text>
 
             {/* Links list */}
             <WordsAnimation
@@ -63,25 +55,22 @@ export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
                 name,
                 href: url,
               }))}
-              className="justify-end items-end"
             />
 
-            <div className="flex items-center space-x-4">
-              <button
-                type="button"
-                onClick={() => dispatch(setVersion("v1"))}
-                className="group flex items-center gap-1 text-[9px]! text-sm/3"
-              >
-                v2.5.0 |{" "}
-                <span className="group-hover:underline cursor-pointer">
-                  Ver la versión anterior
-                </span>
-                <Icon
-                  icon="mdi:arrow-right"
-                  className="group-hover:translate-x-1 transition-all duration-300"
-                />
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => dispatch(setVersion("v1"))}
+              className="group flex items-center gap-1 text-[9px]! text-sm/3"
+            >
+              v2.5.0 |{" "}
+              <span className="group-hover:underline cursor-pointer">
+                Ver la versión anterior
+              </span>
+              <Icon
+                icon="mdi:arrow-right"
+                className="group-hover:translate-x-1 transition-all duration-300"
+              />
+            </button>
           </div>
         </div>
       </div>
