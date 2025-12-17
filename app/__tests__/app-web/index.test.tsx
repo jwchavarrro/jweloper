@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { makeStore } from "@/store/makeStore";
+import { setVersion } from "@/store/slices/versionSlice";
 import AppWeb from "../../app-web/page";
 
 // Mock del Carousel para evitar errores con embla-carousel
@@ -36,6 +37,19 @@ describe("AppWeb Page", () => {
   it("should render AppWebV1 by default (v1 is default)", () => {
     renderWithRedux(<AppWeb />);
     expect(screen.getByTestId("app-web-v1")).toBeInTheDocument();
+    expect(screen.queryByTestId("app-web-v2")).not.toBeInTheDocument();
+  });
+
+  it("should render AppWebV2 when v2 is selected", () => {
+    const store = makeStore();
+    store.dispatch(setVersion("v2"));
+    render(
+      <Provider store={store}>
+        <AppWeb />
+      </Provider>
+    );
+    expect(screen.getByTestId("app-web-v2")).toBeInTheDocument();
+    expect(screen.queryByTestId("app-web-v1")).not.toBeInTheDocument();
   });
 
   it("should render within a div container", () => {
@@ -43,5 +57,27 @@ describe("AppWeb Page", () => {
     const div = container.querySelector(".h-\\[calc\\(100dvh-96px\\)\\]");
     expect(div).toBeInTheDocument();
     expect(div).toHaveClass("h-[calc(100dvh-96px)]");
+  });
+
+  it("should update when version changes in store", () => {
+    const store = makeStore();
+    const { rerender } = render(
+      <Provider store={store}>
+        <AppWeb />
+      </Provider>
+    );
+
+    expect(screen.getByTestId("app-web-v1")).toBeInTheDocument();
+
+    store.dispatch(setVersion("v2"));
+
+    rerender(
+      <Provider store={store}>
+        <AppWeb />
+      </Provider>
+    );
+
+    expect(screen.getByTestId("app-web-v2")).toBeInTheDocument();
+    expect(screen.queryByTestId("app-web-v1")).not.toBeInTheDocument();
   });
 });
