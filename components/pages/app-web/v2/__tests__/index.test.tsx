@@ -7,7 +7,7 @@ import { render, screen } from "@testing-library/react";
 import { AppWebV2 } from "../index";
 
 // Mock de los componentes de sección
-jest.mock("@/components/pages/app-web/fragments", () => ({
+jest.mock("@/components/pages/app-web/v2/fragments", () => ({
   Section01: () => <section data-testid="section-01">Section 01</section>,
   Section02: ({ anchorId }: { anchorId: string }) => (
     <section data-testid="section-02" id={anchorId}>
