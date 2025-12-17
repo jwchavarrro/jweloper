@@ -4,3 +4,4 @@
  */
 
 export * from "./code-editor";
+export * from "./words-animation";

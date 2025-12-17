@@ -67,7 +67,7 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
             variant="gradient"
             className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap lg:text-right max-w-xl"
           >
-            Experiencia Pro
+            {"<Experiencia Pro/>"}
           </Title>
         </div>
 

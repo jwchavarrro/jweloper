@@ -5,18 +5,27 @@
 
 "use client";
 
-import Link from "next/link";
 import { Icon } from "@iconify/react";
 
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
-import { Title, Text } from "@/components/atomic-design/atoms";
+import { Title } from "@/components/atomic-design/atoms";
+import { WordsAnimation } from "@/components/pages/app-web/components";
+
+// Import of utilities
+import { SOCIAL_MEDIA } from "@/app/utils/constants";
+
+// Import of custom hooks
+import { useAppDispatch } from "@/store/hooks";
+import { setVersion } from "@/store/slices/versionSlice";
 
 interface Section04Props {
   readonly anchorId?: string;
 }
 
 export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
+  // Implementation of custom hooks
+  const dispatch = useAppDispatch();
   return (
     <SnapPage id="04" anchorId={anchorId}>
       {/* Children content */}
@@ -27,12 +36,12 @@ export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
             variant="gradient"
             className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-right max-w-xl"
           >
-            Contacto
+            {"<Contacto/>"}
           </Title>
         </div>
         {/* Column 2 - Content */}
-        <div className="col-span-2 h-full border">
-          <div className="h-full flex flex-col justify-center items-center">
+        <div className="col-span-2 h-full">
+          <div className="h-full flex flex-col justify-center items-end">
             {/* <Title
               level={1}
               variant="gradient"
@@ -40,57 +49,32 @@ export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
             >
               Abierto a nuevas oportunidades y colaboraciones creativas
             </Title>
-            <Text>
+             */}
+
+            {/*  <Text>
               ¿Listo para llevar tus ideas al siguiente nivel? <br />
               Conversemos sobre cómo puedo aportar valor a tu próximo proyecto o
               colaboración creativa.
             </Text> */}
 
             {/* Links list */}
-            <div className="flex flex-col gap-2 text-base md:text-lg">
-              <a
-                href="https://m.me/tamalsen"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                Email
-              </a>
-              <a
-                href="https://www.linkedin.com/in/tamalsen"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="https://instagram.com/tamalsen"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                Whatsapp
-              </a>
-              <a
-                href="https://github.com/tamalsen"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                Github
-              </a>
-            </div>
+            <WordsAnimation
+              words={SOCIAL_MEDIA.map(({ name, url }) => ({
+                name,
+                href: url,
+              }))}
+              className="justify-end items-end"
+            />
 
             <div className="flex items-center space-x-4">
               <button
                 type="button"
-                //onClick={() => dispatch(setVersion("v2"))}
+                onClick={() => dispatch(setVersion("v1"))}
                 className="group flex items-center gap-1 text-[9px]! text-sm/3"
               >
-                v2.2.0 |{" "}
+                v2.5.0 |{" "}
                 <span className="group-hover:underline cursor-pointer">
-                  Ver anterior versión
+                  Ver la versión anterior
                 </span>
                 <Icon
                   icon="mdi:arrow-right"
