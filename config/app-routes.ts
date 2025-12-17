@@ -19,6 +19,14 @@ export const APP_ROUTES = {
           path: "/linkedin",
           url: "https://www.linkedin.com/in/john-chavarro-urrea-9b9200129/",
         },
+        WHATSAPP: {
+          path: "/whatsapp",
+          url: "https://wa.me/573134628546",
+        },
+        EMAIL: {
+          path: "/email",
+          url: "mailto:jwchavarrro023@gmail.com",
+        },
       },
     },
     PORTFOLIO: {
