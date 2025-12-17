@@ -1,6 +1,11 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
 
+// Mocks reutilizables de Next.js (ubicados en __mocks__/)
+jest.mock("next/navigation");
+jest.mock("next/image");
+jest.mock("next/link");
+
 // Mock window.matchMedia (configuración global del entorno de pruebas)
 Object.defineProperty(globalThis, "matchMedia", {
   writable: true,
@@ -16,6 +21,36 @@ Object.defineProperty(globalThis, "matchMedia", {
   })),
 });
 
+// Mock IntersectionObserver para Motion (Framer Motion)
+globalThis.IntersectionObserver = class IntersectionObserver {
+  private readonly callback: IntersectionObserverCallback;
+  private readonly options?: IntersectionObserverInit;
+
+  constructor(
+    callback: IntersectionObserverCallback,
+    options?: IntersectionObserverInit
+  ) {
+    this.callback = callback;
+    this.options = options;
+  }
+
+  disconnect() {
+    // no-op
+  }
+
+  observe() {
+    // no-op
+  }
+
+  takeRecords(): IntersectionObserverEntry[] {
+    return [];
+  }
+
+  unobserve() {
+    // no-op
+  }
+} as unknown as typeof IntersectionObserver;
+
 // Suprimir el warning de React sobre <html> en tests
 const originalError = console.error;
 const filteredError = (...args: unknown[]) => {
@@ -29,23 +64,3 @@ const filteredError = (...args: unknown[]) => {
   originalError.apply(console, args);
 };
 console.error = filteredError;
-
-// Mock IntersectionObserver para Motion
-global.IntersectionObserver = class IntersectionObserver {
-  constructor() {}
-  disconnect() {}
-  observe() {
-    return null;
-  }
-  takeRecords() {
-    return [];
-  }
-  unobserve() {
-    return null;
-  }
-} as unknown as typeof IntersectionObserver;
-
-// Mocks reutilizables de Next.js (ubicados en __mocks__/)
-jest.mock("next/navigation");
-jest.mock("next/image");
-jest.mock("next/link");

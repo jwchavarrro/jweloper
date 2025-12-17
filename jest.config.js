@@ -16,6 +16,7 @@ const config = {
   },
   testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
   collectCoverageFrom: [
+    "app/**/*.{ts,tsx}",
     "components/**/*.{ts,tsx}",
     "lib/**/*.{ts,tsx}",
     "config/**/*.{ts,tsx}",
@@ -24,14 +25,14 @@ const config = {
     "!**/.next/**",
     "!**/coverage/**",
     "!**/index.ts",
-    "!app/**",
+    "!components/ui/**",
   ],
   coverageThreshold: {
     global: {
-      branches: 75,
-      functions: 65,
-      lines: 75,
-      statements: 75,
+      branches: 85,
+      functions: 85,
+      lines: 85,
+      statements: 85,
     },
   },
 };
