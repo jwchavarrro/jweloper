@@ -26,4 +26,14 @@ export const SOCIAL_MEDIA: SocialMediaType[] = [
     icon: APP_WEB_ICONS[EnumSocialMedia.Linkedin],
     url: APP_ROUTES.PUBLIC.HOME.SOCIAL_MEDIA.LINKEDIN.url,
   },
+  {
+    name: EnumSocialMedia.Whatsapp,
+    icon: APP_WEB_ICONS[EnumSocialMedia.Whatsapp],
+    url: APP_ROUTES.PUBLIC.HOME.SOCIAL_MEDIA.WHATSAPP.url,
+  },
+  {
+    name: EnumSocialMedia.Email,
+    icon: APP_WEB_ICONS[EnumSocialMedia.Email],
+    url: APP_ROUTES.PUBLIC.HOME.SOCIAL_MEDIA.EMAIL.url,
+  },
 ];

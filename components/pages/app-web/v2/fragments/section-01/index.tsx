@@ -65,17 +65,12 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
   };
 
   return (
-    <motion.section
-      initial={{ opacity: 0, translateY: -100 }}
-      whileInView={{ opacity: 1, translateY: 0 }}
-      viewport={{ once: false, margin: "-100px" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-    >
+    <motion.section>
       <SnapPage id="01" anchorId={anchorId}>
         {/* Children content */}
         {/* Background counter indicator */}
         <div className="absolute -top-2 right-0">
-          <AnimatePresence mode="wait" initial={false}>
+          <AnimatePresence mode="wait">
             <motion.div
               key={showExperience}
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -85,12 +80,9 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
             >
               <CounterIndicator
                 value={showExperience}
-                className="text-[5rem]! md:text-[10rem]! 2xl:text-[18rem]!"
+                className="text-[4rem]! md:text-[10rem]! 2xl:text-[18rem]! rotate-3"
               >
-                <Text
-                  variant="lead"
-                  className="-mt-4! md:-mt-10! text-sm! md:text-base!"
-                >
+                <Text variant="lead" className="-mt-3! md:-mt-10! text-sm!">
                   años de experiencia
                 </Text>
               </CounterIndicator>
@@ -101,14 +93,7 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
         {/* Content */}
         <div className="absolute inset-0 grid grid-cols-1 xl:grid-cols-2 content-center gap-5">
           {/* Column 1 - Image */}
-          <motion.div
-            className="relative min-h-60 lg:min-h-96"
-            initial={{ translateY: -100, opacity: 0 }}
-            whileInView={{ translateY: 0, opacity: 1 }}
-            whileHover={{ scale: 1.05, rotate: 2 }}
-            viewport={{ once: false, margin: "-100px" }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
+          <motion.div className="relative min-h-52 lg:min-h-96">
             <Image
               src="/images/background/app-web-bg-002.png"
               alt="Background Path 001"
@@ -123,18 +108,19 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
             <div>
               <Title
                 variant="gradient"
-                className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-left max-w-xl"
+                className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-left max-w-lg md:max-w-xl"
               >
-                Hola, soy John Chavarro Urrea
+                {"<Hola, soy John Chavarro Urrea/>"}
               </Title>
               <Title
                 variant="gradient"
-                className="text-lg! md:text-xl! tracking-widest font-accent text-center xl:text-left"
+                className="text-lg! tracking-widest font-accent text-center xl:text-left"
               >
                 Desarrollador Frontend |{" "}
                 <motion.button
                   type="button"
-                  whileHover={{ scale: 1.05, translateX: 10 }}
+                  initial={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.1, translateX: 15 }}
                   whileTap={{ scale: 0.95, translateX: 0 }}
                   onClick={handleDownloadCV}
                   disabled={state.status === EnumDownloadStatus.LOADING}
@@ -151,16 +137,19 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
                 )}
               </Title>
             </div>
-            <div className="py-5 flex flex-wrap gap-3 xl:gap-5 items-center justify-center xl:justify-start">
+            <div className="max-w-[250px] mx-auto md:max-w-none py-5 flex flex-wrap gap-3 xl:gap-5 items-center justify-center xl:justify-start">
               {SKILLS.map((skill: SkillType, idx: number) => (
                 <motion.div
                   key={`${skill.name}-${idx}`}
-                  whileHover={{ scale: 1.05, rotate: -10 }}
+                  whileHover={{ scale: 1.05, rotate: -5, translateX: 10 }}
                   whileTap={{ scale: 0.95, rotate: 0 }}
                 >
                   <Icon
                     icon={skill.icon}
                     className="size-6 md:size-8 xl:size-10 text-foreground cursor-pointer"
+                    style={{
+                      filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.1))",
+                    }}
                     onMouseEnter={() => handleMouseEnter(skill.experience)}
                     onMouseLeave={handleMouseLeave}
                   />

@@ -56,7 +56,10 @@ jest.mock("next/image", () => ({
     src: string;
     alt: string;
     [key: string]: unknown;
-  }) => <img src={src} alt={alt} {...props} />,
+  }) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={src} alt={alt} {...props} />
+  ),
 }));
 
 jest.mock("@iconify/react", () => ({
