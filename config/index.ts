@@ -5,3 +5,4 @@
 
 export * from "./app-routes";
 export * from "./icons";
+export * from "./multimedia";

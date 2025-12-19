@@ -16,19 +16,23 @@ import { CardA, CardB } from "@/components/pages/app-web/v1/components/cards";
 
 // Import of utilities
 import { SOCIAL_MEDIA } from "@/app/utils";
-import {
-  EXPERIENCES_APP_WEB_V1,
-  NAVIGATION_APP_WEB_V1_SECTIONS,
-  PROJECTS_APP_WEB_V1,
-} from "@/components/pages/app-web/v1/utils";
+import { NAVIGATION_APP_WEB_V1_SECTIONS } from "@/components/pages/app-web/v1/utils";
+import { APP_ROUTES, MULTIMEDIA } from "@/config";
 
 // Import of custom hooks
 import { useIsMobile } from "@/hooks";
 import { useAppDispatch } from "@/store/hooks";
+
+// Import of contexts
 import { setVersion } from "@/store/slices/versionSlice";
 
 // Import of types
-import { ExperienceType, ProjectType } from "@/components/pages/app-web";
+import {
+  EXPERIENCES_APP_WEB,
+  PROJECTS_APP_WEB,
+  type ExperienceType,
+  type ProjectType,
+} from "@/components/pages/app-web";
 
 export const AppWebV1: React.FC = () => {
   // Implementation of custom hooks
@@ -105,14 +109,22 @@ export const AppWebV1: React.FC = () => {
     [isMobile]
   );
 
+  /**
+   * @name getProjectsMain
+   * @description Obtener los proyectos principales.
+   * @param {number} [limit=3] - El límite de proyectos a obtener (por defecto 3).
+   * @returns {ProjectType[]} - Lista de proyectos principales.
+   */
+  const getProjectsMain = useMemo(
+    () =>
+      (limit: number = 3): ProjectType[] => {
+        return PROJECTS_APP_WEB.slice(0, limit);
+      },
+    []
+  );
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, margin: "-100px" }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto lg:overscroll-none"
-    >
+    <motion.div className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto lg:overscroll-none">
       {/* Column 1 - Content */}
       <div className="h-fit lg:h-[calc(100dvh-96px)] lg:overflow-hidden lg:sticky lg:top-0">
         <div className="flex flex-col justify-between lg:max-w-xl mx-auto h-full py-10 gap-5 lg:gap-0">
@@ -245,7 +257,7 @@ export const AppWebV1: React.FC = () => {
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             EXPERIENCIA
           </Text>
-          {EXPERIENCES_APP_WEB_V1.map((experience: ExperienceType) => (
+          {EXPERIENCES_APP_WEB.map((experience: ExperienceType) => (
             <CardA key={experience.dates} data={experience} />
           ))}
           <Link
@@ -279,13 +291,13 @@ export const AppWebV1: React.FC = () => {
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             PROYECTOS
           </Text>
-          {PROJECTS_APP_WEB_V1.map((project: ProjectType) => (
+          {getProjectsMain(3).map((project: ProjectType) => (
             <CardB
               key={project.name}
               data={{
-                mainImage: project.image || "",
+                mainImage: project.image || MULTIMEDIA.BACKGROUNDS.PATH_001,
                 title: project.name,
-                url: project.url,
+                url: project.url || "/",
                 description:
                   project.description
                     .split("\n")
@@ -294,7 +306,14 @@ export const AppWebV1: React.FC = () => {
               }}
             />
           ))}
-          <Link href="/" className="group">
+
+          {/* Link to all projects */}
+          <Link
+            href={
+              APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.ALL_PROJECTS.path
+            }
+            className="group"
+          >
             <Title
               level={4}
               className="text-base flex items-center gap-2 group-hover:underline"
@@ -306,10 +325,11 @@ export const AppWebV1: React.FC = () => {
               />
             </Title>
           </Link>
+
           <Text className="text-[10px]">
-            * Los proyectos listados representan mi participación en iniciativas
-            realizadas durante mi trayectoria profesional, descritas de forma
-            general para respetar la confidencialidad de cada empresa.
+            * Los proyectos listados anteriores representan mi participación en
+            iniciativas realizadas durante mi trayectoria profesional, descritas
+            de forma general para respetar la confidencialidad de cada empresa.
           </Text>
         </motion.div>
       </div>

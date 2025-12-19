@@ -65,100 +65,104 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
   };
 
   return (
-    <motion.section>
-      <SnapPage id="01" anchorId={anchorId}>
-        {/* Children content */}
-        {/* Background counter indicator */}
-        <div className="absolute -top-2 right-0">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={showExperience}
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: -20 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+    <SnapPage id="01" anchorId={anchorId}>
+      {/* Children content */}
+      {/* Background counter indicator */}
+      <div className="absolute -top-2 right-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={showExperience}
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <CounterIndicator
+              value={showExperience}
+              className="text-[4rem]! md:text-[10rem]! 2xl:text-[18rem]! rotate-3"
             >
-              <CounterIndicator
-                value={showExperience}
-                className="text-[4rem]! md:text-[10rem]! 2xl:text-[18rem]! rotate-3"
-              >
-                <Text variant="lead" className="-mt-3! md:-mt-10! text-sm!">
-                  años de experiencia
-                </Text>
-              </CounterIndicator>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Content */}
-        <div className="absolute inset-0 grid grid-cols-1 xl:grid-cols-2 content-center gap-5">
-          {/* Column 1 - Image */}
-          <motion.div className="relative min-h-52 lg:min-h-96">
-            <Image
-              src="/images/background/app-web-bg-002.png"
-              alt="Background Path 001"
-              fill
-              quality={100}
-              className="object-contain drop-shadow-lg"
-            />
+              <Text variant="lead" className="-mt-3! md:-mt-10! text-sm!">
+                años de experiencia
+              </Text>
+            </CounterIndicator>
           </motion.div>
+        </AnimatePresence>
+      </div>
 
-          {/* Column 2 - Content */}
-          <div className="space-y-2">
-            <div>
-              <Title
-                variant="gradient"
-                className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-left max-w-lg md:max-w-xl"
+      {/* Content */}
+      <div className="absolute inset-0 grid grid-cols-1 xl:grid-cols-2 content-center gap-5">
+        {/* Column 1 - Image */}
+        <motion.div
+          className="relative min-h-52 lg:min-h-96"
+          initial={{ scale: 1.05, translateX: "-100%" }}
+          animate={{ scale: 1, translateX: 0 }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          <Image
+            src="/images/background/app-web-bg-002.png"
+            alt="Background Path 001"
+            fill
+            quality={100}
+            className="object-contain drop-shadow-lg"
+          />
+        </motion.div>
+
+        {/* Column 2 - Content */}
+        <div className="space-y-2">
+          <div>
+            <Title
+              variant="gradient"
+              className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-left max-w-lg md:max-w-xl"
+            >
+              {"<Hola, soy John Chavarro Urrea/>"}
+            </Title>
+            <Title
+              variant="gradient"
+              className="text-lg! tracking-widest font-accent text-center xl:text-left"
+            >
+              Desarrollador Frontend |{" "}
+              <motion.button
+                type="button"
+                initial={{ scale: 1.05 }}
+                whileHover={{ scale: 1.1, translateX: 15 }}
+                whileTap={{ scale: 0.95, translateX: 0 }}
+                onClick={handleDownloadCV}
+                disabled={state.status === EnumDownloadStatus.LOADING}
+                className="font-title md:text-2xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed bg-foreground text-background px-4 py-2 rounded-md"
               >
-                {"<Hola, soy John Chavarro Urrea/>"}
-              </Title>
-              <Title
-                variant="gradient"
-                className="text-lg! tracking-widest font-accent text-center xl:text-left"
+                {state.status === EnumDownloadStatus.LOADING
+                  ? "Descargando..."
+                  : "Descargar CV"}
+              </motion.button>
+              {state.status === EnumDownloadStatus.ERROR && (
+                <span className="block text-sm text-destructive mt-1">
+                  {state.error}
+                </span>
+              )}
+            </Title>
+          </div>
+          <div className="max-w-[250px] mx-auto md:max-w-none py-5 flex flex-wrap gap-3 xl:gap-5 items-center justify-center xl:justify-start">
+            {SKILLS.map((skill: SkillType, idx: number) => (
+              <motion.div
+                key={`${skill.name}-${idx}`}
+                whileHover={{ scale: 1.05, rotate: -5, translateX: 10 }}
+                whileTap={{ scale: 0.95, rotate: 0 }}
               >
-                Desarrollador Frontend |{" "}
-                <motion.button
-                  type="button"
-                  initial={{ scale: 1.05 }}
-                  whileHover={{ scale: 1.1, translateX: 15 }}
-                  whileTap={{ scale: 0.95, translateX: 0 }}
-                  onClick={handleDownloadCV}
-                  disabled={state.status === EnumDownloadStatus.LOADING}
-                  className="font-title md:text-2xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed bg-foreground text-background px-4 py-2 rounded-md"
-                >
-                  {state.status === EnumDownloadStatus.LOADING
-                    ? "Descargando..."
-                    : "Descargar CV"}
-                </motion.button>
-                {state.status === EnumDownloadStatus.ERROR && (
-                  <span className="block text-sm text-destructive mt-1">
-                    {state.error}
-                  </span>
-                )}
-              </Title>
-            </div>
-            <div className="max-w-[250px] mx-auto md:max-w-none py-5 flex flex-wrap gap-3 xl:gap-5 items-center justify-center xl:justify-start">
-              {SKILLS.map((skill: SkillType, idx: number) => (
-                <motion.div
-                  key={`${skill.name}-${idx}`}
-                  whileHover={{ scale: 1.05, rotate: -5, translateX: 10 }}
-                  whileTap={{ scale: 0.95, rotate: 0 }}
-                >
-                  <Icon
-                    icon={skill.icon}
-                    className="size-6 md:size-8 xl:size-10 text-foreground cursor-pointer"
-                    style={{
-                      filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.1))",
-                    }}
-                    onMouseEnter={() => handleMouseEnter(skill.experience)}
-                    onMouseLeave={handleMouseLeave}
-                  />
-                </motion.div>
-              ))}
-            </div>
+                <Icon
+                  icon={skill.icon}
+                  className="size-6 md:size-8 xl:size-10 text-foreground cursor-pointer"
+                  style={{
+                    filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.1))",
+                  }}
+                  onMouseEnter={() => handleMouseEnter(skill.experience)}
+                  onMouseLeave={handleMouseLeave}
+                />
+              </motion.div>
+            ))}
           </div>
         </div>
-      </SnapPage>
-    </motion.section>
+      </div>
+    </SnapPage>
   );
 };

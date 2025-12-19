@@ -5,37 +5,48 @@
 
 "use client";
 
-import * as React from "react";
+import React from "react";
+import { motion } from "motion/react";
 import { FileCodeIcon } from "lucide-react";
 
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
 import { Title } from "@/components/atomic-design/atoms";
+import { CodeEditor } from "@/components/pages/app-web/components";
 
 // Import of utilities
-import { EXPERIENCES } from "@/components/pages/app-web";
+import {
+  EXPERIENCES_APP_WEB,
+  type ExperienceType,
+} from "@/components/pages/app-web";
+
+// Import of hooks
 import { useIsMobile } from "@/hooks/use-mobile";
-import { CodeEditor } from "../../../components";
-import type { FileItem } from "../../../components/code-editor/utils";
-import { motion } from "motion/react";
+
+// Import of types
+import type { FileItem } from "@/components/pages/app-web/components/code-editor/utils";
 
 interface Section02Props {
   readonly anchorId?: string;
 }
 
 /**
- * Formatea EXPERIENCES como JSON con indentación
+ * @name formatExperiencesAsJSON
+ * @description Formatea la lista de experiencias profesionales como JSON con indentación
+ * @param {ExperienceType[]} experiences - Lista de experiencias profesionales
+ * @returns {string} - JSON formateado con indentación y espacios
  */
-const formatExperiencesAsJSON = (experiences: typeof EXPERIENCES): string => {
+const formatExperiencesAsJSON = (experiences: ExperienceType[]): string => {
   return JSON.stringify({ experiences }, null, 2);
 };
 
 export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
+  // Implementation of custom hooks
   const isMobile = useIsMobile();
 
   // Generar el código JSON de EXPERIENCES
   const experiencesJSON = React.useMemo(
-    () => formatExperiencesAsJSON(EXPERIENCES),
+    () => formatExperiencesAsJSON(EXPERIENCES_APP_WEB),
     []
   );
 
