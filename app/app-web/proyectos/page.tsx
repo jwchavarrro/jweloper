@@ -75,7 +75,7 @@ export default function ProjectsPage() {
                     <Text className="font-bold">{project.name}</Text>
                   </td>
                   <td className="min-w-32 p-1 py-3">
-                    <Text>Company</Text>
+                    <Text>{project.company?.name}</Text>
                   </td>
                   <td className="p-1 py-3">
                     <div className="flex flex-wrap gap-2">
