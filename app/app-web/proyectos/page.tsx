@@ -45,7 +45,7 @@ export default function ProjectsPage() {
               icon={ICONS.ARROW_LEFT}
               className="size-7 group-hover:-translate-x-1 transition-all duration-300"
             />
-            <Text className="tracking-widest">John Chavarro Urrea</Text>
+            <Text className="font-bold">John Chavarro Urrea</Text>
           </div>
         </Link>
         <Title>Todos los proyectos</Title>
@@ -55,6 +55,7 @@ export default function ProjectsPage() {
       <main>
         <div className="overflow-x-auto">
           <table className="min-w-full table-auto">
+            {/* Table header */}
             <thead className="border-b shadow-sm">
               <tr className="text-left tracking-widest">
                 {HEADERS_ALL_PROJECTS.map((header: string) => (
@@ -64,6 +65,8 @@ export default function ProjectsPage() {
                 ))}
               </tr>
             </thead>
+
+            {/* Table body */}
             <tbody>
               {getAllProjects(3).map((project: ProjectType) => (
                 <tr key={project.name} className="border-b">

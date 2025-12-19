@@ -109,6 +109,10 @@ export const APP_LINKS = {
         name: "CV Loneliness",
         url: "https://cv-loneliness.vercel.app/",
       },
+      COLEGIO_GIMNASIO_LEONARDO_DA_VINCI: {
+        name: "Portal web - ( Colegio Gimnasio Leonardo da Vinci )",
+        url: "https://gimnasioleonardodavinci.com.co/",
+      },
       JVELOPER_CV: {
         name: "Jveloper CV",
         url: "https://jveloper-cv-front.vercel.app/",

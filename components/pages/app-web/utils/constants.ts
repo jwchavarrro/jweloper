@@ -232,7 +232,19 @@ export const PROJECTS_APP_WEB: ProjectType[] = [
     tecnologies: ["Angular", "CSS", "TypeScript", "Karma"],
   },
   {
-    date: "2022",
+    date: "2023",
+    image: "",
+    name: "Colegio Gimnasio Leonardo da Vinci",
+    description:
+      "Portal web para el colegio Gimnasio Leonardo da Vinci, utilizando WordPress y Elementor.",
+    company: {
+      name: "Freelance",
+    },
+    url: APP_LINKS.PORTFOLIO.PROJECTS.COLEGIO_GIMNASIO_LEONARDO_DA_VINCI.url,
+    tecnologies: ["WordPress", "Elementor"],
+  },
+  {
+    date: "2023",
     image: "",
     name: "Jveloper CV",
     description:
