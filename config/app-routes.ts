@@ -10,24 +10,6 @@ export const APP_ROUTES = {
   PUBLIC: {
     HOME: {
       path: "/",
-      SOCIAL_MEDIA: {
-        GITHUB: {
-          path: "/github",
-          url: "https://github.com/jwchavarrro",
-        },
-        LINKEDIN: {
-          path: "/linkedin",
-          url: "https://www.linkedin.com/in/john-chavarro-urrea-9b9200129/",
-        },
-        WHATSAPP: {
-          path: "/whatsapp",
-          url: "https://wa.me/573134628546",
-        },
-        EMAIL: {
-          path: "/email",
-          url: "mailto:jwchavarrro023@gmail.com",
-        },
-      },
     },
     PORTFOLIO: {
       APP_WEB: {
@@ -66,6 +48,68 @@ export const APP_ROUTES = {
             limit: "number",
           } as const,
         },
+      },
+    },
+  },
+} as const;
+
+/**
+ * @name LINKS_BLANK
+ * @type {Object}
+ * @description Enlaces para abrir en una nueva pestaña.
+ */
+export const APP_LINKS = {
+  GENERALS: {
+    SOCIAL_MEDIA: {
+      GITHUB: {
+        path: "/github",
+        url: "https://github.com/jwchavarrro",
+      },
+      LINKEDIN: {
+        path: "/linkedin",
+        url: "https://www.linkedin.com/in/john-chavarro-urrea-9b9200129/",
+      },
+      WHATSAPP: {
+        path: "/whatsapp",
+        url: "https://wa.me/573134628546",
+      },
+      EMAIL: {
+        path: "/email",
+        url: "mailto:jwchavarrro023@gmail.com",
+      },
+    },
+    COMPANY: {
+      PREVALENTWARE: {
+        name: "Prevalentware s.a.s",
+        url: "https://www.prevalentware.com/es/",
+      },
+      CABI: {
+        name: "CABI",
+        url: "http://www.colegioadventistaneiva.edu.co/",
+      },
+    },
+  },
+  PORTFOLIO: {
+    PROJECTS: {
+      RISKHUB: {
+        name: "RiskHub",
+        url: "https://riskhub.iadb.org/",
+      },
+      LACEA: {
+        name: "Portal web - ( Panel administrativo membresía )",
+        url: "https://www.lacea.org/",
+      },
+      PORTALALIADOS: {
+        name: "PortalAliados - ( Formulario solicitud créditos )",
+        url: "https://virtual.puntoaliado.com/formulario/nuevo?config=cm34n92j00001xhfrm94v6ysc",
+      },
+      CV_LONELINESS: {
+        name: "CV Loneliness",
+        url: "https://cv-loneliness.vercel.app/",
+      },
+      JVELOPER_CV: {
+        name: "Jveloper CV",
+        url: "https://jveloper-cv-front.vercel.app/",
       },
     },
   },

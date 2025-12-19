@@ -5,7 +5,7 @@
 
 // Import of utilities
 import { APP_WEB_ICONS } from "@/components/pages/app-web";
-import { APP_ROUTES } from "@/config";
+import { APP_LINKS } from "@/config";
 
 // Import of types
 import { SocialMediaType, EnumSocialMedia, EnumSkills } from "./types";
@@ -19,21 +19,21 @@ export const SOCIAL_MEDIA: SocialMediaType[] = [
   {
     name: EnumSkills.Github,
     icon: APP_WEB_ICONS[EnumSkills.Github],
-    url: APP_ROUTES.PUBLIC.HOME.SOCIAL_MEDIA.GITHUB.url,
+    url: APP_LINKS.GENERALS.SOCIAL_MEDIA.GITHUB.url,
   },
   {
     name: EnumSocialMedia.Linkedin,
     icon: APP_WEB_ICONS[EnumSocialMedia.Linkedin],
-    url: APP_ROUTES.PUBLIC.HOME.SOCIAL_MEDIA.LINKEDIN.url,
+    url: APP_LINKS.GENERALS.SOCIAL_MEDIA.LINKEDIN.url,
   },
   {
     name: EnumSocialMedia.Whatsapp,
     icon: APP_WEB_ICONS[EnumSocialMedia.Whatsapp],
-    url: APP_ROUTES.PUBLIC.HOME.SOCIAL_MEDIA.WHATSAPP.url,
+    url: APP_LINKS.GENERALS.SOCIAL_MEDIA.WHATSAPP.url,
   },
   {
     name: EnumSocialMedia.Email,
     icon: APP_WEB_ICONS[EnumSocialMedia.Email],
-    url: APP_ROUTES.PUBLIC.HOME.SOCIAL_MEDIA.EMAIL.url,
+    url: APP_LINKS.GENERALS.SOCIAL_MEDIA.EMAIL.url,
   },
 ];

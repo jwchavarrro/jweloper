@@ -5,16 +5,37 @@
 
 "use client";
 
+import { useMemo } from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 
 // Import of components custom
 import { Text, Title } from "@/components/atomic-design/atoms";
+import { Badge } from "@/components/atomic-design/molecules";
 
 // Import of utilities
 import { ICONS } from "@/config";
+import { HEADERS_ALL_PROJECTS } from "@/components/pages/app-web/proyectos";
+import { PROJECTS_APP_WEB_V1 } from "@/components/pages/app-web/v1/utils/constants";
+
+// Import of types
+import { ProjectType } from "@/components/pages/app-web";
 
 export default function ProjectsPage() {
+  /**
+   * @name getAllProjects
+   * @description Obtiene los proyectos desde la posición indicada (startIndex) hasta el final, ordenados de más reciente a más antiguo.
+   * @param {number} startIndex - Índice a partir del cual empezar a mapear (por defecto: 0).
+   * @returns {ProjectType[]} - Lista de todos los proyectos desde la posición indicada (startIndex) hasta el final, ordenados de más reciente a más antiguo.
+   */
+  const getAllProjects = useMemo(
+    () =>
+      (startIndex: number = 0): ProjectType[] => {
+        return PROJECTS_APP_WEB_V1.slice(startIndex);
+      },
+    []
+  );
+
   return (
     <div className="relative h-[calc(100dvh-96px)] mx-auto container space-y-10">
       {/* Header */}
@@ -34,56 +55,52 @@ export default function ProjectsPage() {
       {/* Main -- Table */}
       <main>
         <div className="overflow-x-auto">
-          <table className="min-w-full border-separate border-spacing-y-2">
-            <thead>
-              <tr className="text-left text-xs uppercase text-gray-400 tracking-widest">
-                <th className="px-4 pb-3">Año</th>
-                <th className="px-4 pb-3">Proyecto</th>
-                <th className="px-4 pb-3">Hecho en</th>
-                <th className="px-4 pb-3">Construido con</th>
-                <th className="px-4 pb-3">Enlace</th>
+          <table className="min-w-full table-auto">
+            <thead className="border-b shadow-sm">
+              <tr className="text-left tracking-widest">
+                {HEADERS_ALL_PROJECTS.map((header: string) => (
+                  <th key={header} className="p-1 py-2">
+                    <Text>{header}</Text>
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              <tr className="">
-                <td className="px-4 py-3 align-middle text-gray-300 font-mono">
-                  2023
-                </td>
-                <td className="px-4 py-3 align-middle font-semibold text-gray-100">
-                  Colectivo Emersan
-                </td>
-                <td className="px-4 py-3 align-middle text-blue-200">
-                  Usolatermint
-                </td>
-                <td className="px-4 py-3 align-middle">
-                  <span className="inline-block bg-blue-900 text-xs text-blue-200 font-medium rounded-full px-3 py-1 mr-2">
-                    Next.js
-                  </span>
-                  <span className="inline-block bg-blue-900 text-xs text-blue-200 font-medium rounded-full px-3 py-1 mr-2">
-                    Typescript
-                  </span>
-                  <span className="inline-block bg-blue-900 text-xs text-blue-200 font-medium rounded-full px-3 py-1 mr-2">
-                    SASS
-                  </span>
-                  <span className="inline-block bg-blue-900 text-xs text-blue-200 font-medium rounded-full px-3 py-1">
-                    Dominio
-                  </span>
-                </td>
-                <td className="px-4 py-3 align-middle">
-                  <a
-                    href="https://emersoncolective.com.ar"
-                    className="flex items-center gap-1 text-blue-400 hover:text-blue-300 underline transition"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    emersoncolective.com.ar
-                    <Icon
-                      icon="tabler:external-link"
-                      className="w-4 h-4 inline align-middle"
-                    />
-                  </a>
-                </td>
-              </tr>
+              {getAllProjects(3).map((project: ProjectType) => (
+                <tr key={project.name} className="border-b">
+                  <td className="min-w-16 p-1 py-3">
+                    <Text>{project.date}</Text>
+                  </td>
+                  <td className="p-1 py-3">
+                    <Text className="font-bold">{project.name}</Text>
+                  </td>
+                  <td className="min-w-32 p-1 py-3">
+                    <Text>Company</Text>
+                  </td>
+                  <td className="p-1 py-3">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tecnologies.map((technology: string) => (
+                        <Badge key={technology} text={technology} />
+                      ))}
+                    </div>
+                  </td>
+                  <td className="p-1 py-3">
+                    <Link
+                      href={project.url || ""}
+                      target="_blank"
+                      className="group flex items-center gap-1"
+                    >
+                      <Text className="group-hover:underline group-hover:font-bold transition-all duration-300">
+                        {project.name}
+                      </Text>
+                      <Icon
+                        icon={ICONS.OPEN_IN_NEW}
+                        className="group-hover:translate-x-1 transition-all duration-300"
+                      />
+                    </Link>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

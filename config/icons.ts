@@ -26,4 +26,5 @@ export const ICONS: Record<string, string> = {
   [EnumSocialMedia.Whatsapp]: "devicon-plain:whatsapp",
   [EnumSocialMedia.Email]: "devicon-plain:email",
   ARROW_LEFT: "hugeicons:circle-arrow-left-02",
+  OPEN_IN_NEW: "hugeicons:square-arrow-up-right",
 };

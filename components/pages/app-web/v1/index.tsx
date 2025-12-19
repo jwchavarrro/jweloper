@@ -108,6 +108,20 @@ export const AppWebV1: React.FC = () => {
     [isMobile]
   );
 
+  /**
+   * @name getProjectsMain
+   * @description Obtener los proyectos principales.
+   * @param {number} [limit=3] - El límite de proyectos a obtener (por defecto 3).
+   * @returns {ProjectType[]} - Lista de proyectos principales.
+   */
+  const getProjectsMain = useMemo(
+    () =>
+      (limit: number = 3): ProjectType[] => {
+        return PROJECTS_APP_WEB_V1.slice(0, limit);
+      },
+    []
+  );
+
   return (
     <motion.div className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto lg:overscroll-none">
       {/* Column 1 - Content */}
@@ -276,7 +290,7 @@ export const AppWebV1: React.FC = () => {
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             PROYECTOS
           </Text>
-          {PROJECTS_APP_WEB_V1.map((project: ProjectType) => (
+          {getProjectsMain(3).map((project: ProjectType) => (
             <CardB
               key={project.name}
               data={{
