@@ -55,10 +55,8 @@ describe("NavUser", () => {
     await user.click(trigger);
 
     // Wait for dropdown items to appear
-    await screen.findByText("Upgrade to Pro");
-    expect(screen.getByText("Upgrade to Pro")).toBeInTheDocument();
-    expect(screen.getByText("Account")).toBeInTheDocument();
-    expect(screen.getByText("Notifications")).toBeInTheDocument();
+    await screen.findByText(/Modo oscuro|Modo claro/);
+    expect(screen.getByText(/Modo oscuro|Modo claro/)).toBeInTheDocument();
   });
 
   it("should render user info in dropdown header", async () => {
@@ -69,7 +67,7 @@ describe("NavUser", () => {
     await user.click(trigger);
 
     // Wait for dropdown to open
-    await screen.findByText("Upgrade to Pro");
+    await screen.findByText(/Modo oscuro|Modo claro/);
 
     // User info should appear twice (in button and in dropdown header)
     const nameElements = screen.getAllByText("John Doe");

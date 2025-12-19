@@ -40,9 +40,9 @@ export const SIDEBAR_ICONS: Record<string, LucideIcon> = {
  */
 export const SIDEBAR_DATA: SidebarDataType = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Jweloper",
+    email: "jwchavarrro023@gmail.com",
+    avatar: "",
   },
   navMain: [
     {
@@ -93,7 +93,7 @@ export const SIDEBAR_DATA: SidebarDataType = {
   // Todo: Esto se debe de eliminar pues se genera dinamicamente en el componente NavChats
   chats: [
     {
-      name: "Design Engineering",
+      name: "Testing chat IA",
       url: "#",
       icon: "Frame",
     },
