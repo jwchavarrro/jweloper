@@ -16,10 +16,9 @@ import { Badge } from "@/components/atomic-design/molecules";
 // Import of utilities
 import { ICONS } from "@/config";
 import { HEADERS_ALL_PROJECTS } from "@/components/pages/app-web/proyectos";
-import { PROJECTS_APP_WEB_V1 } from "@/components/pages/app-web/v1/utils/constants";
 
 // Import of types
-import { ProjectType } from "@/components/pages/app-web";
+import { PROJECTS_APP_WEB, type ProjectType } from "@/components/pages/app-web";
 
 export default function ProjectsPage() {
   /**
@@ -31,7 +30,7 @@ export default function ProjectsPage() {
   const getAllProjects = useMemo(
     () =>
       (startIndex: number = 0): ProjectType[] => {
-        return PROJECTS_APP_WEB_V1.slice(startIndex);
+        return PROJECTS_APP_WEB.slice(startIndex);
       },
     []
   );

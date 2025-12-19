@@ -4,7 +4,9 @@
  */
 
 /**
- * Rutas de la aplicación con sus query parameters permitidos
+ * @name APP_ROUTES
+ * @type {Object}
+ * @description Rutas de la aplicación con sus query parameters permitidos.
  */
 export const APP_ROUTES = {
   PUBLIC: {
@@ -54,7 +56,7 @@ export const APP_ROUTES = {
 } as const;
 
 /**
- * @name LINKS_BLANK
+ * @name APP_LINKS
  * @type {Object}
  * @description Enlaces para abrir en una nueva pestaña.
  */

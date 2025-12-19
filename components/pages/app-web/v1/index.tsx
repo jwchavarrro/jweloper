@@ -16,11 +16,7 @@ import { CardA, CardB } from "@/components/pages/app-web/v1/components/cards";
 
 // Import of utilities
 import { SOCIAL_MEDIA } from "@/app/utils";
-import {
-  EXPERIENCES_APP_WEB_V1,
-  NAVIGATION_APP_WEB_V1_SECTIONS,
-  PROJECTS_APP_WEB_V1,
-} from "@/components/pages/app-web/v1/utils";
+import { NAVIGATION_APP_WEB_V1_SECTIONS } from "@/components/pages/app-web/v1/utils";
 import { APP_ROUTES, MULTIMEDIA } from "@/config";
 
 // Import of custom hooks
@@ -31,7 +27,12 @@ import { useAppDispatch } from "@/store/hooks";
 import { setVersion } from "@/store/slices/versionSlice";
 
 // Import of types
-import { ExperienceType, ProjectType } from "@/components/pages/app-web";
+import {
+  EXPERIENCES_APP_WEB,
+  PROJECTS_APP_WEB,
+  type ExperienceType,
+  type ProjectType,
+} from "@/components/pages/app-web";
 
 export const AppWebV1: React.FC = () => {
   // Implementation of custom hooks
@@ -117,7 +118,7 @@ export const AppWebV1: React.FC = () => {
   const getProjectsMain = useMemo(
     () =>
       (limit: number = 3): ProjectType[] => {
-        return PROJECTS_APP_WEB_V1.slice(0, limit);
+        return PROJECTS_APP_WEB.slice(0, limit);
       },
     []
   );
@@ -256,7 +257,7 @@ export const AppWebV1: React.FC = () => {
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
             EXPERIENCIA
           </Text>
-          {EXPERIENCES_APP_WEB_V1.map((experience: ExperienceType) => (
+          {EXPERIENCES_APP_WEB.map((experience: ExperienceType) => (
             <CardA key={experience.dates} data={experience} />
           ))}
           <Link
@@ -305,6 +306,8 @@ export const AppWebV1: React.FC = () => {
               }}
             />
           ))}
+
+          {/* Link to all projects */}
           <Link
             href={
               APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.ALL_PROJECTS.path
@@ -322,10 +325,11 @@ export const AppWebV1: React.FC = () => {
               />
             </Title>
           </Link>
+
           <Text className="text-[10px]">
-            * Los proyectos listados representan mi participación en iniciativas
-            realizadas durante mi trayectoria profesional, descritas de forma
-            general para respetar la confidencialidad de cada empresa.
+            * Los proyectos listados anteriores representan mi participación en
+            iniciativas realizadas durante mi trayectoria profesional, descritas
+            de forma general para respetar la confidencialidad de cada empresa.
           </Text>
         </motion.div>
       </div>
