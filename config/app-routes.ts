@@ -39,6 +39,9 @@ export const APP_ROUTES = {
         },
         PROJECTS: {
           path: "/app-web#proyectos",
+          ALL_PROJECTS: {
+            path: "/app-web/proyectos",
+          },
         },
         CONTACT: {
           path: "/app-web#contacto",

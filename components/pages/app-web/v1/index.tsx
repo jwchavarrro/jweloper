@@ -21,10 +21,13 @@ import {
   NAVIGATION_APP_WEB_V1_SECTIONS,
   PROJECTS_APP_WEB_V1,
 } from "@/components/pages/app-web/v1/utils";
+import { APP_ROUTES } from "@/config";
 
 // Import of custom hooks
 import { useIsMobile } from "@/hooks";
 import { useAppDispatch } from "@/store/hooks";
+
+// Import of contexts
 import { setVersion } from "@/store/slices/versionSlice";
 
 // Import of types
@@ -106,13 +109,7 @@ export const AppWebV1: React.FC = () => {
   );
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, margin: "-100px" }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto lg:overscroll-none"
-    >
+    <motion.div className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto lg:overscroll-none">
       {/* Column 1 - Content */}
       <div className="h-fit lg:h-[calc(100dvh-96px)] lg:overflow-hidden lg:sticky lg:top-0">
         <div className="flex flex-col justify-between lg:max-w-xl mx-auto h-full py-10 gap-5 lg:gap-0">
@@ -294,7 +291,12 @@ export const AppWebV1: React.FC = () => {
               }}
             />
           ))}
-          <Link href="/" className="group">
+          <Link
+            href={
+              APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.ALL_PROJECTS.path
+            }
+            className="group"
+          >
             <Title
               level={4}
               className="text-base flex items-center gap-2 group-hover:underline"
