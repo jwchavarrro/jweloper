@@ -32,7 +32,7 @@ export type ExperienceType = {
   location: string;
   isRemote?: boolean;
   description: string[];
-  technologies?: string[];
+  tecnologies: string[];
 };
 
 /**
@@ -41,9 +41,14 @@ export type ExperienceType = {
  * @description Tipo para los datos de un proyecto.
  */
 export type ProjectType = {
+  date: string;
   image: string;
   name: string;
   description: string;
+  company: {
+    name: string;
+    url?: string;
+  } | null;
   url: string;
   tecnologies: string[];
 };

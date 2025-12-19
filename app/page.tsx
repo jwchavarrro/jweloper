@@ -17,6 +17,7 @@ import { Title, Text, Button } from "@/components/atomic-design/atoms";
 // Import of utilities
 import { SOCIAL_MEDIA } from "./utils";
 import { HOME_DATA, HOME_ICONS } from "@/components/pages";
+import { MULTIMEDIA } from "@/config";
 
 export default function Home() {
   const pathname = usePathname();
@@ -78,7 +79,7 @@ export default function Home() {
           className="relative min-h-40 lg:min-h-80 flex items-center justify-center"
         >
           <Image
-            src="/images/background/bg-path-001.png"
+            src={MULTIMEDIA.BACKGROUNDS.PATH_001}
             alt="Background Path 001"
             quality={100}
             fill

@@ -17,7 +17,7 @@ import { Title } from "@/components/atomic-design/atoms";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 // Import of utilities
-import { PROJECTS_DATA } from "@/components/pages/app-web/utils";
+import { PROJECTS_APP_WEB, type ProjectType } from "@/components/pages/app-web";
 
 interface Section03Props {
   readonly anchorId?: string;
@@ -40,7 +40,7 @@ export const Section03: React.FC<Section03Props> = ({ anchorId }) => {
         >
           <div className="mx-auto w-4/5 h-full flex items-center justify-center">
             <Carousel
-              items={PROJECTS_DATA?.map((project) => ({
+              items={PROJECTS_APP_WEB.map((project: ProjectType) => ({
                 content: <ProjectItem project={project} />,
               }))}
               contentClassName="overflow-visible py-[8%] px-[1%]"
