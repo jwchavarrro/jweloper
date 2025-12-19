@@ -21,7 +21,7 @@ import {
   NAVIGATION_APP_WEB_V1_SECTIONS,
   PROJECTS_APP_WEB_V1,
 } from "@/components/pages/app-web/v1/utils";
-import { APP_ROUTES } from "@/config";
+import { APP_ROUTES, MULTIMEDIA } from "@/config";
 
 // Import of custom hooks
 import { useIsMobile } from "@/hooks";
@@ -280,9 +280,9 @@ export const AppWebV1: React.FC = () => {
             <CardB
               key={project.name}
               data={{
-                mainImage: project.image || "",
+                mainImage: project.image || MULTIMEDIA.BACKGROUNDS.PATH_001,
                 title: project.name,
-                url: project.url,
+                url: project.url || "/",
                 description:
                   project.description
                     .split("\n")

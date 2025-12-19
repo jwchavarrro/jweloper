@@ -78,7 +78,7 @@ export const EXPERIENCES_APP_WEB_V1: ExperienceType[] = [
  */
 export const PROJECTS_APP_WEB_V1: ProjectType[] = [
   {
-    image: "https://via.placeholder.com/150",
+    image: "",
     name: "RiskHub",
     description:
       "Filtros avanzados basados en query params para consultas dinámicas. Internacionalización i18n con soporte multilenguaje en Next.js. Optimización de UX para visualización de mapas, capas y modelos.",
@@ -86,7 +86,7 @@ export const PROJECTS_APP_WEB_V1: ProjectType[] = [
     tecnologies: ["Next.js", "Tailwind CSS", "TypeScript", "React", "Node.js"],
   },
   {
-    image: "https://via.placeholder.com/150",
+    image: "",
     name: "Portal web LACEA (Panel administrativo)",
     description:
       "Desarrollo de panel administrativo para gestión de membresías de usuarios. Sistema de publicación de ofertas y oportunidades profesionales para miembros. Buscador interno para localizar miembros activos — facilitando networking y colaboración.",
@@ -94,7 +94,7 @@ export const PROJECTS_APP_WEB_V1: ProjectType[] = [
     tecnologies: ["Next.js", "Tailwind CSS", "TypeScript", "React", "Node.js"],
   },
   {
-    image: "https://via.placeholder.com/150",
+    image: "",
     name: "PortalAliados",
     description:
       "Formularios multi-step con campos condicionales según respuestas. Integración con HubSpot para registro automático de leads. Validaciones dinámicas y UX optimizada para flujo de captura de datos.",

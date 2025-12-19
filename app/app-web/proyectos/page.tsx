@@ -14,7 +14,7 @@ import { Text, Title } from "@/components/atomic-design/atoms";
 // Import of utilities
 import { ICONS } from "@/config";
 
-export default function ProyectosPage() {
+export default function ProjectsPage() {
   return (
     <div className="relative h-[calc(100dvh-96px)] mx-auto container space-y-10">
       {/* Header */}

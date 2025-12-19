@@ -13,7 +13,7 @@ interface VersionStateType {
 }
 
 const initialState: VersionStateType = {
-  selectedVersion: "v2",
+  selectedVersion: "v1",
 };
 
 const versionSlice = createSlice({

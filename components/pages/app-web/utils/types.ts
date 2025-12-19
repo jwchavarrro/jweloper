@@ -41,10 +41,11 @@ export type ExperienceType = {
  * @description Tipo para los datos de un proyecto.
  */
 export type ProjectType = {
+  year?: string;
   image: string;
   name: string;
   description: string;
-  url: string;
+  url?: string;
   tecnologies: string[];
 };
 
