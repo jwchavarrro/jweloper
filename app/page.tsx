@@ -5,7 +5,7 @@
 
 "use client";
 
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
@@ -108,45 +108,47 @@ export default function Home() {
               rápidos hasta aplicaciones complejas.
             </Text>
           </div>
-          <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
-            {HOME_DATA?.buttons?.map((button) => {
-              return (
-                <motion.button
-                  key={button.label}
-                  className="w-fit rounded-full flex items-center gap-2 font-bold border p-1 pr-5 cursor-pointer"
-                  onClick={() => window.open(button.url, "_blank")}
-                  variants={{
-                    default: {},
-                    hovered: {},
-                    tapped: {},
-                  }}
-                  initial="default"
-                  whileHover="hovered"
-                  whileTap="tapped"
-                >
-                  <span className="size-6 md:size-10 bg-foreground text-background flex items-center justify-center rounded-full overflow-hidden">
+          <AnimatePresence>
+            <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
+              {HOME_DATA?.buttons?.map((button) => {
+                return (
+                  <motion.button
+                    key={button.label}
+                    className="w-fit rounded-full flex items-center gap-2 font-bold border p-1 pr-5 cursor-pointer"
+                    onClick={() => window.open(button.url, "_blank")}
+                    variants={{
+                      default: {},
+                      hovered: {},
+                      tapped: {},
+                    }}
+                    initial="default"
+                    whileHover="hovered"
+                    whileTap="tapped"
+                  >
+                    <span className="size-6 md:size-10 bg-foreground text-background flex items-center justify-center rounded-full overflow-hidden">
+                      <motion.span
+                        variants={{
+                          default: { translateX: 0 },
+                          hovered: { translateX: 23 },
+                        }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      >
+                        <Icon
+                          icon={ICONS.ARROW_RIGHT_01}
+                          className="size-5 md:size-6"
+                        />
+                      </motion.span>
+                    </span>
                     <motion.span
-                      variants={{
-                        default: { translateX: 0 },
-                        hovered: { translateX: 23 },
-                      }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <Icon
-                        icon={ICONS.ARROW_RIGHT_01}
-                        className="size-5 md:size-6"
-                      />
+                      {button.label}
                     </motion.span>
-                  </span>
-                  <motion.span
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  >
-                    {button.label}
-                  </motion.span>
-                </motion.button>
-              );
-            })}
-          </div>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </AnimatePresence>
         </div>
       </section>
 
