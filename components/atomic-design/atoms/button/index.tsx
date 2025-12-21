@@ -1,35 +1,74 @@
-import * as React from "react";
-import { Button as BaseButton, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import type { VariantProps } from "class-variance-authority";
-
 /**
- * Button personalizado que extiende el Button base de shadcn/ui
- * Permite agregar estilos personalizados sin modificar el componente base
+ * @file button.tsx
+ * @description Componente de botón personalizado.
  */
-interface CustomButtonProps
-  extends React.ComponentProps<typeof BaseButton>,
-    VariantProps<typeof buttonVariants> {
-  /** Variante personalizada adicional */
-  customVariant?: "gradient" | "glow";
+
+"use client";
+
+import { motion } from "motion/react";
+import { Icon } from "@iconify/react";
+
+// Import of utilities
+import { cn } from "@/lib/utils";
+import { ICONS } from "@/config";
+
+interface ButtonProps
+  extends Omit<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    | "onDrag"
+    | "onDragEnd"
+    | "onDragStart"
+    | "onAnimationStart"
+    | "onAnimationEnd"
+    | "onAnimationIteration"
+  > {
+  icon?: string;
+  text: string;
 }
 
 export function Button({
+  icon,
+  text,
   className,
-  customVariant,
   ...props
-}: Readonly<CustomButtonProps>) {
+}: Readonly<ButtonProps>) {
   return (
-    <BaseButton
+    <motion.button
       className={cn(
-        // Estilos personalizados adicionales
-        customVariant === "gradient" &&
-          "bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70",
-        customVariant === "glow" &&
-          "shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/60",
+        "w-fit rounded-full flex items-center gap-2 font-bold border p-1 pr-5 cursor-pointer",
         className
       )}
+      initial="default"
+      whileHover="hovered"
+      whileTap="tapped"
+      variants={{
+        default: {},
+        hovered: {},
+        tapped: {},
+      }}
       {...props}
-    />
+    >
+      <motion.span
+        variants={{
+          hovered: { translateX: 10 },
+          tapped: { translateX: 0 },
+        }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+        className="size-6 md:size-10 bg-foreground text-background flex items-center justify-center rounded-full overflow-hidden"
+      >
+        <Icon
+          icon={icon || ICONS.ARROW_RIGHT_01}
+          className="size-5 md:size-6"
+        />
+      </motion.span>
+      <motion.span
+        variants={{
+          hovered: { translateX: 5 },
+          tapped: { translateX: 0 },
+        }}
+      >
+        {text}
+      </motion.span>
+    </motion.button>
   );
 }

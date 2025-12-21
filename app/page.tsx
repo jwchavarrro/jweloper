@@ -5,14 +5,14 @@
 
 "use client";
 
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 // Import of components custom
-import { Title, Text } from "@/components/atomic-design/atoms";
+import { Title, Text, Button } from "@/components/atomic-design/atoms";
 
 // Import of utilities
 import { SOCIAL_MEDIA } from "./utils";
@@ -20,16 +20,11 @@ import { HOME_DATA } from "@/components/pages";
 import { ICONS, MULTIMEDIA } from "@/config";
 
 export default function Home() {
+  // Hooks
   const pathname = usePathname();
-
+  const router = useRouter();
   return (
-    <motion.div
-      key={pathname}
-      className="relative h-[calc(100vh-96px)]"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease: "easeOut" }}
-    >
+    <motion.div key={pathname} className="relative h-[calc(100vh-96px)]">
       {/* Background */}
       <div className="absolute inset-0 z-0 grid grid-cols-2 gap-5 justify-center">
         {/* Social Media */}
@@ -72,10 +67,22 @@ export default function Home() {
       <section className="relative z-10 h-full w-full max-w-11/12 md:max-w-4/5 mx-auto grid grid-cols-1 xl:grid-cols-2 content-center gap-5">
         {/* Column 1 - Image */}
         <motion.div
-          initial={{ translateX: 100, opacity: 0, rotate: -10 }}
-          animate={{ translateX: 0, opacity: 1, rotate: -10 }}
-          whileHover={{ scale: 1.05, rotate: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={{ translateX: 100, opacity: 0, rotate: 0 }}
+          animate={{
+            translateX: 0,
+            opacity: 1,
+            rotate: [0, -10, 5, -8, 0],
+          }}
+          transition={{
+            translateX: { duration: 0.8, ease: "easeInOut" },
+            rotate: {
+              delay: 0.8,
+              duration: 5,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatType: "loop",
+            },
+          }}
           className="relative min-h-40 lg:min-h-80 flex items-center justify-center"
         >
           <Image
@@ -108,47 +115,18 @@ export default function Home() {
               rápidos hasta aplicaciones complejas.
             </Text>
           </div>
-          <AnimatePresence>
-            <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
-              {HOME_DATA?.buttons?.map((button) => {
-                return (
-                  <motion.button
-                    key={button.label}
-                    className="w-fit rounded-full flex items-center gap-2 font-bold border p-1 pr-5 cursor-pointer"
-                    onClick={() => window.open(button.url, "_blank")}
-                    variants={{
-                      default: {},
-                      hovered: {},
-                      tapped: {},
-                    }}
-                    initial="default"
-                    whileHover="hovered"
-                    whileTap="tapped"
-                  >
-                    <span className="size-6 md:size-10 bg-foreground text-background flex items-center justify-center rounded-full overflow-hidden">
-                      <motion.span
-                        variants={{
-                          default: { translateX: 0 },
-                          hovered: { translateX: 23 },
-                        }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                      >
-                        <Icon
-                          icon={ICONS.ARROW_RIGHT_01}
-                          className="size-5 md:size-6"
-                        />
-                      </motion.span>
-                    </span>
-                    <motion.span
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                    >
-                      {button.label}
-                    </motion.span>
-                  </motion.button>
-                );
-              })}
-            </div>
-          </AnimatePresence>
+          <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
+            {HOME_DATA?.buttons?.map((button) => {
+              return (
+                <Button
+                  key={button.label}
+                  icon={ICONS.ARROW_RIGHT_01}
+                  text={button.label}
+                  onClick={() => router.push(button.url)}
+                />
+              );
+            })}
+          </div>
         </div>
       </section>
 
