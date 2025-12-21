@@ -10,16 +10,10 @@ import * as SwitchPrimitive from "@radix-ui/react-switch";
 import { cn } from "@/lib/utils";
 
 interface CustomSwitchProps extends React.ComponentProps<typeof BaseSwitch> {
-  /** Icono a mostrar cuando el switch está checked */
   checkedIcon?: React.ReactNode;
-  /** Icono a mostrar cuando el switch está unchecked */
   uncheckedIcon?: React.ReactNode;
 }
 
-/**
- * Switch personalizado que extiende el Switch base
- * Permite agregar iconos dentro del thumb del switch
- */
 export function Switch({
   className,
   checkedIcon,
@@ -48,7 +42,7 @@ export function Switch({
       <SwitchPrimitive.Thumb
         data-slot="switch-thumb"
         className={cn(
-          "bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0 flex items-center justify-center",
+          "bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0 flex items-center justify-center",
           hasIcons ? "size-5" : "size-4"
         )}
       >

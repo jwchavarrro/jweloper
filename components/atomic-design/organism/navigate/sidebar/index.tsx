@@ -14,8 +14,8 @@ import { Separator } from "@/components/ui/separator";
 import { Sun, Moon } from "lucide-react";
 
 // Import of components custom
-import { Switch } from "@/components/atomic-design/atoms";
 import { AppSidebar } from "./fragments";
+import { Switch } from "@/components/atomic-design/atoms";
 import { Breadcrumb } from "@/components/atomic-design/organism/navigate";
 
 // Import of hooks
