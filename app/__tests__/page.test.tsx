@@ -14,7 +14,22 @@ jest.mock("next/link", () => {
   return MockLink;
 });
 
+// Mock de next/navigation
+const mockPush = jest.fn();
+jest.mock("next/navigation", () => ({
+  useRouter: () => ({
+    push: mockPush,
+    replace: jest.fn(),
+    prefetch: jest.fn(),
+    back: jest.fn(),
+  }),
+}));
+
 describe("Home Page", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("should render the home page", () => {
     render(<Home />);
     const heading = screen.getByRole("heading", {
@@ -36,15 +51,25 @@ describe("Home Page", () => {
     expect(text).toBeInTheDocument();
   });
 
-  it("should render buttons with correct links", () => {
+  it("should render buttons with correct text", () => {
     render(<Home />);
-    const cvAppLink = screen.getByRole("link", { name: /cv en aplicativo/i });
-    const cvIALink = screen.getByRole("link", { name: /cv con ia/i });
+    const cvAppButton = screen.getByRole("button", { name: /cv en aplicativo/i });
+    const cvIAButton = screen.getByRole("button", { name: /cv con ia/i });
 
-    expect(cvAppLink).toBeInTheDocument();
-    expect(cvIALink).toBeInTheDocument();
-    expect(cvAppLink).toHaveAttribute("href", "/app-web");
-    expect(cvIALink).toHaveAttribute("href", "/ia-chat");
+    expect(cvAppButton).toBeInTheDocument();
+    expect(cvIAButton).toBeInTheDocument();
+  });
+
+  it("should navigate when buttons are clicked", () => {
+    render(<Home />);
+    const cvAppButton = screen.getByRole("button", { name: /cv en aplicativo/i });
+    const cvIAButton = screen.getByRole("button", { name: /cv con ia/i });
+
+    cvAppButton.click();
+    expect(mockPush).toHaveBeenCalledWith("/app-web");
+
+    cvIAButton.click();
+    expect(mockPush).toHaveBeenCalledWith("/ia-chat");
   });
 
   it("should render within a div container", () => {
