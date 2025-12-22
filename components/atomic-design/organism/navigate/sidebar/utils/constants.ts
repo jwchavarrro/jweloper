@@ -39,11 +39,6 @@ export const SIDEBAR_ICONS: Record<string, LucideIcon> = {
  * @description Datos de ejemplo para el sidebar.
  */
 export const SIDEBAR_DATA: SidebarDataType = {
-  user: {
-    name: "Jweloper",
-    email: "jwchavarrro023@gmail.com",
-    avatar: "",
-  },
   navMain: [
     {
       title: "Aplicativo web",
@@ -85,8 +80,8 @@ export const SIDEBAR_DATA: SidebarDataType = {
   navSecondary: [
     {
       title: "Español",
-      action: "change-language",
       icon: "Languages",
+      action: "change-language",
     },
   ],
   chats: [

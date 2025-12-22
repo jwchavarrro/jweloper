@@ -3,6 +3,8 @@
  * @description Componente para la navegación secundaria en la barra lateral.
  */
 
+"use client";
+
 import * as React from "react";
 
 import {
@@ -35,11 +37,18 @@ export function NavSecondary({
             const Icon = getSidebarIcon(item.icon);
             return (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild size="sm">
-                  <a href={item.url}>
-                    <Icon />
-                    <span>{item.title}</span>
-                  </a>
+                <SidebarMenuButton
+                  size="sm"
+                  className="cursor-pointer"
+                  onClick={() => {
+                    if (item.action === "change-language") {
+                      console.log("Cambiar idioma");
+                      // Aquí puedes agregar la lógica para cambiar el idioma
+                    }
+                  }}
+                >
+                  <Icon />
+                  <span>{item.title}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             );

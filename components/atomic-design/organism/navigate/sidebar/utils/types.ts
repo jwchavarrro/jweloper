@@ -31,7 +31,8 @@ export type NavItemType = {
  */
 export type BaseNavItemType = {
   title: string;
-  url: string;
+  url?: string;
+  action?: string; // Identificador de acción en lugar de función
   icon: string;
   isActive?: boolean;
   items?: NavItemType[];
@@ -61,7 +62,6 @@ export type ChatItemType = {
  * @description Tipo para los datos del sidebar.
  */
 export type SidebarDataType = {
-  user: UserType;
   navMain: BaseNavItemType[];
   navSecondary: NavSecondaryItemType[];
   chats: ChatItemType[];
