@@ -11,7 +11,6 @@ import { EqualNot } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -19,7 +18,7 @@ import {
 } from "@/components/ui/sidebar";
 
 // Import of fragments
-import { NavChats, NavMain, NavSecondary, NavUser } from "../fragments";
+import { NavChats, NavMain, NavSecondary } from "../fragments";
 
 // Import of types
 import type { SidebarDataType } from "../utils/types";
@@ -52,9 +51,6 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ data, ...props }) => {
         <NavChats chats={data.chats} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
     </Sidebar>
   );
 };

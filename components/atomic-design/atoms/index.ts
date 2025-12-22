@@ -7,3 +7,4 @@ export { Button } from "./button";
 export { Title } from "./title";
 export { Text } from "./text";
 export { InputText } from "./inputs/input-text";
+export { Switch } from "./switch";

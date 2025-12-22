@@ -9,7 +9,8 @@ import * as React from "react";
 import { MoveUp } from "lucide-react";
 
 // Import of components custom
-import { InputText, Button } from "@/components/atomic-design/atoms";
+import { InputText } from "@/components/atomic-design/atoms";
+import { Button } from "@/components/ui/button";
 
 // Import of utilities
 import { cn } from "@/lib/utils";
