@@ -53,7 +53,9 @@ describe("Home Page", () => {
 
   it("should render buttons with correct text", () => {
     render(<Home />);
-    const cvAppButton = screen.getByRole("button", { name: /cv en aplicativo/i });
+    const cvAppButton = screen.getByRole("button", {
+      name: /cv en aplicativo/i,
+    });
     const cvIAButton = screen.getByRole("button", { name: /cv con ia/i });
 
     expect(cvAppButton).toBeInTheDocument();
@@ -62,7 +64,9 @@ describe("Home Page", () => {
 
   it("should navigate when buttons are clicked", () => {
     render(<Home />);
-    const cvAppButton = screen.getByRole("button", { name: /cv en aplicativo/i });
+    const cvAppButton = screen.getByRole("button", {
+      name: /cv en aplicativo/i,
+    });
     const cvIAButton = screen.getByRole("button", { name: /cv con ia/i });
 
     cvAppButton.click();

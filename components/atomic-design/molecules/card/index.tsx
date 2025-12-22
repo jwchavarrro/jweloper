@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardAction,
 } from "@/components/ui/card";
-import { Button } from "@/components/atomic-design/atoms/button";
+import { Button } from "@/components/ui/button";
 import { Title, Text } from "@/components/atomic-design/atoms";
 
 /**
