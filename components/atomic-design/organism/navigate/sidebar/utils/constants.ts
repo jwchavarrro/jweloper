@@ -8,7 +8,7 @@ import {
   LifeBuoy,
   Map,
   PieChart,
-  Send,
+  Languages,
   SquareTerminal,
   LayoutTemplate,
   type LucideIcon,
@@ -27,7 +27,7 @@ export const SIDEBAR_ICONS: Record<string, LucideIcon> = {
   LayoutTemplate,
   SquareTerminal,
   LifeBuoy,
-  Send,
+  Languages,
   Frame,
   PieChart,
   Map,
@@ -84,13 +84,11 @@ export const SIDEBAR_DATA: SidebarDataType = {
   ],
   navSecondary: [
     {
-      title: "Feedback",
-      url: "#",
-      icon: "Send",
+      title: "Español",
+      action: "change-language",
+      icon: "Languages",
     },
   ],
-
-  // Todo: Esto se debe de eliminar pues se genera dinamicamente en el componente NavChats
   chats: [
     {
       name: "Testing chat IA",
