@@ -9,7 +9,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Import of components custom
 import { Title, Text, Button } from "@/components/atomic-design/atoms";
@@ -21,10 +21,14 @@ import { ICONS, MULTIMEDIA } from "@/config";
 
 export default function Home() {
   // Hooks
-  const pathname = usePathname();
   const router = useRouter();
   return (
-    <motion.div key={pathname} className="relative h-[calc(100vh-96px)]">
+    <motion.div
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="relative h-[calc(100vh-96px)]"
+    >
       {/* Background */}
       <div className="absolute inset-0 z-0 grid grid-cols-2 gap-5 justify-center">
         {/* Social Media */}
@@ -67,10 +71,10 @@ export default function Home() {
       <section className="relative z-10 h-full w-full max-w-11/12 md:max-w-4/5 mx-auto grid grid-cols-1 xl:grid-cols-2 content-center gap-5">
         {/* Column 1 - Image */}
         <motion.div
-          initial={{ translateX: 100, opacity: 0, rotate: 0 }}
+          initial={{ y: -100, opacity: 0, rotate: 0 }}
           animate={{
-            translateX: 0,
             opacity: 1,
+            y: 0,
             rotate: [0, -10, 5, -8, 0],
           }}
           transition={{
