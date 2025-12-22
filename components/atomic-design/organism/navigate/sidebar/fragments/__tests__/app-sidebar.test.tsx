@@ -21,12 +21,6 @@ jest.mock("../nav-secondary", () => ({
   ),
 }));
 
-jest.mock("../nav-user", () => ({
-  NavUser: ({ user }: { user: { name: string } }) => (
-    <div data-testid="nav-user">NavUser {user.name}</div>
-  ),
-}));
-
 const mockSidebarData = {
   user: {
     name: "Test User",
@@ -63,7 +57,6 @@ describe("AppSidebar", () => {
     expect(screen.getByTestId("nav-main")).toBeInTheDocument();
     expect(screen.getByTestId("nav-chats")).toBeInTheDocument();
     expect(screen.getByTestId("nav-secondary")).toBeInTheDocument();
-    expect(screen.getByTestId("nav-user")).toBeInTheDocument();
   });
 
   it("should pass correct data to fragments", () => {
@@ -72,7 +65,6 @@ describe("AppSidebar", () => {
     expect(screen.getByText("NavMain 1 items")).toBeInTheDocument();
     expect(screen.getByText("NavChats 1 chats")).toBeInTheDocument();
     expect(screen.getByText("NavSecondary 1 items")).toBeInTheDocument();
-    expect(screen.getByText("NavUser Test User")).toBeInTheDocument();
   });
 
   it("should render header with logo link", () => {
@@ -141,6 +133,5 @@ describe("AppSidebar", () => {
     expect(screen.getByText("NavMain 2 items")).toBeInTheDocument();
     expect(screen.getByText("NavSecondary 2 items")).toBeInTheDocument();
     expect(screen.getByText("NavChats 2 chats")).toBeInTheDocument();
-    expect(screen.getByText("NavUser Complex User")).toBeInTheDocument();
   });
 });

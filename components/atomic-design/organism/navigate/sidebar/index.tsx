@@ -6,15 +6,20 @@
 "use client";
 
 import {
+  SidebarTrigger,
   SidebarInset,
   SidebarProvider,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
+import { Sun, Moon } from "lucide-react";
 
 // Import of components custom
 import { AppSidebar } from "./fragments";
+import { Switch } from "@/components/atomic-design/atoms";
 import { Breadcrumb } from "@/components/atomic-design/organism/navigate";
+
+// Import of hooks
+import { useTheme } from "@/store/hooks/useTheme";
 
 // Import of types
 import type { SidebarDataType } from "./utils/types";
@@ -24,6 +29,8 @@ interface SidebarProps {
   data: SidebarDataType;
 }
 export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <SidebarProvider defaultOpen={false}>
       <AppSidebar data={data} />
@@ -31,6 +38,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
         <header className="flex h-16 shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
+            <Switch
+              checked={theme === "dark"}
+              onCheckedChange={toggleTheme}
+              checkedIcon={<Sun className="size-3" />}
+              uncheckedIcon={<Moon className="size-3" />}
+              aria-label="Toggle theme"
+            />
             <Separator
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
