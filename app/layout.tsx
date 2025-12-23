@@ -8,9 +8,9 @@ import { Sidebar } from "@/components/atomic-design/organism/navigate";
 
 // Import of utilities
 import "./globals.css";
-
-// Import of utilities
 import { SIDEBAR_DATA } from "@/components/atomic-design/organism/navigate/sidebar/utils";
+
+// Import of custom hooks
 import { ReduxProvider } from "@/store/provider";
 
 // Import of types

@@ -137,7 +137,7 @@ export default function Home() {
       {/* Copyright */}
       <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center">
         <Text className="text-[9px]! text-center max-w-56 md:max-w-full text-sm/3">
-          Copyright © 2025 Jweloper. All rights reserved. v1.0.0
+          Copyright © 2025 Jweloper. All rights reserved. v1.5
         </Text>
       </div>
     </motion.div>

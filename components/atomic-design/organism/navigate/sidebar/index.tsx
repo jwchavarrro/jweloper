@@ -29,6 +29,7 @@ interface SidebarProps {
   data: SidebarDataType;
 }
 export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
+  // Custom hooks
   const { theme, toggleTheme } = useTheme();
 
   return (
