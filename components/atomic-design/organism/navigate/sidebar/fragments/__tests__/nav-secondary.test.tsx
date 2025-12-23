@@ -2,55 +2,40 @@ import { screen } from "@testing-library/react";
 import { NavSecondary } from "../nav-secondary";
 import { renderWithProvider } from "../../__mocks__/test-utils";
 
-// Mock reutilizable de getSidebarIcon (función helper en __mocks__/getSidebarIcon.ts)
-jest.mock("../../utils", () => ({
-  ...jest.requireActual("../../utils"),
-  getSidebarIcon: (iconName: string) => {
-    const MockIcon = () => <span data-testid={`icon-${iconName}`}>Icon</span>;
-    return MockIcon;
-  },
-}));
-
-const mockItems = [
-  {
-    title: "Support",
-    url: "#",
-    icon: "LifeBuoy",
-  },
-  {
-    title: "Feedback",
-    url: "#",
-    icon: "Send",
-  },
-];
-
 describe("NavSecondary", () => {
-  it("should render NavSecondary with items", () => {
-    renderWithProvider(<NavSecondary items={mockItems} />);
+  it("should render NavSecondary with Idioma text", () => {
+    renderWithProvider(<NavSecondary />);
 
-    expect(screen.getByText("Support")).toBeInTheDocument();
-    expect(screen.getByText("Feedback")).toBeInTheDocument();
+    expect(screen.getByText("Idioma")).toBeInTheDocument();
   });
 
-  it("should render items with icons", () => {
-    renderWithProvider(<NavSecondary items={mockItems} />);
+  it("should render Languages icon", () => {
+    const { container } = renderWithProvider(<NavSecondary />);
 
-    expect(screen.getByTestId("icon-LifeBuoy")).toBeInTheDocument();
-    expect(screen.getByTestId("icon-Send")).toBeInTheDocument();
+    const languagesIcon = container.querySelector(".lucide-languages");
+    expect(languagesIcon).toBeInTheDocument();
   });
 
   it("should accept additional props", () => {
     const { container } = renderWithProvider(
-      <NavSecondary items={mockItems} className="custom-class" />
+      <NavSecondary className="custom-class" />
     );
 
     const group = container.querySelector('[data-slot="sidebar-group"]');
     expect(group).toHaveClass("custom-class");
   });
 
-  it("should render empty when no items", () => {
-    renderWithProvider(<NavSecondary items={[]} />);
+  it("should render SidebarGroup structure", () => {
+    const { container } = renderWithProvider(<NavSecondary />);
 
-    expect(screen.queryByText("Support")).not.toBeInTheDocument();
+    const group = container.querySelector('[data-slot="sidebar-group"]');
+    const content = container.querySelector(
+      '[data-slot="sidebar-group-content"]'
+    );
+    const menu = container.querySelector('[data-slot="sidebar-menu"]');
+
+    expect(group).toBeInTheDocument();
+    expect(content).toBeInTheDocument();
+    expect(menu).toBeInTheDocument();
   });
 });
