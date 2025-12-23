@@ -48,8 +48,8 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ data, ...props }) => {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavChats chats={data.chats} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <NavChats chats={[]} />
+        <NavSecondary className="mt-auto" />
       </SidebarContent>
     </Sidebar>
   );

@@ -77,18 +77,4 @@ export const SIDEBAR_DATA: SidebarDataType = {
       ],
     },
   ],
-  navSecondary: [
-    {
-      title: "Español",
-      icon: "Languages",
-      action: "change-language",
-    },
-  ],
-  chats: [
-    {
-      name: "Testing chat IA",
-      url: "#",
-      icon: "Frame",
-    },
-  ],
 };

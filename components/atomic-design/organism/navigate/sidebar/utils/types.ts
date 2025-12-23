@@ -4,17 +4,6 @@
  */
 
 /**
- * @name UserType
- * @type {Object}
- * @description Tipo para el usuario.
- */
-export type UserType = {
-  name: string;
-  email: string;
-  avatar: string;
-};
-
-/**
  * @name NavItemType
  * @type {Object}
  * @description Tipo para el item de navegación.
@@ -31,19 +20,11 @@ export type NavItemType = {
  */
 export type BaseNavItemType = {
   title: string;
-  url?: string;
-  action?: string; // Identificador de acción en lugar de función
+  url: string;
   icon: string;
   isActive?: boolean;
   items?: NavItemType[];
 };
-
-/**
- * @name NavSecondaryItemType
- * @type {Object}
- * @description Tipo para el item de navegación secundario.
- */
-export type NavSecondaryItemType = Omit<BaseNavItemType, "isActive" | "items">;
 
 /**
  * @name ChatItemType
@@ -63,6 +44,4 @@ export type ChatItemType = {
  */
 export type SidebarDataType = {
   navMain: BaseNavItemType[];
-  navSecondary: NavSecondaryItemType[];
-  chats: ChatItemType[];
 };
