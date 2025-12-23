@@ -8,7 +8,7 @@ import {
   LifeBuoy,
   Map,
   PieChart,
-  Send,
+  Languages,
   SquareTerminal,
   LayoutTemplate,
   type LucideIcon,
@@ -27,7 +27,7 @@ export const SIDEBAR_ICONS: Record<string, LucideIcon> = {
   LayoutTemplate,
   SquareTerminal,
   LifeBuoy,
-  Send,
+  Languages,
   Frame,
   PieChart,
   Map,
@@ -39,11 +39,6 @@ export const SIDEBAR_ICONS: Record<string, LucideIcon> = {
  * @description Datos de ejemplo para el sidebar.
  */
 export const SIDEBAR_DATA: SidebarDataType = {
-  user: {
-    name: "Jweloper",
-    email: "jwchavarrro023@gmail.com",
-    avatar: "",
-  },
   navMain: [
     {
       title: "Aplicativo web",
@@ -80,22 +75,6 @@ export const SIDEBAR_DATA: SidebarDataType = {
           url: APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.path,
         },
       ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Feedback",
-      url: "#",
-      icon: "Send",
-    },
-  ],
-
-  // Todo: Esto se debe de eliminar pues se genera dinamicamente en el componente NavChats
-  chats: [
-    {
-      name: "Testing chat IA",
-      url: "#",
-      icon: "Frame",
     },
   ],
 };
