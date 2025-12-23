@@ -51,16 +51,35 @@ globalThis.IntersectionObserver = class IntersectionObserver {
   }
 } as unknown as typeof IntersectionObserver;
 
-// Suprimir el warning de React sobre <html> en tests
+// Suprimir warnings y errores esperados en tests
 const originalError = console.error;
 const filteredError = (...args: unknown[]) => {
-  const firstArg = args[0];
+  const message = args
+    .map((arg) => (typeof arg === "string" ? arg : String(arg)))
+    .join(" ");
+
+  // Suprimir warnings de React sobre <html>
+  if (message.includes("In HTML, <html> cannot be a child of <div>")) {
+    return;
+  }
+  // Suprimir advertencias de act(...) - son comunes con timers fake
   if (
-    typeof firstArg === "string" &&
-    firstArg.includes("In HTML, <html> cannot be a child of <div>")
+    message.includes("not wrapped in act(...)") ||
+    message.includes(
+      "The current testing environment is not configured to support act(...)"
+    )
   ) {
     return;
   }
+  // Suprimir errores esperados de las pruebas de descarga
+  if (message.includes("Error al descargar el archivo")) {
+    return;
+  }
+  // Suprimir advertencias de atributos no booleanos (fill, priority)
+  if (message.includes("Received `true` for a non-boolean attribute")) {
+    return;
+  }
+
   originalError.apply(console, args);
 };
 console.error = filteredError;
