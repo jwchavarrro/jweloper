@@ -13,11 +13,10 @@ export interface CarouselItemProps {
 
 import type { CarouselApi } from "@/components/ui/carousel";
 
-export interface CarouselProps
-  extends Omit<
-    React.ComponentProps<typeof CarouselUI>,
-    "orientation" | "children" | "setApi" | "onSelect"
-  > {
+export interface CarouselProps extends Omit<
+  React.ComponentProps<typeof CarouselUI>,
+  "orientation" | "children" | "setApi" | "onSelect"
+> {
   /**
    * Items del carousel (requerido)
    */

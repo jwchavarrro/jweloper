@@ -30,7 +30,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
+  await params; // Esperar params aunque no se use el locale en metadata por ahora
   return {
     title: "Portafolio - Jweloper",
     description: "Portafolio de Jweloper, desarrollador frontend.",
@@ -58,7 +58,7 @@ export default async function LocaleLayout({
 
   // Cargar diccionario para el locale actual
   // Por ahora no lo usamos, pero está disponible para las páginas
-  const dictionary = await getDictionary(locale);
+  await getDictionary(locale);
 
   return (
     <html lang={locale}>

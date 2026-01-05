@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Home from "../page";
+import Home from "../[locale]/page";
 
 // Mock de Next.js Link
 jest.mock("next/link", () => {

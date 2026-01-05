@@ -29,4 +29,3 @@ export const hasLocale = (locale: string): locale is Locale =>
  * @returns {Promise<Record<string, any>>} - Diccionario cargado
  */
 export const getDictionary = async (locale: Locale) => dictionaries[locale]();
-

@@ -15,9 +15,3 @@ export default function RootLayout({
   // La estructura HTML completa está en app/[locale]/layout.tsx
   return children;
 }
-
-
-
-
-
-

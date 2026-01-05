@@ -63,4 +63,3 @@ export function replaceLocaleInPath(
 
   return `/${segments.join("/")}`;
 }
-

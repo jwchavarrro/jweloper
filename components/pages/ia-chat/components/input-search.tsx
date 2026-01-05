@@ -15,11 +15,10 @@ import { Button } from "@/components/ui/button";
 // Import of utilities
 import { cn } from "@/lib/utils";
 
-export interface InputSearchProps
-  extends Omit<
-    React.ComponentProps<typeof InputText>,
-    "value" | "onChange" | "onSubmit"
-  > {
+export interface InputSearchProps extends Omit<
+  React.ComponentProps<typeof InputText>,
+  "value" | "onChange" | "onSubmit"
+> {
   /** Valor controlado del input */
   readonly value?: string;
   /** Callback cuando cambia el valor */

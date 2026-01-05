@@ -12,16 +12,15 @@ import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 import { ICONS } from "@/config";
 
-interface ButtonProps
-  extends Omit<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    | "onDrag"
-    | "onDragEnd"
-    | "onDragStart"
-    | "onAnimationStart"
-    | "onAnimationEnd"
-    | "onAnimationIteration"
-  > {
+interface ButtonProps extends Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  | "onDrag"
+  | "onDragEnd"
+  | "onDragStart"
+  | "onAnimationStart"
+  | "onAnimationEnd"
+  | "onAnimationIteration"
+> {
   icon?: string;
   text: string;
 }

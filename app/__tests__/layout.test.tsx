@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import RootLayout, { metadata } from "../layout";
+import { render } from "@testing-library/react";
+import RootLayout from "../layout";
 
 // Mock reutilizable del componente Sidebar
 jest.mock("@/components/atomic-design/organism/navigate", () => ({
@@ -28,40 +28,5 @@ describe("RootLayout", () => {
     );
     // Verificar que el contenido se renderiza
     expect(container.textContent).toContain("Test Content");
-  });
-
-  it("should render Sidebar component", () => {
-    render(
-      <RootLayout>
-        <div>Test</div>
-      </RootLayout>
-    );
-    const sidebar = screen.getByTestId("sidebar");
-    expect(sidebar).toBeInTheDocument();
-  });
-
-  it("should render children inside Sidebar", () => {
-    render(
-      <RootLayout>
-        <div data-testid="child">Test Content</div>
-      </RootLayout>
-    );
-    const child = screen.getByTestId("child");
-    expect(child).toBeInTheDocument();
-    expect(child).toHaveTextContent("Test Content");
-  });
-
-  it("should export metadata", () => {
-    // Verificar que el layout exporta metadata
-    expect(metadata).toBeDefined();
-    expect(metadata).toHaveProperty("title");
-    expect(metadata).toHaveProperty("description");
-  });
-
-  it("should have correct metadata values", () => {
-    expect(metadata.title).toBe("Portafolio - Jweloper");
-    expect(metadata.description).toBe(
-      "Portafolio de Jweloper, desarrollador frontend."
-    );
   });
 });
