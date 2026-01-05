@@ -222,6 +222,47 @@ export const PROJECTS_APP_WEB: ProjectType[] = [
   {
     date: "2025",
     image: "",
+    name: "Ctrl Cash",
+    description:
+      "Aplicación web para control de gastos y presupuestos. Permite registrar, categorizar y visualizar transacciones financieras de manera eficiente y organizada.",
+    company: {
+      name: "Freelance",
+    },
+    url: APP_LINKS.PORTFOLIO.PROJECTS.CTRL_CASH.url,
+    tecnologies: [
+      "Next.js",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "TypeScript",
+      "Jotai",
+      "REST APIs",
+      "Tanstack Query",
+      "Jest",
+    ],
+  },
+  {
+    date: "2025",
+    image: "",
+    name: "Searching - Rick and Morty ",
+    description:
+      "Aplicación web para buscar personajes de la serie Rick and Morty. Permite visualizar información de los personajes, como nombre, imagen, especie, género, ubicación y episodios en los que aparecen.",
+    company: {
+      name: "Freelance",
+    },
+    url: APP_LINKS.PORTFOLIO.PROJECTS.SEARCHING_RICK_AND_MORTY.url,
+    tecnologies: [
+      "React",
+      "Router Dom",
+      "Tailwind CSS",
+      "TypeScript",
+      "Jotai",
+      "GraphQL",
+      "Vitest",
+    ],
+  },
+  {
+    date: "2025",
+    image: "",
     name: "CV loneliness",
     description:
       "Aplicación web interactiva de currículum vitae desarrollada con Angular, que permite visualizar, descargar y compartir un CV profesional con soporte multiidioma (Español/Inglés).",
