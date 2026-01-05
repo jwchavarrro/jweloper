@@ -1,17 +1,19 @@
 /**
- * @file dictionaries.ts
+ * @file i18n-dictionaries.ts
  * @description Sistema de diccionarios para internacionalización nativa
  * Basado en la documentación oficial: https://nextjs.org/docs/app/guides/internationalization
  */
 
 import "server-only";
 
-const dictionaries = {
-  es: () => import("./dictionaries/es.json").then((module) => module.default),
-  en: () => import("./dictionaries/en.json").then((module) => module.default),
-};
+import { EnumLocale, type Locale } from "./i18n-types";
 
-export type Locale = keyof typeof dictionaries;
+const dictionaries = {
+  [EnumLocale.ES]: () =>
+    import("./dictionaries/es.json").then((module) => module.default),
+  [EnumLocale.EN]: () =>
+    import("./dictionaries/en.json").then((module) => module.default),
+};
 
 /**
  * @name hasLocale

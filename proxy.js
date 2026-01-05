@@ -7,12 +7,13 @@
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
+import { EnumLocale } from "./app/[locale]/i18n-types";
 
-// Locales soportados
-const locales = ["es", "en"];
+// Locales soportados (valores del EnumLocale)
+const locales = Object.values(EnumLocale);
 
 // Locale por defecto
-const defaultLocale = "es";
+const defaultLocale = EnumLocale.ES;
 
 /**
  * @name getLocale

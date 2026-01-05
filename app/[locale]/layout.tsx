@@ -18,11 +18,9 @@ import { ReduxProvider } from "@/store/provider";
 // Import of types
 import type { Metadata } from "next";
 
-// Import of dictionaries
-import { getDictionary, hasLocale, type Locale } from "./dictionaries";
-
-// Locales soportados
-const locales: Locale[] = ["es", "en"];
+// Import of i18n
+import { getDictionary, hasLocale } from "./i18n-dictionaries";
+import { locales } from "./i18n-utils";
 
 // Generar metadata dinámicamente
 export async function generateMetadata({
@@ -39,7 +37,7 @@ export async function generateMetadata({
 
 // Generar parámetros estáticos para los locales
 export async function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return locales.map((locale) => ({ locale: locale as string }));
 }
 
 export default async function LocaleLayout({

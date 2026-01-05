@@ -18,12 +18,12 @@ import {
 } from "@/components/ui/sidebar";
 
 // Import of utilities
+import { EnumLocale, type Locale } from "@/app/[locale]/i18n-types";
 import {
   extractLocaleFromPath,
   getOtherLocale,
   replaceLocaleInPath,
-  type Locale,
-} from "@/app/[locale]/locale-utils";
+} from "@/app/[locale]/i18n-utils";
 
 export function NavSecondary({
   ...props
@@ -40,7 +40,7 @@ export function NavSecondary({
 
     if (!currentLocale) {
       // Si no hay locale en la ruta, redirigir a la ruta por defecto con el locale alternativo
-      const newLocale: Locale = "en"; // Por defecto, cambiar a inglés
+      const newLocale: Locale = EnumLocale.EN; // Por defecto, cambiar a inglés
       router.push(`/${newLocale}${pathname}`);
       return;
     }
@@ -56,8 +56,8 @@ export function NavSecondary({
   };
 
   // Obtener el locale actual para mostrar el idioma actual
-  const currentLocale = extractLocaleFromPath(pathname) || "es";
-  const localeLabel = currentLocale === "es" ? "Español" : "English";
+  const currentLocale = extractLocaleFromPath(pathname) || EnumLocale.ES;
+  const localeLabel = currentLocale === EnumLocale.ES ? "Español" : "English";
 
   return (
     <SidebarGroup {...props}>
