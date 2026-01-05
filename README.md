@@ -16,26 +16,31 @@ Portafolio personal de Jweloper (John Chavarro), desarrollador frontend especial
 ## 🛠️ Tecnologías
 
 ### Core
+
 - **Next.js 16** - Framework React con App Router
 - **React 19** - Biblioteca UI
 - **TypeScript** - Tipado estático
 - **Tailwind CSS 4** - Estilos utility-first
 
 ### Estado y Datos
+
 - **Redux Toolkit** - Gestión de estado global
 - **React Redux** - Integración Redux con React
 
 ### UI y Componentes
+
 - **Radix UI** - Componentes accesibles sin estilos
 - **Lucide React** - Iconos
 - **Motion** - Animaciones
 - **Embla Carousel** - Carruseles
 
 ### Internacionalización
+
 - **next-intl** - Internacionalización para Next.js
 - **@formatjs/intl-localematcher** - Detección de locale
 
 ### Testing
+
 - **Jest** - Framework de testing
 - **Testing Library** - Utilidades para testing de componentes
 - **Jest DOM** - Matchers personalizados para DOM
@@ -129,6 +134,7 @@ El proyecto incluye una suite completa de tests:
 - **Tests de integración**: Flujos completos
 
 Ejecutar tests:
+
 ```bash
 bun test              # Todos los tests
 bun test:coverage      # Con reporte de cobertura
@@ -173,6 +179,7 @@ No se requieren variables de entorno para el funcionamiento básico.
 ### TypeScript
 
 Configuración en `tsconfig.json` con paths aliases:
+
 - `@/` → raíz del proyecto
 
 ### ESLint y Prettier
@@ -188,6 +195,7 @@ Este proyecto es privado.
 ## 👤 Autor
 
 **Jweloper (John Chavarro)**
+
 - GitHub: [@jwchavarrro](https://github.com/jwchavarrro)
 - LinkedIn: [John Chavarro Urrea](https://www.linkedin.com/in/john-chavarro-urrea-9b9200129/)
 - Email: jwchavarrro023@gmail.com
