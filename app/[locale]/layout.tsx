@@ -59,12 +59,8 @@ export default async function LocaleLayout({
   await getDictionary(locale);
 
   return (
-    <html lang={locale}>
-      <body className="antialiased">
-        <ReduxProvider>
-          <Sidebar data={SIDEBAR_DATA}>{children}</Sidebar>
-        </ReduxProvider>
-      </body>
-    </html>
+    <ReduxProvider>
+      <Sidebar data={SIDEBAR_DATA}>{children}</Sidebar>
+    </ReduxProvider>
   );
 }

@@ -44,6 +44,29 @@ function getLocale(request) {
 export function proxy(request) {
   const { pathname } = request.nextUrl;
 
+  // Excluir archivos estáticos (imágenes, PDFs, etc.)
+  const staticFileExtensions = [
+    ".pdf",
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".gif",
+    ".svg",
+    ".ico",
+    ".webp",
+    ".woff",
+    ".woff2",
+    ".ttf",
+    ".eot",
+  ];
+  const isStaticFile = staticFileExtensions.some((ext) =>
+    pathname.toLowerCase().endsWith(ext)
+  );
+
+  if (isStaticFile) {
+    return;
+  }
+
   // Verificar si la ruta ya tiene un locale
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
@@ -64,9 +87,7 @@ export function proxy(request) {
 
 export const config = {
   matcher: [
-    // Skip all internal paths (_next)
-    "/((?!_next).*)",
-    // Optional: only run on root (/) URL
-    // '/'
+    // Skip all internal paths (_next) and static files
+    "/((?!_next|.*\\..*|api).*)",
   ],
 };

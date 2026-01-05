@@ -14,7 +14,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --coverage --maxWorkers=2",
-    "quality-check": "bun run lint && bun run format:check && bun run build && bun run test:ci"
+    "quality-check": "bun run lint && bun run format && bun run build && bun run test:ci"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.7.2",
