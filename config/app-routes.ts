@@ -93,29 +93,37 @@ export const APP_LINKS = {
   },
   PORTFOLIO: {
     PROJECTS: {
-      RISKHUB: {
-        name: "RiskHub",
-        url: "https://riskhub.iadb.org/",
+      COLEGIO_GIMNASIO_LEONARDO_DA_VINCI: {
+        name: "Portal web - ( Colegio Gimnasio Leonardo da Vinci )",
+        url: "https://gimnasioleonardodavinci.com.co/",
       },
-      LACEA: {
-        name: "Portal web - ( Panel administrativo membresía )",
-        url: "https://www.lacea.org/",
-      },
-      PORTALALIADOS: {
-        name: "PortalAliados - ( Formulario solicitud créditos )",
-        url: "https://virtual.puntoaliado.com/formulario/nuevo?config=cm34n92j00001xhfrm94v6ysc",
+      CTRL_CASH: {
+        name: "Ctrl Cash",
+        url: "https://control-cash-tau.vercel.app",
       },
       CV_LONELINESS: {
         name: "CV Loneliness",
         url: "https://cv-loneliness.vercel.app/",
       },
-      COLEGIO_GIMNASIO_LEONARDO_DA_VINCI: {
-        name: "Portal web - ( Colegio Gimnasio Leonardo da Vinci )",
-        url: "https://gimnasioleonardodavinci.com.co/",
-      },
       JVELOPER_CV: {
         name: "Jveloper CV",
-        url: "https://jveloper-cv-front.vercel.app/",
+        url: "https://jweloper.vercel.app/",
+      },
+      LACEA: {
+        name: "Portal web - ( Panel administrativo membresía )",
+        url: "https://www.lacea.org/",
+      },
+      SEARCHING_RICK_AND_MORTY: {
+        name: "Searching - Rick and Morty ",
+        url: "https://searching-demo.vercel.app/",
+      },
+      PORTALALIADOS: {
+        name: "PortalAliados - ( Formulario solicitud créditos )",
+        url: "https://virtual.puntoaliado.com/formulario/nuevo?config=cm34n92j00001xhfrm94v6ysc",
+      },
+      RISKHUB: {
+        name: "RiskHub",
+        url: "https://riskhub.iadb.org/",
       },
     },
   },
