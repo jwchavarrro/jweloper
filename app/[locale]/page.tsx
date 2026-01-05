@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 import { Title, Text, Button } from "@/components/atomic-design/atoms";
 
 // Import of utilities
-import { SOCIAL_MEDIA } from "./utils";
+import { SOCIAL_MEDIA } from "@/app/utils";
 import { HOME_DATA } from "@/components/pages";
 import { ICONS, MULTIMEDIA } from "@/config";
 

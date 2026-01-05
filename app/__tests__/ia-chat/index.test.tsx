@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useRouter } from "next/navigation";
-import IaChat from "../../ia-chat/page";
+import IaChat from "../../[locale]/ia-chat/page";
 
 // Mock next/navigation
 jest.mock("next/navigation", () => ({

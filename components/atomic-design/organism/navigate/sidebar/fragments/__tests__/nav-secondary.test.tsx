@@ -3,10 +3,12 @@ import { NavSecondary } from "../nav-secondary";
 import { renderWithProvider } from "../../__mocks__/test-utils";
 
 describe("NavSecondary", () => {
-  it("should render NavSecondary with Idioma text", () => {
+  it("should render NavSecondary with language text", () => {
     renderWithProvider(<NavSecondary />);
 
-    expect(screen.getByText("Idioma")).toBeInTheDocument();
+    // El componente muestra "Español" o "English" según el locale
+    const languageText = screen.getByText(/Español|English/i);
+    expect(languageText).toBeInTheDocument();
   });
 
   it("should render Languages icon", () => {

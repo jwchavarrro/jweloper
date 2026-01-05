@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { makeStore } from "@/store/makeStore";
 import { setVersion } from "@/store/slices/versionSlice";
-import AppWeb from "../../app-web/page";
+import AppWeb from "../../[locale]/app-web/page";
 
 // Mock del Carousel para evitar errores con embla-carousel
 jest.mock("@/components/atomic-design/organism/carousel", () => ({
