@@ -39,13 +39,14 @@ export const Section03: React.FC<Section03Props> = ({ anchorId }) => {
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           <div className="mx-auto w-4/5 h-full flex items-center justify-center">
-            <Carousel
-              items={PROJECTS_APP_WEB.map((project: ProjectType) => ({
-                content: <ProjectItem project={project} />,
-              }))}
-              contentClassName="overflow-visible py-[8%] px-[1%]"
-              itemClassName="md:basis-1/2 "
-            />
+            <div className="w-full">
+              <Carousel
+                items={PROJECTS_APP_WEB.map((project: ProjectType) => ({
+                  content: <ProjectItem project={project} />,
+                }))}
+                itemClassName="w-full max-w-xs"
+              />
+            </div>
           </div>
         </motion.div>
 
