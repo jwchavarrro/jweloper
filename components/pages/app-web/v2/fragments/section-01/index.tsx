@@ -19,6 +19,7 @@ import { CounterIndicator } from "@/components/atomic-design/molecules";
 import { useDownloadFile, EnumDownloadStatus } from "@/hooks";
 
 // Import of utilities
+import { MULTIMEDIA } from "@/config";
 import { SKILLS } from "@/components/pages/app-web/utils/constants";
 
 // Import of types
@@ -100,8 +101,8 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           <Image
-            src="/images/background/app-web-bg-002.png"
-            alt="Background Path 001"
+            src={MULTIMEDIA.BACKGROUNDS.PHOTO_PROFILE}
+            alt="Photo Profile"
             fill
             quality={100}
             className="object-contain drop-shadow-lg"

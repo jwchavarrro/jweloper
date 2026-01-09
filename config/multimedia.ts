@@ -26,5 +26,6 @@ export const MULTIMEDIA = {
   },
   BACKGROUNDS: {
     PATH_001: `/images/backgrounds/path-001.png`,
+    PHOTO_PROFILE: `/images/backgrounds/photo-profile.png`,
   },
 };
