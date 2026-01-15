@@ -27,9 +27,6 @@ export const APP_ROUTES = {
             path: "/app-web/proyectos",
           },
         },
-        CONTACT: {
-          path: "/app-web#contacto",
-        },
       },
       IA_CHAT: {
         IA_CHAT: {
