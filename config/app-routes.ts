@@ -27,9 +27,6 @@ export const APP_ROUTES = {
             path: "/app-web/proyectos",
           },
         },
-        CONTACT: {
-          path: "/app-web#contacto",
-        },
       },
       IA_CHAT: {
         IA_CHAT: {
@@ -81,6 +78,10 @@ export const APP_LINKS = {
       },
     },
     COMPANY: {
+      BLOSSOM: {
+        name: "Blossom",
+        url: "https://www.blossom.net/",
+      },
       PREVALENTWARE: {
         name: "Prevalentware s.a.s",
         url: "https://www.prevalentware.com/es/",
