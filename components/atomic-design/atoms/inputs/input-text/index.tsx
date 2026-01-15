@@ -7,8 +7,10 @@ import * as React from "react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-export interface InputTextProps
-  extends Omit<React.ComponentProps<typeof Input>, "size"> {
+export interface InputTextProps extends Omit<
+  React.ComponentProps<typeof Input>,
+  "size"
+> {
   readonly label?: string;
   readonly error?: string;
   readonly helperText?: string;

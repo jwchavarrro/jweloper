@@ -5,6 +5,7 @@
 
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
   SidebarTrigger,
   SidebarInset,
@@ -21,6 +22,9 @@ import { Breadcrumb } from "@/components/atomic-design/organism/navigate";
 // Import of hooks
 import { useTheme } from "@/store/hooks/useTheme";
 
+// Import of utilities
+import { generateBreadcrumbsWithLocale } from "@/app/[locale]/i18n-utils";
+
 // Import of types
 import type { SidebarDataType } from "./utils/types";
 
@@ -31,6 +35,10 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
   // Custom hooks
   const { theme, toggleTheme } = useTheme();
+  const pathname = usePathname();
+
+  // Generar items del breadcrumb filtrando el locale
+  const breadcrumbItems = generateBreadcrumbsWithLocale(pathname);
 
   return (
     <SidebarProvider defaultOpen={false}>
@@ -50,7 +58,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
-            <Breadcrumb />
+            <Breadcrumb items={breadcrumbItems} />
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>

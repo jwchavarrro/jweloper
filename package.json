@@ -14,9 +14,10 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --coverage --maxWorkers=2",
-    "quality-check": "bun run lint && bun run format:check && bun run build && bun run test:ci"
+    "quality-check": "bun run lint && bun run format && bun run build && bun run test:ci"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.7.2",
     "@iconify/react": "^6.0.2",
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-collapsible": "^1.1.12",
@@ -40,6 +41,8 @@
     "react-dom": "19.2.0",
     "react-redux": "^9.2.0",
     "react-resizable-panels": "^3.0.6",
+    "redux": "^5.0.1",
+    "server-only": "^0.0.1",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {

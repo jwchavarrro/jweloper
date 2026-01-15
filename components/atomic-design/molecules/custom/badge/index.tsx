@@ -14,7 +14,8 @@ import { cn } from "@/lib/utils";
 import type { VariantProps } from "class-variance-authority";
 
 interface BadgeProps
-  extends Omit<React.ComponentProps<"span">, "children">,
+  extends
+    Omit<React.ComponentProps<"span">, "children">,
     VariantProps<typeof badgeVariants> {
   /** Texto del badge */
   readonly text: string;

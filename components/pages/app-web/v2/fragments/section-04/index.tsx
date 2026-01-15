@@ -42,7 +42,7 @@ export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
 
         {/* Column 2 - Content */}
         <div className="col-span-2 h-full">
-          <div className="h-full flex flex-col justify-center">
+          <div className="h-full flex flex-col justify-center items-center md:items-start gap-5">
             <Text className="font-accent">
               ¿Listo para llevar tus ideas al siguiente nivel? <br />
               Conversemos sobre cómo puedo aportar valor a tu próximo proyecto o
@@ -55,8 +55,10 @@ export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
                 name,
                 href: url,
               }))}
+              className="items-center md:items-start"
             />
 
+            {/** Button to go to version 1 */}
             <button
               type="button"
               onClick={() => dispatch(setVersion("v1"))}

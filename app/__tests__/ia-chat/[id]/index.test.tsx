@@ -1,7 +1,7 @@
 import { render, screen, waitFor, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useSearchParams } from "next/navigation";
-import IaChatIdPage from "../../../ia-chat/[id]/page";
+import IaChatIdPage from "../../../[locale]/ia-chat/[id]/page";
 
 // Mock next/navigation
 jest.mock("next/navigation", () => ({

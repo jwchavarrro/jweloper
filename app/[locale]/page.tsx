@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 import { Title, Text, Button } from "@/components/atomic-design/atoms";
 
 // Import of utilities
-import { SOCIAL_MEDIA } from "./utils";
+import { SOCIAL_MEDIA } from "@/app/utils";
 import { HOME_DATA } from "@/components/pages";
 import { ICONS, MULTIMEDIA } from "@/config";
 
@@ -71,27 +71,16 @@ export default function Home() {
       <section className="relative z-10 h-full w-full max-w-11/12 md:max-w-4/5 mx-auto grid grid-cols-1 xl:grid-cols-2 content-center gap-5">
         {/* Column 1 - Image */}
         <motion.div
-          initial={{ y: -100, opacity: 0, rotate: 0 }}
+          initial={{ y: -100, opacity: 0 }}
           animate={{
             opacity: 1,
             y: 0,
-            rotate: [0, -10, 5, -8, 0],
-          }}
-          transition={{
-            translateX: { duration: 0.8, ease: "easeInOut" },
-            rotate: {
-              delay: 0.8,
-              duration: 5,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "loop",
-            },
           }}
           className="relative min-h-40 lg:min-h-80 flex items-center justify-center"
         >
           <Image
-            src={MULTIMEDIA.BACKGROUNDS.PATH_001}
-            alt="Background Path 001"
+            src={MULTIMEDIA.BACKGROUNDS.PHOTO_PROFILE}
+            alt="Photo Profile"
             quality={100}
             fill
             className="object-contain drop-shadow-lg"
