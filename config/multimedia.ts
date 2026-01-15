@@ -14,7 +14,7 @@ const PUBLIC_IMAGES = "/images";
 export const MULTIMEDIA = {
   FAVICONS: {
     FAVICON: `${PUBLIC_IMAGES}/favicons/favicon.ico`,
-    APPLE_TOUCH_ICON: `${PUBLIC_IMAGES}/favicons/apple-touch-icon.png, ${PUBLIC_IMAGES}/favicons/site.webmanifest`,
+    APPLE_TOUCH_ICON: `${PUBLIC_IMAGES}/favicons/apple-touch-icon.png`,
     OG_IMAGE: `${PUBLIC_IMAGES}/favicons/og-image.png`,
     ICON_96X96: `${PUBLIC_IMAGES}/favicons/icon-96x96.png`,
     WEB_MANIFEST: `${PUBLIC_IMAGES}/favicons/site.webmanifest`,
