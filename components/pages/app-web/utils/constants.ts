@@ -95,6 +95,18 @@ export const SKILLS: SkillType[] = [
  */
 export const EXPERIENCES_APP_WEB: ExperienceType[] = [
   {
+    dates: "2026 – Presente",
+    title: "Midlevel Developer",
+    company: {
+      name: APP_LINKS.GENERALS.COMPANY.BLOSSOM.name,
+      url: APP_LINKS.GENERALS.COMPANY.BLOSSOM.url,
+    },
+    location: "Neiva, Colombia",
+    isRemote: true,
+    description: [""],
+    tecnologies: ["React", "Next.js", "Tailwind CSS", "TypeScript", "GraphQL"],
+  },
+  {
     dates: "2022 – 2025",
     title: "Desarrollador de Aplicaciones a la Medida",
     company: {

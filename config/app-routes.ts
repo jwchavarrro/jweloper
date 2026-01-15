@@ -81,6 +81,10 @@ export const APP_LINKS = {
       },
     },
     COMPANY: {
+      BLOSSOM: {
+        name: "Blossom",
+        url: "https://www.blossom.net/",
+      },
       PREVALENTWARE: {
         name: "Prevalentware s.a.s",
         url: "https://www.prevalentware.com/es/",
