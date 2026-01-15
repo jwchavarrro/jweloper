@@ -10,6 +10,7 @@ import { notFound } from "next/navigation";
 import { Sidebar } from "@/components/atomic-design/organism/navigate";
 
 // Import of utilities
+import { MULTIMEDIA } from "@/config";
 import { SIDEBAR_DATA } from "@/components/atomic-design/organism/navigate/sidebar/utils";
 
 // Import of custom hooks
@@ -32,6 +33,11 @@ export async function generateMetadata({
   return {
     title: "Portafolio - Jweloper",
     description: "Portafolio de Jweloper, desarrollador frontend.",
+    icons: {
+      icon: MULTIMEDIA.FAVICONS.FAVICON,
+      shortcut: MULTIMEDIA.FAVICONS.FAVICON,
+      apple: MULTIMEDIA.FAVICONS.APPLE_TOUCH_ICON,
+    },
   };
 }
 
