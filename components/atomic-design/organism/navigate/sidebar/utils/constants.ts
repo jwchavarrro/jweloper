@@ -54,10 +54,6 @@ export const SIDEBAR_DATA: SidebarDataType = {
           title: "Proyectos",
           url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.path,
         },
-        {
-          title: "Contacto",
-          url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.CONTACT.path,
-        },
       ],
     },
     {

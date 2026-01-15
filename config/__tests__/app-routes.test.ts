@@ -26,13 +26,6 @@ describe("APP_ROUTES", () => {
           "/app-web#proyectos"
         );
       });
-
-      it("should have CONTACT route", () => {
-        expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.CONTACT).toBeDefined();
-        expect(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.CONTACT.path).toBe(
-          "/app-web#contacto"
-        );
-      });
     });
 
     describe("PORTFOLIO.IA_CHAT", () => {
@@ -95,7 +88,6 @@ describe("APP_ROUTES", () => {
       validatePath(APP_ROUTES.PUBLIC.HOME.path);
       validatePath(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.APP_WEB.path);
       validatePath(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.path);
-      validatePath(APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.CONTACT.path);
       validatePath(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT.path);
       validatePath(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.path);
       validatePath(APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.path);
@@ -108,9 +100,6 @@ describe("APP_ROUTES", () => {
       expect(APP_ROUTES.PUBLIC.HOME.queries).toBeUndefined();
       expect(
         APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.APP_WEB.queries
-      ).toBeUndefined();
-      expect(
-        APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.CONTACT.queries
       ).toBeUndefined();
       expect(
         APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT.queries
