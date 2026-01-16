@@ -1,6 +1,6 @@
 /**
- * @file proxy.js
- * @description Proxy para manejo de internacionalización nativo en Next.js 16
+ * @file middleware.js
+ * @description Middleware para manejo de internacionalización nativo en Next.js 16
  * Basado en la documentación oficial: https://nextjs.org/docs/app/guides/internationalization
  */
 
@@ -36,12 +36,12 @@ function getLocale(request) {
 }
 
 /**
- * @name proxy
- * @description Proxy function para Next.js 16 - maneja redirecciones de locale
+ * @name middleware
+ * @description Middleware function para Next.js 16 - maneja redirecciones de locale
  * @param {Request} request - Request object de Next.js
  * @returns {NextResponse|undefined} - Response con redirección o undefined si ya tiene locale
  */
-export function proxy(request) {
+export default function middleware(request) {
   const { pathname } = request.nextUrl;
 
   // Excluir archivos estáticos (imágenes, PDFs, CSS, etc.)
