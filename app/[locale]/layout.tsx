@@ -7,14 +7,11 @@
 import { notFound } from "next/navigation";
 
 // Import of components custom
-import { Sidebar } from "@/components/atomic-design/organism/navigate";
+import { ClientLayoutWrapper } from "./components/client-layout-wrapper";
 
 // Import of utilities
 import { MULTIMEDIA } from "@/config";
 import { SIDEBAR_DATA } from "@/components/atomic-design/organism/navigate/sidebar/utils";
-
-// Import of custom hooks
-import { ReduxProvider } from "@/store/provider";
 
 // Import of types
 import type { Metadata } from "next";
@@ -65,8 +62,8 @@ export default async function LocaleLayout({
   await getDictionary(locale);
 
   return (
-    <ReduxProvider>
-      <Sidebar data={SIDEBAR_DATA}>{children}</Sidebar>
-    </ReduxProvider>
+    <ClientLayoutWrapper sidebarData={SIDEBAR_DATA}>
+      {children}
+    </ClientLayoutWrapper>
   );
 }

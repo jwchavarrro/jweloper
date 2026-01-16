@@ -39,8 +39,7 @@ export function NavSecondary({
     const currentLocale = extractLocaleFromPath(pathname);
 
     if (!currentLocale) {
-      // Si no hay locale en la ruta, redirigir a la ruta por defecto con el locale alternativo
-      const newLocale: Locale = EnumLocale.EN; // Por defecto, cambiar a inglés
+      const newLocale: Locale = EnumLocale.EN;
       router.push(`/${newLocale}${pathname}`);
       return;
     }
@@ -64,7 +63,11 @@ export function NavSecondary({
       <SidebarGroupContent>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="sm" onClick={handleLanguageChange}>
+            <SidebarMenuButton
+              size="sm"
+              onClick={handleLanguageChange}
+              disabled
+            >
               <Languages />
               <span>{localeLabel}</span>
             </SidebarMenuButton>

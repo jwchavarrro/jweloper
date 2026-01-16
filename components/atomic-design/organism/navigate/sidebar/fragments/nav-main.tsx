@@ -25,16 +25,14 @@ import {
 } from "@/components/ui/sidebar";
 
 // Import of utilities
-import { getSidebarIcon } from "../utils";
+import {
+  getSidebarIcon,
+  type BaseNavItemType,
+} from "@/components/atomic-design/organism/navigate/sidebar/utils";
 
 // Import of types
-import type { BaseNavItemType } from "../utils/types";
 
-interface NavMainProps {
-  readonly items: BaseNavItemType[];
-}
-
-export function NavMain({ items }: NavMainProps) {
+export function NavMain({ items }: { readonly items: BaseNavItemType[] }) {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Portafolio</SidebarGroupLabel>
@@ -60,15 +58,27 @@ export function NavMain({ items }: NavMainProps) {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
-                        {item.items?.map((subItem) => (
-                          <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild>
-                              <a href={subItem.url}>
+                        {item.items?.map((subItem) => {
+                          if (subItem.url) {
+                            return (
+                              <SidebarMenuSubItem key={subItem.title}>
+                                <SidebarMenuSubButton asChild>
+                                  <a href={subItem.url}>
+                                    <span>{subItem.title}</span>
+                                  </a>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            );
+                          }
+
+                          return (
+                            <SidebarMenuSubItem key={subItem.title}>
+                              <SidebarMenuSubButton onClick={subItem.onClick}>
                                 <span>{subItem.title}</span>
-                              </a>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          );
+                        })}
                       </SidebarMenuSub>
                     </CollapsibleContent>
                   </>
