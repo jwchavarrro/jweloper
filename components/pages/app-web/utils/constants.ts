@@ -169,7 +169,7 @@ export const PROJECTS_APP_WEB: ProjectType[] = [
     image: "",
     name: "RiskHub",
     description:
-      "Filtros avanzados basados en query params para consultas dinámicas. Internacionalización i18n con soporte multilenguaje en Next.js. Optimización de UX para visualización de mapas, capas y modelos.",
+      "Filtros avanzados basados en query params para consultas dinámicas. Optimización de UX para visualización de mapas, capas y modelos.",
     company: {
       name: APP_LINKS.PORTFOLIO.PROJECTS.RISKHUB.name,
       url: APP_LINKS.PORTFOLIO.PROJECTS.RISKHUB.url,

@@ -450,23 +450,20 @@ describe("Breadcrumb", () => {
     expect(span).toHaveClass("pointer-events-none");
   });
 
-  describe("Pathname with locale segments", () => {
-    it("should display all segments including locale when pathname has locale", () => {
-      mockUsePathname.mockReturnValue("/es/app-web");
+  describe("Pathname with nested routes", () => {
+    it("should display all segments for nested routes", () => {
+      mockUsePathname.mockReturnValue("/app-web");
       render(<Breadcrumb />);
 
-      // El breadcrumb genérico muestra todos los segmentos
       expect(screen.getByText("Inicio")).toBeInTheDocument();
-      expect(screen.getByText("Es")).toBeInTheDocument();
       expect(screen.getByText("App Web")).toBeInTheDocument();
     });
 
-    it("should handle pathname with locale and nested routes", () => {
-      mockUsePathname.mockReturnValue("/es/app-web/proyectos");
+    it("should handle pathname with nested routes", () => {
+      mockUsePathname.mockReturnValue("/app-web/proyectos");
       render(<Breadcrumb />);
 
       expect(screen.getByText("Inicio")).toBeInTheDocument();
-      expect(screen.getByText("Es")).toBeInTheDocument();
       expect(screen.getByText("App Web")).toBeInTheDocument();
       expect(screen.getByText("Proyectos")).toBeInTheDocument();
     });

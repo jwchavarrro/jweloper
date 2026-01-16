@@ -10,7 +10,8 @@
  */
 export type NavItemType = {
   title: string;
-  url: string;
+  url?: string;
+  onClick?: () => void;
 };
 
 /**
@@ -19,11 +20,11 @@ export type NavItemType = {
  * @description Tipo para el item de navegación base.
  */
 export type BaseNavItemType = {
-  title: string;
-  url: string;
   icon: string;
+  title: string;
   isActive?: boolean;
   items?: NavItemType[];
+  url: string;
 };
 
 /**

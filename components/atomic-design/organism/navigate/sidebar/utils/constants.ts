@@ -64,11 +64,10 @@ export const SIDEBAR_DATA: SidebarDataType = {
       items: [
         {
           title: "Nuevo chat",
-          url: APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.path,
+          url: APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT.path,
         },
         {
           title: "Buscar chat",
-          url: APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.path,
         },
       ],
     },
