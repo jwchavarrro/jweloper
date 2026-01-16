@@ -1,12 +1,19 @@
 /**
  * @file proxy.js
- * @description Proxy para manejo de internacionalización nativo
+ * @description Proxy para manejo de internacionalización nativo en Next.js 16
+ * Basado en la documentación oficial: https://nextjs.org/docs/app/guides/internationalization
  */
 
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
-import { locales, defaultLocale } from "./app/[locale]/locales/utils/functions";
+import { EnumLocale } from "./app/[locale]/locales/utils/types";
+
+// Locales soportados (valores del EnumLocale)
+const locales = Object.values(EnumLocale);
+
+// Locale por defecto
+const defaultLocale = EnumLocale.ES;
 
 /**
  * @name getLocale
@@ -37,7 +44,7 @@ function getLocale(request) {
 export function proxy(request) {
   const { pathname } = request.nextUrl;
 
-  // Excluir archivos estáticos (imágenes, PDFs, etc.)
+  // Excluir archivos estáticos (imágenes, PDFs, CSS, etc.)
   const staticFileExtensions = [
     ".pdf",
     ".jpg",
@@ -51,6 +58,9 @@ export function proxy(request) {
     ".woff2",
     ".ttf",
     ".eot",
+    ".css",
+    ".js",
+    ".json",
   ];
   const isStaticFile = staticFileExtensions.some((ext) =>
     pathname.toLowerCase().endsWith(ext)
@@ -79,5 +89,8 @@ export function proxy(request) {
 }
 
 export const config = {
-  matcher: [String.raw`/((?!_next|.*\..*|api).*)`],
+  matcher: [
+    // Skip all internal paths (_next) and static files
+    String.raw`/((?!_next|.*\..*|api).*)`,
+  ],
 };
