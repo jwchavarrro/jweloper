@@ -1,6 +1,6 @@
 /**
- * @file middleware.ts
- * @description Middleware para manejo de internacionalización nativo
+ * @file proxy.ts
+ * @description Proxy para manejo de internacionalización nativo
  */
 
 import { match } from "@formatjs/intl-localematcher";
@@ -38,12 +38,12 @@ function getLocale(request: NextRequest): string {
 }
 
 /**
- * @name middleware
- * @description Middleware function para Next.js 16 - maneja redirecciones de locale
+ * @name proxy
+ * @description Proxy function para Next.js 16 - maneja redirecciones de locale
  * @param {NextRequest} request - Request object de Next.js
  * @returns {NextResponse|undefined} - Response con redirección o undefined si ya tiene locale
  */
-export default function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Excluir archivos estáticos (imágenes, PDFs, CSS, etc.)
