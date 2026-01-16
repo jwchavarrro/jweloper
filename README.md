@@ -110,9 +110,8 @@ El proyecto soporta múltiples idiomas mediante:
 
 ### Archivos i18n
 
-- `app/[locale]/i18n-types.ts` - Enum y tipos de locales
-- `app/[locale]/i18n-utils.ts` - Utilidades de i18n
-- `app/[locale]/i18n-dictionaries.ts` - Sistema de diccionarios
+- `app/[locale]/locales/utils/types.ts` - Enum y tipos de locales
+- `app/[locale]/locales/utils/functions.ts` - Funciones de locales e i18n
 - `proxy.js` - Middleware para redirecciones de locale
 
 ## 🎨 Atomic Design

@@ -1,18 +1,52 @@
 /**
- * @file i18n-utils.ts
- * @description Utilidades para manejo de i18n (compatible con cliente y servidor)
+ * @file functions.ts
+ * @description Funciones para manejo de locales e internacionalización
+ * Compatible con cliente y servidor
  */
 
-import { EnumLocale } from "./i18n-types";
+import { EnumLocale, type Locale } from "./types";
 
-// Import of types
-import type { Locale } from "./i18n-types";
+// ============================================================================
+// Constantes
+// ============================================================================
 
 // Locales soportados basados en el enum
 export const locales = [EnumLocale.ES, EnumLocale.EN] as const;
 
 // Locale por defecto
 export const defaultLocale = EnumLocale.ES;
+
+// Objeto para cargar los locales dinámicamente
+const localesData = {
+  [EnumLocale.ES]: () => import("../es.json").then((module) => module.default),
+  [EnumLocale.EN]: () => import("../en.json").then((module) => module.default),
+};
+
+// ============================================================================
+// Funciones de validación y carga
+// ============================================================================
+
+/**
+ * @name hasLocale
+ * @description Valida si un string es un locale soportado
+ * @param {string} locale - String a validar
+ * @returns {boolean} - true si es un locale válido
+ */
+export const hasLocale = (locale: string): locale is Locale =>
+  locale in localesData;
+
+/**
+ * @name getDictionary
+ * @description Carga el diccionario para un locale específico
+ * @param {Locale} locale - Locale para el cual cargar el diccionario
+ * @returns {Promise<Record<string, any>>} - Diccionario cargado
+ * @note Esta función debe usarse solo en Server Components
+ */
+export const getDictionary = async (locale: Locale) => localesData[locale]();
+
+// ============================================================================
+// Funciones de utilidad para paths
+// ============================================================================
 
 /**
  * @name getPathSegments

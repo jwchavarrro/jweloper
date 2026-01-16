@@ -11,8 +11,7 @@ import { ClientLayoutWrapper } from "./fragments/client-layout-wrapper";
 // Import of utilities
 import { MULTIMEDIA } from "@/config";
 import { SIDEBAR_DATA } from "@/components/atomic-design/organism/navigate/sidebar/utils";
-import { getDictionary, hasLocale } from "./i18n-dictionaries";
-import { locales } from "./i18n-utils";
+import { getDictionary, hasLocale, locales } from "./locales/utils/functions";
 
 // Import of types
 import type { Metadata } from "next";

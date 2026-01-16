@@ -18,12 +18,12 @@ import {
 } from "@/components/ui/sidebar";
 
 // Import of utilities
-import { EnumLocale, type Locale } from "@/app/[locale]/i18n-types";
+import { EnumLocale, type Locale } from "@/app/[locale]/locales/utils/types";
 import {
   extractLocaleFromPath,
   getOtherLocale,
   replaceLocaleInPath,
-} from "@/app/[locale]/i18n-utils";
+} from "@/app/[locale]/locales/utils/functions";
 
 export function NavSecondary({
   ...props

@@ -23,7 +23,7 @@ import { Breadcrumb } from "@/components/atomic-design/organism/navigate";
 import { useTheme } from "@/store/hooks/useTheme";
 
 // Import of utilities
-import { generateBreadcrumbsWithLocale } from "@/app/[locale]/i18n-utils";
+import { generateBreadcrumbsWithLocale } from "@/app/[locale]/locales/utils/functions";
 
 // Import of types
 import type { SidebarDataType } from "./utils/types";
