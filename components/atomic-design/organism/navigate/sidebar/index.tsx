@@ -5,6 +5,7 @@
 
 "use client";
 
+import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 import {
   SidebarTrigger,
@@ -23,7 +24,7 @@ import { Breadcrumb } from "@/components/atomic-design/organism/navigate";
 import { useTheme } from "@/store/hooks/useTheme";
 
 // Import of utilities
-import { generateBreadcrumbsWithLocale } from "@/app/[locale]/locales/utils/functions";
+// Breadcrumbs simplified - no i18n
 
 // Import of types
 import type { SidebarDataType } from "./utils/types";
@@ -37,8 +38,33 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
 
-  // Generar items del breadcrumb filtrando el locale
-  const breadcrumbItems = generateBreadcrumbsWithLocale(pathname);
+  // Generar items del breadcrumb sin locale
+  const breadcrumbItems = useMemo(() => {
+    const segments = pathname.split("/").filter(Boolean);
+    const items: Array<{ label: string; href: string; disabled?: boolean }> = [];
+
+    if (pathname !== "/") {
+      items.push({
+        label: "Inicio",
+        href: "/",
+      });
+    }
+
+    let currentPath = "";
+    for (const segment of segments) {
+      currentPath += `/${segment}`;
+      const label = segment
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+      items.push({
+        label,
+        href: currentPath,
+      });
+    }
+
+    return items;
+  }, [pathname]);
 
   return (
     <SidebarProvider defaultOpen={false}>

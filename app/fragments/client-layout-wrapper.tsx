@@ -1,8 +1,6 @@
 /**
  * @file client-layout-wrapper.tsx
  * @description Componente cliente wrapper para el layout que contiene Sidebar y ReduxProvider.
- * Este componente es necesario porque el layout principal debe ser un Server Component
- * para poder usar generateStaticParams y generateMetadata.
  */
 
 "use client";
