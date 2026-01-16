@@ -1,7 +1,6 @@
 /**
  * @file proxy.js
- * @description Proxy para manejo de internacionalización nativo en Next.js 16
- * Basado en la documentación oficial: https://nextjs.org/docs/app/guides/internationalization
+ * @description Proxy para manejo de internacionalización nativo
  */
 
 import { match } from "@formatjs/intl-localematcher";
@@ -80,8 +79,5 @@ export function proxy(request) {
 }
 
 export const config = {
-  matcher: [
-    // Skip all internal paths (_next) and static files
-    "/((?!_next|.*\\..*|api).*)",
-  ],
+  matcher: [String.raw`/((?!_next|.*\..*|api).*)`],
 };
