@@ -112,7 +112,7 @@ El proyecto soporta múltiples idiomas mediante:
 
 - `app/[locale]/locales/utils/types.ts` - Enum y tipos de locales
 - `app/[locale]/locales/utils/functions.ts` - Funciones de locales e i18n
-- `middleware.js` - Middleware para redirecciones de locale
+- `middleware.ts` - Middleware para redirecciones de locale
 
 ## 🎨 Atomic Design
 

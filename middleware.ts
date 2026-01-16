@@ -1,12 +1,14 @@
 /**
- * @file middleware.js
- * @description Middleware para manejo de internacionalización nativo en Next.js 16
- * Basado en la documentación oficial: https://nextjs.org/docs/app/guides/internationalization
+ * @file middleware.ts
+ * @description Middleware para manejo de internacionalización nativo
  */
 
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+// Import of types
 import { EnumLocale } from "./app/[locale]/locales/utils/types";
 
 // Locales soportados (valores del EnumLocale)
@@ -18,10 +20,10 @@ const defaultLocale = EnumLocale.ES;
 /**
  * @name getLocale
  * @description Obtiene el locale preferido del usuario basado en el header Accept-Language
- * @param {Request} request - Request object de Next.js
+ * @param {NextRequest} request - Request object de Next.js
  * @returns {string} - Locale preferido
  */
-function getLocale(request) {
+function getLocale(request: NextRequest): string {
   // Obtener el header Accept-Language
   const acceptLanguage = request.headers.get("accept-language") ?? undefined;
 
@@ -38,10 +40,10 @@ function getLocale(request) {
 /**
  * @name middleware
  * @description Middleware function para Next.js 16 - maneja redirecciones de locale
- * @param {Request} request - Request object de Next.js
+ * @param {NextRequest} request - Request object de Next.js
  * @returns {NextResponse|undefined} - Response con redirección o undefined si ya tiene locale
  */
-export default function middleware(request) {
+export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Excluir archivos estáticos (imágenes, PDFs, CSS, etc.)
