@@ -11,7 +11,7 @@ import { ClientLayoutWrapper } from "./fragments/client-layout-wrapper";
 // Import of utilities
 import { MULTIMEDIA } from "@/config";
 import { SIDEBAR_DATA } from "@/components/atomic-design/organism/navigate/sidebar/utils";
-import { hasLocale, locales } from "./locales/utils/functions";
+import { hasLocale } from "./locales/utils/functions";
 
 // Import of types
 import type { Metadata } from "next";
@@ -22,9 +22,12 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  await params; // Esperar params aunque no se use el locale en metadata por ahora
+  const { locale } = await params;
+  const title = locale
+    ? `Portafolio - Jweloper (${locale})`
+    : "Portafolio - Jweloper";
   return {
-    title: "Portafolio - Jweloper",
+    title,
     description: "Portafolio de Jweloper, desarrollador frontend.",
     icons: {
       icon: MULTIMEDIA.FAVICONS.FAVICON,
@@ -35,7 +38,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  return locales.map((locale) => ({ locale: locale as string }));
+  return [{ locale: "es" }, { locale: "en" }];
 }
 
 export default async function LocaleLayout({
