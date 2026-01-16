@@ -11,7 +11,7 @@ import { ClientLayoutWrapper } from "./fragments/client-layout-wrapper";
 // Import of utilities
 import { MULTIMEDIA } from "@/config";
 import { SIDEBAR_DATA } from "@/components/atomic-design/organism/navigate/sidebar/utils";
-import { getDictionary, hasLocale, locales } from "./locales/utils/functions";
+import { hasLocale, locales } from "./locales/utils/functions";
 
 // Import of types
 import type { Metadata } from "next";
@@ -51,9 +51,6 @@ export default async function LocaleLayout({
   if (!hasLocale(locale)) {
     notFound();
   }
-
-  // Cargar diccionario para el locale actual
-  await getDictionary(locale);
 
   return (
     <ClientLayoutWrapper sidebarData={SIDEBAR_DATA}>
