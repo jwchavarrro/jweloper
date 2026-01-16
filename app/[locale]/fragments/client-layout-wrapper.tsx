@@ -14,7 +14,7 @@ import { Sidebar } from "@/components/atomic-design/organism/navigate";
 import { ReduxProvider } from "@/store/provider";
 
 // Import of types
-import type { SidebarDataType } from "@/components/atomic-design/organism/navigate/sidebar/utils/types";
+import type { SidebarDataType } from "@/components/atomic-design/organism/navigate/sidebar/utils";
 
 interface ClientLayoutWrapperProps {
   readonly children: React.ReactNode;

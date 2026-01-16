@@ -1,24 +1,21 @@
 /**
  * @file layout.tsx
  * @description Layout con locale para la aplicación internacionalizada.
- * Basado en la documentación oficial: https://nextjs.org/docs/app/guides/internationalization
  */
 
 import { notFound } from "next/navigation";
 
 // Import of components custom
-import { ClientLayoutWrapper } from "./components/client-layout-wrapper";
+import { ClientLayoutWrapper } from "./fragments/client-layout-wrapper";
 
 // Import of utilities
 import { MULTIMEDIA } from "@/config";
 import { SIDEBAR_DATA } from "@/components/atomic-design/organism/navigate/sidebar/utils";
+import { getDictionary, hasLocale } from "./i18n-dictionaries";
+import { locales } from "./i18n-utils";
 
 // Import of types
 import type { Metadata } from "next";
-
-// Import of i18n
-import { getDictionary, hasLocale } from "./i18n-dictionaries";
-import { locales } from "./i18n-utils";
 
 // Generar metadata dinámicamente
 export async function generateMetadata({
@@ -38,7 +35,6 @@ export async function generateMetadata({
   };
 }
 
-// Generar parámetros estáticos para los locales
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale: locale as string }));
 }
@@ -58,7 +54,6 @@ export default async function LocaleLayout({
   }
 
   // Cargar diccionario para el locale actual
-  // Por ahora no lo usamos, pero está disponible para las páginas
   await getDictionary(locale);
 
   return (
