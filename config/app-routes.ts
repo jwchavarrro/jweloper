@@ -32,12 +32,6 @@ export const APP_ROUTES = {
         IA_CHAT: {
           path: "/ia-chat",
         },
-        IA_CHAT_NEW: {
-          path: "/ia-chat/nuevo-chat",
-          queries: {
-            "nuevo-chat": "string",
-          } as const,
-        },
         IA_CHAT_SEARCH: {
           path: "/ia-chat/buscar-chat",
           queries: {
@@ -129,15 +123,3 @@ export const APP_LINKS = {
     },
   },
 } as const;
-
-/**
- * Tipos helper para obtener las keys de los query params de una ruta dentro de PORTFOLIO
- * Solo funciona con rutas que tienen la propiedad queries definida
- */
-export type PortfolioRouteQueryKeys<
-  T extends keyof typeof APP_ROUTES.PUBLIC.PORTFOLIO,
-> = T extends "IA_CHAT_NEW"
-  ? keyof (typeof APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW)["queries"]
-  : T extends "IA_CHAT_SEARCH"
-    ? keyof (typeof APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH)["queries"]
-    : never;
