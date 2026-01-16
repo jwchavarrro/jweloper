@@ -1,10 +1,9 @@
 # Jweloper - Portafolio Personal
 
-Portafolio personal de Jweloper (John Chavarro), desarrollador frontend especializado en React y Next.js. Aplicación web moderna con internacionalización, diseño atómico y múltiples vistas del CV.
+Portafolio personal de Jweloper (John Chavarro), desarrollador frontend especializado en React y Next.js. Aplicación web moderna con diseño atómico y múltiples vistas del CV.
 
 ## 🚀 Características
 
-- **Internacionalización (i18n)**: Soporte para español e inglés con detección automática de idioma
 - **Atomic Design**: Arquitectura de componentes escalable y mantenible
 - **Diseño Responsivo**: Adaptado a diferentes tamaños de pantalla
 - **Modo Oscuro/Claro**: Tema personalizable
@@ -33,11 +32,6 @@ Portafolio personal de Jweloper (John Chavarro), desarrollador frontend especial
 - **Lucide React** - Iconos
 - **Motion** - Animaciones
 - **Embla Carousel** - Carruseles
-
-### Internacionalización
-
-- **next-intl** - Internacionalización para Next.js
-- **@formatjs/intl-localematcher** - Detección de locale
 
 ### Testing
 
@@ -83,11 +77,9 @@ bun quality-check # Ejecuta lint, format check, build y tests
 ```
 jweloper/
 ├── app/                    # App Router de Next.js
-│   ├── [locale]/          # Rutas internacionalizadas
-│   │   ├── app-web/       # Portafolio interactivo
-│   │   ├── ia-chat/       # Chat con IA
-│   │   └── i18n-*.ts      # Utilidades de i18n
-│   └── utils/             # Utilidades de la app
+│   ├── app-web/            # Portafolio interactivo
+│   ├── ia-chat/            # Chat con IA
+│   └── utils/              # Utilidades de la app
 ├── components/            # Componentes React
 │   ├── atomic-design/     # Componentes por nivel (atoms, molecules, organisms)
 │   ├── pages/             # Componentes de páginas
@@ -95,24 +87,8 @@ jweloper/
 ├── config/                # Configuraciones (rutas, iconos, multimedia)
 ├── hooks/                 # Custom hooks
 ├── store/                 # Redux store y slices
-├── lib/                   # Utilidades compartidas
-└── messages/              # Archivos de traducción (futuro)
+└── lib/                   # Utilidades compartidas
 ```
-
-## 🌐 Internacionalización
-
-El proyecto soporta múltiples idiomas mediante:
-
-- **EnumLocale**: Enum centralizado para locales (`ES`, `EN`)
-- **Detección automática**: Basada en `Accept-Language` header
-- **Rutas localizadas**: `/es/app-web`, `/en/app-web`
-- **Diccionarios**: Sistema preparado para traducciones (archivos en `messages/`)
-
-### Archivos i18n
-
-- `app/[locale]/locales/utils/types.ts` - Enum y tipos de locales
-- `app/[locale]/locales/utils/functions.ts` - Funciones de locales e i18n
-- `middleware.ts` - Middleware para redirecciones de locale
 
 ## 🎨 Atomic Design
 
