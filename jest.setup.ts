@@ -91,3 +91,13 @@ jest.mock("@/app/[locale]/i18n-navigation", () =>
 jest.mock("next-intl/routing", () => ({
   defineRouting: <T>(config: T) => config,
 }));
+
+// Tema (next-themes): tema claro fijo y provider passthrough
+jest.mock("next-themes", () => ({
+  useTheme: () => ({
+    theme: "light",
+    resolvedTheme: "light",
+    setTheme: jest.fn(),
+  }),
+  ThemeProvider: ({ children }: { children: React.ReactNode }) => children,
+}));

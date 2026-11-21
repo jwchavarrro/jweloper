@@ -5,14 +5,21 @@ import { makeStore } from "@/store/makeStore";
 
 // Mock de los componentes
 jest.mock("@/components/atomic-design/atoms", () => ({
-  Title: ({
+  ...jest.requireActual("@/components/atomic-design/atoms/badge"),
+  ...jest.requireActual("@/components/atomic-design/atoms/card"),
+  Icon: jest.requireActual("@/components/atomic-design/atoms/icon").Icon,
+  Typography: ({
     children,
     className,
+    variant = "p",
   }: {
     children: React.ReactNode;
     className?: string;
-  }) => <h1 className={className}>{children}</h1>,
-  Text: ({ children }: { children: React.ReactNode }) => <p>{children}</p>,
+    variant?: string;
+  }) => {
+    const Tag = (/^h[1-4]$/.test(variant) ? variant : "p") as "p";
+    return <Tag className={className}>{children}</Tag>;
+  },
 }));
 
 jest.mock("@/components/pages/app-web/components", () => ({

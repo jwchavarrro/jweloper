@@ -1,7 +1,10 @@
 /**
- * Exportaciones de componentes molecules
- * Componentes compuestos que usan atoms
+ * Exportaciones de componentes molecules, agrupados por categoría.
+ * Componentes compuestos que usan atoms.
  */
 
-export { Card } from "./card";
-export * from "./custom";
+export * from "./badges";
+export * from "./buttons";
+export * from "./cards";
+export * from "./indicators";
+export * from "./inputs";

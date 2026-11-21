@@ -1,29 +1,6 @@
-import {
-  EnumTheme,
-  EnumSkills,
-  EnumSocialMedia,
-  ThemeStateType,
-  SocialMediaType,
-} from "../types";
+import { EnumSkills, EnumSocialMedia, SocialMediaType } from "../types";
 
 describe("app/utils/types", () => {
-  describe("EnumTheme", () => {
-    it("should have Light value", () => {
-      expect(EnumTheme.Light).toBe("light");
-    });
-
-    it("should have Dark value", () => {
-      expect(EnumTheme.Dark).toBe("dark");
-    });
-
-    it("should have all expected values", () => {
-      const values = Object.values(EnumTheme);
-      expect(values).toContain("light");
-      expect(values).toContain("dark");
-      expect(values.length).toBe(2);
-    });
-  });
-
   describe("EnumSkills", () => {
     it("should have all expected skill values", () => {
       expect(EnumSkills.HTML).toBe("HTML");
@@ -55,22 +32,6 @@ describe("app/utils/types", () => {
     it("should have 4 social media values", () => {
       const values = Object.values(EnumSocialMedia);
       expect(values.length).toBe(4);
-    });
-  });
-
-  describe("ThemeStateType", () => {
-    it("should accept valid theme state", () => {
-      const themeState: ThemeStateType = {
-        theme: EnumTheme.Light,
-      };
-      expect(themeState.theme).toBe(EnumTheme.Light);
-    });
-
-    it("should accept dark theme", () => {
-      const themeState: ThemeStateType = {
-        theme: EnumTheme.Dark,
-      };
-      expect(themeState.theme).toBe(EnumTheme.Dark);
     });
   });
 

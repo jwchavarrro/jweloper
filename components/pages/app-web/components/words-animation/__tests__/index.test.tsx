@@ -55,19 +55,18 @@ jest.mock("next/link", () => {
 
 // Mock de Title
 jest.mock("@/components/atomic-design/atoms", () => ({
-  Title: ({
+  Typography: ({
     children,
     className,
-    level,
+    variant = "p",
   }: {
     children: React.ReactNode;
     className?: string;
-    level?: number;
-  }) => (
-    <h1 className={className} data-level={level}>
-      {children}
-    </h1>
-  ),
+    variant?: string;
+  }) => {
+    const Tag = (/^h[1-4]$/.test(variant) ? variant : "p") as "p";
+    return <Tag className={className}>{children}</Tag>;
+  },
 }));
 
 describe("WordsAnimation", () => {

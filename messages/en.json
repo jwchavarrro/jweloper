@@ -14,7 +14,8 @@
     "locales": {
       "es": "Español",
       "en": "English"
-    }
+    },
+    "switchLanguage": "Switch to {language}"
   },
   "navigation": {
     "portfolio": "Portfolio",
@@ -40,13 +41,13 @@
   "appWeb": {
     "role": "Frontend Developer",
     "yearsOfExperience": "years of experience",
-    "greeting": "<Hi, I'm John Chavarro Urrea/>",
+    "greeting": "Hi, I'm John Chavarro Urrea",
     "downloadCv": "Download CV",
     "downloading": "Downloading...",
     "downloadError": "Error downloading the file",
-    "experienceTitle": "<Pro Experience/>",
-    "projectsTitle": "<Featured projects/>",
-    "contactTitle": "<Contact/>",
+    "experienceTitle": "Pro Experience",
+    "projectsTitle": "Featured projects",
+    "contactTitle": "Contact",
     "contactText": "Ready to take your ideas to the next level? Let's talk about how I can add value to your next project or creative collaboration.",
     "viewPreviousVersion": "See the previous version",
     "viewNewVersion": "See the new version",

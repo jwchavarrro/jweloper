@@ -8,8 +8,11 @@ import { CardB } from "../card-b";
 import { CardBData } from "@/components/pages/app-web/v1/utils";
 
 // Mock de los componentes
-jest.mock("@/components/atomic-design/molecules/card", () => ({
-  Card: ({
+jest.mock("@/components/atomic-design/molecules", () => ({
+  BadgeA: ({ text }: { text: string }) => (
+    <span data-testid="badge">{text}</span>
+  ),
+  CardA: ({
     children,
     className,
   }: {
@@ -23,27 +26,21 @@ jest.mock("@/components/atomic-design/molecules/card", () => ({
 }));
 
 jest.mock("@/components/atomic-design/atoms", () => ({
-  Title: ({
+  ...jest.requireActual("@/components/atomic-design/atoms/badge"),
+  ...jest.requireActual("@/components/atomic-design/atoms/card"),
+  Icon: jest.requireActual("@/components/atomic-design/atoms/icon").Icon,
+  Typography: ({
     children,
     className,
+    variant = "p",
   }: {
     children: React.ReactNode;
     className?: string;
-  }) => <h4 className={className}>{children}</h4>,
-  Text: ({
-    children,
-    className,
-  }: {
-    children: React.ReactNode;
     variant?: string;
-    className?: string;
-  }) => <p className={className}>{children}</p>,
-}));
-
-jest.mock("@/components/atomic-design", () => ({
-  Badge: ({ text }: { text: string }) => (
-    <span data-testid="badge">{text}</span>
-  ),
+  }) => {
+    const Tag = (/^h[1-4]$/.test(variant) ? variant : "p") as "p";
+    return <Tag className={className}>{children}</Tag>;
+  },
 }));
 
 jest.mock("next/image", () => ({
@@ -106,8 +103,8 @@ describe("CardB", () => {
     expect(card).toHaveClass("shadow-transparent");
     expect(card).toHaveClass("border-transparent");
     expect(card).toHaveClass("hover:shadow-md");
-    expect(card).toHaveClass("opacity-50");
-    expect(card).toHaveClass("p-3");
+    expect(card).toHaveClass("opacity-70");
+    expect(card).toHaveClass("md:p-3");
     expect(card).toHaveClass("group");
   });
 

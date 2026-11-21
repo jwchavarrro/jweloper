@@ -3,8 +3,19 @@
  * Componentes básicos que extienden shadcn/ui
  */
 
-export { Button } from "./button";
-export { Title } from "./title";
-export { Text } from "./text";
-export { InputText } from "./inputs/input-text";
+export { Badge, badgeVariants } from "./badge";
+export {
+  Card,
+  type CardProps,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./card";
+export { Icon } from "./icon";
+export { Typography } from "./typography";
+export * from "./input";
+export * from "./label";
 export { Switch } from "./switch";

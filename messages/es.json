@@ -14,7 +14,8 @@
     "locales": {
       "es": "Español",
       "en": "English"
-    }
+    },
+    "switchLanguage": "Cambiar a {language}"
   },
   "navigation": {
     "portfolio": "Portafolio",
@@ -40,13 +41,13 @@
   "appWeb": {
     "role": "Desarrollador Frontend",
     "yearsOfExperience": "años de experiencia",
-    "greeting": "<Hola, soy John Chavarro Urrea/>",
+    "greeting": "Hola, soy John Chavarro Urrea",
     "downloadCv": "Descargar CV",
     "downloading": "Descargando...",
     "downloadError": "Error al descargar el archivo",
-    "experienceTitle": "<Experiencia Pro/>",
-    "projectsTitle": "<Proyectos destacados/>",
-    "contactTitle": "<Contacto/>",
+    "experienceTitle": "Experiencia Pro",
+    "projectsTitle": "Proyectos destacados",
+    "contactTitle": "Contacto",
     "contactText": "¿Listo para llevar tus ideas al siguiente nivel? Conversemos sobre cómo puedo aportar valor a tu próximo proyecto o colaboración creativa.",
     "viewPreviousVersion": "Ver la versión anterior",
     "viewNewVersion": "Ver la nueva versión",

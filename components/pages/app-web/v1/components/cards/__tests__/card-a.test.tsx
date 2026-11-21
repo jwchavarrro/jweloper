@@ -9,25 +9,28 @@ import { CardAData } from "@/components/pages/app-web/v1/utils";
 
 // Mock de los componentes
 jest.mock("@/components/atomic-design/atoms", () => ({
-  Title: ({
+  ...jest.requireActual("@/components/atomic-design/atoms/badge"),
+  ...jest.requireActual("@/components/atomic-design/atoms/card"),
+  Icon: jest.requireActual("@/components/atomic-design/atoms/icon").Icon,
+  Typography: ({
     children,
     className,
+    variant = "p",
   }: {
     children: React.ReactNode;
     className?: string;
-  }) => <h4 className={className}>{children}</h4>,
-  Text: ({
-    children,
-    className,
-  }: {
-    children: React.ReactNode;
     variant?: string;
-    className?: string;
-  }) => <p className={className}>{children}</p>,
+  }) => {
+    const Tag = (/^h[1-4]$/.test(variant) ? variant : "p") as "p";
+    return <Tag className={className}>{children}</Tag>;
+  },
 }));
 
-jest.mock("@/components/atomic-design/molecules/card", () => ({
-  Card: ({
+jest.mock("@/components/atomic-design/molecules", () => ({
+  BadgeA: ({ text }: { text: string }) => (
+    <span data-testid="badge">{text}</span>
+  ),
+  CardA: ({
     children,
     className,
   }: {
@@ -37,12 +40,6 @@ jest.mock("@/components/atomic-design/molecules/card", () => ({
     <div data-slot="card" className={className}>
       {children}
     </div>
-  ),
-}));
-
-jest.mock("@/components/atomic-design", () => ({
-  Badge: ({ text }: { text: string }) => (
-    <span data-testid="badge">{text}</span>
   ),
 }));
 
@@ -135,7 +132,9 @@ describe("CardA", () => {
 
   it("should render external link icon when company url is provided", () => {
     render(<CardA data={mockData} />);
-    expect(screen.getByTestId("icon-mdi:open-in-new")).toBeInTheDocument();
+    expect(
+      screen.getByTestId("icon-hugeicons:square-arrow-up-right")
+    ).toBeInTheDocument();
   });
 
   it("should not render external link icon when company url is not provided", () => {
@@ -145,7 +144,7 @@ describe("CardA", () => {
     };
     render(<CardA data={dataWithoutUrl} />);
     expect(
-      screen.queryByTestId("icon-mdi:open-in-new")
+      screen.queryByTestId("icon-hugeicons:square-arrow-up-right")
     ).not.toBeInTheDocument();
   });
 

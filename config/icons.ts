@@ -28,4 +28,5 @@ export const ICONS: Record<string, string> = {
   ARROW_LEFT: "hugeicons:circle-arrow-left-02",
   ARROW_RIGHT_01: "hugeicons:arrow-right-01",
   OPEN_IN_NEW: "hugeicons:square-arrow-up-right",
+  CALENDAR: "hugeicons:calendar-03",
 };

@@ -1,156 +1,98 @@
 # Atomic Design Components
 
-Este directorio contiene componentes que extienden los componentes base de shadcn/ui (`@/components/ui`) sin modificarlos.
+Componentes propios que **reutilizan y personalizan** los primitivos de shadcn/ui (`@/components/ui`) sin modificarlos. Las reglas completas están en el `CLAUDE.md` de la raíz.
 
-## Estructura
+## Niveles
+
+- **`@/components/ui`**: primitivos de shadcn/ui, instalados por CLI. NO modificar.
+- **atoms/**: el primitivo base; extiende un componente de `ui/` con los estilos del proyecto y no usa otros componentes propios.
+- **molecules/**: combinan atoms. Si algo usa un átomo, es molécula.
+- **organism/**: bloques completos (navegación, carruseles…).
+- **templates/**: esqueletos de página.
+
+## Estructura: nivel / categoría / componente
+
+Cada componente vive dentro de una carpeta de **categoría**. No se usan carpetas genéricas (`custom/`) ni componentes sueltos en la raíz de un nivel.
 
 ```
 atomic-design/
 ├── atoms/
-│   ├── index.ts     # Exportaciones de atoms
-│   ├── button.tsx
-│   ├── heading.tsx
-│   └── text.tsx
+│   ├── badge/                      # base: ui/badge
+│   ├── card/                       # base: ui/card (div | enlace con href | interactivo con onClick)
+│   ├── icon/                       # base única de iconos (iconify)
+│   ├── input/                      # base: ui/input (size, variant)
+│   ├── label/                      # base: ui/label (required)
+│   ├── switch/
+│   ├── typography/                 # h1–h4, p, lead, large, small, muted
+│   └── index.ts
 ├── molecules/
-│   ├── index.ts     # Exportaciones de molecules
-│   ├── card.tsx
-│   └── hero-section.tsx
-└── index.ts         # Exportaciones centralizadas (re-exporta desde atoms y molecules)
+│   ├── badges/badge-a/             # átomo Badge + Icon
+│   ├── buttons/button/             # ui/button + átomo Icon
+│   ├── buttons/button-icon/        # CTA: Button + Icon animados
+│   ├── cards/card-a/               # diseño de card sobre el átomo Card
+│   ├── indicators/counter-indicator/
+│   ├── indicators/scroll-indicator/
+│   ├── inputs/InputField/          # Label opcional + Input; todos los `type` (date con icono)
+│   └── index.ts                    # re-exporta cada categoría
+├── organism/
+│   ├── carousel/
+│   ├── navigate/breadcrumb/
+│   ├── navigate/sidebar/
+│   └── index.ts
+├── templates/
+│   ├── snap-page/
+│   └── index.ts
+└── index.ts
 ```
 
-## Principio
+Cada categoría y cada nivel tiene su barrel `index.ts`.
 
-- **`@/components/ui`**: Componentes base de shadcn/ui (NO modificar)
-- **`@/components/atomic-design/atoms`**: Componentes que extienden los de ui con estilos personalizados
-- **`@/components/atomic-design/molecules`**: Componentes compuestos que usan atoms
+## Imports
 
-## Uso
-
-### Importar desde el índice centralizado
+Entre niveles, siempre desde el barrel del nivel:
 
 ```tsx
+import { Icon, Typography } from "@/components/atomic-design/atoms"; // ✅
 import {
   Button,
-  Heading,
-  Text,
-  Card,
-  HeroSection,
-} from "@/components/atomic-design";
+  ButtonIcon,
+  CardA,
+} from "@/components/atomic-design/molecules"; // ✅
+import { Button } from "@/components/atomic-design/molecules/buttons/button"; // ❌ ruta interna (fuera de molecules)
 ```
 
-### O importar desde las subcarpetas
-
-```tsx
-// Desde atoms
-import { Button, Heading, Text } from "@/components/atomic-design/atoms";
-
-// Desde molecules
-import { Card, HeroSection } from "@/components/atomic-design/molecules";
-
-// O directamente
-import { Button } from "@/components/atomic-design/atoms/button";
-import { Card } from "@/components/atomic-design/molecules/card";
-```
+Dentro del mismo nivel (una molécula que usa otra), desde la carpeta del componente con alias, nunca desde el barrel del propio nivel (ciclo) ni con `../`.
 
 ## Ejemplos
 
-### Atoms
-
-#### Button personalizado
-
 ```tsx
-import { Button } from "@/components/atomic-design/atoms/button"
+// Átomo Icon: nombre iconify (normalmente desde ICONS)
+<Icon icon={ICONS.ARROW_RIGHT_01} className="size-5" />
 
-// Usa todas las props del Button base de shadcn/ui
-<Button variant="default" size="lg">
-  Click me
-</Button>
+// Molécula Button: props de shadcn + iconos opcionales
+<Button variant="ghost" size="sm" trailingIcon={ICONS.OPEN_IN_NEW}>EN</Button>
 
-// Con variantes personalizadas adicionales
-<Button customVariant="gradient" variant="default">
-  Gradient Button
-</Button>
+// Átomo Card: div por defecto, enlace con href, interactivo con onClick
+<Card>…</Card>
+<Card href="/app-web">…</Card>
+<Card onClick={open}>…</Card>
 
-<Button customVariant="glow" variant="default">
-  Glow Button
-</Button>
-```
+// Molécula InputField: un solo componente para todos los tipos
+<InputField label="Fecha" type="date" required />
+<InputField label="Edad" type="number" helperText="Solo números" />
 
-#### Heading personalizado
+// Molécula ButtonIcon: Button + icono circular + texto animados
+<ButtonIcon text={t("cvApp")} onClick={() => router.push(url)} />
 
-```tsx
-import { Heading } from "@/components/atomic-design/atoms/heading"
-
-<Heading level={1} variant="gradient">
-  Título con gradiente
-</Heading>
-
-<Heading level={2} variant="accent">
-  Subtítulo con color primario
-</Heading>
-```
-
-#### Text personalizado
-
-```tsx
-import { Text } from "@/components/atomic-design/atoms/text"
-
-<Text variant="lead" color="primary">
-  Texto destacado en color primario
-</Text>
-
-<Text variant="muted" color="accent">
-  Texto atenuado con color de acento
-</Text>
-```
-
-### Molecules
-
-#### Card
-
-```tsx
-import { Card } from "@/components/atomic-design/molecules/card"
-
-// Card básico con título y descripción
-<Card
-  title="Título de la tarjeta"
-  description="Descripción opcional"
-  buttonText="Acción"
-  buttonVariant="default"
-  onButtonClick={() => console.log("Clicked")}
->
-  <p>Contenido adicional de la tarjeta</p>
-</Card>
-
-// Card con acción en el header
-<Card
-  title="Título"
-  description="Descripción"
-  showHeaderAction
-  headerAction={<Button variant="ghost">Más</Button>}
->
-  Contenido
-</Card>
-```
-
-#### HeroSection
-
-```tsx
-import { HeroSection } from "@/components/atomic-design/molecules/hero-section";
-
-<HeroSection
-  title="Bienvenido a nuestra plataforma"
-  subtitle="La mejor solución para tus necesidades"
-  primaryButtonText="Comenzar"
-  secondaryButtonText="Saber más"
-  onPrimaryButtonClick={() => console.log("Primary")}
-  onSecondaryButtonClick={() => console.log("Secondary")}
-/>;
+// Átomo Typography: variant = h1–h4 | p | lead | large | small | muted;
+// color = default | primary | secondary | accent | gradient
+<Typography variant="h2" color="gradient">{t("title")}</Typography>
+<Typography variant="lead" color="primary">{t("description")}</Typography>
 ```
 
 ## Ventajas
 
-1. **No modifica componentes base**: Los componentes de shadcn/ui permanecen intactos
-2. **Fácil actualización**: Puedes actualizar shadcn/ui sin perder tus personalizaciones
-3. **Reutilizable**: Los atoms pueden combinarse en diferentes molecules
-4. **Mantenible**: Separación clara entre componentes base y personalizados
+1. **No modifica componentes base**: los primitivos de shadcn/ui permanecen intactos.
+2. **Fácil actualización**: se puede actualizar shadcn/ui sin perder las personalizaciones.
+3. **Reutilizable**: los atoms se combinan en diferentes molecules.
+4. **Mantenible**: separación clara entre primitivos base y componentes propios, agrupados por categoría.

@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl";
 import { SnapPage } from "@/components/atomic-design/templates";
 import { Carousel } from "@/components/atomic-design/organism";
 import { ProjectItem } from "./fragments";
-import { Title } from "@/components/atomic-design/atoms";
+import { Typography } from "@/components/atomic-design/atoms";
 
 // Import of custom hooks
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -55,12 +55,13 @@ export const Section03: React.FC<Section03Props> = ({ anchorId }) => {
 
         {/* Column 2 - Title */}
         <div className="order-1 md:order-2 lg:h-full flex items-center justify-center">
-          <Title
-            variant="gradient"
+          <Typography
+            variant="h1"
+            color="gradient"
             className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap lg:text-left max-w-xl"
           >
-            {t("projectsTitle")}
-          </Title>
+            {`<${t("projectsTitle")}/>`}
+          </Typography>
         </div>
       </div>
     </SnapPage>

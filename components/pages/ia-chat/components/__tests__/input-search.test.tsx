@@ -102,7 +102,7 @@ describe("InputSearch", () => {
     expect(input).toHaveClass("h-11");
   });
 
-  it("should pass through additional props to InputText", () => {
+  it("should pass through additional props to InputField", () => {
     render(<InputSearch disabled data-testid="search-input" />);
     const input = screen.getByTestId("search-input");
     expect(input).toBeDisabled();

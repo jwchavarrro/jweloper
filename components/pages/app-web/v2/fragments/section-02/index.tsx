@@ -12,7 +12,7 @@ import { FileCodeIcon } from "lucide-react";
 
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
-import { Title } from "@/components/atomic-design/atoms";
+import { Typography } from "@/components/atomic-design/atoms";
 import { CodeEditor } from "@/components/pages/app-web/components";
 
 // Import of utilities
@@ -49,23 +49,17 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
   const t = useTranslations("appWeb");
   const experiences = useExperiences();
 
-  const experiencesJSON = React.useMemo(
-    () => formatExperiencesAsJSON(experiences),
-    [experiences]
-  );
+  const experiencesJSON = formatExperiencesAsJSON(experiences);
 
   // Configurar archivos para el editor
-  const editorFiles: FileItem[] = React.useMemo(
-    () => [
-      {
-        name: "experiences.json",
-        content: experiencesJSON,
-        language: "json",
-        icon: <FileCodeIcon className="size-4 text-green-400" />,
-      },
-    ],
-    [experiencesJSON]
-  );
+  const editorFiles: FileItem[] = [
+    {
+      name: "experiences.json",
+      content: experiencesJSON,
+      language: "json",
+      icon: <FileCodeIcon className="size-4 text-green-400" />,
+    },
+  ];
 
   return (
     <SnapPage
@@ -78,12 +72,13 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
       <div className="h-full absolute inset-0 grid grid-cols-1 xl:grid-cols-3 gap-2 lg:gap-[5%]">
         {/* Column 1 - Title */}
         <div className="h-full flex items-center justify-center lg:justify-end">
-          <Title
-            variant="gradient"
+          <Typography
+            variant="h1"
+            color="gradient"
             className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap lg:text-right max-w-xl"
           >
-            {t("experienceTitle")}
-          </Title>
+            {`<${t("experienceTitle")}/>`}
+          </Typography>
         </div>
 
         {/* Column 2 - Content */}

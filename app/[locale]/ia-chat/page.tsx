@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 import { ChevronUp } from "lucide-react";
 
 // Import of components custom
-import { Title } from "@/components/atomic-design/atoms";
+import { Typography } from "@/components/atomic-design/atoms";
 import { InputSearch } from "@/components/pages/ia-chat/components";
 import { SearchInstructions } from "@/components/pages/ia-chat/fragments";
 
@@ -58,9 +58,9 @@ export default function IaChat() {
       <section className="h-full container mx-auto grid grid-rows-2 gap-20 lg:gap-10">
         {/* Flow 1 */}
         <header className="flex items-center lg:items-end justify-center">
-          <Title variant="gradient" className="text-center">
+          <Typography variant="h1" color="gradient" className="text-center">
             {t("title")}
-          </Title>
+          </Typography>
         </header>
 
         {/* Flow 2 -- Input Search */}
