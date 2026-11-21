@@ -6,7 +6,7 @@
 import * as React from "react";
 import { CopyIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Text } from "@/components/atomic-design/atoms";
+import { Typography } from "@/components/atomic-design/atoms";
 
 interface CodeEditorFooterProps {
   readonly language: string;
@@ -27,21 +27,21 @@ export const CodeEditorFooter: React.FC<CodeEditorFooterProps> = ({
   return (
     <footer className="flex items-center justify-between px-4 bg-[#007acc]">
       <div className="flex items-center gap-4">
-        <Text variant="small" className="text-[11px] text-white">
+        <Typography variant="small" className="text-[11px] text-white">
           {language.toUpperCase()}
-        </Text>
-        <Text variant="small" className="text-[11px] text-white">
+        </Typography>
+        <Typography variant="small" className="text-[11px] text-white">
           {lineCount} líneas
-        </Text>
-        <Text variant="small" className="text-[11px] text-white">
+        </Typography>
+        <Typography variant="small" className="text-[11px] text-white">
           {characterCount} caracteres
-        </Text>
+        </Typography>
       </div>
       <div className="flex items-center gap-2">
         {copyMessage && (
-          <Text variant="small" className="text-[11px] text-white">
+          <Typography variant="small" className="text-[11px] text-white">
             {copyMessage}
-          </Text>
+          </Typography>
         )}
         <button
           type="button"

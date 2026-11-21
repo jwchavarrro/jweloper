@@ -4,7 +4,7 @@ Portafolio personal de Jweloper (John Chavarro), desarrollador frontend especial
 
 ## 🚀 Características
 
-- **Internacionalización (i18n)**: Soporte para español e inglés con detección automática de idioma
+- **Internacionalización (i18n)**: Español e inglés con next-intl; detecta el idioma del navegador y conserva el elegido al navegar
 - **Atomic Design**: Arquitectura de componentes escalable y mantenible
 - **Diseño Responsivo**: Adaptado a diferentes tamaños de pantalla
 - **Modo Oscuro/Claro**: Tema personalizable
@@ -36,8 +36,7 @@ Portafolio personal de Jweloper (John Chavarro), desarrollador frontend especial
 
 ### Internacionalización
 
-- **next-intl** - Internacionalización para Next.js
-- **@formatjs/intl-localematcher** - Detección de locale
+- **next-intl** - Internacionalización para Next.js (rutas, mensajes y detección de locale)
 
 ### Testing
 
@@ -86,7 +85,7 @@ jweloper/
 │   ├── [locale]/          # Rutas internacionalizadas
 │   │   ├── app-web/       # Portafolio interactivo
 │   │   ├── ia-chat/       # Chat con IA
-│   │   └── i18n-*.ts      # Utilidades de i18n
+│   │   └── i18n-*.ts      # Configuración de next-intl (routing, navigation, request)
 │   └── utils/             # Utilidades de la app
 ├── components/            # Componentes React
 │   ├── atomic-design/     # Componentes por nivel (atoms, molecules, organisms)
@@ -96,24 +95,40 @@ jweloper/
 ├── hooks/                 # Custom hooks
 ├── store/                 # Redux store y slices
 ├── lib/                   # Utilidades compartidas
-└── messages/              # Archivos de traducción (futuro)
+├── messages/              # Traducciones (es.json, en.json)
+└── proxy.ts               # Proxy de Next.js: negociación de locale (next-intl)
 ```
 
 ## 🌐 Internacionalización
 
-El proyecto soporta múltiples idiomas mediante:
+El proyecto usa [next-intl](https://next-intl.dev):
 
-- **EnumLocale**: Enum centralizado para locales (`ES`, `EN`)
-- **Detección automática**: Basada en `Accept-Language` header
-- **Rutas localizadas**: `/es/app-web`, `/en/app-web`
-- **Diccionarios**: Sistema preparado para traducciones (archivos en `messages/`)
+- **Rutas localizadas**: `/es/app-web`, `/en/app-web`. `/` redirige según el `Accept-Language` del navegador (por defecto `es`)
+- **Idioma persistente**: el locale elegido se guarda y se conserva al navegar
+- **Mensajes**: todos los textos viven en `messages/es.json` y `messages/en.json` (mismas claves en ambos)
+- **Claves tipadas**: `global.d.ts` tipa locales y claves a partir de `messages/es.json`
 
 ### Archivos i18n
 
-- `app/[locale]/i18n-types.ts` - Enum y tipos de locales
-- `app/[locale]/i18n-utils.ts` - Utilidades de i18n
-- `app/[locale]/i18n-dictionaries.ts` - Sistema de diccionarios
-- `proxy.js` - Middleware para redirecciones de locale
+- `app/[locale]/i18n-routing.ts` - Locales soportados y locale por defecto (fuente única)
+- `app/[locale]/i18n-navigation.ts` - `Link`, `useRouter`, `usePathname` que conservan el locale
+- `app/[locale]/i18n-request.ts` - Carga los mensajes del locale activo
+- `proxy.ts` - Negociación de locale y redirecciones
+
+### Uso
+
+```tsx
+// Textos
+import { useTranslations } from "next-intl";
+const t = useTranslations("home");
+t("title");
+
+// Navegación interna (conserva el locale)
+import { Link } from "@/app/[locale]/i18n-navigation";
+<Link href="/app-web">...</Link>;
+```
+
+Para enlaces externos o archivos estáticos (PDF, imágenes) usar `next/link`.
 
 ## 🎨 Atomic Design
 

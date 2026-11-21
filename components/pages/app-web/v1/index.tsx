@@ -6,19 +6,18 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useState, useRef, useCallback, useMemo } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Icon } from "@iconify/react";
 
 // Import of components custom
-import { Title, Text } from "@/components/atomic-design/atoms";
+import { Icon, Typography } from "@/components/atomic-design/atoms";
 import { CardA, CardB } from "@/components/pages/app-web/v1/components/cards";
 
 // Import of utilities
 import { SOCIAL_MEDIA } from "@/app/utils";
 import { NAVIGATION_APP_WEB_V1_SECTIONS } from "@/components/pages/app-web/v1/utils";
-import { APP_ROUTES, MULTIMEDIA } from "@/config";
+import { APP_ROUTES, MULTIMEDIA, ICONS } from "@/config";
 import { Link as LocaleLink } from "@/app/[locale]/i18n-navigation";
 
 // Import of custom hooks
@@ -53,88 +52,78 @@ export const AppWebV1: React.FC = () => {
 
   /**
    * @name sectionsWithActive
-   * @description Memoizar las secciones con su estado activo.
+   * @description Secciones con su estado activo.
    * @returns {NavigationAppWebV1SectionsType[]} - Lista de secciones con su estado activo.
    */
-  const sectionsWithActive = useMemo(
-    () =>
-      NAVIGATION_APP_WEB_V1_SECTIONS.map((section) => ({
-        ...section,
-        active: activeSection === section.href,
-      })),
-    [activeSection]
-  );
+  const sectionsWithActive = NAVIGATION_APP_WEB_V1_SECTIONS.map((section) => ({
+    ...section,
+    active: activeSection === section.href,
+  }));
 
   /**
    * @name handleScrollToSection
    * @description Manejador para scroll a una sección específica.
    * @param {string} section - La sección a la que se va a scroll.
    */
-  /**
-   * @name handleScrollToSection
-   * @description Manejador para scroll a una sección específica.
-   * @param {string} section - La sección a la que se va a scroll.
-   */
-  const handleScrollToSection = useCallback(
-    (section: string) => {
-      setActiveSection(section);
+  const handleScrollToSection = (section: string) => {
+    setActiveSection(section);
 
-      // Actualizar la URL con el hash
-      if (globalThis.window) {
-        globalThis.window.history.pushState(null, "", section);
-      }
+    // Actualizar la URL con el hash
+    if (globalThis.window) {
+      globalThis.window.history.pushState(null, "", section);
+    }
 
-      const sectionId = section.replace("#", "");
-      const element = document.getElementById(sectionId);
-      if (!element) return;
+    const sectionId = section.replace("#", "");
+    const element = document.getElementById(sectionId);
+    if (!element) return;
 
-      // Usar requestAnimationFrame para asegurar que el DOM esté actualizado
-      requestAnimationFrame(() => {
-        if (isMobile) {
-          // En mobile, el scroll es del documento completo
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        } else {
-          // En desktop, el scroll es del contenedor específico
-          const container = scrollContainerRef.current;
-          if (container) {
-            // Calcular la posición del elemento relativa al contenedor
-            // usando getBoundingClientRect para obtener posiciones absolutas
-            const containerRect = container.getBoundingClientRect();
-            const elementRect = element.getBoundingClientRect();
-            // La diferencia entre las posiciones del viewport más el scroll actual
-            const relativeTop = elementRect.top - containerRect.top;
-            const scrollTop = container.scrollTop + relativeTop - 20;
-            container.scrollTo({
-              top: Math.max(0, scrollTop),
-              behavior: "smooth",
-            });
-          }
+    // Usar requestAnimationFrame para asegurar que el DOM esté actualizado
+    requestAnimationFrame(() => {
+      if (isMobile) {
+        // En mobile, el scroll es del documento completo
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        // En desktop, el scroll es del contenedor específico
+        const container = scrollContainerRef.current;
+        if (container) {
+          // Calcular la posición del elemento relativa al contenedor
+          // usando getBoundingClientRect para obtener posiciones absolutas
+          const containerRect = container.getBoundingClientRect();
+          const elementRect = element.getBoundingClientRect();
+          // La diferencia entre las posiciones del viewport más el scroll actual
+          const relativeTop = elementRect.top - containerRect.top;
+          const scrollTop = container.scrollTop + relativeTop - 20;
+          container.scrollTo({
+            top: Math.max(0, scrollTop),
+            behavior: "smooth",
+          });
         }
-      });
-    },
-    [isMobile]
-  );
+      }
+    });
+  };
 
   return (
     <motion.div className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto lg:overscroll-none">
       {/* Column 1 - Content */}
       <div className="h-fit lg:h-[calc(100dvh-96px)] lg:overflow-hidden lg:sticky lg:top-0">
-        <div className="flex flex-col justify-between lg:max-w-xl mx-auto h-full py-10 gap-5 lg:gap-0">
+        <div className="flex flex-col justify-between lg:max-w-xl mx-auto h-full pt-6 pb-2 lg:py-10 gap-5 lg:gap-0">
           <div className="space-y-8">
             <div className="lg:max-w-md">
-              <Title
-                variant="gradient"
+              <Typography
+                variant="h1"
+                color="gradient"
                 className="text-4xl! md:text-6xl! text-wrap lg:max-w-xl"
               >
                 John Chavarro Urrea
-              </Title>
-              <Title
-                variant="gradient"
+              </Typography>
+              <Typography
+                variant="h1"
+                color="gradient"
                 className="text-base! md:text-lg! tracking-widest font-accent"
               >
                 {t("role")}
-              </Title>
-              <Text>{tHome("description")}</Text>
+              </Typography>
+              <Typography>{tHome("description")}</Typography>
             </div>
 
             {!isMobile && (
@@ -142,7 +131,7 @@ export const AppWebV1: React.FC = () => {
                 {sectionsWithActive.map(({ title, href, active }) => (
                   <div
                     key={href}
-                    className={`group flex items-center space-x-4 ${active ? "" : "opacity-40"}`}
+                    className={`group flex items-center space-x-4 ${active ? "" : "opacity-70"}`}
                   >
                     <span
                       className={`h-px ${active ? "w-20" : "w-10"} bg-foreground group-hover:w-20 transition-all duration-300`}
@@ -154,13 +143,13 @@ export const AppWebV1: React.FC = () => {
                         handleScrollToSection(href);
                       }}
                     >
-                      <Text
+                      <Typography
                         className={`uppercase tracking-widest ${
                           active ? "font-bold" : "font-semibold"
                         } text-base`}
                       >
                         {t(title)}
-                      </Text>
+                      </Typography>
                     </Link>
                   </div>
                 ))}
@@ -193,7 +182,7 @@ export const AppWebV1: React.FC = () => {
                 {t("viewNewVersion")}
               </span>
               <Icon
-                icon="mdi:arrow-right"
+                icon={ICONS.ARROW_RIGHT_01}
                 className="group-hover:translate-x-1 transition-all duration-300"
               />
             </button>
@@ -212,11 +201,11 @@ export const AppWebV1: React.FC = () => {
         }}
       >
         {/* About */}
-        <div id="sobre-mi" className="space-y-4 py-10">
-          <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
+        <div id="sobre-mi" className="space-y-4 py-6 lg:py-10">
+          <Typography className="block lg:hidden uppercase tracking-widest font-bold text-base">
             {t("sections.about")}
-          </Text>
-          <Text>{t("about")}</Text>
+          </Typography>
+          <Typography>{t("about")}</Typography>
         </div>
 
         {/* Experience */}
@@ -226,11 +215,11 @@ export const AppWebV1: React.FC = () => {
           viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 1, ease: "easeOut" }}
           id="experiencia"
-          className="space-y-4 py-10"
+          className="space-y-4 py-6 lg:py-10"
         >
-          <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
+          <Typography className="block lg:hidden uppercase tracking-widest font-bold text-base">
             {t("sections.experience")}
-          </Text>
+          </Typography>
           {experiences.map((experience: ExperienceType) => (
             <CardA key={experience.dates} data={experience} />
           ))}
@@ -240,16 +229,16 @@ export const AppWebV1: React.FC = () => {
             rel="noopener noreferrer"
             className="group"
           >
-            <Title
-              level={4}
+            <Typography
+              variant="h4"
               className="text-base flex items-center gap-2 group-hover:underline"
             >
               {t("viewFullCv")}
               <Icon
-                icon="mdi:open-in-new"
+                icon={ICONS.OPEN_IN_NEW}
                 className="group-hover:translate-x-1 transition-all duration-300"
               />
-            </Title>
+            </Typography>
           </Link>
         </motion.div>
 
@@ -260,11 +249,11 @@ export const AppWebV1: React.FC = () => {
           viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 1, ease: "easeOut" }}
           id="proyectos"
-          className="space-y-4 py-10"
+          className="space-y-4 py-6 lg:py-10"
         >
-          <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
+          <Typography className="block lg:hidden uppercase tracking-widest font-bold text-base">
             {t("sections.projects")}
-          </Text>
+          </Typography>
           {mainProjects.map((project: ProjectType) => (
             <CardB
               key={project.id}
@@ -288,19 +277,21 @@ export const AppWebV1: React.FC = () => {
             }
             className="group"
           >
-            <Title
-              level={4}
+            <Typography
+              variant="h4"
               className="text-base flex items-center gap-2 group-hover:underline"
             >
               {t("viewAllProjects")}
               <Icon
-                icon="mdi:open-in-new"
+                icon={ICONS.ARROW_RIGHT_01}
                 className="group-hover:translate-x-1 transition-all duration-300"
               />
-            </Title>
+            </Typography>
           </LocaleLink>
 
-          <Text className="text-[10px]">{t("projectsDisclaimer")}</Text>
+          <Typography variant="muted" className="pt-2 text-xs">
+            {t("projectsDisclaimer")}
+          </Typography>
         </motion.div>
       </div>
     </motion.div>

@@ -29,7 +29,7 @@ export const CodeArea: React.FC<CodeAreaProps> = ({
       >
         <div
           ref={lineNumbersContentRef}
-          className="py-4 px-2 text-right text-[10px] text-[#858585] font-mono select-none pointer-events-none"
+          className="py-4 px-2 text-right text-[10px] text-[#8f8f8f] font-mono select-none pointer-events-none"
         >
           {lineNumbers.map((num) => (
             <div key={num} className="leading-6">

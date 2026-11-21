@@ -46,11 +46,11 @@ describe("NavChats", () => {
     expect(screen.getByText("Chats")).toBeInTheDocument();
   });
 
-  it("should render empty when no chats", () => {
+  it("should not render the group when there are no chats", () => {
     renderWithProvider(<NavChats chats={[]} />);
 
     expect(screen.queryByText("Chat 1")).not.toBeInTheDocument();
-    expect(screen.getByText("Chats")).toBeInTheDocument();
+    expect(screen.queryByText("Chats")).not.toBeInTheDocument();
   });
 
   it("should render dropdown menu trigger", () => {

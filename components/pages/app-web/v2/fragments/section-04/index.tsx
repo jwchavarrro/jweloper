@@ -5,12 +5,11 @@
 
 "use client";
 
-import { Icon } from "@iconify/react";
 import { useTranslations } from "next-intl";
 
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
-import { Title, Text } from "@/components/atomic-design/atoms";
+import { Icon, Typography } from "@/components/atomic-design/atoms";
 import { WordsAnimation } from "@/components/pages/app-web/components";
 
 // Import of utilities
@@ -19,6 +18,7 @@ import { SOCIAL_MEDIA } from "@/app/utils/constants";
 // Import of custom hooks
 import { useAppDispatch } from "@/store/hooks";
 import { setVersion } from "@/store/slices/versionSlice";
+import { ICONS } from "@/config";
 
 interface Section04Props {
   readonly anchorId?: string;
@@ -34,18 +34,19 @@ export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
       <div className="h-full absolute inset-0 grid grid-cols-1 xl:grid-cols-3 gap-[5%]">
         {/* Column 1 - Title */}
         <div className="h-full flex items-center justify-end">
-          <Title
-            variant="gradient"
+          <Typography
+            variant="h1"
+            color="gradient"
             className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-right max-w-xl"
           >
-            {t("contactTitle")}
-          </Title>
+            {`<${t("contactTitle")}/>`}
+          </Typography>
         </div>
 
         {/* Column 2 - Content */}
         <div className="col-span-2 h-full">
           <div className="h-full flex flex-col justify-center items-center md:items-start gap-5">
-            <Text className="font-accent">{t("contactText")}</Text>
+            <Typography className="font-accent">{t("contactText")}</Typography>
 
             {/* Links list */}
             <WordsAnimation
@@ -67,7 +68,7 @@ export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
                 {t("viewPreviousVersion")}
               </span>
               <Icon
-                icon="mdi:arrow-right"
+                icon={ICONS.ARROW_RIGHT_01}
                 className="group-hover:translate-x-1 transition-all duration-300"
               />
             </button>

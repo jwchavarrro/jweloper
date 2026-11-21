@@ -10,14 +10,13 @@ import { MoveUp } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 // Import of components custom
-import { InputText } from "@/components/atomic-design/atoms";
-import { Button } from "@/components/ui/button";
+import { Button, InputField } from "@/components/atomic-design/molecules";
 
 // Import of utilities
 import { cn } from "@/lib/utils";
 
 export interface InputSearchProps extends Omit<
-  React.ComponentProps<typeof InputText>,
+  React.ComponentProps<typeof InputField>,
   "value" | "onChange" | "onSubmit"
 > {
   /** Valor controlado del input */
@@ -106,7 +105,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   return (
     <div className={cn("w-full", className)}>
       <div className="relative [&_input]:pr-10">
-        <InputText
+        <InputField
           placeholder={placeholder ?? tCommon("search")}
           size={size}
           value={currentValue}

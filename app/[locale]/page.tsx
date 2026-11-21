@@ -8,11 +8,11 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "@iconify/react";
 import { useTranslations } from "next-intl";
 
 // Import of components custom
-import { Title, Text, Button } from "@/components/atomic-design/atoms";
+import { Icon, Typography } from "@/components/atomic-design/atoms";
+import { ButtonIcon } from "@/components/atomic-design/molecules";
 
 // Import of utilities
 import { SOCIAL_MEDIA } from "@/app/utils";
@@ -56,7 +56,7 @@ export default function Home() {
         {/* Email */}
         <div className="relative z-20 flex items-end justify-end">
           <div className="flex flex-col items-center h-full justify-end">
-            <Text className="font-bold text-xs! tracking-widest [writing-mode:vertical-rl] [text-orientation:mixed] mb-4">
+            <Typography className="font-bold text-xs! tracking-widest [writing-mode:vertical-rl] [text-orientation:mixed] mb-4">
               <Link
                 href={APP_LINKS.GENERALS.SOCIAL_MEDIA.EMAIL.url}
                 className="hover:underline"
@@ -66,7 +66,7 @@ export default function Home() {
                   ""
                 )}
               </Link>
-            </Text>
+            </Typography>
             <div className="w-px h-24 bg-foreground" />
           </div>
         </div>
@@ -95,24 +95,25 @@ export default function Home() {
         {/* Column 2 - Content */}
         <div className="space-y-5">
           <div>
-            <Text
+            <Typography
               variant="lead"
               className="text-sm! md:text-base! uppercase tracking-widest"
             >
               {t("seniority")}
-            </Text>
-            <Title
-              variant="gradient"
+            </Typography>
+            <Typography
+              variant="h1"
+              color="gradient"
               className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl!"
             >
               {t("title")}
-            </Title>
-            <Text>{t("description")}</Text>
+            </Typography>
+            <Typography>{t("description")}</Typography>
           </div>
           <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
             {HOME_DATA?.buttons?.map((button) => {
               return (
-                <Button
+                <ButtonIcon
                   key={button.label}
                   icon={ICONS.ARROW_RIGHT_01}
                   text={t(button.label)}
@@ -126,9 +127,9 @@ export default function Home() {
 
       {/* Copyright */}
       <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center">
-        <Text className="text-[9px]! text-center max-w-56 md:max-w-full text-sm/3">
+        <Typography className="text-[9px]! text-center max-w-56 md:max-w-full text-sm/3">
           {t("copyright", { year: new Date().getFullYear() })}
-        </Text>
+        </Typography>
       </div>
     </motion.div>
   );

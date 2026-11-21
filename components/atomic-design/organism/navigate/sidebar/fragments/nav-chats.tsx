@@ -40,6 +40,9 @@ export function NavChats({ chats }: NavChatsProps) {
   const t = useTranslations("navigation");
   const tCommon = useTranslations("common");
 
+  // Sin chats no se muestra el grupo (evita un título vacío)
+  if (chats.length === 0) return null;
+
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>{t("chats")}</SidebarGroupLabel>
