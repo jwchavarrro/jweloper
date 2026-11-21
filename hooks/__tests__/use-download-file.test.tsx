@@ -28,15 +28,15 @@ describe("useDownloadFile", () => {
       .mockImplementation(function (this: Document, tagName: string) {
         if (tagName === "a") {
           // Crear un objeto mock que guarde el valor de download
+          let downloadValue = "";
           const linkElement = {
             click: mockClick,
             href: "",
-            _download: "",
             get download() {
-              return this._download;
+              return downloadValue;
             },
             set download(value: string) {
-              this._download = value;
+              downloadValue = value;
             },
             target: "",
             rel: "",

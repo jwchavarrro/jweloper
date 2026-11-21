@@ -28,7 +28,7 @@ describe("IaChat Page", () => {
   it("should render the IaChat page", () => {
     render(<IaChat />);
     const heading = screen.getByRole("heading", {
-      name: /¿por donde quieres empezar\?/i,
+      name: /¿por dónde quieres empezar\?/i,
     });
     expect(heading).toBeInTheDocument();
   });
@@ -37,7 +37,7 @@ describe("IaChat Page", () => {
     render(<IaChat />);
     const heading = screen.getByRole("heading", { level: 1 });
     expect(heading).toBeInTheDocument();
-    expect(heading).toHaveTextContent("¿Por donde quieres empezar?");
+    expect(heading).toHaveTextContent("¿Por dónde quieres empezar?");
   });
 
   it("should render InputSearch component", () => {

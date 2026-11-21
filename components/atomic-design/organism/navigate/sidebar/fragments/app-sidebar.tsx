@@ -5,8 +5,9 @@
 
 "use client";
 
-import Link from "next/link";
 import { EqualNot } from "lucide-react";
+
+import { Link } from "@/app/[locale]/i18n-navigation";
 
 import {
   Sidebar,

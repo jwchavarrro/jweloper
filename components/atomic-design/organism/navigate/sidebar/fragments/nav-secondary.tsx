@@ -6,7 +6,7 @@
 "use client";
 
 import * as React from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { Languages } from "lucide-react";
 
 import {
@@ -18,46 +18,26 @@ import {
 } from "@/components/ui/sidebar";
 
 // Import of utilities
-import { EnumLocale, type Locale } from "@/app/[locale]/i18n-types";
-import {
-  extractLocaleFromPath,
-  getOtherLocale,
-  replaceLocaleInPath,
-} from "@/app/[locale]/i18n-utils";
+import { usePathname, useRouter } from "@/app/[locale]/i18n-navigation";
+import { routing } from "@/app/[locale]/i18n-routing";
 
 export function NavSecondary({
   ...props
 }: Readonly<React.ComponentPropsWithoutRef<typeof SidebarGroup>>) {
+  const t = useTranslations("common");
+  const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
 
   /**
    * @name handleLanguageChange
-   * @description Maneja el cambio de idioma
+   * @description Cambia al siguiente locale soportado conservando la ruta actual.
    */
   const handleLanguageChange = () => {
-    const currentLocale = extractLocaleFromPath(pathname);
-
-    if (!currentLocale) {
-      // Si no hay locale en la ruta, redirigir a la ruta por defecto con el locale alternativo
-      const newLocale: Locale = EnumLocale.EN; // Por defecto, cambiar a inglés
-      router.push(`/${newLocale}${pathname}`);
-      return;
-    }
-
-    // Obtener el locale alternativo
-    const newLocale = getOtherLocale(currentLocale);
-
-    // Reemplazar el locale en la ruta actual
-    const newPath = replaceLocaleInPath(pathname, newLocale);
-
-    // Redirigir a la nueva ruta
-    router.push(newPath);
+    const { locales } = routing;
+    const nextLocale = locales[(locales.indexOf(locale) + 1) % locales.length];
+    router.replace(pathname, { locale: nextLocale });
   };
-
-  // Obtener el locale actual para mostrar el idioma actual
-  const currentLocale = extractLocaleFromPath(pathname) || EnumLocale.ES;
-  const localeLabel = currentLocale === EnumLocale.ES ? "Español" : "English";
 
   return (
     <SidebarGroup {...props}>
@@ -66,7 +46,7 @@ export function NavSecondary({
           <SidebarMenuItem>
             <SidebarMenuButton size="sm" onClick={handleLanguageChange}>
               <Languages />
-              <span>{localeLabel}</span>
+              <span>{t(`locales.${locale}`)}</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

@@ -1,4 +1,4 @@
-import { APP_ROUTES, PortfolioRouteQueryKeys } from "../app-routes";
+import { APP_ROUTES } from "../app-routes";
 
 describe("APP_ROUTES", () => {
   describe("PUBLIC routes", () => {
@@ -97,13 +97,13 @@ describe("APP_ROUTES", () => {
   describe("Queries validation", () => {
     it("should have queries only for routes that need them", () => {
       // Routes without queries should not have queries property
-      expect(APP_ROUTES.PUBLIC.HOME.queries).toBeUndefined();
-      expect(
-        APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.APP_WEB.queries
-      ).toBeUndefined();
-      expect(
-        APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT.queries
-      ).toBeUndefined();
+      expect("queries" in APP_ROUTES.PUBLIC.HOME).toBe(false);
+      expect("queries" in APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.APP_WEB).toBe(
+        false
+      );
+      expect("queries" in APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT).toBe(
+        false
+      );
 
       // Routes with queries should have them
       expect(
@@ -126,13 +126,5 @@ describe("APP_ROUTES", () => {
       expect(searchQueries.order).toBe("string");
       expect(searchQueries.limit).toBe("number");
     });
-  });
-});
-
-describe("PortfolioRouteQueryKeys type", () => {
-  it("should be a valid type export", () => {
-    // Type test - this will be checked at compile time
-    // We can't test types at runtime, but we can verify the export exists
-    expect(typeof PortfolioRouteQueryKeys).toBeDefined();
   });
 });

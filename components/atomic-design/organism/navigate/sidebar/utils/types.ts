@@ -8,8 +8,16 @@
  * @type {Object}
  * @description Tipo para el item de navegación.
  */
+import type { Messages } from "next-intl";
+
+/**
+ * @name NavigationMessageKey
+ * @description Clave dentro del namespace `navigation` de los mensajes.
+ */
+export type NavigationMessageKey = keyof Messages["navigation"];
+
 export type NavItemType = {
-  title: string;
+  title: NavigationMessageKey;
   url: string;
 };
 
@@ -19,7 +27,7 @@ export type NavItemType = {
  * @description Tipo para el item de navegación base.
  */
 export type BaseNavItemType = {
-  title: string;
+  title: NavigationMessageKey;
   url: string;
   icon: string;
   isActive?: boolean;

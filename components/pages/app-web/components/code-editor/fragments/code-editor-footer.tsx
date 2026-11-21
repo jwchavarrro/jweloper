@@ -5,6 +5,7 @@
 
 import * as React from "react";
 import { CopyIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Text } from "@/components/atomic-design/atoms";
 
 interface CodeEditorFooterProps {
@@ -22,6 +23,7 @@ export const CodeEditorFooter: React.FC<CodeEditorFooterProps> = ({
   onCopy,
   copyMessage,
 }) => {
+  const t = useTranslations("appWeb");
   return (
     <footer className="flex items-center justify-between px-4 bg-[#007acc]">
       <div className="flex items-center gap-4">
@@ -44,7 +46,7 @@ export const CodeEditorFooter: React.FC<CodeEditorFooterProps> = ({
         <button
           type="button"
           className="p-1.5 rounded text-white hover:bg-white/10 transition-colors"
-          title="Copiar código"
+          title={t("copyCode")}
           onClick={onCopy}
         >
           <CopyIcon className="size-2.5" />

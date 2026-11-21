@@ -6,6 +6,7 @@
 "use client";
 
 import { Eye, MoreHorizontal, Share, Trash2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import {
   DropdownMenu,
@@ -36,10 +37,12 @@ interface NavChatsProps {
 
 export function NavChats({ chats }: NavChatsProps) {
   const { isMobile } = useSidebar();
+  const t = useTranslations("navigation");
+  const tCommon = useTranslations("common");
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Chats</SidebarGroupLabel>
+      <SidebarGroupLabel>{t("chats")}</SidebarGroupLabel>
       <SidebarMenu>
         {chats.map((item) => {
           const Icon = getSidebarIcon(item.icon);
@@ -55,7 +58,7 @@ export function NavChats({ chats }: NavChatsProps) {
                 <DropdownMenuTrigger asChild>
                   <SidebarMenuAction showOnHover>
                     <MoreHorizontal />
-                    <span className="sr-only">More</span>
+                    <span className="sr-only">{tCommon("more")}</span>
                   </SidebarMenuAction>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
@@ -65,16 +68,16 @@ export function NavChats({ chats }: NavChatsProps) {
                 >
                   <DropdownMenuItem>
                     <Eye className="text-muted-foreground" />
-                    <span>Ver</span>
+                    <span>{t("view")}</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Share className="text-muted-foreground" />
-                    <span>Compartir</span>
+                    <span>{t("share")}</span>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
                     <Trash2 className="text-muted-foreground" />
-                    <span>Eliminar</span>
+                    <span>{t("delete")}</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

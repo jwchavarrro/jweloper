@@ -6,6 +6,7 @@
 "use client";
 
 import * as React from "react";
+import { useTranslations } from "next-intl";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 // Import of components custom
@@ -15,24 +16,18 @@ import { Title, Text } from "@/components/atomic-design/atoms";
  *@name SEARCH_EXAMPLES
  * @description Ejemplos de búsqueda que se pueden hacer con el IA.
  */
-const SEARCH_EXAMPLES = [
-  "Consultar última empresa registrada y responsabilidades principales.",
-  "Listar las tecnologías con mayor dominio según el CV.",
-  "Obtener el proyecto más destacado y los aportes realizados.",
-  "Extraer los puntos que diferencian su perfil profesional frente a otros.",
-  "Ver formación académica principal indicada en el documento.",
-  "Mostrar enlace del portafolio disponible en el CV.",
-] as const;
-
 export const SearchInstructions = () => {
+  const t = useTranslations("iaChat");
+  const examples = t.raw("examples") as string[];
+
   return (
     <Alert className="bg-muted border rounded-lg p-5 max-w-2xl mx-auto">
       <AlertTitle>
-        <Title level={4}>Ejemplo de búsqueda:</Title>
+        <Title level={4}>{t("examplesTitle")}</Title>
       </AlertTitle>
       <AlertDescription>
         <ul className="list-disc ml-5 space-y-1 mt-2">
-          {SEARCH_EXAMPLES.map((example) => (
+          {examples.map((example) => (
             <li key={example}>
               <Text variant="small" color="secondary">
                 {example}

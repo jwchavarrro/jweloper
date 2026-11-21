@@ -13,7 +13,7 @@ import type { NavigationAppWebV1SectionsType } from "@/components/pages/app-web/
  */
 export const NAVIGATION_APP_WEB_V1_SECTIONS: NavigationAppWebV1SectionsType[] =
   [
-    { href: "#sobre-mi", title: "SOBRE MÍ" },
-    { href: "#experiencia", title: "EXPERIENCIA" },
-    { href: "#proyectos", title: "PROYECTOS" },
+    { href: "#sobre-mi", title: "sections.about" },
+    { href: "#experiencia", title: "sections.experience" },
+    { href: "#proyectos", title: "sections.projects" },
   ];

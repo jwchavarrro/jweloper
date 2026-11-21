@@ -9,7 +9,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 // Import of components custom
 import { Title, Text, Button } from "@/components/atomic-design/atoms";
@@ -17,11 +17,13 @@ import { Title, Text, Button } from "@/components/atomic-design/atoms";
 // Import of utilities
 import { SOCIAL_MEDIA } from "@/app/utils";
 import { HOME_DATA } from "@/components/pages";
-import { ICONS, MULTIMEDIA } from "@/config";
+import { APP_LINKS, ICONS, MULTIMEDIA } from "@/config";
+import { useRouter } from "@/app/[locale]/i18n-navigation";
 
 export default function Home() {
   // Hooks
   const router = useRouter();
+  const t = useTranslations("home");
   return (
     <motion.div
       initial={{ opacity: 0, y: -100 }}
@@ -56,10 +58,13 @@ export default function Home() {
           <div className="flex flex-col items-center h-full justify-end">
             <Text className="font-bold text-xs! tracking-widest [writing-mode:vertical-rl] [text-orientation:mixed] mb-4">
               <Link
-                href="mailto:jwchavarrro023@gmail.com"
+                href={APP_LINKS.GENERALS.SOCIAL_MEDIA.EMAIL.url}
                 className="hover:underline"
               >
-                jwchavarrro023@gmail.com
+                {APP_LINKS.GENERALS.SOCIAL_MEDIA.EMAIL.url.replace(
+                  "mailto:",
+                  ""
+                )}
               </Link>
             </Text>
             <div className="w-px h-24 bg-foreground" />
@@ -94,19 +99,15 @@ export default function Home() {
               variant="lead"
               className="text-sm! md:text-base! uppercase tracking-widest"
             >
-              Semi-Senior
+              {t("seniority")}
             </Text>
             <Title
               variant="gradient"
               className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl!"
             >
-              Desarrollador Frontend | Especialista en React & Next.js
+              {t("title")}
             </Title>
-            <Text>
-              Ayudo a construir aplicaciones web modernas, escalables y
-              centradas en el usuario. Mi experiencia abarca desde prototipos
-              rápidos hasta aplicaciones complejas.
-            </Text>
+            <Text>{t("description")}</Text>
           </div>
           <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
             {HOME_DATA?.buttons?.map((button) => {
@@ -114,7 +115,7 @@ export default function Home() {
                 <Button
                   key={button.label}
                   icon={ICONS.ARROW_RIGHT_01}
-                  text={button.label}
+                  text={t(button.label)}
                   onClick={() => router.push(button.url)}
                 />
               );
@@ -126,7 +127,7 @@ export default function Home() {
       {/* Copyright */}
       <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center">
         <Text className="text-[9px]! text-center max-w-56 md:max-w-full text-sm/3">
-          Copyright © 2025 Jweloper. All rights reserved. v1.5
+          {t("copyright", { year: new Date().getFullYear() })}
         </Text>
       </div>
     </motion.div>

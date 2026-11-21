@@ -6,6 +6,7 @@
 "use client";
 
 import { Icon } from "@iconify/react";
+import { useTranslations } from "next-intl";
 
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
@@ -26,6 +27,7 @@ interface Section04Props {
 export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
   // Implementation of custom hooks
   const dispatch = useAppDispatch();
+  const t = useTranslations("appWeb");
   return (
     <SnapPage id="04" anchorId={anchorId}>
       {/* Children content */}
@@ -36,18 +38,14 @@ export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
             variant="gradient"
             className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-right max-w-xl"
           >
-            {"<Contacto/>"}
+            {t("contactTitle")}
           </Title>
         </div>
 
         {/* Column 2 - Content */}
         <div className="col-span-2 h-full">
           <div className="h-full flex flex-col justify-center items-center md:items-start gap-5">
-            <Text className="font-accent">
-              ¿Listo para llevar tus ideas al siguiente nivel? <br />
-              Conversemos sobre cómo puedo aportar valor a tu próximo proyecto o
-              colaboración creativa.
-            </Text>
+            <Text className="font-accent">{t("contactText")}</Text>
 
             {/* Links list */}
             <WordsAnimation
@@ -66,7 +64,7 @@ export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
             >
               v2.5.0 |{" "}
               <span className="group-hover:underline cursor-pointer">
-                Ver la versión anterior
+                {t("viewPreviousVersion")}
               </span>
               <Icon
                 icon="mdi:arrow-right"

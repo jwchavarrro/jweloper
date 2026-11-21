@@ -1,10 +1,14 @@
 /**
  * @file layout.tsx
- * @description Layout con locale para la aplicación internacionalizada.
- * Basado en la documentación oficial: https://nextjs.org/docs/app/guides/internationalization
+ * @description Layout con locale: valida el locale, provee los mensajes y define <html lang>.
  */
 
+import "@/app/globals.css";
+
+// Import of i18n
 import { notFound } from "next/navigation";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 // Import of components custom
 import { Sidebar } from "@/components/atomic-design/organism/navigate";
@@ -12,6 +16,7 @@ import { Sidebar } from "@/components/atomic-design/organism/navigate";
 // Import of utilities
 import { MULTIMEDIA } from "@/config";
 import { SIDEBAR_DATA } from "@/components/atomic-design/organism/navigate/sidebar/utils";
+import { routing } from "@/app/[locale]/i18n-routing";
 
 // Import of custom hooks
 import { ReduxProvider } from "@/store/provider";
@@ -19,20 +24,19 @@ import { ReduxProvider } from "@/store/provider";
 // Import of types
 import type { Metadata } from "next";
 
-// Import of i18n
-import { getDictionary, hasLocale } from "./i18n-dictionaries";
-import { locales } from "./i18n-utils";
+type LocaleParams = { params: Promise<{ locale: string }> };
 
-// Generar metadata dinámicamente
+// Generar metadata localizada
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  await params; // Esperar params aunque no se use el locale en metadata por ahora
+}: LocaleParams): Promise<Metadata> {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) return {};
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
   return {
-    title: "Portafolio - Jweloper",
-    description: "Portafolio de Jweloper, desarrollador frontend.",
+    title: t("title"),
+    description: t("description"),
     icons: {
       icon: MULTIMEDIA.FAVICONS.FAVICON,
       shortcut: MULTIMEDIA.FAVICONS.FAVICON,
@@ -42,31 +46,32 @@ export async function generateMetadata({
 }
 
 // Generar parámetros estáticos para los locales
-export async function generateStaticParams() {
-  return locales.map((locale) => ({ locale: locale as string }));
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({
   children,
   params,
-}: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}>) {
+}: Readonly<{ children: React.ReactNode }> & LocaleParams) {
   const { locale } = await params;
 
-  // Validar que el locale sea soportado
-  if (!hasLocale(locale)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
-  // Cargar diccionario para el locale actual
-  // Por ahora no lo usamos, pero está disponible para las páginas
-  await getDictionary(locale);
+  // Habilitar renderizado estático
+  setRequestLocale(locale);
 
   return (
-    <ReduxProvider>
-      <Sidebar data={SIDEBAR_DATA}>{children}</Sidebar>
-    </ReduxProvider>
+    <html lang={locale}>
+      <body>
+        <NextIntlClientProvider>
+          <ReduxProvider>
+            <Sidebar data={SIDEBAR_DATA}>{children}</Sidebar>
+          </ReduxProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

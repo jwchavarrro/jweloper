@@ -83,3 +83,11 @@ const filteredError = (...args: unknown[]) => {
   originalError.apply(console, args);
 };
 console.error = filteredError;
+
+// Navegación con locale (next-intl) mapeada a los mocks de next/link y next/navigation
+jest.mock("@/app/[locale]/i18n-navigation", () =>
+  require("./__mocks__/i18n-navigation")
+);
+jest.mock("next-intl/routing", () => ({
+  defineRouting: <T>(config: T) => config,
+}));

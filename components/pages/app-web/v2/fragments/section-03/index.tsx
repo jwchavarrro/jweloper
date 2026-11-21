@@ -6,6 +6,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
@@ -17,7 +18,7 @@ import { Title } from "@/components/atomic-design/atoms";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 // Import of utilities
-import { PROJECTS_APP_WEB, type ProjectType } from "@/components/pages/app-web";
+import { useProjects, type ProjectType } from "@/components/pages/app-web";
 
 interface Section03Props {
   readonly anchorId?: string;
@@ -25,6 +26,8 @@ interface Section03Props {
 
 export const Section03: React.FC<Section03Props> = ({ anchorId }) => {
   const isMobile = useIsMobile();
+  const t = useTranslations("appWeb");
+  const projects = useProjects();
 
   return (
     <SnapPage id="03" anchorId={anchorId} hideCounter={isMobile}>
@@ -41,7 +44,7 @@ export const Section03: React.FC<Section03Props> = ({ anchorId }) => {
           <div className="mx-auto w-4/5 h-full flex items-center justify-center">
             <div className="w-full">
               <Carousel
-                items={PROJECTS_APP_WEB.map((project: ProjectType) => ({
+                items={projects.map((project: ProjectType) => ({
                   content: <ProjectItem project={project} />,
                 }))}
                 itemClassName="w-full max-w-xs"
@@ -56,7 +59,7 @@ export const Section03: React.FC<Section03Props> = ({ anchorId }) => {
             variant="gradient"
             className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap lg:text-left max-w-xl"
           >
-            {"<Proyectos destacados/>"}
+            {t("projectsTitle")}
           </Title>
         </div>
       </div>

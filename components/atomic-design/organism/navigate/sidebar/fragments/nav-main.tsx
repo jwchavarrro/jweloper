@@ -6,6 +6,9 @@
 "use client";
 
 import { ChevronRight } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import { Link } from "@/app/[locale]/i18n-navigation";
 
 import {
   Collapsible,
@@ -35,27 +38,30 @@ interface NavMainProps {
 }
 
 export function NavMain({ items }: NavMainProps) {
+  const t = useTranslations("navigation");
+  const tCommon = useTranslations("common");
+
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Portafolio</SidebarGroupLabel>
+      <SidebarGroupLabel>{t("portfolio")}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
           const Icon = getSidebarIcon(item.icon);
           return (
             <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip={item.title}>
-                  <a href={item.url}>
+                <SidebarMenuButton asChild tooltip={t(item.title)}>
+                  <Link href={item.url}>
                     <Icon />
-                    <span>{item.title}</span>
-                  </a>
+                    <span>{t(item.title)}</span>
+                  </Link>
                 </SidebarMenuButton>
                 {item.items?.length ? (
                   <>
                     <CollapsibleTrigger asChild>
                       <SidebarMenuAction className="data-[state=open]:rotate-90">
                         <ChevronRight />
-                        <span className="sr-only">Toggle</span>
+                        <span className="sr-only">{tCommon("toggle")}</span>
                       </SidebarMenuAction>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
@@ -63,9 +69,9 @@ export function NavMain({ items }: NavMainProps) {
                         {item.items?.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.title}>
                             <SidebarMenuSubButton asChild>
-                              <a href={subItem.url}>
-                                <span>{subItem.title}</span>
-                              </a>
+                              <Link href={subItem.url}>
+                                <span>{t(subItem.title)}</span>
+                              </Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
                         ))}

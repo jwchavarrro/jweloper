@@ -5,8 +5,9 @@
 
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+
+import { Link, usePathname } from "@/app/[locale]/i18n-navigation";
 import {
   Breadcrumb as BreadcrumbUI,
   BreadcrumbItem as BreadcrumbItemUI,
@@ -24,6 +25,7 @@ import type { BreadcrumbProps } from "./types";
  */
 const generateBreadcrumbsFromPath = (
   pathname: string,
+  homeLabel: string,
   excludeRoutes?: string[],
   disabledRoutes?: string[]
 ): Array<{ label: string; href: string; disabled?: boolean }> => {
@@ -41,7 +43,7 @@ const generateBreadcrumbsFromPath = (
 
     if (!isExcluded) {
       breadcrumbs.push({
-        label: "Inicio",
+        label: homeLabel,
         href: "/",
         disabled: isDisabled,
       });
@@ -78,10 +80,16 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   excludeRoutes,
   disabledRoutes,
 }) => {
+  const t = useTranslations("common");
   const pathname = usePathname();
   const breadcrumbItems =
     items ||
-    generateBreadcrumbsFromPath(pathname, excludeRoutes, disabledRoutes);
+    generateBreadcrumbsFromPath(
+      pathname,
+      t("home"),
+      excludeRoutes,
+      disabledRoutes
+    );
 
   if (breadcrumbItems.length === 0) {
     return null;

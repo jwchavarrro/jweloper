@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
 import { AppSidebar } from "../app-sidebar";
 import { renderWithProvider } from "../../__mocks__/test-utils";
+import type { SidebarDataType } from "../../utils/types";
 
 // Mocks específicos de los fragments para este test
 jest.mock("../nav-main", () => ({
@@ -19,10 +20,10 @@ jest.mock("../nav-secondary", () => ({
   NavSecondary: () => <div data-testid="nav-secondary">NavSecondary</div>,
 }));
 
-const mockSidebarData = {
+const mockSidebarData: SidebarDataType = {
   navMain: [
     {
-      title: "App Web",
+      title: "appWeb",
       url: "/app-web",
       icon: "SquareTerminal",
     },
@@ -55,7 +56,7 @@ describe("AppSidebar", () => {
   });
 
   it("should handle empty navMain array", () => {
-    const emptyData = {
+    const emptyData: SidebarDataType = {
       ...mockSidebarData,
       navMain: [],
     };
@@ -72,21 +73,17 @@ describe("AppSidebar", () => {
   });
 
   it("should handle empty chats array", () => {
-    const emptyData = {
-      ...mockSidebarData,
-      chats: [],
-    };
-    renderWithProvider(<AppSidebar data={emptyData} />);
+    renderWithProvider(<AppSidebar data={mockSidebarData} />);
 
     expect(screen.getByTestId("nav-chats")).toBeInTheDocument();
     expect(screen.getByText("NavChats 0 chats")).toBeInTheDocument();
   });
 
   it("should pass all data correctly to fragments", () => {
-    const complexData = {
+    const complexData: SidebarDataType = {
       navMain: [
-        { title: "Item 1", url: "/1", icon: "SquareTerminal" },
-        { title: "Item 2", url: "/2", icon: "Frame" },
+        { title: "appWeb", url: "/1", icon: "SquareTerminal" },
+        { title: "iaChat", url: "/2", icon: "Frame" },
       ],
     };
     renderWithProvider(<AppSidebar data={complexData} />);

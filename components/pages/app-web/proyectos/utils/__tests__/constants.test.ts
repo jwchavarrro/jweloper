@@ -18,11 +18,11 @@ describe("proyectos/utils/constants", () => {
 
     it("should contain all required headers", () => {
       const expectedHeaders = [
-        "Año",
-        "Proyecto",
-        "Hecho en",
-        "Construido con",
-        "Enlace",
+        "year",
+        "project",
+        "madeAt",
+        "builtWith",
+        "link",
       ];
       expectedHeaders.forEach((header) => {
         expect(HEADERS_ALL_PROJECTS).toContain(header);
@@ -37,11 +37,11 @@ describe("proyectos/utils/constants", () => {
     });
 
     it("should have headers in correct order", () => {
-      expect(HEADERS_ALL_PROJECTS[0]).toBe("Año");
-      expect(HEADERS_ALL_PROJECTS[1]).toBe("Proyecto");
-      expect(HEADERS_ALL_PROJECTS[2]).toBe("Hecho en");
-      expect(HEADERS_ALL_PROJECTS[3]).toBe("Construido con");
-      expect(HEADERS_ALL_PROJECTS[4]).toBe("Enlace");
+      expect(HEADERS_ALL_PROJECTS[0]).toBe("year");
+      expect(HEADERS_ALL_PROJECTS[1]).toBe("project");
+      expect(HEADERS_ALL_PROJECTS[2]).toBe("madeAt");
+      expect(HEADERS_ALL_PROJECTS[3]).toBe("builtWith");
+      expect(HEADERS_ALL_PROJECTS[4]).toBe("link");
     });
   });
 });

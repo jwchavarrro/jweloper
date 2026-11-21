@@ -5,6 +5,7 @@
 
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 // Import of components custom
@@ -21,6 +22,8 @@ interface CardAProps {
 }
 
 export function CardA({ data, className }: CardAProps) {
+  const t = useTranslations("common");
+
   /**
    * @name data
    * @type {CardAData}
@@ -87,7 +90,7 @@ export function CardA({ data, className }: CardAProps) {
               {isRemote && (
                 <>
                   {" • "}
-                  <span className="text-foreground">Remoto</span>
+                  <span className="text-foreground">{t("remote")}</span>
                 </>
               )}
             </Title>

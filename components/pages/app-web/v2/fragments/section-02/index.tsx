@@ -7,6 +7,7 @@
 
 import React from "react";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { FileCodeIcon } from "lucide-react";
 
 // Import of components custom
@@ -16,7 +17,7 @@ import { CodeEditor } from "@/components/pages/app-web/components";
 
 // Import of utilities
 import {
-  EXPERIENCES_APP_WEB,
+  useExperiences,
   type ExperienceType,
 } from "@/components/pages/app-web";
 
@@ -45,9 +46,12 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
   const isMobile = useIsMobile();
 
   // Generar el código JSON de EXPERIENCES
+  const t = useTranslations("appWeb");
+  const experiences = useExperiences();
+
   const experiencesJSON = React.useMemo(
-    () => formatExperiencesAsJSON(EXPERIENCES_APP_WEB),
-    []
+    () => formatExperiencesAsJSON(experiences),
+    [experiences]
   );
 
   // Configurar archivos para el editor
@@ -78,7 +82,7 @@ export const Section02: React.FC<Section02Props> = ({ anchorId }) => {
             variant="gradient"
             className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap lg:text-right max-w-xl"
           >
-            {"<Experiencia Pro/>"}
+            {t("experienceTitle")}
           </Title>
         </div>
 

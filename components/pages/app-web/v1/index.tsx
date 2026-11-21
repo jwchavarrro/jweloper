@@ -8,6 +8,7 @@
 import { motion } from "motion/react";
 import { useState, useRef, useCallback, useMemo } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Icon } from "@iconify/react";
 
 // Import of components custom
@@ -18,6 +19,7 @@ import { CardA, CardB } from "@/components/pages/app-web/v1/components/cards";
 import { SOCIAL_MEDIA } from "@/app/utils";
 import { NAVIGATION_APP_WEB_V1_SECTIONS } from "@/components/pages/app-web/v1/utils";
 import { APP_ROUTES, MULTIMEDIA } from "@/config";
+import { Link as LocaleLink } from "@/app/[locale]/i18n-navigation";
 
 // Import of custom hooks
 import { useIsMobile } from "@/hooks";
@@ -28,8 +30,8 @@ import { setVersion } from "@/store/slices/versionSlice";
 
 // Import of types
 import {
-  EXPERIENCES_APP_WEB,
-  PROJECTS_APP_WEB,
+  useExperiences,
+  useProjects,
   type ExperienceType,
   type ProjectType,
 } from "@/components/pages/app-web";
@@ -38,6 +40,10 @@ export const AppWebV1: React.FC = () => {
   // Implementation of custom hooks
   const isMobile = useIsMobile();
   const dispatch = useAppDispatch();
+  const t = useTranslations("appWeb");
+  const tHome = useTranslations("home");
+  const experiences = useExperiences();
+  const mainProjects = useProjects().slice(0, 3);
 
   // States generals
   const [activeSection, setActiveSection] = useState<string>(
@@ -109,20 +115,6 @@ export const AppWebV1: React.FC = () => {
     [isMobile]
   );
 
-  /**
-   * @name getProjectsMain
-   * @description Obtener los proyectos principales.
-   * @param {number} [limit=3] - El límite de proyectos a obtener (por defecto 3).
-   * @returns {ProjectType[]} - Lista de proyectos principales.
-   */
-  const getProjectsMain = useMemo(
-    () =>
-      (limit: number = 3): ProjectType[] => {
-        return PROJECTS_APP_WEB.slice(0, limit);
-      },
-    []
-  );
-
   return (
     <motion.div className="relative h-full grid grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto lg:overscroll-none">
       {/* Column 1 - Content */}
@@ -140,13 +132,9 @@ export const AppWebV1: React.FC = () => {
                 variant="gradient"
                 className="text-base! md:text-lg! tracking-widest font-accent"
               >
-                Desarrollador Frontend
+                {t("role")}
               </Title>
-              <Text>
-                Ayudo a construir aplicaciones web modernas, escalables y
-                centradas en el usuario. Mi experiencia abarca desde prototipos
-                rápidos hasta aplicaciones complejas.
-              </Text>
+              <Text>{tHome("description")}</Text>
             </div>
 
             {!isMobile && (
@@ -171,7 +159,7 @@ export const AppWebV1: React.FC = () => {
                           active ? "font-bold" : "font-semibold"
                         } text-base`}
                       >
-                        {title}
+                        {t(title)}
                       </Text>
                     </Link>
                   </div>
@@ -202,7 +190,7 @@ export const AppWebV1: React.FC = () => {
             >
               v1.2.0 |{" "}
               <span className="group-hover:underline cursor-pointer">
-                Ver la nueva versión
+                {t("viewNewVersion")}
               </span>
               <Icon
                 icon="mdi:arrow-right"
@@ -226,23 +214,9 @@ export const AppWebV1: React.FC = () => {
         {/* About */}
         <div id="sobre-mi" className="space-y-4 py-10">
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
-            SOBRE MÍ
+            {t("sections.about")}
           </Text>
-          <Text>
-            Soy desarrollador Frontend con más de 3 años de experiencia creando
-            aplicaciones web administrativas y soluciones digitales a la medida,
-            utilizando React, Next.js, TypeScript y Tailwind CSS. Me especializo
-            en el desarrollo de interfaces modernas, funcionales y escalables,
-            garantizando experiencias consistentes y de alta calidad. He
-            participado en la construcción de módulos completos como
-            autenticación, gestión de usuarios, catálogos maestros, tablas
-            dinámicas con filtros avanzados y carga de documentos. Mi enfoque
-            combina buenas prácticas de arquitectura frontend, optimización de
-            componentes y trabajo colaborativo en entornos ágiles. Mi objetivo
-            es aportar al desarrollo de productos digitales robustos y
-            eficientes, alineando las necesidades técnicas con la experiencia
-            del usuario y los objetivos del negocio.
-          </Text>
+          <Text>{t("about")}</Text>
         </div>
 
         {/* Experience */}
@@ -255,9 +229,9 @@ export const AppWebV1: React.FC = () => {
           className="space-y-4 py-10"
         >
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
-            EXPERIENCIA
+            {t("sections.experience")}
           </Text>
-          {EXPERIENCES_APP_WEB.map((experience: ExperienceType) => (
+          {experiences.map((experience: ExperienceType) => (
             <CardA key={experience.dates} data={experience} />
           ))}
           <Link
@@ -270,7 +244,7 @@ export const AppWebV1: React.FC = () => {
               level={4}
               className="text-base flex items-center gap-2 group-hover:underline"
             >
-              Ver CV completo
+              {t("viewFullCv")}
               <Icon
                 icon="mdi:open-in-new"
                 className="group-hover:translate-x-1 transition-all duration-300"
@@ -289,11 +263,11 @@ export const AppWebV1: React.FC = () => {
           className="space-y-4 py-10"
         >
           <Text className="block lg:hidden uppercase tracking-widest font-bold text-base">
-            PROYECTOS
+            {t("sections.projects")}
           </Text>
-          {getProjectsMain(3).map((project: ProjectType) => (
+          {mainProjects.map((project: ProjectType) => (
             <CardB
-              key={project.name}
+              key={project.id}
               data={{
                 mainImage: project.image || MULTIMEDIA.BACKGROUNDS.PATH_001,
                 title: project.name,
@@ -308,7 +282,7 @@ export const AppWebV1: React.FC = () => {
           ))}
 
           {/* Link to all projects */}
-          <Link
+          <LocaleLink
             href={
               APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.ALL_PROJECTS.path
             }
@@ -318,19 +292,15 @@ export const AppWebV1: React.FC = () => {
               level={4}
               className="text-base flex items-center gap-2 group-hover:underline"
             >
-              Ver todos los proyectos
+              {t("viewAllProjects")}
               <Icon
                 icon="mdi:open-in-new"
                 className="group-hover:translate-x-1 transition-all duration-300"
               />
             </Title>
-          </Link>
+          </LocaleLink>
 
-          <Text className="text-[10px]">
-            * Los proyectos listados anteriores representan mi participación en
-            iniciativas realizadas durante mi trayectoria profesional, descritas
-            de forma general para respetar la confidencialidad de cada empresa.
-          </Text>
+          <Text className="text-[10px]">{t("projectsDisclaimer")}</Text>
         </motion.div>
       </div>
     </motion.div>

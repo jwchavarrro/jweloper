@@ -5,8 +5,8 @@
 
 "use client";
 
-import { useMemo } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Icon } from "@iconify/react";
 
 // Import of components custom
@@ -14,32 +14,23 @@ import { Text, Title } from "@/components/atomic-design/atoms";
 import { Badge } from "@/components/atomic-design/molecules";
 
 // Import of utilities
-import { ICONS } from "@/config";
+import { APP_ROUTES, ICONS } from "@/config";
+import { Link as LocaleLink } from "@/app/[locale]/i18n-navigation";
 import { HEADERS_ALL_PROJECTS } from "@/components/pages/app-web/proyectos";
 
 // Import of types
-import { PROJECTS_APP_WEB, type ProjectType } from "@/components/pages/app-web";
+import { useProjects, type ProjectType } from "@/components/pages/app-web";
 
 export default function ProjectsPage() {
-  /**
-   * @name getAllProjects
-   * @description Obtiene los proyectos desde la posición indicada (startIndex) hasta el final, ordenados de más reciente a más antiguo.
-   * @param {number} startIndex - Índice a partir del cual empezar a mapear (por defecto: 0).
-   * @returns {ProjectType[]} - Lista de todos los proyectos desde la posición indicada (startIndex) hasta el final, ordenados de más reciente a más antiguo.
-   */
-  const getAllProjects = useMemo(
-    () =>
-      (startIndex: number = 0): ProjectType[] => {
-        return PROJECTS_APP_WEB.slice(startIndex);
-      },
-    []
-  );
+  const t = useTranslations("appWeb.allProjects");
+  // Los 3 primeros ya se muestran en la vista principal
+  const otherProjects = useProjects().slice(3);
 
   return (
     <div className="relative h-[calc(100dvh-96px)] mx-auto container space-y-10">
       {/* Header */}
       <header className="space-y-5">
-        <Link href="/app-web">
+        <LocaleLink href={APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.APP_WEB.path}>
           <div className="group flex items-end gap-2">
             <Icon
               icon={ICONS.ARROW_LEFT}
@@ -47,8 +38,8 @@ export default function ProjectsPage() {
             />
             <Text className="font-bold">John Chavarro Urrea</Text>
           </div>
-        </Link>
-        <Title>Todos los proyectos</Title>
+        </LocaleLink>
+        <Title>{t("title")}</Title>
       </header>
 
       {/* Main -- Table */}
@@ -58,9 +49,9 @@ export default function ProjectsPage() {
             {/* Table header */}
             <thead className="border-b shadow-sm">
               <tr className="text-left tracking-widest">
-                {HEADERS_ALL_PROJECTS.map((header: string) => (
+                {HEADERS_ALL_PROJECTS.map((header) => (
                   <th key={header} className="p-1 py-2">
-                    <Text>{header}</Text>
+                    <Text>{t(`headers.${header}`)}</Text>
                   </th>
                 ))}
               </tr>
@@ -68,8 +59,8 @@ export default function ProjectsPage() {
 
             {/* Table body */}
             <tbody>
-              {getAllProjects(3).map((project: ProjectType) => (
-                <tr key={project.name} className="border-b">
+              {otherProjects.map((project: ProjectType) => (
+                <tr key={project.id} className="border-b">
                   <td className="min-w-16 p-1 py-3">
                     <Text>{project.date}</Text>
                   </td>

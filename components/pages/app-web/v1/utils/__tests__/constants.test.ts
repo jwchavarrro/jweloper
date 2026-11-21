@@ -28,7 +28,7 @@ describe("app-web/v1/utils/constants", () => {
         (s) => s.href === "#sobre-mi"
       );
       expect(section).toBeDefined();
-      expect(section?.title).toBe("SOBRE MÍ");
+      expect(section?.title).toBe("sections.about");
     });
 
     it("should have experiencia section", () => {
@@ -36,7 +36,7 @@ describe("app-web/v1/utils/constants", () => {
         (s) => s.href === "#experiencia"
       );
       expect(section).toBeDefined();
-      expect(section?.title).toBe("EXPERIENCIA");
+      expect(section?.title).toBe("sections.experience");
     });
 
     it("should have proyectos section", () => {
@@ -44,7 +44,7 @@ describe("app-web/v1/utils/constants", () => {
         (s) => s.href === "#proyectos"
       );
       expect(section).toBeDefined();
-      expect(section?.title).toBe("PROYECTOS");
+      expect(section?.title).toBe("sections.projects");
     });
   });
 });
