@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 
 // Import of components custom
 import { InputSearch } from "@/components/pages/ia-chat/components";
-import { Text } from "@/components/atomic-design/atoms";
+import { Typography } from "@/components/atomic-design/atoms";
 
 interface Message {
   id: string;
@@ -86,9 +86,9 @@ export default function IaChatIdPage() {
       <div className="flex-1 container mx-auto px-4 py-6 max-w-4xl">
         {messages.length === 0 ? (
           <div className="h-full flex items-center justify-center">
-            <Text variant="p" className="text-center">
+            <Typography variant="p" className="text-center">
               {t("starting")}
-            </Text>
+            </Typography>
           </div>
         ) : (
           <div className="space-y-6">
@@ -106,9 +106,9 @@ export default function IaChatIdPage() {
                       : "bg-muted animate-in slide-in-from-top-10"
                   }`}
                 >
-                  <Text variant="p" className="whitespace-pre-wrap">
+                  <Typography variant="p" className="whitespace-pre-wrap">
                     {message.content}
-                  </Text>
+                  </Typography>
                 </div>
               </div>
             ))}
@@ -127,12 +127,12 @@ export default function IaChatIdPage() {
             onSubmit={handleSubmit}
           />
         </div>
-        <Text
+        <Typography
           variant="small"
           className="text-xs! text-muted-foreground text-center"
         >
           {t("disclaimer")}
-        </Text>
+        </Typography>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@
 import { EqualNot } from "lucide-react";
 
 // Import of components custom
-import { Text } from "@/components/atomic-design/atoms";
+import { Typography } from "@/components/atomic-design/atoms";
 
 // Import of utilities
 import { MENU_MAIN_ITEMS, MENU_MAIN_ITEMS_MOBILE } from "../utils/constants";
@@ -20,9 +20,9 @@ export const CodeEditorHeader: React.FC = () => {
       <div className="flex items-center gap-4 ">
         <EqualNot className="size-4 text-white" />
         {Object.values(menuItems).map((item) => (
-          <Text key={item} variant="small" className="text-xs text-white">
+          <Typography key={item} variant="small" className="text-xs text-white">
             {item}
-          </Text>
+          </Typography>
         ))}
       </div>
       <div className="flex items-center gap-1">

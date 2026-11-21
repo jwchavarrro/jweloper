@@ -13,7 +13,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 // Import of components custom
-import { Title } from "@/components/atomic-design/atoms";
+import { Typography } from "@/components/atomic-design/atoms";
 
 interface WordsAnimationProps {
   readonly words: {
@@ -49,15 +49,15 @@ export const WordsAnimation: React.FC<WordsAnimationProps> = ({
             }}
           >
             <Link href={word.href} target="_blank" rel="noopener noreferrer">
-              <Title
-                level={1}
+              <Typography
+                variant="h1"
                 className={cn(
                   "text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-9xl! font-text",
                   classNamesWords
                 )}
               >
                 {word.name}
-              </Title>
+              </Typography>
             </Link>
           </motion.div>
           <motion.div
@@ -73,15 +73,15 @@ export const WordsAnimation: React.FC<WordsAnimationProps> = ({
             className="absolute inset-0"
           >
             <Link href={word.href} target="_blank" rel="noopener noreferrer">
-              <Title
-                level={1}
+              <Typography
+                variant="h1"
                 className={cn(
                   "text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-9xl! font-text",
                   classNamesWords
                 )}
               >
                 {word.name}
-              </Title>
+              </Typography>
             </Link>
           </motion.div>
         </motion.div>

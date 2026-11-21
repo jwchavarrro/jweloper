@@ -7,7 +7,7 @@
 import { motion } from "motion/react";
 
 // Import of components
-import { Text } from "@/components/atomic-design/atoms";
+import { Typography } from "@/components/atomic-design/atoms";
 
 // Import of custom hooks
 import { useIsMobile } from "@/hooks";
@@ -33,9 +33,9 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
       {/* Children content */}
       <div className="bg-[#232a33] rounded-lg p-4 w-full flex flex-col gap-3 shadow-lg border border-[#393d42]">
         <header className="flex items-center justify-between gap-2">
-          <Text variant="small" className="text-white">
+          <Typography variant="small" className="text-white">
             {project.name}
-          </Text>
+          </Typography>
           {/* Icono de ventana */}
           <div className="flex items-center mb-3">
             {[

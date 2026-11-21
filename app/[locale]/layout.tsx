@@ -9,6 +9,7 @@ import "@/app/globals.css";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { MotionConfig } from "motion/react";
 
 // Import of components custom
 import { Sidebar } from "@/components/atomic-design/organism/navigate";
@@ -17,6 +18,7 @@ import { Sidebar } from "@/components/atomic-design/organism/navigate";
 import { MULTIMEDIA } from "@/config";
 import { SIDEBAR_DATA } from "@/components/atomic-design/organism/navigate/sidebar/utils";
 import { routing } from "@/app/[locale]/i18n-routing";
+import { ThemeProvider } from "./fragments/theme-provider";
 
 // Import of custom hooks
 import { ReduxProvider } from "@/store/provider";
@@ -64,13 +66,18 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body>
-        <NextIntlClientProvider>
-          <ReduxProvider>
-            <Sidebar data={SIDEBAR_DATA}>{children}</Sidebar>
-          </ReduxProvider>
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider>
+            <ReduxProvider>
+              {/* Respeta "reducir movimiento" del sistema en todas las animaciones */}
+              <MotionConfig reducedMotion="user">
+                <Sidebar data={SIDEBAR_DATA}>{children}</Sidebar>
+              </MotionConfig>
+            </ReduxProvider>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

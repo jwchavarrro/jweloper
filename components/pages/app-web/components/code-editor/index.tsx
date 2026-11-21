@@ -72,7 +72,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   }, [displayCode]);
 
   // Copiar al portapapeles
-  const handleCopy = React.useCallback(async () => {
+  const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(displayCode);
       setCopyMessage(t("copied"));
@@ -86,16 +86,11 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
         setCopyMessage(null);
       }, 3000);
     }
-  }, [displayCode, t]);
+  };
 
   // Calcular número de líneas y generar números
-  const { lineCount, lineNumbers } = React.useMemo(() => {
-    const count = displayCode ? displayCode.split("\n").length : 1;
-    return {
-      lineCount: count,
-      lineNumbers: Array.from({ length: count }, (_, i) => i + 1),
-    };
-  }, [displayCode]);
+  const lineCount = displayCode ? displayCode.split("\n").length : 1;
+  const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1);
 
   return (
     <div

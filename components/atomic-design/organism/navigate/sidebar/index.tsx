@@ -6,6 +6,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
 import {
   SidebarTrigger,
   SidebarInset,
@@ -17,10 +18,14 @@ import { Sun, Moon } from "lucide-react";
 // Import of components custom
 import { AppSidebar } from "./fragments";
 import { Switch } from "@/components/atomic-design/atoms";
+import { Button } from "@/components/atomic-design/molecules";
 import { Breadcrumb } from "@/components/atomic-design/organism/navigate";
 
-// Import of hooks
-import { useTheme } from "@/store/hooks/useTheme";
+// Import of custom hooks
+import { useIsMounted, useLocaleSwitch } from "@/hooks";
+
+// Import of utilities
+import { EnumTheme } from "@/app/utils/types";
 
 // Import of types
 import type { SidebarDataType } from "./utils/types";
@@ -31,7 +36,10 @@ interface SidebarProps {
 }
 export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
   // Custom hooks
-  const { theme, toggleTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+  // El tema solo se conoce en el cliente: evitar diferencias de hidratación
+  const isMounted = useIsMounted();
+  const { nextLocale, switchLocale } = useLocaleSwitch();
   const t = useTranslations("common");
 
   return (
@@ -42,12 +50,25 @@ export const Sidebar: React.FC<SidebarProps> = ({ children, data }) => {
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Switch
-              checked={theme === "dark"}
-              onCheckedChange={toggleTheme}
+              checked={isMounted && resolvedTheme === EnumTheme.Dark}
+              onCheckedChange={(checked) =>
+                setTheme(checked ? EnumTheme.Dark : EnumTheme.Light)
+              }
               checkedIcon={<Sun className="size-3" />}
               uncheckedIcon={<Moon className="size-3" />}
               aria-label={t("toggleTheme")}
             />
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={switchLocale}
+              aria-label={t("switchLanguage", {
+                language: t(`locales.${nextLocale}`),
+              })}
+              className="font-bold"
+            >
+              {nextLocale.toUpperCase()}
+            </Button>
             <Separator
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"

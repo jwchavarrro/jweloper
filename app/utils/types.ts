@@ -4,9 +4,15 @@
  */
 
 /** Enums*/
+/**
+ * @name EnumTheme
+ * @type {EnumTheme}
+ * @description Enum de temas (valores de next-themes).
+ */
 export enum EnumTheme {
   Light = "light",
   Dark = "dark",
+  System = "system",
 }
 
 /**
@@ -40,15 +46,6 @@ export enum EnumSocialMedia {
 }
 
 /** Types*/
-
-/**
- * @name ThemeStateType
- * @type {ThemeStateType}
- * @description Tipo para el estado del tema.
- */
-export type ThemeStateType = {
-  readonly theme: EnumTheme;
-};
 
 /**
  * @name SocialMediaType

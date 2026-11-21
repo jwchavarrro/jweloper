@@ -8,12 +8,11 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Icon } from "@iconify/react";
 import Image from "next/image";
 
 // Import of components custom
 import { SnapPage } from "@/components/atomic-design/templates";
-import { Title, Text } from "@/components/atomic-design/atoms";
+import { Icon, Typography } from "@/components/atomic-design/atoms";
 import { CounterIndicator } from "@/components/atomic-design/molecules";
 
 // Import of hooks
@@ -84,9 +83,9 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
               value={showExperience}
               className="text-[4rem]! md:text-[10rem]! 2xl:text-[18rem]! rotate-3"
             >
-              <Text variant="lead" className="-mt-3! md:-mt-10! text-sm!">
+              <Typography variant="lead" className="-mt-3! md:-mt-10! text-sm!">
                 {t("yearsOfExperience")}
-              </Text>
+              </Typography>
             </CounterIndicator>
           </motion.div>
         </AnimatePresence>
@@ -114,14 +113,16 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
         {/* Column 2 - Content */}
         <div className="space-y-2">
           <div>
-            <Title
-              variant="gradient"
+            <Typography
+              variant="h1"
+              color="gradient"
               className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-left max-w-lg md:max-w-xl"
             >
-              {t("greeting")}
-            </Title>
-            <Title
-              variant="gradient"
+              {`<${t("greeting")}/>`}
+            </Typography>
+            <Typography
+              variant="h1"
+              color="gradient"
               className="text-lg! tracking-widest font-accent text-center xl:text-left"
             >
               {t("role")} |{" "}
@@ -143,7 +144,7 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
                   {t("downloadError")}
                 </span>
               )}
-            </Title>
+            </Typography>
           </div>
           <div className="max-w-[250px] mx-auto md:max-w-none py-5 flex flex-wrap gap-3 xl:gap-5 items-center justify-center xl:justify-start">
             {SKILLS.map((skill: SkillType, idx: number) => (

@@ -5,13 +5,11 @@
  */
 
 import { configureStore } from "@reduxjs/toolkit";
-import themeReducer from "./slices/themeSlice";
 import versionReducer from "./slices/versionSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      theme: themeReducer,
       version: versionReducer,
     },
     // Configuración para desarrollo

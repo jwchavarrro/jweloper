@@ -5,16 +5,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
 // Import of components custom
-import { Card as BaseCard } from "@/components/atomic-design/molecules/card";
-import { Title, Text } from "@/components/atomic-design/atoms";
-import { Badge } from "@/components/atomic-design";
+import { Icon, Typography } from "@/components/atomic-design/atoms";
+import {
+  BadgeA,
+  CardA as BaseCard,
+} from "@/components/atomic-design/molecules";
 
 // Import of types
 import { CardBData } from "@/components/pages/app-web/v1/utils";
+import { ICONS } from "@/config";
 
 interface CardBProps {
   readonly data: CardBData;
@@ -34,7 +36,7 @@ export function CardB({ data, className }: CardBProps) {
   return (
     <BaseCard
       className={cn(
-        "shadow-transparent border-transparent hover:shadow-md hover:border-foreground/5 transition-all duration-300 hover:bg-foreground/5 hover:backdrop-blur-md hover:opacity-100 opacity-50 p-3 group",
+        "shadow-transparent border-transparent hover:shadow-md hover:border-foreground/5 transition-all duration-300 hover:bg-foreground/5 hover:backdrop-blur-md hover:opacity-100 opacity-70 p-0 md:p-3 group [&_[data-slot=card-content]]:px-4 md:[&_[data-slot=card-content]]:px-6",
         className
       )}
     >
@@ -56,38 +58,36 @@ export function CardB({ data, className }: CardBProps) {
         <div className="col-span-10 space-y-5">
           {/* Header */}
           <header>
-            <Title
-              level={4}
-              className={cn(
-                "text-base flex items-center gap-2",
-                hasLink && "group-hover:underline"
-              )}
+            <Typography
+              variant="h4"
+              className={cn("text-base", hasLink && "group-hover:underline")}
             >
               {title}
               {hasLink && (
                 <Link
+                  className="ml-2 inline-flex align-middle"
                   href={url || ""}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Icon
-                    icon="mdi:open-in-new"
+                    icon={ICONS.OPEN_IN_NEW}
                     className="group-hover:translate-x-1 transition-all duration-300"
                   />
                 </Link>
               )}
-            </Title>
+            </Typography>
           </header>
 
           <main>
-            <Text variant="small">{description}</Text>
+            <Typography variant="small">{description}</Typography>
           </main>
 
           <footer>
             {tecnologies && tecnologies.length > 0 && (
               <div className="flex flex-wrap gap-2 pt-2">
                 {tecnologies.map((item: string) => (
-                  <Badge key={item} text={item} />
+                  <BadgeA key={item} text={item} />
                 ))}
               </div>
             )}
