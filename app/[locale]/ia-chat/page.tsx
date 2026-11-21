@@ -6,7 +6,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { ChevronUp } from "lucide-react";
 
 // Import of components custom
@@ -16,10 +16,12 @@ import { SearchInstructions } from "@/components/pages/ia-chat/fragments";
 
 // Import of utilities
 import { APP_ROUTES } from "@/config";
+import { useRouter } from "@/app/[locale]/i18n-navigation";
 
 export default function IaChat() {
   // Hooks
   const router = useRouter();
+  const t = useTranslations("iaChat");
   const [queryChat, setQueryChat] = useState<string>("");
 
   // State generals
@@ -57,7 +59,7 @@ export default function IaChat() {
         {/* Flow 1 */}
         <header className="flex items-center lg:items-end justify-center">
           <Title variant="gradient" className="text-center">
-            ¿Por donde quieres empezar?
+            {t("title")}
           </Title>
         </header>
 
@@ -65,7 +67,7 @@ export default function IaChat() {
         <main className="flex flex-col justify-end lg:justify-start gap-5">
           <div className="w-full md:max-w-xl lg:max-w-2xl mx-auto">
             <InputSearch
-              placeholder="Escribe tu pregunta..."
+              placeholder={t("placeholder")}
               size="lg"
               value={queryChat}
               onChange={setQueryChat}
@@ -79,9 +81,7 @@ export default function IaChat() {
               onClick={toggleInstructions}
               className="transition-transform hover:scale-110"
               aria-label={
-                showInstructions
-                  ? "Ocultar instrucciones"
-                  : "Mostrar instrucciones"
+                showInstructions ? t("hideInstructions") : t("showInstructions")
               }
             >
               <ChevronUp

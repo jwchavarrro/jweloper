@@ -7,6 +7,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 
@@ -34,6 +35,7 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
   const [showExperience, setShowExperience] = useState<string>("+3");
 
   // Implementation of custom hooks
+  const t = useTranslations("appWeb");
   const { downloadFile, state } = useDownloadFile();
 
   // Handlers
@@ -83,7 +85,7 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
               className="text-[4rem]! md:text-[10rem]! 2xl:text-[18rem]! rotate-3"
             >
               <Text variant="lead" className="-mt-3! md:-mt-10! text-sm!">
-                años de experiencia
+                {t("yearsOfExperience")}
               </Text>
             </CounterIndicator>
           </motion.div>
@@ -116,13 +118,13 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
               variant="gradient"
               className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-left max-w-lg md:max-w-xl"
             >
-              {"<Hola, soy John Chavarro Urrea/>"}
+              {t("greeting")}
             </Title>
             <Title
               variant="gradient"
               className="text-lg! tracking-widest font-accent text-center xl:text-left"
             >
-              Desarrollador Frontend |{" "}
+              {t("role")} |{" "}
               <motion.button
                 type="button"
                 initial={{ scale: 1.05 }}
@@ -133,12 +135,12 @@ export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
                 className="font-title md:text-2xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed bg-foreground text-background px-4 py-2 rounded-md"
               >
                 {state.status === EnumDownloadStatus.LOADING
-                  ? "Descargando..."
-                  : "Descargar CV"}
+                  ? t("downloading")
+                  : t("downloadCv")}
               </motion.button>
               {state.status === EnumDownloadStatus.ERROR && (
                 <span className="block text-sm text-destructive mt-1">
-                  {state.error}
+                  {t("downloadError")}
                 </span>
               )}
             </Title>

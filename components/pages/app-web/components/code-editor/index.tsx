@@ -6,6 +6,7 @@
 "use client";
 
 import * as React from "react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 // Import of fragments
@@ -32,6 +33,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   minHeight = "500px",
   className,
 }) => {
+  const t = useTranslations("appWeb");
   // Implement of custom hooks
   const isMobile = useIsMobile();
 
@@ -73,18 +75,18 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   const handleCopy = React.useCallback(async () => {
     try {
       await navigator.clipboard.writeText(displayCode);
-      setCopyMessage("Copiado al portapapeles");
+      setCopyMessage(t("copied"));
       // Limpiar el mensaje después de 3 segundos
       setTimeout(() => {
         setCopyMessage(null);
       }, 3000);
     } catch {
-      setCopyMessage("Error al copiar");
+      setCopyMessage(t("copyError"));
       setTimeout(() => {
         setCopyMessage(null);
       }, 3000);
     }
-  }, [displayCode]);
+  }, [displayCode, t]);
 
   // Calcular número de líneas y generar números
   const { lineCount, lineNumbers } = React.useMemo(() => {

@@ -5,6 +5,7 @@
 
 "use client";
 import { Mouse } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 // Import of components custom
 import {
@@ -32,6 +33,7 @@ export const SnapPage: React.FC<SnapPageProps> = ({
   className,
   children,
 }) => {
+  const t = useTranslations("common");
   return (
     <section
       id={anchorId}
@@ -44,7 +46,7 @@ export const SnapPage: React.FC<SnapPageProps> = ({
         </div>
         <div className="flex items-end justify-end">
           {hideScrollIndicator ? null : (
-            <ScrollIndicator text="Scroll hacia abajo" icon={Mouse} />
+            <ScrollIndicator text={t("scrollDown")} icon={Mouse} />
           )}
         </div>
       </div>

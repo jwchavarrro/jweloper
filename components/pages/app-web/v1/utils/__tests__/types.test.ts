@@ -9,16 +9,16 @@ describe("app-web/v1/utils/types", () => {
     it("should accept valid NavigationAppWebV1SectionsType", () => {
       const section: NavigationAppWebV1SectionsType = {
         href: "#test",
-        title: "Test Section",
+        title: "sections.about",
       };
       expect(section.href).toBe("#test");
-      expect(section.title).toBe("Test Section");
+      expect(section.title).toBe("sections.about");
     });
 
     it("should accept href with hash", () => {
       const section: NavigationAppWebV1SectionsType = {
         href: "#sobre-mi",
-        title: "Sobre Mí",
+        title: "sections.about",
       };
       expect(section.href).toContain("#");
     });
@@ -26,9 +26,9 @@ describe("app-web/v1/utils/types", () => {
     it("should accept any string title", () => {
       const section: NavigationAppWebV1SectionsType = {
         href: "#test",
-        title: "ANY TITLE",
+        title: "sections.projects",
       };
-      expect(section.title).toBe("ANY TITLE");
+      expect(section.title).toBe("sections.projects");
     });
   });
 

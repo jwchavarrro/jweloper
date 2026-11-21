@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./app/[locale]/i18n-request.ts");
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactCompiler: true,
   images: {},
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

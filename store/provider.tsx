@@ -8,21 +8,19 @@
 
 "use client";
 
-import { useRef } from "react";
+import { useState } from "react";
 import { Provider } from "react-redux";
 
 // Import of store
-import { makeStore, type AppStore } from "./makeStore";
+import { makeStore } from "./makeStore";
 
 interface ReduxProviderProps {
   readonly children: React.ReactNode;
 }
 
 export function ReduxProvider({ children }: ReduxProviderProps) {
-  const storeRef = useRef<AppStore | null>(null);
-
   // Crear el store solo una vez por componente
-  storeRef.current ??= makeStore();
+  const [store] = useState(makeStore);
 
-  return <Provider store={storeRef.current}>{children}</Provider>;
+  return <Provider store={store}>{children}</Provider>;
 }

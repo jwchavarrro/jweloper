@@ -3,6 +3,8 @@
  * @description Tipos para la versión 1 de la página principal.
  */
 
+import type { Messages } from "next-intl";
+
 /**
  * @name NavigationAppWebV1SectionsType
  * @type {Object}
@@ -10,7 +12,8 @@
  */
 export type NavigationAppWebV1SectionsType = {
   href: string;
-  title: string;
+  /** Clave dentro del namespace `appWeb` */
+  title: `sections.${keyof Messages["appWeb"]["sections"]}`;
 };
 
 /**

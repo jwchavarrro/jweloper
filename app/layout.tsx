@@ -1,18 +1,13 @@
 /**
  * @file layout.tsx
- * @description Layout raíz requerido por Next.js 16
+ * @description Layout raíz requerido por Next.js 16. El <html> vive en app/[locale]/layout.tsx
+ * para que `lang` siga al locale activo.
  */
-
-import "@/app/globals.css";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="es">
-      <body>{children}</body>
-    </html>
-  );
+  return children;
 }

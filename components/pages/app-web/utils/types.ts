@@ -4,7 +4,11 @@
  */
 
 // Import of types
+import type { Messages } from "next-intl";
 import { EnumSkills } from "@/app/utils/types";
+
+export type ExperienceId = keyof Messages["appWeb"]["experiences"];
+export type ProjectId = keyof Messages["appWeb"]["projects"];
 
 /**
  * @name SkillType
@@ -23,6 +27,7 @@ export type SkillType = {
  * @description Tipo para las experiencias profesionales.
  */
 export type ExperienceType = {
+  id: ExperienceId;
   dates: string;
   title: string;
   company: {
@@ -41,6 +46,7 @@ export type ExperienceType = {
  * @description Tipo para los datos de un proyecto.
  */
 export type ProjectType = {
+  id: ProjectId;
   date: string;
   image: string;
   name: string;
@@ -52,6 +58,21 @@ export type ProjectType = {
   url: string;
   tecnologies: string[];
 };
+
+/**
+ * @name ExperienceBaseType
+ * @description Datos de experiencia sin textos traducibles.
+ */
+export type ExperienceBaseType = Omit<
+  ExperienceType,
+  "dates" | "title" | "description"
+>;
+
+/**
+ * @name ProjectBaseType
+ * @description Datos de proyecto sin textos traducibles.
+ */
+export type ProjectBaseType = Omit<ProjectType, "name" | "description">;
 
 /**
  * @name ProjectItemData

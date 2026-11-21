@@ -36,38 +36,38 @@ export const SIDEBAR_ICONS: Record<string, LucideIcon> = {
 /**
  * @name SIDEBAR_DATA
  * @type {SidebarDataType}
- * @description Datos de ejemplo para el sidebar.
+ * @description Datos del sidebar. `title` es una clave del namespace `navigation`.
  */
 export const SIDEBAR_DATA: SidebarDataType = {
   navMain: [
     {
-      title: "Aplicativo web",
+      title: "appWeb",
       url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.APP_WEB.path,
       icon: "LayoutTemplate",
       isActive: true,
       items: [
         {
-          title: "Experiencia",
+          title: "experience",
           url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.EXPERIENCE.path,
         },
         {
-          title: "Proyectos",
+          title: "projects",
           url: APP_ROUTES.PUBLIC.PORTFOLIO.APP_WEB.PROJECTS.path,
         },
       ],
     },
     {
-      title: "IA chat",
+      title: "iaChat",
       url: APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT.path,
       icon: "SquareTerminal",
       isActive: true,
       items: [
         {
-          title: "Nuevo chat",
+          title: "newChat",
           url: APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_NEW.path,
         },
         {
-          title: "Buscar chat",
+          title: "searchChat",
           url: APP_ROUTES.PUBLIC.PORTFOLIO.IA_CHAT.IA_CHAT_SEARCH.path,
         },
       ],

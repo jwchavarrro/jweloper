@@ -7,6 +7,7 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 // Import of components custom
 import { InputSearch } from "@/components/pages/ia-chat/components";
@@ -20,6 +21,7 @@ interface Message {
 }
 
 export default function IaChatIdPage() {
+  const t = useTranslations("iaChat");
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get("q");
 
@@ -41,13 +43,13 @@ export default function IaChatIdPage() {
         const assistantMessage: Message = {
           id: crypto.randomUUID(),
           role: "assistant",
-          content: `Esta es una respuesta simulada a tu pregunta: "${initialQuery}". En una implementación real, aquí se mostraría la respuesta generada por la IA.`,
+          content: t("initialResponse", { query: initialQuery }),
           timestamp: new Date(),
         };
         setMessages([userMessage, assistantMessage]);
       }, 500);
     }
-  }, [initialQuery, messages.length]);
+  }, [initialQuery, messages.length, t]);
 
   /**
    * Maneja el envío de un nuevo mensaje
@@ -71,7 +73,7 @@ export default function IaChatIdPage() {
       const assistantMessage: Message = {
         id: crypto.randomUUID(),
         role: "assistant",
-        content: `Esta es una respuesta simulada a: "${value.trim()}". En una implementación real, aquí se conectaría con un servicio de IA para generar la respuesta.`,
+        content: t("followUpResponse", { query: value.trim() }),
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, assistantMessage]);
@@ -85,7 +87,7 @@ export default function IaChatIdPage() {
         {messages.length === 0 ? (
           <div className="h-full flex items-center justify-center">
             <Text variant="p" className="text-center">
-              Iniciando conversación...
+              {t("starting")}
             </Text>
           </div>
         ) : (
@@ -118,7 +120,7 @@ export default function IaChatIdPage() {
       <div className="flex flex-col items-center sticky bottom-0 left-0 bg-background z-10">
         <div className="container mx-auto px-4 py-4 max-w-4xl">
           <InputSearch
-            placeholder="Escribe tu pregunta..."
+            placeholder={t("placeholder")}
             size="lg"
             value={currentInput}
             onChange={setCurrentInput}
@@ -129,7 +131,7 @@ export default function IaChatIdPage() {
           variant="small"
           className="text-xs! text-muted-foreground text-center"
         >
-          El Chat puede cometer errores. Considera replantear la pregunta.
+          {t("disclaimer")}
         </Text>
       </div>
     </div>

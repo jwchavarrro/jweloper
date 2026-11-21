@@ -9,12 +9,7 @@
  * @description Tipo para el lenguaje de programación.
  */
 export type Language =
-  | "javascript"
-  | "typescript"
-  | "css"
-  | "html"
-  | "json"
-  | "plaintext";
+  "javascript" | "typescript" | "css" | "html" | "json" | "plaintext";
 
 /**
  * @name FileItem

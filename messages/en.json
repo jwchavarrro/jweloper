@@ -1,7 +1,153 @@
 {
-  "common": {},
-  "navigation": {},
-  "home": {},
-  "app-web": {},
-  "ia-chat": {}
+  "metadata": {
+    "title": "Portfolio - Jweloper",
+    "description": "Portfolio of Jweloper, frontend developer."
+  },
+  "common": {
+    "home": "Home",
+    "scrollDown": "Scroll down",
+    "search": "Search...",
+    "toggleTheme": "Toggle theme",
+    "toggle": "Toggle",
+    "more": "More",
+    "remote": "Remote",
+    "locales": {
+      "es": "Español",
+      "en": "English"
+    }
+  },
+  "navigation": {
+    "portfolio": "Portfolio",
+    "appWeb": "Web app",
+    "experience": "Experience",
+    "projects": "Projects",
+    "iaChat": "AI chat",
+    "newChat": "New chat",
+    "searchChat": "Search chat",
+    "chats": "Chats",
+    "view": "View",
+    "share": "Share",
+    "delete": "Delete"
+  },
+  "home": {
+    "seniority": "Mid-Level",
+    "title": "Frontend Developer | React & Next.js Specialist",
+    "description": "I help build modern, scalable, user-centered web applications. My experience ranges from rapid prototypes to complex applications.",
+    "cvApp": "CV as an app",
+    "cvAi": "CV with AI",
+    "copyright": "Copyright © {year} Jweloper. All rights reserved. v1.5"
+  },
+  "appWeb": {
+    "role": "Frontend Developer",
+    "yearsOfExperience": "years of experience",
+    "greeting": "<Hi, I'm John Chavarro Urrea/>",
+    "downloadCv": "Download CV",
+    "downloading": "Downloading...",
+    "downloadError": "Error downloading the file",
+    "experienceTitle": "<Pro Experience/>",
+    "projectsTitle": "<Featured projects/>",
+    "contactTitle": "<Contact/>",
+    "contactText": "Ready to take your ideas to the next level? Let's talk about how I can add value to your next project or creative collaboration.",
+    "viewPreviousVersion": "See the previous version",
+    "viewNewVersion": "See the new version",
+    "copyCode": "Copy code",
+    "copied": "Copied to clipboard",
+    "copyError": "Copy failed",
+    "sections": {
+      "about": "ABOUT ME",
+      "experience": "EXPERIENCE",
+      "projects": "PROJECTS"
+    },
+    "about": "I'm a Frontend developer with over 3 years of experience building administrative web applications and custom digital solutions using React, Next.js, TypeScript and Tailwind CSS. I specialize in developing modern, functional and scalable interfaces, ensuring consistent, high-quality experiences. I've built complete modules such as authentication, user management, master catalogs, dynamic tables with advanced filters and document uploads. My approach combines frontend architecture best practices, component optimization and collaborative work in agile environments. My goal is to contribute to robust and efficient digital products, aligning technical needs with user experience and business goals.",
+    "viewFullCv": "View full CV",
+    "viewAllProjects": "View all projects",
+    "projectsDisclaimer": "* The projects listed above represent my participation in initiatives carried out throughout my professional career, described in general terms to respect each company's confidentiality.",
+    "allProjects": {
+      "title": "All projects",
+      "headers": {
+        "year": "Year",
+        "project": "Project",
+        "madeAt": "Made at",
+        "builtWith": "Built with",
+        "link": "Link"
+      }
+    },
+    "experiences": {
+      "blossom": {
+        "dates": "2026 – Present",
+        "title": "Midlevel Developer",
+        "description": ""
+      },
+      "prevalentware": {
+        "dates": "2022 – 2025",
+        "title": "Custom Application Developer",
+        "description": "I built complete administrative interfaces for enterprise products, covering key features such as login, sign-up, password recovery, user management, file handling and master catalog administration. I specialized in integrating the frontend with REST APIs and external services, ensuring smooth, efficient and secure communication with internal systems. I also improved the architecture by creating reusable, responsive components with React and Tailwind CSS, increasing maintainability and visual consistency across projects. All of this was backed by sound architecture, documentation and version control practices, enabling teamwork and contributing to successful agile development cycles."
+      },
+      "freelance": {
+        "dates": "2019 – 2022",
+        "title": "Junior Web Developer",
+        "description": "I worked as a junior web developer, focusing on building landing pages and corporate websites with HTML, CSS, JavaScript and responsive design. I specialized in customizing WordPress sites with Elementor and specialized plugins, delivering solutions tailored to each client's specific needs. I also optimized site performance to improve load times and the mobile experience, leading to higher user satisfaction. All of this was backed by good maintenance, update and continuous improvement practices, ensuring the visual and functional consistency of the websites."
+      },
+      "cabi": {
+        "dates": "2018 – 2019",
+        "title": "Teacher",
+        "description": "I worked as a teacher, focusing on teaching programming fundamentals and IT tools to software development technical students. I specialized in implementing teaching strategies focused on hands-on learning, helping students develop technical and professional skills. I also led training projects in partnership with SENA, applying my knowledge in a real context and contributing to community development. All of this was backed by good teaching, research and collaboration practices, ensuring the quality and relevance of the educational programs."
+      }
+    },
+    "projects": {
+      "riskhub": {
+        "name": "RiskHub",
+        "description": "Advanced query-param-based filters for dynamic queries. i18n internationalization with multi-language support in Next.js. UX optimization for visualizing maps, layers and models."
+      },
+      "lacea": {
+        "name": "LACEA web portal (Admin panel)",
+        "description": "Admin panel for managing user memberships. Publishing system for professional offers and opportunities for members. Internal search to find active members — enabling networking and collaboration."
+      },
+      "portalAliados": {
+        "name": "PortalAliados",
+        "description": "Multi-step forms with conditional fields based on answers. HubSpot integration for automatic lead registration. Dynamic validations and optimized UX for the data capture flow."
+      },
+      "ctrlCash": {
+        "name": "Ctrl Cash",
+        "description": "Web app for tracking expenses and budgets. Lets you record, categorize and visualize financial transactions efficiently and in an organized way."
+      },
+      "rickAndMorty": {
+        "name": "Searching - Rick and Morty",
+        "description": "Web app to search for characters from the Rick and Morty series. Shows character information such as name, image, species, gender, location and the episodes they appear in."
+      },
+      "cvLoneliness": {
+        "name": "CV loneliness",
+        "description": "Interactive résumé web app built with Angular that lets you view, download and share a professional CV with multi-language support (Spanish/English)."
+      },
+      "leonardoDaVinci": {
+        "name": "Colegio Gimnasio Leonardo da Vinci",
+        "description": "Website for the Gimnasio Leonardo da Vinci school, built with WordPress and Elementor."
+      },
+      "jveloperCv": {
+        "name": "Jveloper CV",
+        "description": "An interactive résumé with a modern Windows 11-inspired interface, built with the latest web technologies. This project combines a functional operating-system design with professional information in an innovative and engaging way."
+      }
+    }
+  },
+  "iaChat": {
+    "title": "Where would you like to start?",
+    "placeholder": "Type your question...",
+    "showInstructions": "Show instructions",
+    "hideInstructions": "Hide instructions",
+    "examplesTitle": "Search examples:",
+    "examples": [
+      "Look up the latest registered company and main responsibilities.",
+      "List the technologies with the strongest command according to the CV.",
+      "Get the most notable project and the contributions made.",
+      "Extract the points that set this professional profile apart from others.",
+      "See the main academic background listed in the document.",
+      "Show the portfolio link available in the CV."
+    ],
+    "starting": "Starting conversation...",
+    "disclaimer": "The chat can make mistakes. Consider rephrasing your question.",
+    "initialResponse": "This is a simulated answer to your question: \"{query}\". In a real implementation, the AI-generated answer would be shown here.",
+    "followUpResponse": "This is a simulated answer to: \"{query}\". In a real implementation, this would connect to an AI service to generate the answer.",
+    "submitSearch": "Submit search",
+    "clearSearch": "Clear search"
+  }
 }

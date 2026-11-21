@@ -10,7 +10,8 @@
  */
 export type HomeDataType = {
   buttons: {
-    label: string;
+    /** Clave dentro del namespace `home` */
+    label: "cvApp" | "cvAi";
     icon: string;
     url: string;
   }[];

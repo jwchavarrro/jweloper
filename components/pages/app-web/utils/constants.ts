@@ -9,8 +9,8 @@ import { APP_LINKS, ICONS } from "@/config";
 // Import of types
 import { EnumSocialMedia, EnumSkills } from "@/app/utils/types";
 import {
-  ProjectType,
-  ExperienceType,
+  ProjectBaseType,
+  ExperienceBaseType,
   SkillType,
 } from "@/components/pages/app-web/utils/types";
 
@@ -91,33 +91,27 @@ export const SKILLS: SkillType[] = [
 /**
  * @name EXPERIENCES_APP_WEB
  * @type {ExperienceType[]}
- * @description Lista de experiencias profesionales.
+ * @description Datos no traducibles de las experiencias. Textos en `appWeb.experiences.<id>`.
  */
-export const EXPERIENCES_APP_WEB: ExperienceType[] = [
+export const EXPERIENCES_APP_WEB: ExperienceBaseType[] = [
   {
-    dates: "2026 – Presente",
-    title: "Midlevel Developer",
+    id: "blossom",
     company: {
       name: APP_LINKS.GENERALS.COMPANY.BLOSSOM.name,
       url: APP_LINKS.GENERALS.COMPANY.BLOSSOM.url,
     },
     location: "Neiva, Colombia",
     isRemote: true,
-    description: [""],
     tecnologies: ["React", "Next.js", "Tailwind CSS", "TypeScript", "GraphQL"],
   },
   {
-    dates: "2022 – 2025",
-    title: "Desarrollador de Aplicaciones a la Medida",
+    id: "prevalentware",
     company: {
       name: APP_LINKS.GENERALS.COMPANY.PREVALENTWARE.name,
       url: APP_LINKS.GENERALS.COMPANY.PREVALENTWARE.url,
     },
     location: "Neiva, Colombia",
     isRemote: true,
-    description: [
-      "Desarrollé interfaces administrativas completas para productos empresariales, abarcando funcionalidades clave como login, registro, recuperación de contraseñas, gestión de usuarios, manejo de archivos y administración de catálogos maestros. Me especialicé en integrar el frontend con APIs REST y servicios externos, garantizando una comunicación fluida, eficiente y segura con los sistemas internos. Además, optimicé la arquitectura mediante la creación de componentes reutilizables y responsivos en React y Tailwind CSS, lo que permitió una mayor mantenibilidad y coherencia visual en los proyectos. Todo este proceso estuvo sustentado en la aplicación de buenas prácticas de arquitectura, documentación y control de versiones, facilitando el trabajo en equipo y contribuyendo al éxito de los ciclos de desarrollo ágiles.",
-    ],
     tecnologies: [
       "React",
       "Next.js",
@@ -132,28 +126,20 @@ export const EXPERIENCES_APP_WEB: ExperienceType[] = [
     ],
   },
   {
-    dates: "2019 – 2022",
-    title: "Desarrollador Web Junior",
+    id: "freelance",
     company: {
       name: "Freelance",
     },
     location: "Neiva, Colombia",
-    description: [
-      "Desempeñé el rol de desarrollador web junior, centrándome en la creación de landing pages y sitios web corporativos con HTML, CSS, JavaScript y diseño responsivo. Me especialicé en la personalización de sitios WordPress utilizando Elementor y plugins especializados, lo que me permitió ofrecer soluciones adaptadas a las necesidades específicas de cada cliente. Además, optimicé el rendimiento de los sitios web para mejorar tiempos de carga y la experiencia móvil, lo que contribuyó a una mayor satisfacción del usuario. Todo este proceso estuvo sustentado en la aplicación de buenas prácticas de mantenimiento, actualización y mejora continua, asegurando la coherencia visual y funcional de los sitios web.",
-    ],
     tecnologies: ["HTML", "CSS", "JavaScript", "WordPress", "Elementor"],
   },
   {
-    dates: "2018 – 2019",
-    title: "Docente",
+    id: "cabi",
     company: {
       name: APP_LINKS.GENERALS.COMPANY.CABI.name,
       url: APP_LINKS.GENERALS.COMPANY.CABI.url,
     },
     location: "Neiva, Colombia",
-    description: [
-      "Desempeñé el rol de docente, centrándome en la enseñanza de fundamentos de programación y herramientas de TI a estudiantes de técnicas de desarrollo de software. Me especialicé en la implementación de estrategias pedagógicas enfocadas en el aprendizaje práctico, lo que me permitió contribuir al desarrollo de habilidades técnicas y profesionales en los estudiantes. Además, lideré proyectos de formación en articulación con SENA, lo que me permitió aplicar mis conocimientos en un contexto real y contribuir al desarrollo de la comunidad. Todo este proceso estuvo sustentado en la aplicación de buenas prácticas de docencia, investigación y colaboración, asegurando la calidad y relevancia de los programas educativos.",
-    ],
     tecnologies: ["HTML", "CSS", "JavaScript"],
   },
 ];
@@ -161,15 +147,13 @@ export const EXPERIENCES_APP_WEB: ExperienceType[] = [
 /**
  * @name PROJECTS_APP_WEB
  * @type {ProjectType[]}
- * @description Lista de proyectos desarrollados.
+ * @description Datos no traducibles de los proyectos. Textos en `appWeb.projects.<id>`.
  */
-export const PROJECTS_APP_WEB: ProjectType[] = [
+export const PROJECTS_APP_WEB: ProjectBaseType[] = [
   {
+    id: "riskhub",
     date: "2025",
     image: "",
-    name: "RiskHub",
-    description:
-      "Filtros avanzados basados en query params para consultas dinámicas. Internacionalización i18n con soporte multilenguaje en Next.js. Optimización de UX para visualización de mapas, capas y modelos.",
     company: {
       name: APP_LINKS.PORTFOLIO.PROJECTS.RISKHUB.name,
       url: APP_LINKS.PORTFOLIO.PROJECTS.RISKHUB.url,
@@ -188,11 +172,9 @@ export const PROJECTS_APP_WEB: ProjectType[] = [
     ],
   },
   {
+    id: "lacea",
     date: "2024",
     image: "",
-    name: "Portal web LACEA (Panel administrativo)",
-    description:
-      "Desarrollo de panel administrativo para gestión de membresías de usuarios. Sistema de publicación de ofertas y oportunidades profesionales para miembros. Buscador interno para localizar miembros activos — facilitando networking y colaboración.",
     company: {
       name: APP_LINKS.PORTFOLIO.PROJECTS.LACEA.name,
       url: APP_LINKS.PORTFOLIO.PROJECTS.LACEA.url,
@@ -210,11 +192,9 @@ export const PROJECTS_APP_WEB: ProjectType[] = [
     ],
   },
   {
+    id: "portalAliados",
     date: "2023",
     image: "",
-    name: "PortalAliados",
-    description:
-      "Formularios multi-step con campos condicionales según respuestas. Integración con HubSpot para registro automático de leads. Validaciones dinámicas y UX optimizada para flujo de captura de datos.",
     company: {
       name: APP_LINKS.PORTFOLIO.PROJECTS.PORTALALIADOS.name,
       url: APP_LINKS.PORTFOLIO.PROJECTS.PORTALALIADOS.url,
@@ -232,11 +212,9 @@ export const PROJECTS_APP_WEB: ProjectType[] = [
   },
 
   {
+    id: "ctrlCash",
     date: "2025",
     image: "",
-    name: "Ctrl Cash",
-    description:
-      "Aplicación web para control de gastos y presupuestos. Permite registrar, categorizar y visualizar transacciones financieras de manera eficiente y organizada.",
     company: {
       name: "Freelance",
     },
@@ -253,11 +231,9 @@ export const PROJECTS_APP_WEB: ProjectType[] = [
     ],
   },
   {
+    id: "rickAndMorty",
     date: "2025",
     image: "",
-    name: "Searching - Rick and Morty ",
-    description:
-      "Aplicación web para buscar personajes de la serie Rick and Morty. Permite visualizar información de los personajes, como nombre, imagen, especie, género, ubicación y episodios en los que aparecen.",
     company: {
       name: "Freelance",
     },
@@ -273,11 +249,9 @@ export const PROJECTS_APP_WEB: ProjectType[] = [
     ],
   },
   {
+    id: "cvLoneliness",
     date: "2025",
     image: "",
-    name: "CV loneliness",
-    description:
-      "Aplicación web interactiva de currículum vitae desarrollada con Angular, que permite visualizar, descargar y compartir un CV profesional con soporte multiidioma (Español/Inglés).",
     company: {
       name: "Freelance",
     },
@@ -285,11 +259,9 @@ export const PROJECTS_APP_WEB: ProjectType[] = [
     tecnologies: ["Angular", "CSS", "TypeScript", "Karma"],
   },
   {
+    id: "leonardoDaVinci",
     date: "2023",
     image: "",
-    name: "Colegio Gimnasio Leonardo da Vinci",
-    description:
-      "Portal web para el colegio Gimnasio Leonardo da Vinci, utilizando WordPress y Elementor.",
     company: {
       name: "Freelance",
     },
@@ -297,11 +269,9 @@ export const PROJECTS_APP_WEB: ProjectType[] = [
     tecnologies: ["WordPress", "Elementor"],
   },
   {
+    id: "jveloperCv",
     date: "2023",
     image: "",
-    name: "Jveloper CV",
-    description:
-      "Un currículum vitae interactivo con una interfaz moderna inspirada en Windows 11, construido con las últimas tecnologías web. Este proyecto combina un diseño de sistema operativo funcional con información profesional de manera innovadora y atractiva.",
     company: {
       name: "Freelance",
     },

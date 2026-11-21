@@ -7,6 +7,7 @@
 
 import * as React from "react";
 import { MoveUp } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 // Import of components custom
 import { InputText } from "@/components/atomic-design/atoms";
@@ -28,7 +29,7 @@ export interface InputSearchProps extends Omit<
 }
 
 export const InputSearch: React.FC<InputSearchProps> = ({
-  placeholder = "Buscar...",
+  placeholder,
   size = "lg",
   value = "",
   onChange,
@@ -36,6 +37,8 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   className,
   ...props
 }) => {
+  const t = useTranslations("iaChat");
+  const tCommon = useTranslations("common");
   // General states
   const [internalValue, setInternalValue] = React.useState<string>(value);
 
@@ -104,7 +107,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({
     <div className={cn("w-full", className)}>
       <div className="relative [&_input]:pr-10">
         <InputText
-          placeholder={placeholder}
+          placeholder={placeholder ?? tCommon("search")}
           size={size}
           value={currentValue}
           onChange={handleChange}
@@ -117,7 +120,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({
             size="icon-sm"
             className="absolute right-2 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full hover:bg-muted z-10"
             onClick={handleButtonClick}
-            aria-label={onSubmit ? "Enviar búsqueda" : "Limpiar búsqueda"}
+            aria-label={onSubmit ? t("submitSearch") : t("clearSearch")}
           >
             <MoveUp />
           </Button>
