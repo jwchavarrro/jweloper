@@ -46,7 +46,7 @@ export function CardA({ data, className }: CardAProps) {
   return (
     <BaseCard
       className={cn(
-        "shadow-transparent border-transparent hover:shadow-md hover:border-foreground/5 transition-all duration-300 hover:bg-foreground/5 hover:backdrop-blur-md hover:opacity-100 opacity-70 p-0 md:p-3 group [&_[data-slot=card-content]]:px-4 md:[&_[data-slot=card-content]]:px-6",
+        "shadow-transparent border-transparent hover:shadow-md hover:border-foreground/5 transition-all duration-300 hover:bg-foreground/5 hover:backdrop-blur-md hover:opacity-100 opacity-70 p-0 md:p-3 group **:data-[slot=card-content]:px-4 md:**:data-[slot=card-content]:px-6",
         className
       )}
     >

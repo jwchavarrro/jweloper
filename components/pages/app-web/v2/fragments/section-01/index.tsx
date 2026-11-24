@@ -1,172 +1,107 @@
 /**
- * @file section-01.tsx
- * @description Fragmento de la sección 01 de la página principal.
+ * @file index.tsx
+ * @description Sección 01 (v2): presentación, descarga de CV y tecnologías.
  */
 
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 // Import of components custom
-import { SnapPage } from "@/components/atomic-design/templates";
-import { Icon, Typography } from "@/components/atomic-design/atoms";
-import { CounterIndicator } from "@/components/atomic-design/molecules";
+import { Typography } from "@/components/atomic-design/atoms";
+import {
+  GlassButton,
+  GlassHeading,
+  GlassSection,
+  GlassSurface,
+} from "@/components/glass-design";
+import {
+  GlassSkillTray,
+  GlassStat,
+  GlassWatermark,
+} from "@/components/pages/app-web/v2/components";
 
-// Import of hooks
-import { useDownloadFile, EnumDownloadStatus } from "@/hooks";
+// Import of custom hooks
+import { EnumDownloadStatus, useDownloadFile } from "@/hooks";
 
 // Import of utilities
-import { MULTIMEDIA } from "@/config";
-import { SKILLS } from "@/components/pages/app-web/utils/constants";
+import { ICONS, MULTIMEDIA } from "@/config";
+import { CV_FILE, SKILLS } from "@/components/pages/app-web/utils/constants";
 
-// Import of types
-import { SkillType } from "@/components/pages/app-web";
+/** Experiencia mostrada cuando no hay una tecnología activa */
+const DEFAULT_EXPERIENCE = "+3";
 
 interface Section01Props {
   readonly anchorId?: string;
 }
 
 export const Section01: React.FC<Section01Props> = ({ anchorId }) => {
-  // States generals
-  const [showExperience, setShowExperience] = useState<string>("+3");
-
-  // Implementation of custom hooks
   const t = useTranslations("appWeb");
+  const [experience, setExperience] = useState(DEFAULT_EXPERIENCE);
   const { downloadFile, state } = useDownloadFile();
-
-  // Handlers
-  /**
-   * @name handleMouseEnter
-   * @description Manejador para el evento de mouse enter.
-   * @param {string} experience - La experiencia a mostrar.
-   */
-  const handleMouseEnter = (experience: string) => {
-    setShowExperience(experience);
-  };
-
-  /**
-   * @name handleMouseLeave
-   * @description Manejador para el evento de mouse leave.
-   */
-  const handleMouseLeave = () => {
-    setShowExperience("+3");
-  };
-
-  /**
-   * @name handleDownloadCV
-   * @description Manejador para descargar el CV.
-   */
-  const handleDownloadCV = () => {
-    downloadFile(
-      "/docs/CV JOHN CHAVARRO 2025.pdf",
-      "CV_JOHN_CHAVARRO_2025.pdf"
-    );
-  };
+  const isDownloading = state.status === EnumDownloadStatus.LOADING;
 
   return (
-    <SnapPage id="01" anchorId={anchorId}>
-      {/* Children content */}
-      {/* Background counter indicator */}
-      <div className="absolute -top-2 right-0">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={showExperience}
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: -20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-          >
-            <CounterIndicator
-              value={showExperience}
-              className="text-[4rem]! md:text-[10rem]! 2xl:text-[18rem]! rotate-3"
-            >
-              <Typography variant="lead" className="-mt-3! md:-mt-10! text-sm!">
-                {t("yearsOfExperience")}
-              </Typography>
-            </CounterIndicator>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Content */}
-      <div className="absolute inset-0 grid grid-cols-1 xl:grid-cols-2 content-center gap-5">
-        {/* Column 1 - Image */}
-        <motion.div
-          className="relative min-h-52 lg:min-h-96"
-          initial={{ scale: 1.05, translateX: "-100%" }}
-          animate={{ scale: 1, translateX: 0 }}
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-        >
-          <Image
-            src={MULTIMEDIA.BACKGROUNDS.PHOTO_PROFILE}
-            alt="Photo Profile"
-            fill
-            quality={100}
-            className="object-contain drop-shadow-lg"
+    <GlassSection anchorId={anchorId} background={<GlassWatermark text="01" />}>
+      <div className="grid w-full grid-cols-1 items-center gap-10 xl:grid-cols-2">
+        {/* Foto */}
+        <div className="relative mx-auto flex items-center justify-center">
+          <GlassSurface className="flex size-56 items-center justify-center rounded-full md:size-96">
+            <div className="relative size-44 md:size-80">
+              <Image
+                src={MULTIMEDIA.BACKGROUNDS.PHOTO_PROFILE}
+                alt="John Chavarro Urrea"
+                fill
+                priority
+                className="object-contain drop-shadow-lg"
+              />
+            </div>
+          </GlassSurface>
+          <GlassStat
+            value={experience}
+            label={t("yearsOfExperience")}
+            className="absolute -right-4 -bottom-2 z-10 md:-right-10 md:bottom-6"
           />
-        </motion.div>
+        </div>
 
-        {/* Column 2 - Content */}
-        <div className="space-y-2">
-          <div>
+        {/* Contenido */}
+        <div className="flex flex-col gap-6 text-center xl:text-left">
+          <GlassHeading level={1} decorated>
+            {t("greeting")}
+          </GlassHeading>
+          <div className="flex flex-col items-center gap-4 md:flex-row xl:items-center">
             <Typography
-              variant="h1"
-              color="gradient"
-              className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap text-center xl:text-left max-w-lg md:max-w-xl"
+              variant="small"
+              className="font-accent text-sm tracking-[0.2em] uppercase"
             >
-              {`<${t("greeting")}/>`}
+              {t("role")}
             </Typography>
+            <GlassButton
+              icon={ICONS.ARROW_RIGHT_01}
+              onClick={() => downloadFile(CV_FILE.path, CV_FILE.name)}
+              disabled={isDownloading}
+            >
+              {isDownloading ? t("downloading") : t("downloadCv")}
+            </GlassButton>
+          </div>
+          {state.status === EnumDownloadStatus.ERROR && (
             <Typography
-              variant="h1"
-              color="gradient"
-              className="text-lg! tracking-widest font-accent text-center xl:text-left"
+              variant="muted"
+              role="alert"
+              className="text-destructive"
             >
-              {t("role")} |{" "}
-              <motion.button
-                type="button"
-                initial={{ scale: 1.05 }}
-                whileHover={{ scale: 1.1, translateX: 15 }}
-                whileTap={{ scale: 0.95, translateX: 0 }}
-                onClick={handleDownloadCV}
-                disabled={state.status === EnumDownloadStatus.LOADING}
-                className="font-title md:text-2xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed bg-foreground text-background px-4 py-2 rounded-md"
-              >
-                {state.status === EnumDownloadStatus.LOADING
-                  ? t("downloading")
-                  : t("downloadCv")}
-              </motion.button>
-              {state.status === EnumDownloadStatus.ERROR && (
-                <span className="block text-sm text-destructive mt-1">
-                  {t("downloadError")}
-                </span>
-              )}
+              {t("downloadError")}
             </Typography>
-          </div>
-          <div className="max-w-[250px] mx-auto md:max-w-none py-5 flex flex-wrap gap-3 xl:gap-5 items-center justify-center xl:justify-start">
-            {SKILLS.map((skill: SkillType, idx: number) => (
-              <motion.div
-                key={`${skill.name}-${idx}`}
-                whileHover={{ scale: 1.05, rotate: -5, translateX: 10 }}
-                whileTap={{ scale: 0.95, rotate: 0 }}
-              >
-                <Icon
-                  icon={skill.icon}
-                  className="size-6 md:size-8 xl:size-10 text-foreground cursor-pointer"
-                  style={{
-                    filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.1))",
-                  }}
-                  onMouseEnter={() => handleMouseEnter(skill.experience)}
-                  onMouseLeave={handleMouseLeave}
-                />
-              </motion.div>
-            ))}
-          </div>
+          )}
+          <GlassSkillTray
+            skills={SKILLS}
+            label={t("skillsLabel")}
+            onHighlight={(value) => setExperience(value ?? DEFAULT_EXPERIENCE)}
+          />
         </div>
       </div>
-    </SnapPage>
+    </GlassSection>
   );
 };

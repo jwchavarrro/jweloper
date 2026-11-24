@@ -26,6 +26,7 @@ Comunícate y escribe planes en **español**. Código, nombres de archivos y car
 ├── components/
 │   ├── ui/                     # Primitivos de shadcn/ui (instalados por CLI). NO modificar
 │   ├── atomic-design/          # Componentes propios que extienden los de ui/ (ver reglas abajo)
+│   ├── glass-design/           # Sistema atomic design de la v2 (Liquid Glass). Ver "Sistema glass (v2)"
 │   └── pages/                  # Piezas de cada página (app-web, ia-chat…)
 ├── config/                     # Rutas (APP_ROUTES), links, iconos, multimedia
 ├── hooks/                      # Hooks genéricos, sin dominio
@@ -41,8 +42,8 @@ Comunícate y escribe planes en **español**. Código, nombres de archivos y car
 
 - **atoms/**: SOLO el primitivo base; no usa otros componentes propios. Ej: `Icon` (única base de iconos: nunca importar `@iconify/react` directo), `Typography` (extiende `ui/typography`; único átomo de texto: `variant` h1–h4/p/lead/large/small/muted y `color`), `Switch`, `Input` (input base: size, variant, error vía aria-invalid) y `Label` (label base: `required`). `Card` (div por defecto; `href` → enlace, `onClick` → interactivo accesible; expone CardHeader/Title/…), `Badge`. No hay átomo de botón. Las moléculas que diseñan sobre un átomo base usan sufijo de variante (`CardA`, `BadgeA`) para no chocar con el nombre del átomo.
 - **molecules/**: combinan atoms. **Si algo usa un átomo, es molécula.** Ej: `buttons/button` (extiende `ui/button` + átomo `Icon` para `leadingIcon`/`trailingIcon`), `buttons/button-icon` (CTA: molécula `Button` + `Icon` animados).
-- **organism/**: bloques completos. Ej: `navigate/sidebar`, `navigate/breadcrumb`, `carousel`.
-- **templates/**: esqueletos de página. Ej: `snap-page`.
+- **organism/**: bloques completos. Ej: `navigate/sidebar`, `navigate/breadcrumb`.
+- **templates/**: esqueletos de página (hoy ninguno en `atomic-design`; la v2 usa los de `glass-design`).
 
 **Cada componente va dentro de una carpeta de categoría** (`nivel/categoría/componente`). Nunca carpetas genéricas como `custom/` o componentes sueltos en la raíz del nivel:
 
@@ -52,7 +53,6 @@ molecules/
 ├── buttons/button           # ui/button + átomo Icon
 ├── buttons/button-icon      # CTA: Button + Icon animados
 ├── cards/card-a             # diseño de card sobre el átomo Card
-├── indicators/counter-indicator, scroll-indicator
 └── inputs/InputField        # Label opcional (+obligatorio) + Input; un solo componente para todos los `type` (date con icono)
 ```
 
@@ -65,6 +65,19 @@ import { Button } from "@/components/atomic-design/molecules/buttons/button"; //
 ```
 
 Dentro del mismo nivel (ej: una molécula que usa otra) se importa desde la carpeta del componente con alias, nunca desde el barrel del propio nivel (ciclo) ni con `../`.
+
+# Sistema glass (v2)
+
+La v2 de app-web (estilo Liquid Glass de Apple) tiene su **propio sistema atomic design** en `components/glass-design/` (`atoms/`, `molecules/<categoría>/`, `organisms/<categoría>/`, `templates/`, con barrels y raíz `@/components/glass-design`).
+
+- **`glass-design` = solo primitivos genéricos y reutilizables**, con nombres genéricos (`GlassHeading`, `GlassCard`, `GlassCarousel`…). Las decoraciones e indicadores propios del diseño de la v2 (`GlassWatermark`, `GlassWindowControls`, `GlassStat`) viven en `v2/components` y se inyectan por slots (`GlassSection.background`, `GlassCard.headerAction`): sin tipos de dominio (`ProjectType`, `SkillType`…), sin textos de `messages` de una página y sin datos. Reciben todo por props.
+- **Lo que conoce el dominio** va en `components/pages/app-web/v2/components/<categoría>` (ej: `code/glass-code-window`), o en `fragments/` de la sección si solo la usa ella (ej: `section-03/fragments/project-card` sobre el genérico `GlassCard`), componiendo los primitivos de `glass-design`. Las secciones (`v2/fragments`) solo conectan datos con esos componentes.
+
+- **No se mezcla con la v1**: la v1 y `atomic-design` nunca importan de `glass-design`, y `glass-design` nunca importa moléculas, organismos ni templates de `atomic-design`.
+- **Compartido (permitido)**: los átomos neutrales `Icon` y `Typography` de `@/components/atomic-design/atoms`, los primitivos de `components/ui` y los datos (`useExperiences`, `useProjects`, `SKILLS`, `SOCIAL_MEDIA`, `messages/`).
+- **Vidrio** siempre con el átomo `GlassSurface` o las utilidades `glass` / `glass-liquid` (`app/globals.css`); nunca `backdrop-blur` sueltos. `glass-liquid` usa el filtro `#liquid-glass` (`GlassDistortionFilter`, montado una vez en la v2) y solo distorsiona en Chromium; el resto ve el vidrio esmerilado. Con `prefers-reduced-transparency` cae a fondo sólido.
+- El vidrio necesita algo detrás: `GlassBackdrop` (manchas con los tokens `--glass-orb-1/2`).
+- Texto sobre vidrio con tokens (`text-foreground`, `text-muted-foreground`) y contraste ≥ 4.5:1 en claro y oscuro.
 
 # Internacionalización (next-intl)
 

@@ -1,69 +1,48 @@
 /**
- * @file section-03.tsx
- * @description Fragmento de la sección 03 de la página principal.
+ * @file index.tsx
+ * @description Sección 03 (v2): proyectos destacados en un carrusel de vidrio.
  */
 
 "use client";
 
-import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 
 // Import of components custom
-import { SnapPage } from "@/components/atomic-design/templates";
-import { Carousel } from "@/components/atomic-design/organism";
-import { ProjectItem } from "./fragments";
-import { Typography } from "@/components/atomic-design/atoms";
+import {
+  GlassCarousel,
+  GlassHeading,
+  GlassSection,
+} from "@/components/glass-design";
+import { GlassWatermark } from "@/components/pages/app-web/v2/components";
+import { ProjectCard } from "./fragments";
 
 // Import of custom hooks
-import { useIsMobile } from "@/hooks/use-mobile";
-
-// Import of utilities
-import { useProjects, type ProjectType } from "@/components/pages/app-web";
+import { useProjects } from "@/components/pages/app-web";
 
 interface Section03Props {
   readonly anchorId?: string;
 }
 
 export const Section03: React.FC<Section03Props> = ({ anchorId }) => {
-  const isMobile = useIsMobile();
   const t = useTranslations("appWeb");
   const projects = useProjects();
 
   return (
-    <SnapPage id="03" anchorId={anchorId} hideCounter={isMobile}>
-      {/* Children content */}
-      <div className="h-full absolute inset-0 grid grid-cols-1 lg:grid-cols-3  gap-2 lg:gap-[5%]">
-        {/* Column 1 - Content */}
-        <motion.div
-          className="order-2 md:order-1 col-span-2 h-full"
-          initial={{ translateX: -250, opacity: 0 }}
-          whileInView={{ translateX: 0, opacity: 1 }}
-          viewport={{ once: false, margin: "-250px" }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-        >
-          <div className="mx-auto w-4/5 h-full flex items-center justify-center">
-            <div className="w-full">
-              <Carousel
-                items={projects.map((project: ProjectType) => ({
-                  content: <ProjectItem project={project} />,
-                }))}
-                itemClassName="w-full max-w-xs"
-              />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Column 2 - Title */}
-        <div className="order-1 md:order-2 lg:h-full flex items-center justify-center">
-          <Typography
-            variant="h1"
-            color="gradient"
-            className="text-3xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-wrap lg:text-left max-w-xl"
-          >
-            {`<${t("projectsTitle")}/>`}
-          </Typography>
-        </div>
+    <GlassSection
+      anchorId={anchorId}
+      background={<GlassWatermark text="03" position="right" />}
+    >
+      <div className="flex w-full flex-col gap-6">
+        <GlassHeading decorated>{t("projectsTitle")}</GlassHeading>
+        <GlassCarousel
+          items={projects.map((project) => ({
+            id: project.id,
+            content: <ProjectCard project={project} />,
+          }))}
+          previousLabel={t("previousProject")}
+          nextLabel={t("nextProject")}
+        />
       </div>
-    </SnapPage>
+    </GlassSection>
   );
 };

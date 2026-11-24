@@ -128,7 +128,14 @@
         "name": "Jveloper CV",
         "description": "An interactive résumé with a modern Windows 11-inspired interface, built with the latest web technologies. This project combines a functional operating-system design with professional information in an innovative and engaging way."
       }
-    }
+    },
+    "viewProject": "View project",
+    "previousProject": "Previous project",
+    "nextProject": "Next project",
+    "skillsLabel": "Technologies",
+    "lines": "{count} lines",
+    "characters": "{count} characters",
+    "explorer": "Explorer"
   },
   "iaChat": {
     "title": "Where would you like to start?",

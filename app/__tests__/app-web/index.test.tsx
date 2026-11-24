@@ -4,17 +4,6 @@ import { makeStore } from "@/store/makeStore";
 import { setVersion } from "@/store/slices/versionSlice";
 import AppWeb from "../../[locale]/app-web/page";
 
-// Mock del Carousel para evitar errores con embla-carousel
-jest.mock("@/components/atomic-design/organism/carousel", () => ({
-  Carousel: ({ items }: { items: Array<{ content: React.ReactNode }> }) => (
-    <div data-testid="carousel">
-      {items.map((item, idx) => (
-        <div key={idx}>{item.content}</div>
-      ))}
-    </div>
-  ),
-}));
-
 // Mock de los componentes de versión
 jest.mock("@/components/pages/app-web", () => ({
   AppWebV1: () => <div data-testid="app-web-v1">AppWeb V1</div>,

@@ -1,14 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import { Section03 } from "../index";
 
-// Mock del Carousel para evitar errores con embla-carousel
-jest.mock("@/components/atomic-design/organism/carousel", () => ({
-  Carousel: ({ items }: { items: Array<{ content: React.ReactNode }> }) => (
-    <div data-testid="carousel">
-      {items.map((item, idx) => (
-        <div key={idx}>{item.content}</div>
-      ))}
-    </div>
+// Mock del carrusel de shadcn (embla no funciona en jsdom)
+jest.mock("@/components/ui/carousel", () => ({
+  Carousel: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="carousel">{children}</div>
+  ),
+  CarouselContent: ({ children }: { children: React.ReactNode }) => (
+    <div>{children}</div>
+  ),
+  CarouselItem: ({ children }: { children: React.ReactNode }) => (
+    <div>{children}</div>
   ),
 }));
 
@@ -25,16 +27,15 @@ describe("Section03", () => {
     expect(title).toBeInTheDocument();
   });
 
-  it("should render within a SnapPage component", () => {
+  it("should render within a section", () => {
     const { container } = render(<Section03 />);
     const section = container.querySelector("section");
     expect(section).toBeInTheDocument();
   });
 
-  it("should have correct structure with three columns", () => {
-    const { container } = render(<Section03 />);
-    // Verificar que hay un grid con tres columnas en lg
-    const grid = container.querySelector(".lg\\:grid-cols-3");
-    expect(grid).toBeInTheDocument();
+  it("should render the projects in the carousel", () => {
+    render(<Section03 />);
+    expect(screen.getByTestId("carousel")).toBeInTheDocument();
+    expect(screen.getByText("RiskHub")).toBeInTheDocument();
   });
 });
