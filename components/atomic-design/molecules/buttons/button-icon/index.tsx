@@ -61,12 +61,9 @@ export function ButtonIcon({
           tapped: { translateX: 0 },
         }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
-        className="size-6 md:size-10 bg-foreground text-background flex items-center justify-center rounded-full overflow-hidden"
+        className="size-10 bg-foreground text-background flex items-center justify-center rounded-full overflow-hidden"
       >
-        <Icon
-          icon={icon || ICONS.ARROW_RIGHT_01}
-          className="size-5 md:size-6"
-        />
+        <Icon icon={icon || ICONS.ARROW_RIGHT_01} className="size-6" />
       </motion.span>
       <motion.span
         variants={{

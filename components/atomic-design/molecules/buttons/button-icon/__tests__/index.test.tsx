@@ -14,7 +14,7 @@ describe("Button", () => {
     const button = screen.getByRole("button");
     expect(button).toBeInTheDocument();
     // El icono por defecto debería estar presente (iconify renderiza el icono)
-    const iconContainer = button.querySelector(".size-6");
+    const iconContainer = button.querySelector(".size-10");
     expect(iconContainer).toBeInTheDocument();
   });
 

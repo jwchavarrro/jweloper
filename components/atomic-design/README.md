@@ -7,8 +7,10 @@ Componentes propios que **reutilizan y personalizan** los primitivos de shadcn/u
 - **`@/components/ui`**: primitivos de shadcn/ui, instalados por CLI. NO modificar.
 - **atoms/**: el primitivo base; extiende un componente de `ui/` con los estilos del proyecto y no usa otros componentes propios.
 - **molecules/**: combinan atoms. Si algo usa un átomo, es molécula.
-- **organism/**: bloques completos (navegación, carruseles…).
-- **templates/**: esqueletos de página.
+- **organism/**: bloques completos (navegación).
+- **templates/**: esqueletos de página (hoy ninguno aquí).
+
+La v2 (Liquid Glass) tiene su propio sistema en `components/glass-design` (ver su README); no se mezclan.
 
 ## Estructura: nivel / categoría / componente
 
@@ -30,17 +32,11 @@ atomic-design/
 │   ├── buttons/button/             # ui/button + átomo Icon
 │   ├── buttons/button-icon/        # CTA: Button + Icon animados
 │   ├── cards/card-a/               # diseño de card sobre el átomo Card
-│   ├── indicators/counter-indicator/
-│   ├── indicators/scroll-indicator/
 │   ├── inputs/InputField/          # Label opcional + Input; todos los `type` (date con icono)
 │   └── index.ts                    # re-exporta cada categoría
 ├── organism/
-│   ├── carousel/
 │   ├── navigate/breadcrumb/
 │   ├── navigate/sidebar/
-│   └── index.ts
-├── templates/
-│   ├── snap-page/
 │   └── index.ts
 └── index.ts
 ```

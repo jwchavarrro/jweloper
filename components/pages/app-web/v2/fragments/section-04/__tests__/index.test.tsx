@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { Section04 } from "../index";
 import { makeStore } from "@/store/makeStore";
@@ -20,22 +21,6 @@ jest.mock("@/components/atomic-design/atoms", () => ({
     const Tag = (/^h[1-4]$/.test(variant) ? variant : "p") as "p";
     return <Tag className={className}>{children}</Tag>;
   },
-}));
-
-jest.mock("@/components/pages/app-web/components", () => ({
-  WordsAnimation: ({
-    words,
-  }: {
-    words: Array<{ name: string; href: string }>;
-  }) => (
-    <div data-testid="words-animation">
-      {words.map((word) => (
-        <a key={word.name} href={word.href}>
-          {word.name}
-        </a>
-      ))}
-    </div>
-  ),
 }));
 
 jest.mock("@iconify/react", () => ({
@@ -70,7 +55,7 @@ describe("Section04", () => {
     expect(title).toBeInTheDocument();
   });
 
-  it("should render within a SnapPage component", () => {
+  it("should render within a section", () => {
     const { container } = renderWithRedux(<Section04 />);
     const section = container.querySelector("section");
     expect(section).toBeInTheDocument();
@@ -81,5 +66,21 @@ describe("Section04", () => {
     // Verificar que hay un grid con tres columnas en xl
     const grid = container.querySelector(".xl\\:grid-cols-3");
     expect(grid).toBeInTheDocument();
+  });
+
+  it("should switch to version 1 when clicking the previous version link", async () => {
+    const user = userEvent.setup();
+    const store = makeStore();
+    render(
+      <Provider store={store}>
+        <Section04 />
+      </Provider>
+    );
+
+    await user.click(
+      screen.getByRole("button", { name: /Ver la versión anterior/i })
+    );
+
+    expect(store.getState().version.selectedVersion).toBe("v1");
   });
 });
