@@ -1,6 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Section01 } from "../index";
+import { CV_FILE } from "@/components/pages/app-web/utils/constants";
+
+const mockDownloadFile = jest.fn();
+
+jest.mock("@/hooks", () => ({
+  ...jest.requireActual("@/hooks"),
+  useDownloadFile: () => ({
+    downloadFile: mockDownloadFile,
+    state: { status: "idle", error: null },
+  }),
+}));
 
 // Mock de los iconos
 interface IconProps {
@@ -93,5 +104,36 @@ describe("Section01", () => {
     // Verificar que hay un grid con dos columnas en xl
     const grid = container.querySelector(".xl\\:grid-cols-2");
     expect(grid).toBeInTheDocument();
+  });
+
+  it("should show the years of the hovered or focused skill and restore the default", async () => {
+    const user = userEvent.setup();
+    render(<Section01 />);
+
+    expect(screen.getByText("+3")).toBeInTheDocument();
+
+    const reactChip = screen.getByText("React").closest("span[tabindex]");
+    expect(reactChip).not.toBeNull();
+
+    await user.hover(reactChip as Element);
+    expect(screen.getByText("+2")).toBeInTheDocument();
+
+    await user.unhover(reactChip as Element);
+    expect(screen.getByText("+3")).toBeInTheDocument();
+
+    (reactChip as HTMLElement).focus();
+    expect(await screen.findByText("+2")).toBeInTheDocument();
+
+    (reactChip as HTMLElement).blur();
+    expect(await screen.findByText("+3")).toBeInTheDocument();
+  });
+
+  it("should download the CV file when clicking the download button", async () => {
+    const user = userEvent.setup();
+    render(<Section01 />);
+
+    await user.click(screen.getByRole("button", { name: /Descargar CV/i }));
+
+    expect(mockDownloadFile).toHaveBeenCalledWith(CV_FILE.path, CV_FILE.name);
   });
 });
