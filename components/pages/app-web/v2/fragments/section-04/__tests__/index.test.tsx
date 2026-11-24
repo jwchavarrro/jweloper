@@ -22,22 +22,6 @@ jest.mock("@/components/atomic-design/atoms", () => ({
   },
 }));
 
-jest.mock("@/components/pages/app-web/components", () => ({
-  WordsAnimation: ({
-    words,
-  }: {
-    words: Array<{ name: string; href: string }>;
-  }) => (
-    <div data-testid="words-animation">
-      {words.map((word) => (
-        <a key={word.name} href={word.href}>
-          {word.name}
-        </a>
-      ))}
-    </div>
-  ),
-}));
-
 jest.mock("@iconify/react", () => ({
   Icon: ({ icon, className }: { icon: string; className?: string }) => (
     <svg data-testid={`icon-${icon}`} className={className} />
@@ -70,7 +54,7 @@ describe("Section04", () => {
     expect(title).toBeInTheDocument();
   });
 
-  it("should render within a SnapPage component", () => {
+  it("should render within a section", () => {
     const { container } = renderWithRedux(<Section04 />);
     const section = container.querySelector("section");
     expect(section).toBeInTheDocument();

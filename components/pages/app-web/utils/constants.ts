@@ -36,6 +36,24 @@ export const APP_WEB_ICONS: Record<string, string> = {
 };
 
 /**
+ * @name APP_WEB_VERSIONS
+ * @description Versión publicada de cada diseño de app-web.
+ */
+export const APP_WEB_VERSIONS = {
+  V1: "v1.2.0",
+  V2: "v2.5.0",
+} as const;
+
+/**
+ * @name CV_FILE
+ * @description PDF del CV (ruta pública y nombre de descarga), común a v1 y v2.
+ */
+export const CV_FILE = {
+  path: "/docs/CV JOHN CHAVARRO 2025.pdf",
+  name: "CV_JOHN_CHAVARRO_2025.pdf",
+} as const;
+
+/**
  * @name SKILLS
  * @type {SkillType[]}
  * @description Lista de habilidades con su respectivo icono y experiencia.

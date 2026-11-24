@@ -17,6 +17,10 @@ import { CardA, CardB } from "@/components/pages/app-web/v1/components/cards";
 // Import of utilities
 import { SOCIAL_MEDIA } from "@/app/utils";
 import { NAVIGATION_APP_WEB_V1_SECTIONS } from "@/components/pages/app-web/v1/utils";
+import {
+  APP_WEB_VERSIONS,
+  CV_FILE,
+} from "@/components/pages/app-web/utils/constants";
 import { APP_ROUTES, MULTIMEDIA, ICONS } from "@/config";
 import { Link as LocaleLink } from "@/app/[locale]/i18n-navigation";
 
@@ -177,7 +181,7 @@ export const AppWebV1: React.FC = () => {
               onClick={() => dispatch(setVersion("v2"))}
               className="group flex items-center gap-1 text-[9px]! text-sm/3"
             >
-              v1.2.0 |{" "}
+              {APP_WEB_VERSIONS.V1} |{" "}
               <span className="group-hover:underline cursor-pointer">
                 {t("viewNewVersion")}
               </span>
@@ -224,7 +228,7 @@ export const AppWebV1: React.FC = () => {
             <CardA key={experience.dates} data={experience} />
           ))}
           <Link
-            href="/docs/CV JOHN CHAVARRO 2025.pdf"
+            href={CV_FILE.path}
             target="_blank"
             rel="noopener noreferrer"
             className="group"

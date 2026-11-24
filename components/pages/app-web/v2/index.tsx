@@ -1,13 +1,17 @@
 /**
  * @file index.tsx
- * @description Componente principal para la versión 2 de la página principal.
+ * @description Versión 2 de app-web (Liquid Glass). Usa solo el sistema `glass-design`.
  */
 
 "use client";
 
-import React from "react";
-
 // Import of components custom
+import {
+  GlassBackdrop,
+  GlassDistortionFilter,
+} from "@/components/glass-design";
+
+// Import of fragments
 import {
   Section01,
   Section02,
@@ -17,14 +21,9 @@ import {
 
 export const AppWebV2: React.FC = () => {
   return (
-    <div
-      className="h-full overflow-y-scroll snap-y snap-mandatory scroll-smooth"
-      style={{
-        scrollbarWidth: "none",
-        msOverflowStyle: "none",
-        scrollBehavior: "smooth",
-      }}
-    >
+    <div className="relative isolate h-full snap-y snap-mandatory overflow-y-scroll scroll-smooth [scrollbar-width:none]">
+      <GlassDistortionFilter />
+      <GlassBackdrop className="fixed" />
       <Section01 />
       <Section02 anchorId="experiencia" />
       <Section03 anchorId="proyectos" />

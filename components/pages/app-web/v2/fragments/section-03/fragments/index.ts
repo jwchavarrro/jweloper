@@ -1,6 +1,6 @@
 /**
  * @file index.ts
- * @description Exports de fragmentos para la sección 03.
+ * @description Fragmentos de la sección 03 (v2).
  */
 
-export * from "./project-item";
+export * from "./project-card";

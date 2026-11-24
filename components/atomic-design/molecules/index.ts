@@ -6,5 +6,4 @@
 export * from "./badges";
 export * from "./buttons";
 export * from "./cards";
-export * from "./indicators";
 export * from "./inputs";

@@ -82,7 +82,7 @@ describe("Section01", () => {
     expect(screen.getByText(/Desarrollador Frontend/i)).toBeInTheDocument();
   });
 
-  it("should render within a SnapPage component", () => {
+  it("should render within a section", () => {
     const { container } = render(<Section01 />);
     const section = container.querySelector("section");
     expect(section).toBeInTheDocument();

@@ -117,6 +117,7 @@ export default function Home() {
                   key={button.label}
                   icon={ICONS.ARROW_RIGHT_01}
                   text={t(button.label)}
+                  className="w-full justify-start lg:w-fit"
                   onClick={() => router.push(button.url)}
                 />
               );

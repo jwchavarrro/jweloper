@@ -1,6 +1,6 @@
 /**
- * @file section-04.tsx
- * @description Fragmento de la sección 04 de la página principal.
+ * @file index.tsx
+ * @description Sección 04 (v2): contacto en un panel de vidrio.
  */
 
 "use client";
@@ -8,73 +8,42 @@
 import { useTranslations } from "next-intl";
 
 // Import of components custom
-import { SnapPage } from "@/components/atomic-design/templates";
-import { Icon, Typography } from "@/components/atomic-design/atoms";
-import { WordsAnimation } from "@/components/pages/app-web/components";
+import { GlassSection, GlassHeading } from "@/components/glass-design";
+import {
+  GlassContactPanel,
+  GlassWatermark,
+} from "@/components/pages/app-web/v2/components";
 
 // Import of utilities
 import { SOCIAL_MEDIA } from "@/app/utils/constants";
+import { APP_WEB_VERSIONS } from "@/components/pages/app-web/utils/constants";
 
-// Import of custom hooks
+// Import of store
 import { useAppDispatch } from "@/store/hooks";
 import { setVersion } from "@/store/slices/versionSlice";
-import { ICONS } from "@/config";
 
 interface Section04Props {
   readonly anchorId?: string;
 }
 
 export const Section04: React.FC<Section04Props> = ({ anchorId }) => {
-  // Implementation of custom hooks
-  const dispatch = useAppDispatch();
   const t = useTranslations("appWeb");
+  const dispatch = useAppDispatch();
+
   return (
-    <SnapPage id="04" anchorId={anchorId}>
-      {/* Children content */}
-      <div className="h-full absolute inset-0 grid grid-cols-1 xl:grid-cols-3 gap-[5%]">
-        {/* Column 1 - Title */}
-        <div className="h-full flex items-center justify-end">
-          <Typography
-            variant="h1"
-            color="gradient"
-            className="text-4xl! md:text-6xl! lg:text-7xl! 2xl:text-8xl! text-right max-w-xl"
-          >
-            {`<${t("contactTitle")}/>`}
-          </Typography>
-        </div>
-
-        {/* Column 2 - Content */}
-        <div className="col-span-2 h-full">
-          <div className="h-full flex flex-col justify-center items-center md:items-start gap-5">
-            <Typography className="font-accent">{t("contactText")}</Typography>
-
-            {/* Links list */}
-            <WordsAnimation
-              words={SOCIAL_MEDIA.map(({ name, url }) => ({
-                name,
-                href: url,
-              }))}
-              className="items-center md:items-start"
-            />
-
-            {/** Button to go to version 1 */}
-            <button
-              type="button"
-              onClick={() => dispatch(setVersion("v1"))}
-              className="group flex items-center gap-1 text-[9px]! text-sm/3"
-            >
-              v2.5.0 |{" "}
-              <span className="group-hover:underline cursor-pointer">
-                {t("viewPreviousVersion")}
-              </span>
-              <Icon
-                icon={ICONS.ARROW_RIGHT_01}
-                className="group-hover:translate-x-1 transition-all duration-300"
-              />
-            </button>
-          </div>
+    <GlassSection anchorId={anchorId} background={<GlassWatermark text="04" />}>
+      <div className="grid w-full grid-cols-1 items-center gap-8 xl:grid-cols-3">
+        <GlassHeading align="right" decorated>
+          {t("contactTitle")}
+        </GlassHeading>
+        <div className="xl:col-span-2">
+          <GlassContactPanel
+            links={SOCIAL_MEDIA}
+            version={APP_WEB_VERSIONS.V2}
+            onShowPreviousVersion={() => dispatch(setVersion("v1"))}
+          />
         </div>
       </div>
-    </SnapPage>
+    </GlassSection>
   );
 };

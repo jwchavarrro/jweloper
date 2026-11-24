@@ -128,7 +128,14 @@
         "name": "Jveloper CV",
         "description": "Un currículum vitae interactivo con una interfaz moderna inspirada en Windows 11, construido con las últimas tecnologías web. Este proyecto combina un diseño de sistema operativo funcional con información profesional de manera innovadora y atractiva."
       }
-    }
+    },
+    "viewProject": "Ver proyecto",
+    "previousProject": "Proyecto anterior",
+    "nextProject": "Proyecto siguiente",
+    "skillsLabel": "Tecnologías",
+    "lines": "{count} líneas",
+    "characters": "{count} caracteres",
+    "explorer": "Explorador"
   },
   "iaChat": {
     "title": "¿Por dónde quieres empezar?",
